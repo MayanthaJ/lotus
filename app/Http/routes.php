@@ -16,3 +16,12 @@ Route::get('/', function () {
 });
 
 
+// employee login route ( do not remove )
+Route::auth();
+
+// main home page controller ( do not remove )
+Route::get('/home', 'HomeController@index');
+
+
+// Udana's routes
+Route::resource('advertisements', 'Advertisement\AdvertisementController');
