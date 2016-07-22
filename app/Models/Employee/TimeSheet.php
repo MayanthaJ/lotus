@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class TimeSheet extends Model
 {
+    public $fillable = ['id'];
+
     /**
      * Get the overtimes related a timesheet
      *
