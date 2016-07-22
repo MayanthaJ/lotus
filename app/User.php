@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Employee\TimeSheet;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -23,4 +24,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function timesheet()
+    {
+        return $this->hasMany(TimeSheet::class, 'user_id');
+    }
 }
