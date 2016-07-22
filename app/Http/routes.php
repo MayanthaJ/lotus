@@ -26,5 +26,3 @@ Route::get('/home', 'HomeController@index');
 // Udana's routes
 Route::resource('advertisements', 'Advertisement\AdvertisementController');
 
-
-Route::get('jbdsjvbdsvj', 'fdsf');
