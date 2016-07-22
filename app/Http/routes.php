@@ -26,3 +26,6 @@ Route::get('/home', 'HomeController@index');
 // Udana's routes
 Route::resource('advertisements', 'Advertisement\AdvertisementController');
 
+// Sithira's routes
+
+
