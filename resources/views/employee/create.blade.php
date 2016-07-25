@@ -7,4 +7,5 @@
         @include('employee.partials._formPartial', ['btn' => 'Add button'])
     {!! Form::close() !!}
 
+
 @endsection

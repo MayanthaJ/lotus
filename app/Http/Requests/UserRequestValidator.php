@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Auth;
 
 class UserRequestValidator extends Request
 {
@@ -13,7 +14,17 @@ class UserRequestValidator extends Request
      */
     public function authorize()
     {
-        return true;
+        $adminTypes = Auth::user()->admin;
+        if ($adminTypes->isEmpty()) {
+            return false;
+        } else {
+            foreach ($adminTypes as $item) {
+                if ($item->type == 'Admin' || $item->type == 'Management') {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
     /**

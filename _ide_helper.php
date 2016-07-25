@@ -1,11 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
-<<<<<<< HEAD
- * Generated for Laravel 5.2.41 on 2016-07-22.
-=======
- * Generated for Laravel 5.2.41 on 2016-07-23.
->>>>>>> origin/master
+ * Generated for Laravel 5.2.41 on 2016-07-25.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -1634,7 +1630,6 @@ namespace {
         /**
          * Determine if the current user is authenticated.
          *
-<<<<<<< HEAD
          * @return bool 
          * @static 
          */
@@ -1644,23 +1639,10 @@ namespace {
         
         /**
          * Determine if the current user is a guest.
-=======
-         * @return \App\User 
-         * @throws \Illuminate\Auth\AuthenticationException
-         * @static 
-         */
-        public static function authenticate(){
-            return \Illuminate\Auth\SessionGuard::authenticate();
-        }
-        
-        /**
-         * Determine if the current user is authenticated.
->>>>>>> origin/master
          *
          * @return bool 
          * @static 
          */
-<<<<<<< HEAD
         public static function guest(){
             return \Illuminate\Auth\SessionGuard::guest();
         }
@@ -1674,20 +1656,6 @@ namespace {
          */
         public static function authenticate(){
             return \Illuminate\Auth\SessionGuard::authenticate();
-=======
-        public static function check(){
-            return \Illuminate\Auth\SessionGuard::check();
-        }
-        
-        /**
-         * Determine if the current user is a guest.
-         *
-         * @return bool 
-         * @static 
-         */
-        public static function guest(){
-            return \Illuminate\Auth\SessionGuard::guest();
->>>>>>> origin/master
         }
         
     }
@@ -2551,8 +2519,6 @@ namespace {
     }
 
 
-<<<<<<< HEAD
-=======
     class Crypt extends \Illuminate\Support\Facades\Crypt{
         
         /**
@@ -2594,7 +2560,6 @@ namespace {
     }
 
 
->>>>>>> origin/master
     class DB extends \Illuminate\Support\Facades\DB{
         
         /**
@@ -6696,8 +6661,6 @@ namespace {
             return \Illuminate\Queue\QueueManager::isDownForMaintenance();
         }
         
-<<<<<<< HEAD
-=======
         /**
          * Push a new job onto the queue.
          *
@@ -6817,7 +6780,6 @@ namespace {
             \Illuminate\Queue\SyncQueue::setEncrypter($encrypter);
         }
         
->>>>>>> origin/master
     }
 
 
