@@ -16,6 +16,17 @@ class isAdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        $adminTypes = Auth::user()->admin;
+        if ($adminTypes->isEmpty()) {
+            return response('Unauthorized', 401);
+        } else {
+            foreach ($adminTypes as $item) {
+                if ($item->type == 'Admin' || $item->type == 'Management') {
+                    return $next($request);
+                }
+            }
+            return response('Unauthorized', 401);
+        }
+
     }
 }

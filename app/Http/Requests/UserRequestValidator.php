@@ -14,17 +14,7 @@ class UserRequestValidator extends Request
      */
     public function authorize()
     {
-        $adminTypes = Auth::user()->admin;
-        if ($adminTypes->isEmpty()) {
-            return false;
-        } else {
-            foreach ($adminTypes as $item) {
-                if ($item->type == 'Admin' || $item->type == 'Management') {
-                    return true;
-                }
-            }
-            return false;
-        }
+        return true;
     }
 
     /**

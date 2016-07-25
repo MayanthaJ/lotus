@@ -12,6 +12,11 @@ use App\Http\Controllers\Controller;
 
 class EmployeeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('adminOrManager')->only('create');
+    }
+
     /**
      * Display a listing of the resource.
      *
