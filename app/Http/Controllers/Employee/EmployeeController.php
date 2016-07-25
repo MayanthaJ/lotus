@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Employee;
 
 use App\Http\Requests\UserRequestValidator;
+use App\Models\Employee\AdminTypes;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class EmployeeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('adminOrManager')->only('create');
+        $this->middleware('adminOrManager');
     }
 
     /**
@@ -59,7 +60,7 @@ class EmployeeController extends Controller
             'terminated_date' => null
         ]);
 
-
+        $employee->admin()->sync($request->type_lists);
 
 
     }
@@ -83,7 +84,11 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee = User::find($id);
+
+        $tag_lists = AdminTypes::pluck('id')->all();
+
+        return view('employee.edit', compact('employee', 'tag_lists'));
     }
 
     /**

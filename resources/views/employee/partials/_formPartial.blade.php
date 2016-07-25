@@ -28,6 +28,10 @@
 
 <br />
 
+{!! Form::select('type_lists', null) !!}
+
+<br />
+
 {!! Form::label('gender') !!}
 {!! Form::select('gender', [0 => 'female', 1 => 'male']) !!}
 

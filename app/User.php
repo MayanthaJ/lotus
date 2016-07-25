@@ -45,4 +45,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(TimeSheet::class, 'user_id');
     }
+
+    /**
+     * @return mixed
+     */
+    public function typeListsAttribute()
+    {
+        return $this->admin->pluck('id')->all();
+    }
 }
