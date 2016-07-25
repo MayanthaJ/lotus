@@ -28,6 +28,7 @@ Route::resource('advertisements', 'Advertisement\AdvertisementController');
 
 // Sithira's routes
 Route::resource('employee', 'Employee\EmployeeController');
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
