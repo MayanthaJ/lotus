@@ -9,7 +9,9 @@
         "laravel/framework": "5.2.*",
         "barryvdh/laravel-ide-helper": "^2.2",
         "laravelcollective/html": "^5.2",
-        "codezero/flash": "^1.0"
+        "codezero/flash": "^1.0",
+        "filp/whoops": "^2.1",
+        "doctrine/dbal": "^2.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

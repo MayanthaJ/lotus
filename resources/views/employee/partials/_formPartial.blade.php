@@ -13,10 +13,12 @@
 
 <br />
 
-{!! Form::label('password', 'Password : ') !!}
-{!! Form::text('password') !!}
+@if($password)
+    {!! Form::label('password', 'Password : ') !!}
+    {!! Form::text('password') !!}
 
-<br />
+    <br />
+@endif
 
 {!! Form::label('nic', 'NIC : ') !!}
 {!! Form::text('nic') !!}
@@ -27,8 +29,13 @@
 {!! Form::text('basic') !!}
 
 <br />
+{!! Form::label('Access type : ') !!}
+{!! Form::select('type_lists[]', $type_lists, null, ['multiple']) !!}
 
-{!! Form::select('type_lists', null) !!}
+<br />
+
+{!! Form::label('Employee Type : ') !!}
+{!! Form::select('employee_types[]', $employee_type, null, ['multiple']) !!}
 
 <br />
 
@@ -37,7 +44,7 @@
 
 <br />
 
-{!! Form::label('terminated') !!}
+{!! Form::label('terminated', 'is Terminated : ') !!}
 {!! Form::checkbox('terminated') !!}
 
 <br />

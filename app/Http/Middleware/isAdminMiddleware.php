@@ -16,6 +16,7 @@ class isAdminMiddleware
      */
     public function handle($request, Closure $next)
     {
+
         $adminTypes = Auth::user()->admin;
         if ($adminTypes->isEmpty()) {
             return response('Unauthorized', 401);

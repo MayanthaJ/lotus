@@ -4,6 +4,26 @@ namespace App\Models\Employee;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Employee\TimeSheet
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\OverTime[] $overtime
+ * @mixin \Eloquent
+ * @property integer $id
+ * @property integer $user_id
+ * @property string $day
+ * @property string $check_in
+ * @property string $check_out
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\TimeSheet whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\TimeSheet whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\TimeSheet whereDay($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\TimeSheet whereCheckIn($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\TimeSheet whereCheckOut($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\TimeSheet whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\TimeSheet whereUpdatedAt($value)
+ */
 class TimeSheet extends Model
 {
     public $fillable = ['id'];

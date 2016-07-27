@@ -24,12 +24,35 @@ class UserRequestValidator extends Request
      */
     public function rules()
     {
-        return [
-            'name' => 'required|min:3|max:50',
-            'lastname' => 'required|min:5|max:50',
-            'email' => 'required|unique',
-            'password' => 'required|min:8',
-            'basic' => 'required',
-        ];
+        switch ($this->method()) {
+            case 'GET':
+            case 'DELETE': {
+                return [];
+            }
+            case 'POST': {
+                return [
+                    'name' => 'required|min:3|max:50',
+                    'lastname' => 'required|min:5|max:50',
+                    'nic' => 'required|min:10|max:10',
+                    'email' => 'required|unique:users,email|email',
+                    'password' => 'required|min:8',
+                    'basic' => 'required',
+                ];
+            }
+            case 'PUT':
+            case 'PATCH': {
+                return [
+                    'name' => 'required|min:3|max:50',
+                    'lastname' => 'required|min:5|max:50',
+                    'nic' => 'required|min:10|max:10',
+                    'email' => 'required|email',
+                    'password' => 'required|min:8',
+                    'basic' => 'required',
+                ];
+            }
+            default:
+                break;
+        }
     }
+
 }

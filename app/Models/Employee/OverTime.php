@@ -4,6 +4,24 @@ namespace App\Models\Employee;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Employee\OverTime
+ *
+ * @property-read \App\Models\Employee\TimeSheet $timesheet
+ * @mixin \Eloquent
+ * @property integer $id
+ * @property integer $timesheet_id
+ * @property integer $overtimetype_id
+ * @property float $hours
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\OverTime whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\OverTime whereTimesheetId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\OverTime whereOvertimetypeId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\OverTime whereHours($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\OverTime whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\OverTime whereUpdatedAt($value)
+ */
 class OverTime extends Model
 {
     public $fillable = ['id'];

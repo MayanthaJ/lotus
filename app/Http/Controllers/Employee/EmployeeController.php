@@ -4,18 +4,25 @@ namespace App\Http\Controllers\Employee;
 
 use App\Http\Requests\UserRequestValidator;
 use App\Models\Employee\AdminTypes;
+use App\Models\Employee\EmployeeType;
 use App\User;
 use Carbon\Carbon;
+use File;
+use Flash;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Redirect;
 
 class EmployeeController extends Controller
 {
+    /**
+     * EmployeeController constructor.
+     */
     public function __construct()
     {
-        $this->middleware('adminOrManager');
+        $this->middleware(['auth', 'adminOrManager']);
     }
 
     /**
@@ -25,7 +32,13 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        echo "lol";
+
+        // get all the employees in the database
+        $employees = User::all();
+
+        // return the view with all compacted data
+        return view('employee.index', compact('employees'));
+
     }
 
     /**
@@ -35,7 +48,14 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employee.create');
+        // get all type names of the admin types
+        $type_lists = AdminTypes::pluck('type', 'id');
+
+        // get all the employee types
+        $employee_type = EmployeeType::pluck('type', 'id');
+
+        // return with compacted data
+        return view('employee.create', compact('type_lists', 'employee_type'));
     }
 
     /**
@@ -47,6 +67,7 @@ class EmployeeController extends Controller
     public function store(UserRequestValidator $request)
     {
 
+        // create the employee
         $employee = User::create([
             'name' => $request->name,
             'lastname' => $request->lastname,
@@ -60,8 +81,16 @@ class EmployeeController extends Controller
             'terminated_date' => null
         ]);
 
+        // create the directory for a employee
+        if(!File::isDirectory(public_path().'/employees/'.$employee->id)) {
+            File::makeDirectory(public_path().'/employees/'.$employee->id, true, true);
+        }
+
+        // sync the access types
         $employee->admin()->sync($request->type_lists);
 
+        // sync the access employee types
+        $employee->employee_type()->sync($request->employee_types);
 
     }
 
@@ -73,7 +102,17 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+        // get the employee model
+        $employee = User::findOrFail($id);
+
+        // get all admin types
+        $type_lists = AdminTypes::pluck('type');
+
+        // get all employee types
+        $employee_types = EmployeeType::pluck('name');
+
+        // return the view with all compacted data
+        return view('employee.show', compact('employee', 'type_lists', 'employee_types'));
     }
 
     /**
@@ -86,21 +125,62 @@ class EmployeeController extends Controller
     {
         $employee = User::find($id);
 
-        $tag_lists = AdminTypes::pluck('id')->all();
+        $type_lists = AdminTypes::pluck('type', 'id');
 
-        return view('employee.edit', compact('employee', 'tag_lists'));
+        $employee_type = EmployeeType::pluck('name', 'id');
+
+        return view('employee.edit', compact('employee', 'type_lists', 'employee_type'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param UserRequestValidator|Request $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequestValidator $request, $id)
     {
-        //
+        // get the employee model
+        $employee = User::findOrFail($id);
+
+        // set the normal employee columns
+        $employee->name = $request->name;
+        $employee->lastname = $request->lastname;
+        $employee->nic = $request->nic;
+        $employee->gender = $request->gender;
+        $employee->basic = $request->basic;
+
+        // since we have only checkbox it's only available in the dom if
+        // its ticked, so we have to check for the existence
+        if ($request->gender == '0') {
+            $employee->gender = 0;
+        } else {
+            $employee->gender = 1;
+        }
+
+        // if terminated date is checked set the date
+        if ($request->has('terminated')) {
+            $employee->terminated = 1;
+            $employee->terminated_date = Carbon::now();
+        } else {
+            $employee->terminated = 0;
+            $employee->terminated_date = null;
+        }
+
+        // sync the user types
+        $employee->admin()->sync($request->type_lists);
+
+        // sync the employee types
+        $employee->employee_type()->sync($request->employee_types);
+
+        // save and exit
+        if ($employee->save()) {
+            Flash::success("Changes updated !");
+        }
+
+        // return to the original page
+        return Redirect::back();
     }
 
     /**
@@ -111,6 +191,20 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // get employee model
+        $employee = User::findOrFail($id);
+
+        // delete the content of the employee if required
+        File::deleteDirectory(public_path().'/employees/'.$employee->id);
+
+        // make the notification
+        if($employee->delete()) {
+            Flash::success('Employee removed successfully');
+        } else {
+            Flash::error('Employee removal failed');
+        }
+
+        // return to the all employees page
+        return Redirect::to('employee');
     }
 }
