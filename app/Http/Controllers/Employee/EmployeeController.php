@@ -22,7 +22,11 @@ class EmployeeController extends Controller
      */
     public function __construct()
     {
+        // enables updates
         $this->middleware(['auth', 'adminOrManager']);
+
+        // stops self updates
+        $this->middleware('selfUpdate' ,['only' => 'update']);
     }
 
     /**
@@ -141,6 +145,7 @@ class EmployeeController extends Controller
      */
     public function update(UserRequestValidator $request, $id)
     {
+        $this->middleware('selfUpdate');
         // get the employee model
         $employee = User::findOrFail($id);
 

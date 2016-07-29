@@ -18,7 +18,7 @@ class isAdminMiddleware
     {
 
         $adminTypes = Auth::user()->admin;
-        if ($adminTypes->isEmpty()) {
+        if ($adminTypes == null || $adminTypes->isEmpty()) {
             return response('Unauthorized', 401);
         } else {
             foreach ($adminTypes as $item) {

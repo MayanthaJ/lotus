@@ -24,10 +24,23 @@ Route::get('/home', 'HomeController@index');
 
 
 // Udana's routes
-Route::resource('advertisements', 'Advertisement\AdvertisementController');
+//Route::resource('advertisements', 'Advertisement\AdvertisementController');
 
 // Sithira's routes
-Route::resource('employee', 'Employee\EmployeeController');
+Route::resource('system/employee', 'Employee\EmployeeController');
+
+// System test routes ( timesheet )
+//Route::get('/attendance/{employee}/check-in', '');
+
+Route::get('/test', function(){
+   $time  = \Carbon\Carbon::now();
+
+    echo $time->toDateString();
+});
+
+Route::get('/attendance/{employee}/check-out', function () {
+
+});
 
 Route::auth();
 

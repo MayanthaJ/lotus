@@ -12,10 +12,14 @@
 {!! Form::text('email') !!}
 
 <br />
-
 @if($password)
     {!! Form::label('password', 'Password : ') !!}
     {!! Form::text('password') !!}
+
+    <br />
+@else
+    {!! Form::label('Reset password') !!}
+    {!! Html::link('/system/employee/password/edit', 'Reset password ?') !!}
 
     <br />
 @endif

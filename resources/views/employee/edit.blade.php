@@ -5,6 +5,6 @@
     <h2>Edit Employee</h2>
 
     {!! Form::model($employee, ['method' => 'PATCH', 'action' => ['Employee\EmployeeController@update', $employee->id]]) !!}
-        @include('employee.partials._formPartial', ['btn' => 'Update Employee', 'password' => true])
+        @include('employee.partials._formPartial', ['btn' => 'Update Employee', 'password' => false])
     {!! Form::close() !!}
 @endsection
