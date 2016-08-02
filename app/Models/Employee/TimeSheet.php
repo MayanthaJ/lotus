@@ -28,6 +28,8 @@ class TimeSheet extends Model
 {
     public $fillable = ['id'];
 
+    public $dates  = ['created_at', 'updated_at', 'check_in', 'check_out'];
+
     /**
      * Get the overtimes related a timesheet
      *

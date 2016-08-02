@@ -18,6 +18,7 @@ class CreateTimeSheetsTable extends Migration
             $table->date('day');
             $table->dateTime('check_in');
             $table->dateTime('check_out');
+            $table->float('pay');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

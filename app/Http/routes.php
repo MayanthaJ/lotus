@@ -30,17 +30,11 @@ Route::get('/home', 'HomeController@index');
 Route::resource('system/employee', 'Employee\EmployeeController');
 
 // System test routes ( timesheet )
-//Route::get('/attendance/{employee}/check-in', '');
+Route::get('/attendance/{employee}/check-out', 'Employee\TimeSheetController@checkOut');
+Route::get('/attendance/{employee}/check-in', 'Employee\TimeSheetController@checkIn');
 
-Route::get('/test', function(){
-   $time  = \Carbon\Carbon::now();
 
-    echo $time->toDateString();
-});
-
-Route::get('/attendance/{employee}/check-out', function () {
-
-});
+//Route::get('/attendance/{employee}/check-out', '');
 
 Route::auth();
 
