@@ -26,7 +26,6 @@ class TimeSheetController extends Controller
 
     public function checkOut(Request $request, $employee)
     {
-
         $currentTime = Carbon::now();
 
         $today = $currentTime->toDateString();
