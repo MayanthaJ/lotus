@@ -17,6 +17,7 @@ class CreateOverTimesTable extends Migration
             $table->unsignedInteger('timesheet_id');
             $table->unsignedInteger('overtimetype_id');
             $table->double('hours');
+            $table->double('pay');
             $table->foreign('timesheet_id')->references('id')->on('time_sheets')->onDelete('cascade');
             $table->foreign('overtimetype_id')->references('id')->on('over_time_types')->onDelete('cascade');
             $table->timestamps();

@@ -2,6 +2,7 @@
 
 namespace App\Models\General;
 
+use App\Models\Employee\OverTimeType;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -25,5 +26,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Holidays extends Model
 {
-    //
+    public function otType()
+    {
+        return $this->hasOne(OverTimeType::class, 'id');
+    }
 }

@@ -26,10 +26,13 @@ class TimeSheetController extends Controller
 
     public function checkOut(Request $request, $employee)
     {
+        // get the current time
         $currentTime = Carbon::now();
 
+        // get the date in a string format for querying
         $today = $currentTime->toDateString();
 
+        // get the employee who is checking_out
         $person = User::findOrFail($employee);
 
         // get the time sheet of the day if any exists
@@ -39,39 +42,65 @@ class TimeSheetController extends Controller
         if ($timeSheet != null) {
 
             // update the check_out time
-            $person->check_out = Carbon::now();
+            $timeSheet->check_out = $currentTime;
 
-            //dd($timeSheet->check_in->format('h:i:s'));
-
-            $otTimeAmount = $timeSheet->check_in->diffInHours($currentTime->format('h:i:s'), false);
+            // calc the amount of time between check_in time and current time
+            $otTimeAmount = $timeSheet->check_in->diffInHours($currentTime, false);
 
             if ($otTimeAmount >= 8) {
 
-                    $holiday = Holidays::whereStartDay($today)->first();
+                // get the holiday, if today is a holiday
+                $holiday = Holidays::whereStartDay($today)->first();
 
+                // if the current day is not a holiday
                 if ($holiday != null || !$holiday->isEmpty()) {
 
-                    if ($otTimeAmount >= 10) {
-                        // inform to admin/management
-                    }
+                    // create the ot card
+                    OverTime::create([
+                        'timesheet_id' => $timeSheet->id,
+                        'over_time_type_id' => 1, // <- since not a holiday
+                        'hours' => $otTimeAmount,
+                        'pay' => ($person->hour_rate + $holiday->otType->rate) * $otTimeAmount
+                    ]);
 
-                    // get ot type
-                    $ot = OverTime::create([]);
+                } else {
 
+                    // create the ot card
+                    OverTime::create([
+                        'timesheet_id' => $timeSheet->id,
+                        'over_time_type_id' => $holiday->overtimetype_id,
+                        'hours' => $otTimeAmount,
+                        'pay' => ($person->hour_rate + $holiday->otType->rate) * $otTimeAmount
+                    ]);
+                }
+
+                // report unusual activity
+                if ($otTimeAmount >= 10) {
+                    // todo : make a notice board
+                    // inform to admin/management
                 }
 
                 // save the check_out time
                 if ($timeSheet->save()) {
-                    echo "Okay";
+                    echo "Check out complete";
                 } else {
                     echo "Check_out failed";
                 }
 
             } else {
 
-                echo "TimeSheet not found !";
+                echo "No worked for get OT";
+
+                if($timeSheet->save()) {
+                    echo "Check out complete";
+                } else {
+                    echo "Check out failed";
+                }
+
             }
 
+        } else {
+            echo "Couldn't find the timesheet";
         }
 
     }

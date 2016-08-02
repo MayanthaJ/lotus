@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('nic');
             $table->double('basic');
+            $table->double('hour_rate');
             $table->boolean('gender');
             $table->boolean('terminated');
             $table->date('hired_date');
