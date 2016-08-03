@@ -23,5 +23,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class BonusTypes extends Model
 {
-    //
+    public $guarded = ['id'];
+
+    /**
+     * Get all bonuses related to the bonusType
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function bonus() {
+        return $this->hasMany(Bonus::class, 'id');
+    }
 }

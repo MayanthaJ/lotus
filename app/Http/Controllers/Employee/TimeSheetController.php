@@ -26,6 +26,9 @@ class TimeSheetController extends Controller
 
     public function checkOut(Request $request, $employee)
     {
+        // normal holiday pay
+        $normalRate = 10;
+
         // get the current time
         $currentTime = Carbon::now();
 
@@ -53,12 +56,12 @@ class TimeSheetController extends Controller
                 $holiday = Holidays::whereStartDay($today)->first();
 
                 // if the current day is not a holiday
-                if ($holiday != null || !$holiday->isEmpty()) {
+                if ($holiday != null) {
 
                     // create the ot card
                     OverTime::create([
                         'timesheet_id' => $timeSheet->id,
-                        'over_time_type_id' => 1, // <- since not a holiday
+                        'overtimetype_id' => $holiday->overtimetype_id, // <- since not a holiday
                         'hours' => $otTimeAmount,
                         'pay' => ($person->hour_rate + $holiday->otType->rate) * $otTimeAmount
                     ]);
@@ -68,9 +71,9 @@ class TimeSheetController extends Controller
                     // create the ot card
                     OverTime::create([
                         'timesheet_id' => $timeSheet->id,
-                        'over_time_type_id' => $holiday->overtimetype_id,
+                        'overtimetype_id' => 1,
                         'hours' => $otTimeAmount,
-                        'pay' => ($person->hour_rate + $holiday->otType->rate) * $otTimeAmount
+                        'pay' => ($person->hour_rate + $normalRate) * $otTimeAmount
                     ]);
                 }
 
@@ -82,8 +85,10 @@ class TimeSheetController extends Controller
 
                 // save the check_out time
                 if ($timeSheet->save()) {
+
                     echo "Check out complete";
                 } else {
+
                     echo "Check_out failed";
                 }
 
@@ -91,7 +96,7 @@ class TimeSheetController extends Controller
 
                 echo "No worked for get OT";
 
-                if($timeSheet->save()) {
+                if ($timeSheet->save()) {
                     echo "Check out complete";
                 } else {
                     echo "Check out failed";

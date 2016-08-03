@@ -3,7 +3,13 @@
 namespace App;
 
 use App\Models\Employee\AdminTypes;
+use App\Models\Employee\Bonus;
 use App\Models\Employee\EmployeeType;
+use App\Models\Employee\Leave;
+use App\Models\Employee\NoPay;
+use App\Models\Employee\OverTime;
+use App\Models\Employee\PayeTax;
+use App\Models\Employee\SalarySlip;
 use App\Models\Employee\TimeSheet;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -85,13 +91,69 @@ class User extends Authenticatable
         return $this->hasMany(TimeSheet::class, 'user_id');
     }
 
+    /**
+     * Get no pays's related to a user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function nopay()
+    {
+        return $this->hasMany(NoPay::class, 'user_id');
+    }
 
+    /**
+     * Get the salary slip for the employee
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function salaryslip()
+    {
+        return $this->hasMany(SalarySlip::class, 'user_id');
+    }
+
+    /**
+     * Get eligible employee type
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function employee_type()
     {
         return $this->belongsToMany(EmployeeType::class, 'employee_type_user', 'user_id');
     }
 
     /**
+     * Get the leaves of the of an employee
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function leaves()
+    {
+        return $this->hasMany(Leave::class, 'user_id');
+    }
+
+    /**
+     * Get the over time related to an employee
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function overtimes()
+    {
+        return $this->hasManyThrough(OverTime::class, TimeSheet::class, 'user_id', 'timesheet_id');
+    }
+
+    /**
+     *  Get the paye tax related to the employee
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function payetax()
+    {
+        return $this->hasMany(PayeTax::class, 'user_id');
+    }
+
+    /**
+     * Get the list of admin types
+     *
      * @return mixed
      */
     public function getTypeListsAttribute()
@@ -99,6 +161,11 @@ class User extends Authenticatable
         return $this->admin->pluck('id')->all();
     }
 
+    /**
+     * Get list of employee types
+     *
+     * @return array
+     */
     public function getEmployeeTypesAttribute()
     {
         return $this->employee_type->pluck('id')->all();
