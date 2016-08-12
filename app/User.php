@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Employee\AdminTypes;
 use App\Models\Employee\Bonus;
+use App\Models\Employee\EmployeeTravel;
 use App\Models\Employee\EmployeeType;
 use App\Models\Employee\Leave;
 use App\Models\Employee\NoPay;
@@ -68,7 +69,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'nic'
     ];
 
     /**
@@ -102,6 +103,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Get all loans associated with a user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function loans()
+    {
+        return $this->hasMany(Leave::class, 'user_id');
+    }
+
+    /**
      * Get the salary slip for the employee
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -129,6 +140,16 @@ class User extends Authenticatable
     public function leaves()
     {
         return $this->hasMany(Leave::class, 'user_id');
+    }
+
+    /**
+     * Get the travel details of the userS
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function travels()
+    {
+        return $this->hasMany(EmployeeTravel::class, 'user_id');
     }
 
     /**

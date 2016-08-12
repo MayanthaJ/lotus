@@ -2,6 +2,7 @@
 
 namespace App\Models\Employee;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -38,5 +39,15 @@ class TimeSheet extends Model
     public function overtime()
     {
         return $this->hasMany(OverTime::class, 'timesheet_id');
+    }
+
+    /**
+     * Get the employee related to timesheet
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function employee()
+    {
+        return $this->hasOne(User::class, 'user_id');
     }
 }
