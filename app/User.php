@@ -6,7 +6,9 @@ use App\Models\Employee\AdminTypes;
 use App\Models\Employee\Bonus;
 use App\Models\Employee\EmployeeTravel;
 use App\Models\Employee\EmployeeType;
+use App\Models\Employee\EPF;
 use App\Models\Employee\Leave;
+use App\Models\Employee\LeaveAllowance;
 use App\Models\Employee\NoPay;
 use App\Models\Employee\OverTime;
 use App\Models\Employee\PayeTax;
@@ -170,6 +172,26 @@ class User extends Authenticatable
     public function payetax()
     {
         return $this->hasMany(PayeTax::class, 'user_id');
+    }
+
+    /**
+     * Get the leave allowance of a user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function leaveAllowance()
+    {
+        return $this->hasMany(LeaveAllowance::class, 'user_id');
+    }
+
+    /**
+     * Get the EPF associated with a user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function epf()
+    {
+        return $this->hasMany(EPF::class, 'user_id');
     }
 
     /**
