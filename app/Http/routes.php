@@ -23,6 +23,9 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 
+// Rashinda's routes
+Route::resource('tourpackage', 'Tour\TourPackageController');
+
 // Udana's routes
 //Route::resource('advertisements', 'Advertisement\AdvertisementController');
 
