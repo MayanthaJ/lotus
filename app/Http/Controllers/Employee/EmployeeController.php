@@ -32,7 +32,7 @@ class EmployeeController extends Controller
         $this->middleware('selfUpdate' ,['only' => 'update']);
 
         // stop peeking at others details
-        $this->middleware('peekDetails', ['only' => 'show']);
+        $this->middleware('peekDetails', ['only' => ['show', 'getLoans']]);
     }
 
     /**
@@ -224,16 +224,16 @@ class EmployeeController extends Controller
      * Employee Extra Details
      */
 
-    public function getSalarySlip($id)
+    public function getSalarySlip()
     {
-        $salaryslips = User::findOrFail($id)->salaryslip;
+        $salaryslips = User::findOrFail(Auth::id())->salaryslip;
 
         return view('admin.employee.stats.salaryslip', compact('salaryslips'));
     }
 
-    public function getOverTime($id)
+    public function getOverTime()
     {
-        $overtimes = User::find($id)->overtimes;
+        $overtimes = User::find(Auth::id())->overtimes;
 
         return view('admin.employee.stats.overtime', compact('overtimes'));
 
@@ -241,7 +241,32 @@ class EmployeeController extends Controller
 
     public function getLoans()
     {
-     //
+        $loans = User::find(Auth::id())->loans;
+
+        return view('admin.employee.stats.loans', compact('loans'));
+    }
+
+    public function getLeaves()
+    {
+
+        $leaves = User::find(Auth::id())->leaves;
+
+        return view('admin.employee.stats.leaves', compact('leaves'));
+
+    }
+
+    public function getAllowances()
+    {
+        $allowances = User::find(Auth::id())->leaveAllowance;
+
+        return view('admin.employee.stats.leaveAllowance', compact('allowances'));
+    }
+
+    public function getTravel()
+    {
+        $travels = User::find(Auth::id())->travels;
+
+        return view('admin.employee.stats.travel', compact('travels'));
     }
 
 }

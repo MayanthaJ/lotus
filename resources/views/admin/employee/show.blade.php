@@ -62,6 +62,16 @@
             <div class="col-xs-12 col-md-3">
                 <div class="bar-panel">
                     <a href="{!! url('system/employee/'.$employee->id.'/stats/salary-slips') !!}">Salary Slips</a>
+                    <br />
+                    <a href="{!! url('system/employee/'.$employee->id.'/stats/overtimes') !!}">Over Time</a>
+                    <br />
+                    <a href="{!! url('system/employee/'.$employee->id.'/stats/leaves') !!}">Leaves</a>
+                    <br />
+                    <a href="{!! url('system/employee/'.$employee->id.'/stats/leaves-allowances') !!}">Leave allowances</a>
+                    <br />
+                    <a href="{!! url('system/employee/'.$employee->id.'/stats/travel') !!}">Travel</a>
+                    <br />
+                    <a href="{!! url('system/employee/'.$employee->id.'/stats/loans') !!}">Loans</a>
                 </div>
             </div>
         </div>

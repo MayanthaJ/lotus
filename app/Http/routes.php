@@ -31,15 +31,17 @@ Route::get('/home', 'HomeController@index');
 
 // Sithira's routes
 Route::resource('system/employee', 'Employee\EmployeeController');
+
+// stats on employee
 Route::get('/system/employee/{employee}/stats/salary-slips', 'Employee\EmployeeController@getSalarySlip');
 Route::get('/system/employee/{employee}/stats/overtimes', 'Employee\EmployeeController@getOverTime');
+Route::get('/system/employee/{employee}/stats/loans', 'Employee\EmployeeController@getLoans');
+Route::get('/system/employee/{employee}/stats/leaves', 'Employee\EmployeeController@getLeaves');
+Route::get('/system/employee/{employee}/stats/leave-allowances', 'Employee\EmployeeController@getAllowances');
+Route::get('/system/employee/{employee}/stats/travel', 'Employee\EmployeeController@getTravel');
 
 Route::resource('system/customer', 'Customer\CustomerController');
 
 // System test routes ( timesheet )
 Route::get('/attendance/{employee}/check-out', 'Employee\TimeSheetController@checkOut');
 Route::get('/attendance/{employee}/check-in', 'Employee\TimeSheetController@checkIn');
-
-Route::auth();
-
-Route::get('/home', 'HomeController@index');
