@@ -5,6 +5,12 @@ namespace App\Models\Employee;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Employee\NoPay
+ *
+ * @property-read \App\User $employee
+ * @mixin \Eloquent
+ */
 class NoPay extends Model
 {
     public $guarded = ['id'];

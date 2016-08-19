@@ -4,6 +4,12 @@ namespace App\Models\Employee;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Employee\Bonus
+ *
+ * @property-read \App\Models\Employee\BonusTypes $bonusType
+ * @mixin \Eloquent
+ */
 class Bonus extends Model
 {
     public $guarded = ['id'];

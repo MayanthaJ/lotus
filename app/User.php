@@ -53,6 +53,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Query\Builder|\App\User whereUpdatedAt($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\EmployeeType[] $employee_type
  * @property-read mixed $employee_types
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\NoPay[] $nopay
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\Leave[] $loans
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\SalarySlip[] $salaryslip
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\Leave[] $leaves
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\EmployeeTravel[] $travels
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\OverTime[] $overtimes
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\PayeTax[] $payetax
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\LeaveAllowance[] $leaveAllowance
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\EPF[] $epf
  */
 class User extends Authenticatable
 {

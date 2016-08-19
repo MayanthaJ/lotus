@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\General\Holidays whereEndDay($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\General\Holidays whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\General\Holidays whereUpdatedAt($value)
+ * @property-read \App\Models\Employee\OverTimeType $otType
  */
 class Holidays extends Model
 {

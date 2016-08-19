@@ -34,6 +34,8 @@ Route::resource('system/employee', 'Employee\EmployeeController');
 Route::get('/system/employee/{employee}/stats/salary-slips', 'Employee\EmployeeController@getSalarySlip');
 Route::get('/system/employee/{employee}/stats/overtimes', 'Employee\EmployeeController@getOverTime');
 
+Route::resource('system/customer', 'Customer\CustomerController');
+
 // System test routes ( timesheet )
 Route::get('/attendance/{employee}/check-out', 'Employee\TimeSheetController@checkOut');
 Route::get('/attendance/{employee}/check-in', 'Employee\TimeSheetController@checkIn');
