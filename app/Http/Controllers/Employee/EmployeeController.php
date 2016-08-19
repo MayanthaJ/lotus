@@ -41,7 +41,7 @@ class EmployeeController extends Controller
         $employees = User::all();
 
         // return the view with all compacted data
-        return view('employee.index', compact('employees'));
+        return view('admin.employee.index', compact('employees'));
 
     }
 
@@ -59,7 +59,7 @@ class EmployeeController extends Controller
         $employee_type = EmployeeType::pluck('type', 'id');
 
         // return with compacted data
-        return view('employee.create', compact('type_lists', 'employee_type'));
+        return view('admin.employee.create', compact('type_lists', 'employee_type'));
     }
 
     /**
@@ -116,7 +116,7 @@ class EmployeeController extends Controller
         $employee_types = EmployeeType::pluck('name');
 
         // return the view with all compacted data
-        return view('employee.show', compact('employee', 'type_lists', 'employee_types'));
+        return view('admin.employee.show', compact('employee', 'type_lists', 'employee_types'));
     }
 
     /**
@@ -133,7 +133,7 @@ class EmployeeController extends Controller
 
         $employee_type = EmployeeType::pluck('name', 'id');
 
-        return view('employee.edit', compact('employee', 'type_lists', 'employee_type'));
+        return view('admin.employee.edit', compact('employee', 'type_lists', 'employee_type'));
     }
 
     /**
@@ -212,4 +212,25 @@ class EmployeeController extends Controller
         // return to the all employees page
         return Redirect::to('employee');
     }
+
+
+    /*
+     * Employee Extra Details
+     */
+
+    public function getSalarySlip($id)
+    {
+        $salarySlips = User::findOrFail($id)->salaryslip;
+
+        return view('admin.employee.stats.salaryslip', compact('salarySlips'));
+    }
+
+    public function getOverTime($id)
+    {
+        $overtimes = User::find($id)->overtimes;
+
+        return view('admin.employee.stats.overtime', compact('overtimes'));
+
+    }
+
 }
