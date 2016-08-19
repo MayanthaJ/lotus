@@ -7,7 +7,7 @@
                 <h2>Add Employee</h2>
 
                 {!! Form::open(['action' => 'Employee\EmployeeController@store']) !!}
-                @include('admin.employee.partials._formPartial', ['btn' => 'Add Employee'])
+                @include('admin.employee.partials._formPartial', ['btn' => 'Add Employee', 'password' => false])
                 {!! Form::close() !!}
 
             </div>
