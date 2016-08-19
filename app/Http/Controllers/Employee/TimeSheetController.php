@@ -23,7 +23,6 @@ class TimeSheetController extends Controller
         ]);
     }
 
-
     public function checkOut(Request $request, $employee)
     {
         // normal holiday pay
