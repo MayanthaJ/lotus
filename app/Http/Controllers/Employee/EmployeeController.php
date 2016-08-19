@@ -56,7 +56,7 @@ class EmployeeController extends Controller
         $type_lists = AdminTypes::pluck('type', 'id');
 
         // get all the employee types
-        $employee_type = EmployeeType::pluck('type', 'id');
+        $employee_type = EmployeeType::pluck('name', 'id');
 
         // return with compacted data
         return view('admin.employee.create', compact('type_lists', 'employee_type'));
