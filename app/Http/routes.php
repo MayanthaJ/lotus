@@ -38,8 +38,6 @@ Route::get('/system/employee/{employee}/stats/overtimes', 'Employee\EmployeeCont
 Route::get('/attendance/{employee}/check-out', 'Employee\TimeSheetController@checkOut');
 Route::get('/attendance/{employee}/check-in', 'Employee\TimeSheetController@checkIn');
 
-//Route::get('/attendance/{employee}/check-out', '');
-
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
