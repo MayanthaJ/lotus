@@ -6,6 +6,7 @@
             <div class="col-sm-12 col-md-9">
                 <h2>Add Employee</h2>
                 @include('notifications._message')
+                
                 {!! Form::open(['action' => 'Employee\EmployeeController@store']) !!}
                 @include('admin.employee.partials._formPartial', ['btn' => 'Add Employee', 'password' => true])
                 {!! Form::close() !!}
