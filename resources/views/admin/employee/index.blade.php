@@ -4,7 +4,10 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-9">
-                <h2>Employee List</h2>
+                <h2>Employee List
+                    <br />
+                    <small><a href="{!! url('/system/employee/create') !!}">Add Employee</a></small>
+                </h2>
 
                 <br />
 

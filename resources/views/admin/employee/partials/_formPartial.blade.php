@@ -48,8 +48,10 @@
 
 <br />
 
-{!! Form::label('terminated', 'is Terminated : ') !!}
-{!! Form::checkbox('terminated') !!}
+@if($terminate)
+    {!! Form::label('terminated', 'is Terminated : ') !!}
+    {!! Form::checkbox('terminated') !!}
+@endif
 
 <br />
 <br />

@@ -51,5 +51,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'adminOrManager' => \App\Http\Middleware\isAdminMiddleware::class,
         'selfUpdate' => \App\Http\Middleware\RestrictSelfUpdates::class,
+        'peekDetails' =>  \App\Http\Middleware\PeekDetails::class,
     ];
 }

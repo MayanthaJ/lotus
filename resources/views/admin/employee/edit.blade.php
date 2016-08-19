@@ -12,7 +12,7 @@
                 <br />
 
                 {!! Form::model($employee, ['method' => 'PATCH', 'action' => ['Employee\EmployeeController@update', $employee->id]]) !!}
-                @include('admin.employee.partials._formPartial', ['btn' => 'Update Employee', 'password' => false])
+                    @include('admin.employee.partials._formPartial', ['btn' => 'Update Employee', 'password' => false, 'terminate' => true])
                 {!! Form::close() !!}
 
                 <div class="col-sm-12 col-md-3">

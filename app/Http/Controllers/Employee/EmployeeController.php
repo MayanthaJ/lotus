@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequestValidator;
 use App\Models\Employee\AdminTypes;
 use App\Models\Employee\EmployeeType;
 use App\User;
+use Auth;
 use Carbon\Carbon;
 use File;
 use Flash;
@@ -23,10 +24,15 @@ class EmployeeController extends Controller
     public function __construct()
     {
         // enables updates
-        $this->middleware(['auth', 'adminOrManager']);
+        $this->middleware('auth');
+
+        $this->middleware('adminOrManager', ['except' => 'show']);
 
         // stops self updates
         $this->middleware('selfUpdate' ,['only' => 'update']);
+
+        // stop peeking at others details
+        $this->middleware('peekDetails', ['only' => 'show']);
     }
 
     /**
@@ -115,7 +121,7 @@ class EmployeeController extends Controller
         // get all employee types
         $employee_types = EmployeeType::pluck('name');
 
-        // return the view with all compacted data
+        // return the view
         return view('admin.employee.show', compact('employee', 'type_lists', 'employee_types'));
     }
 
