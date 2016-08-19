@@ -220,9 +220,9 @@ class EmployeeController extends Controller
 
     public function getSalarySlip($id)
     {
-        $salarySlips = User::findOrFail($id)->salaryslip;
+        $salaryslips = User::findOrFail($id)->salaryslip;
 
-        return view('admin.employee.stats.salaryslip', compact('salarySlips'));
+        return view('admin.employee.stats.salaryslip', compact('salaryslips'));
     }
 
     public function getOverTime($id)
