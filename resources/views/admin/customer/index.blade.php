@@ -9,6 +9,12 @@
                    <div class="col-md-3">
                        <a href="{!! asset('system/customer/create') !!}"> Add Customer</a>
                    </div>
+                   <div class="col-md-3">
+                       <a href="{!! asset('system/customer/update') !!}"> Edit Customer</a>
+                   </div>
+                   <div class="col-md-3">
+                       <a href="{!! asset('system/customer/show') !!}"> Add View</a>
+                   </div>
                </div>
            </div>
         </div>

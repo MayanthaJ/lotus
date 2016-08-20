@@ -11,7 +11,6 @@
                 {!! Form::open(['action' => 'Customer\CustomerController@store']) !!}
                 @include('admin.customer.partials._formPartial',['btn' => 'Add Customer', 'password' => true])
                 {!! Form::close() !!}
-
             </div>
 
 
