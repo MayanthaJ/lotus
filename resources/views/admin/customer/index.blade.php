@@ -7,7 +7,7 @@
            <div class="page-container">
                <div class="row">
                    <div class="col-md-3">
-                       <a href="{!! asset('system/customer') !!}"> Add Customer</a>
+                       <a href="{!! asset('system/customer/create') !!}"> Add Customer</a>
                    </div>
                </div>
            </div>
