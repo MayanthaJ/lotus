@@ -37,7 +37,7 @@ Route::get('/system/employee/{employee}/stats/salary-slips', 'Employee\EmployeeC
 Route::get('/system/employee/{employee}/stats/overtimes', 'Employee\EmployeeController@getOverTime');
 Route::get('/system/employee/{employee}/stats/loans', 'Employee\EmployeeController@getLoans');
 Route::get('/system/employee/{employee}/stats/leaves', 'Employee\EmployeeController@getLeaves');
-Route::get('/system/employee/{employee}/stats/leave-allowances', 'Employee\EmployeeController@getAllowances');
+Route::get('/system/employee/{employee}/stats/attendance', 'Employee\EmployeeController@getAttendance');
 Route::get('/system/employee/{employee}/stats/travel', 'Employee\EmployeeController@getTravel');
 
 // Achala's routes

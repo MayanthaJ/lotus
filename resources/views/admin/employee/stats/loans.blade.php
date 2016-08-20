@@ -10,7 +10,7 @@
                 @else
                     <ul>
                         @foreach($loans as $loan)
-                            <li>{!! $loan->created_at !!}</li>
+                            <li>Loan Amount : {!! $loan->amount !!} | Monthly decrement : {!! $loan->decrement !!} | Rate : {!! $loan->type->rate !!} | Installment : {!! $loan->type->installement !!} </li>
                         @endforeach
                     </ul>
                 @endif

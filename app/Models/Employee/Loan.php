@@ -27,5 +27,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Loan extends Model
 {
-    //
+
+    /**
+     * Get the loan type of the loan
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function type()
+    {
+        return $this->hasOne(LoanType::class, 'id');
+    }
 }

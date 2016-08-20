@@ -254,11 +254,11 @@ class EmployeeController extends Controller
 
     }
 
-    public function getAllowances()
+    public function getAttendance()
     {
-        $allowances = User::find(Auth::id())->leaveAllowance;
+        $attendances = User::find(Auth::id())->timesheet;
 
-        return view('admin.employee.stats.leaveAllowance', compact('allowances'));
+        return view('admin.employee.stats.attendance', compact('attendances'));
     }
 
     public function getTravel()

@@ -10,7 +10,7 @@
                 @else
                     <ul>
                         @foreach($salaryslips as $salaryslip)
-                            <li>{!! $salaryslip->created_at !!}</li>
+                            <li>Month : {!! $salaryslip->month !!} | Pay (amount) : {!! $salaryslip->pay !!}</li>
                         @endforeach
                     </ul>
                 @endif

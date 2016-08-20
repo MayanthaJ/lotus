@@ -10,7 +10,7 @@
                 @else
                     <ul>
                         @foreach($travels as $travel)
-                            <li>{!! $travel->created_at !!}</li>
+                            <li>Travel Date : {!! $travel->date !!} | Amount : {!! $travel->amount !!}</li>
                         @endforeach
                     </ul>
                 @endif

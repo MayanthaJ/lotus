@@ -10,7 +10,7 @@
                 @else
                     <ul>
                         @foreach($leaves as $leave)
-                            <li>{!! $leave->created_at !!}</li>
+                            <li>Leave Date : {!! $leave->time !!}</li>
                         @endforeach
                     </ul>
                 @endif

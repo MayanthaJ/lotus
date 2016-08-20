@@ -10,7 +10,7 @@
                 @else
                     <ul>
                         @foreach($overtimes as $overtime)
-                            <li>{!! $overtime->created_at !!}</li>
+                            <li>OT Day : {!! $overtime->created_at->toDateString() !!} | Pay (amount){!! $overtime->pay !!} | Hours {!! $overtime->hours !!}</li>
                         @endforeach
                     </ul>
                 @endif
