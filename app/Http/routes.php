@@ -43,6 +43,10 @@ Route::get('/system/employee/{employee}/stats/travel', 'Employee\EmployeeControl
 // Achala's routes
 Route::resource('system/customer', 'Customer\CustomerController');
 
+//Nuwan's Routes
+Route::resource('system/rental','Rental\RentalController');
+
+
 // System test routes ( timesheet )
 Route::get('/attendance/{employee}/check-out', 'Employee\TimeSheetController@checkOut');
 Route::get('/attendance/{employee}/check-in', 'Employee\TimeSheetController@checkIn');
