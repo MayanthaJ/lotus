@@ -17,6 +17,8 @@ class CreateLoansTable extends Migration
             $table->unsignedInteger('loan_type_id');
             $table->unsignedInteger('user_id');
             $table->double('amount');
+            $table->boolean('isOver')->default(0);
+            $table->double('decrement');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('loan_type_id')->references('id')->on('loan_types')->onDelete('cascade');
             $table->timestamps();
