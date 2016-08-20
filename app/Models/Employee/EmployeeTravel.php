@@ -9,6 +9,20 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property-read \App\Models\Employee\EmployeeTravelType $type
  * @mixin \Eloquent
+ * @property integer $id
+ * @property integer $user_id
+ * @property integer $traveltype_id
+ * @property float $amount
+ * @property string $date
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\EmployeeTravel whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\EmployeeTravel whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\EmployeeTravel whereTraveltypeId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\EmployeeTravel whereAmount($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\EmployeeTravel whereDate($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\EmployeeTravel whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\EmployeeTravel whereUpdatedAt($value)
  */
 class EmployeeTravel extends Model
 {

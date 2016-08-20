@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\OverTime whereHours($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\OverTime whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\OverTime whereUpdatedAt($value)
+ * @property float $pay
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\OverTime wherePay($value)
  */
 class OverTime extends Model
 {

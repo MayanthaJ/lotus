@@ -10,6 +10,18 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property-read \App\User $employee
  * @mixin \Eloquent
+ * @property integer $id
+ * @property integer $user_id
+ * @property float $amount
+ * @property string $month
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\PayeTax whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\PayeTax whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\PayeTax whereAmount($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\PayeTax whereMonth($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\PayeTax whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\PayeTax whereUpdatedAt($value)
  */
 class PayeTax extends Model
 {

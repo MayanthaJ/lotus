@@ -21,7 +21,7 @@ Route::auth();
 // main home page controller ( do not remove )
 Route::get('/home', 'HomeController@index');
 
-Route::get('/test', 'Employee\CalculateSalary@calculateSalaray');
+Route::get('/test/{test}', 'Employee\CalculateSalary@calculateSalaray');
 
 // Rashinda's routes
 //Route::resource('tourpackage', 'Tour\TourPackageController');

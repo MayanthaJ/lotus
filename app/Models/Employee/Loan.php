@@ -20,6 +20,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\Loan whereAmount($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\Loan whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\Loan whereUpdatedAt($value)
+ * @property boolean $isOver
+ * @property float $decrement
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\Loan whereIsOver($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\Loan whereDecrement($value)
  */
 class Loan extends Model
 {

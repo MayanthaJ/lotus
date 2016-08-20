@@ -10,6 +10,16 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property-read \App\User $employee
  * @mixin \Eloquent
+ * @property integer $id
+ * @property integer $user_id
+ * @property string $day
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\LeaveAllowance whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\LeaveAllowance whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\LeaveAllowance whereDay($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\LeaveAllowance whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\LeaveAllowance whereUpdatedAt($value)
  */
 class LeaveAllowance extends Model
 {

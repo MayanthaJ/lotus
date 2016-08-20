@@ -3,12 +3,14 @@
 namespace App;
 
 use App\Models\Employee\AdminTypes;
+use App\Models\Employee\AdvancePayment;
 use App\Models\Employee\Bonus;
 use App\Models\Employee\EmployeeTravel;
 use App\Models\Employee\EmployeeType;
 use App\Models\Employee\EPF;
 use App\Models\Employee\Leave;
 use App\Models\Employee\LeaveAllowance;
+use App\Models\Employee\Loan;
 use App\Models\Employee\NoPay;
 use App\Models\Employee\OverTime;
 use App\Models\Employee\PayeTax;
@@ -62,6 +64,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\PayeTax[] $payetax
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\LeaveAllowance[] $leaveAllowance
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\EPF[] $epf
+ * @property float $hour_rate
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\AdvancePayment[] $advance
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereHourRate($value)
  */
 class User extends Authenticatable
 {
@@ -120,7 +125,7 @@ class User extends Authenticatable
      */
     public function loans()
     {
-        return $this->hasMany(Leave::class, 'user_id');
+        return $this->hasMany(Loan::class, 'user_id');
     }
 
     /**
@@ -201,6 +206,16 @@ class User extends Authenticatable
     public function epf()
     {
         return $this->hasMany(EPF::class, 'user_id');
+    }
+
+    /**
+     * Get the adavance payment of a employee
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function advance()
+    {
+        return $this->hasMany(AdvancePayment::class, 'user_id');
     }
 
     /**
