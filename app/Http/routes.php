@@ -10,7 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -41,6 +40,7 @@ Route::get('/system/employee/{employee}/stats/leaves', 'Employee\EmployeeControl
 Route::get('/system/employee/{employee}/stats/leave-allowances', 'Employee\EmployeeController@getAllowances');
 Route::get('/system/employee/{employee}/stats/travel', 'Employee\EmployeeController@getTravel');
 
+// Achala's routes
 Route::resource('system/customer', 'Customer\CustomerController');
 
 // System test routes ( timesheet )
