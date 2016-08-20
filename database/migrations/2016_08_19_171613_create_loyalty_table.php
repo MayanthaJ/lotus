@@ -12,12 +12,12 @@ class CreateLoyaltyTable extends Migration
      */
     public function up()
     {
-        Schema::create('loyalty',function(Blueprint $table){
+        Schema::create('loyalty', function (Blueprint $table) {
             $table->increments('id');
             $table->string('type');
             $table->string('description');
             $table->boolean('terminated');
-            $table->timestamp('created_time');
+            $table->timestamps();
         });
     }
 
