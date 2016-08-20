@@ -79,6 +79,10 @@ class CalculateSalary extends Controller
             $noPay = $user->nopay()->get()->count();
         }
 
+        $travelPay = 0;
+        foreach ($travels as $travel) {
+            $travelPay += $travel->amount;
+        }
 
 
 
