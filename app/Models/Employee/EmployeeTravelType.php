@@ -4,6 +4,12 @@ namespace App\Models\Employee;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Employee\EmployeeTravelType
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\EmployeeTravel[] $travels
+ * @mixin \Eloquent
+ */
 class EmployeeTravelType extends Model
 {
     public $guarded = ['id'];

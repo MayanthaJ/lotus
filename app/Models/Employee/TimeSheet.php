@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\TimeSheet whereCheckOut($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\TimeSheet whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\TimeSheet whereUpdatedAt($value)
+ * @property-read \App\User $employee
  */
 class TimeSheet extends Model
 {

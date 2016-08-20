@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\BonusTypes whereNote($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\BonusTypes whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\BonusTypes whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\Bonus[] $bonus
  */
 class BonusTypes extends Model
 {
