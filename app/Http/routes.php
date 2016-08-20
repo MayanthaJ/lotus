@@ -40,6 +40,16 @@ Route::get('/system/employee/{employee}/stats/leaves', 'Employee\EmployeeControl
 Route::get('/system/employee/{employee}/stats/attendance', 'Employee\EmployeeController@getAttendance');
 Route::get('/system/employee/{employee}/stats/travel', 'Employee\EmployeeController@getTravel');
 
+// employee additional links (advance, loans)
+Route::get('/system/employee/extra/loan/create', 'Employee\General\Additional@getAddLoan');
+Route::post('/system/employee/extra/loan/create', 'Employee\General\Additional@postAddLoan');
+
+Route::get('/system/employee/extra/leave/create', 'Employee\General\Additional@getLeaveView');
+Route::post('/system/employee/extra/leave/create', 'Employee\General\Additional@postAddLeave');
+
+Route::get('/system/employee/extra/advance/create', 'Employee\General\Additional@getAdvancePayView');
+Route::post('/system/employee/extra/advance/create', 'Employee\General\Additional@postAdvancePayView');
+
 // Achala's routes
 Route::resource('system/customer', 'Customer\CustomerController');
 

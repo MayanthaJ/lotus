@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\Model;
 class Loan extends Model
 {
 
+    public $guarded = ['id'];
+
     /**
      * Get the loan type of the loan
      *
