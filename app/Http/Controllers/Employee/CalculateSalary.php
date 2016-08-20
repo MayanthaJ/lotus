@@ -24,7 +24,7 @@ class CalculateSalary extends Controller
 
         $payeTax = 0;
         if ($basicSalary <= 62500) {
-            
+
             // No payeetax
         } else {
             switch (true) {

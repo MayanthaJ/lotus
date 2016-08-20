@@ -50,6 +50,7 @@ class UserRequestValidator extends Request
                 ];
             }
             default:
+                return [];
                 break;
         }
     }

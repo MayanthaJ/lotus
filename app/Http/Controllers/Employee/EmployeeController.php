@@ -76,6 +76,9 @@ class EmployeeController extends Controller
      */
     public function store(UserRequestValidator $request)
     {
+        $this->validate($request, [
+            'name' => 'required|min:3'
+        ]);
 
         // create the employee
         $employee = User::create([
