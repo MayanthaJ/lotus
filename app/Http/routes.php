@@ -41,7 +41,10 @@ Route::get('/system/employee/{employee}/stats/attendance', 'Employee\EmployeeCon
 Route::get('/system/employee/{employee}/stats/travel', 'Employee\EmployeeController@getTravel');
 
 // Achala's routes
-Route::resource('system/customer', 'Customer\CustomerController');
+
+Route::get('/system/customer/view/', 'Customer\CustomerController@view');
+
+Route::resource('/system/customer', 'Customer\CustomerController');
 
 //Nuwan's Routes
 Route::resource('system/rental','Rental\RentalController');

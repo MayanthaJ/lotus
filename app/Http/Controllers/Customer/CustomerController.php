@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Customer;
 
-use App\Models\Customer\customer;
+use App\Models\Customer\Customer;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -43,22 +43,30 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // dd($request);
-        $value = [
+       // dd($request);
+        $this->validate($request, [
+            'fname' => 'required|min:3|max:15',
+            'sname' => 'required|min:3|max:15',
+            'lname' => 'required|min:3|max:15',
+            'otherName' => 'required|min:3|max:15',
+            'age' => 'required|numeric'
+        ]);
+
+        $customer = Customer::create([
             'fname' => $request->fname,
             'sname' => $request->sname,
             'lname' => $request->lname,
-            'otherName' => $request->othername,
+            'otherName' => $request->otherName,
             'age' => $request->age,
             'dob' => $request->dob,
-            'number' => $request->phone1,
+            'number' => $request->phoneNumber,
             'nic' => $request->nic,
             'passport' => $request->passportId,
             'address1' => $request->address1,
             'address2' => $request->address2
-        ];
-        dd($value);
+        ]);
+
+
     }
 
     /**
@@ -104,5 +112,14 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Veiw List of customers with edit links.
+     */
+    public function view()
+    {
+        $customers=Customer::all();
+        return view('admin.customer.view',compact('customers'));
     }
 }
