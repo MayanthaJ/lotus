@@ -48,12 +48,4 @@
 
 <br />
 
-@if($terminate)
-    {!! Form::label('terminated', 'is Terminated : ') !!}
-    {!! Form::checkbox('terminated') !!}
-@endif
-
-<br />
-<br />
-
 {!! Form::submit($btn, ['class' => 'btn btn-default btn-block']) !!}
