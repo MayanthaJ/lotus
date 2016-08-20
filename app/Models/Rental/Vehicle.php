@@ -4,7 +4,7 @@ namespace App\Models\Rental;
 
 use Illuminate\Database\Eloquent\Model;
 
-class vehicle extends Model
+class Vehicle extends Model
 {
     public $guarded = ['id'];
 }

@@ -19,7 +19,7 @@ class CustomerController extends Controller
     {
         //$customer=customer::all();
         //dd($customer);
-       //return view('admin.customer.index');
+        //return view('admin.customer.index');
         return view('admin.customer.index');
     }
 
@@ -38,33 +38,33 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         //
-       // dd($request);
-       $value=[
-           'fname' => $request->fname,
-           'sname' => $request->sname,
-           'lname' => $request->lname,
-           'otherName'=>$request->othername,
-           'age'   => $request->age,
-           'dob' => $request->dob,
-           'number' => $request->phone1,
-           'nic' => $request->nic,
-           'passport' =>$request->passportId,
-           'address1' =>$request->address1,
-           'address2' =>$request->address2
-       ];
+        // dd($request);
+        $value = [
+            'fname' => $request->fname,
+            'sname' => $request->sname,
+            'lname' => $request->lname,
+            'otherName' => $request->othername,
+            'age' => $request->age,
+            'dob' => $request->dob,
+            'number' => $request->phone1,
+            'nic' => $request->nic,
+            'passport' => $request->passportId,
+            'address1' => $request->address1,
+            'address2' => $request->address2
+        ];
         dd($value);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -75,7 +75,7 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -86,8 +86,8 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -98,7 +98,7 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
