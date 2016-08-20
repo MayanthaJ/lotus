@@ -20,13 +20,13 @@ class CreateCustomerTable extends Migration
             $table->string('otherName');
             $table->integer('age');
             $table->date('dob');
-            $table->string('number')->unique();
+            $table->string('number');
             $table->string('nic')->unique();
             $table->string('passport');
             $table->string('address1');
-            $table->string('address2');
+            $table->string('address2')->nullable();
             $table->string('loyalty');
-            $table->boolean('terminated');
+            $table->boolean('terminated')->default(0);
             $table->timestamps();
 
         });

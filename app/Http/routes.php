@@ -51,7 +51,10 @@ Route::get('/system/employee/extra/advance/create', 'Employee\General\Additional
 Route::post('/system/employee/extra/advance/create', 'Employee\General\Additional@postAdvancePayView');
 
 // Achala's routes
-Route::resource('system/customer', 'Customer\CustomerController');
+
+Route::get('/system/customer/view/', 'Customer\CustomerController@view');
+
+Route::resource('/system/customer', 'Customer\CustomerController');
 
 //Nuwan's Routes
 Route::resource('system/rental','Rental\RentalController');
