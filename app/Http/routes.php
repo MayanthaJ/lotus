@@ -29,7 +29,9 @@ Route::get('/system', 'HomeController@getDashBoard');
 //Route::resource('tourpackage', 'Tour\TourPackageController');
 
 // Udana's routes
-//Route::resource('advertisements', 'Advertisement\AdvertisementController');
+Route::resource('advertisements', 'Advertisements\AdvertisementController');
+Route::post('advertisements','Advertisements\AdvertisingController@store');
+
 
 // Sithira's routes
 Route::resource('system/employee', 'Employee\EmployeeController');
