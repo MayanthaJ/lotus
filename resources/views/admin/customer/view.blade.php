@@ -12,7 +12,7 @@
             <th>Passport</th>
             <th>Address </th>
             <th>Alternative Address </th>
-            <th></th>
+            <th> </th>
         </tr>
         <?php $count=1; ?>
         @foreach($customers as $customer)
