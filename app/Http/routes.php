@@ -82,8 +82,9 @@ Route::get('/system/customer/view/', 'Customer\CustomerController@view');
 Route::resource('/system/customer', 'Customer\CustomerController');
 
 //Nuwan's Routes
-Route::resource('system/rental','Rental\RentalController');
-
+Route::resource('system/rental/vehicle','Rental\RentalController');
+Route::resource('system/rental/driver','Rental\DriverController');
+Route::resource('system/rental/reservation','Rental\ReservationController');
 
 // System test routes ( timesheet )
 Route::get('/attendance/{employee}/check-out', 'Employee\TimeSheetController@checkOut');

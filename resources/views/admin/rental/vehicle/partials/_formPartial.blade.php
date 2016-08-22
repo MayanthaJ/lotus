@@ -9,25 +9,27 @@
 
 <br />
 {!! Form::label('color', 'Color :') !!}
-{!! Form::text('Color', null, ['class' => 'form-control']) !!}
+{!! Form::text('color', null, ['class' => 'form-control']) !!}
 
 <br />
 <br />
 {!! Form::label('cost_per_day', 'Cost Per Day :') !!}
 {!! Form::text('cost_per_day', null, ['class' => 'form-control']) !!}
 
-<br />
-{!! Form::label('added_date','Added Date :') !!}
-{!! Form::date('added_date', \Carbon\Carbon::now()) !!}
 
 <br />
 <br/>
 {!! Form::label('reg_no', 'Registration No  :') !!}
 {!! Form::text('reg_no', null, ['class' => 'form-control']) !!}
 
+<br/>
+{!! Form::label('terminated', 'Terminated  :') !!}
+{!! Form::checkbox('terminated') !!}
+
 <br />
-{!! Form::label('Type') !!}
+{!! Form::label('type') !!}
 {!! Form::select('type', [0 => 'Car', 1 => 'Van'], null, ['class' => 'form-control']) !!}
+
 
 <br />
 
