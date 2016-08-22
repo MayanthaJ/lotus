@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('nic');
             $table->double('basic');
-            $table->double('age');
-            $table->String('address');
+            $table->integer('age');
+            $table->string('address');
             $table->double('hour_rate');
             $table->boolean('gender');
             $table->boolean('terminated');

@@ -41,6 +41,7 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
 
         // validate the request object
         $this->validate($request, [
@@ -107,6 +108,7 @@ class DriverController extends Controller
      */
     public function update(Request $request, $id)
     {
+        dd($request);
         // validate the request object
         $this->validate($request, [
             'name' => 'required|min:3|max:15',
