@@ -20,4 +20,10 @@ use Illuminate\Database\Eloquent\Model;
 class LeaveTypes extends Model
 {
     public $guarded = ['id'];
+
+    public function loans()
+    {
+        return $this->hasMany(Loan::class, 'loan_type_id');
+    }
+
 }

@@ -24,7 +24,7 @@ class AdvertisingController extends Controller
 
         $advertisements = Advertisements::all();
 
-        return view('admin.advertisements.index');
+        return view('admin.advertisements.index', compact('advertisements'));
     }
 
     /**
@@ -43,7 +43,7 @@ class AdvertisingController extends Controller
 //     * @param  \Illuminate\Http\Request $request
 //     * @return \Illuminate\Http\Response
 //     */
-    public function store(Requests\AdCreateRequest $request)
+    public function store(Request $request)
     {
 
 //        Request $request
@@ -57,8 +57,8 @@ class AdvertisingController extends Controller
 
         $input = Request::all();
 
-        $input['created_at']=Carbon::now();
-        $input['updated_at']=Carbon::now();
+        $input['created_at'] = Carbon::now();
+        $input['updated_at']= Carbon::now();
 
         Advertisements::create($request->all());
 

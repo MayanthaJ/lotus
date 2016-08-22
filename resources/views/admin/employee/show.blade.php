@@ -67,7 +67,7 @@
                     <br />
                     <a href="{!! url('system/employee/'.$employee->id.'/stats/leaves') !!}">Leaves</a>
                     <br />
-                    <a href="{!! url('system/employee/'.$employee->id.'/stats/leaves-allowances') !!}">Leave allowances</a>
+                    <a href="{!! url('system/employee/'.$employee->id.'/stats/attendance') !!}">Attendance</a>
                     <br />
                     <a href="{!! url('system/employee/'.$employee->id.'/stats/travel') !!}">Travel</a>
                     <br />

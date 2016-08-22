@@ -29,8 +29,7 @@ Route::get('/system', 'HomeController@getDashBoard');
 //Route::resource('tourpackage', 'Tour\TourPackageController');
 
 // Udana's routes
-Route::resource('advertisements', 'Advertisements\AdvertisementController');
-Route::post('advertisements','Advertisements\AdvertisingController@store');
+Route::resource('system/advertisements', 'Advertisements\AdvertisingController');
 
 
 // Sithira's routes
@@ -44,15 +43,36 @@ Route::get('/system/employee/{employee}/stats/leaves', 'Employee\EmployeeControl
 Route::get('/system/employee/{employee}/stats/attendance', 'Employee\EmployeeController@getAttendance');
 Route::get('/system/employee/{employee}/stats/travel', 'Employee\EmployeeController@getTravel');
 
-// employee additional links (advance, loans)
-Route::get('/system/employee/extra/loan/create', 'Employee\General\Additional@getAddLoan');
-Route::post('/system/employee/extra/loan/create', 'Employee\General\Additional@postAddLoan');
+/********************************************
+ * Employee additional links (advance, loans)
+ *******************************************/
 
-Route::get('/system/employee/extra/leave/create', 'Employee\General\Additional@getLeaveView');
-Route::post('/system/employee/extra/leave/create', 'Employee\General\Additional@postAddLeave');
+// loans routes
+Route::group(['middleware' => 'adminOrManager'], function (){
+    Route::get('/system/admin/employee/loan/create', 'Employee\General\Additional@getAddLoan');
+    Route::post('/system/admin/employee/loan/create', 'Employee\General\Additional@postAddLoan');
 
-Route::get('/system/employee/extra/advance/create', 'Employee\General\Additional@getAdvancePayView');
-Route::post('/system/employee/extra/advance/create', 'Employee\General\Additional@postAdvancePayView');
+// leaves routes
+    Route::get('/system/admin/employee/leave/create', 'Employee\General\Additional@getLeaveView');
+    Route::post('/system/admin/employee/leave/create', 'Employee\General\Additional@postAddLeave');
+
+// advance payments routes
+    Route::get('/system/admin/employee/advance/create', 'Employee\General\Additional@getAdvancePayView');
+    Route::post('/system/admin/employee/advance/create', 'Employee\General\Additional@postAdvancePayView');
+
+    Route::get('/api/secured/employee/loans/{employee}', function($employee) {
+        return \App\User::findOrFail($employee)->loans->toJson();
+    });
+
+    Route::get('/api/secured/employee/leaves/{employee}', function($employee) {
+        return \App\User::findOrFail($employee)->leaves->toJson();
+    });
+
+    Route::get('/api/secured/employee/advance/{employee}', function($employee) {
+        return \App\User::findOrFail($employee)->advance->toJson();
+    });
+});
+
 
 // Achala's routes
 Route::get('/system/customer/view/', 'Customer\CustomerController@view');

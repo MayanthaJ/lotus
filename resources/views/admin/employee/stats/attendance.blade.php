@@ -10,7 +10,12 @@
                 @else
                     <ul>
                         @foreach($attendances as $attendance)
-                            <li>Attended Date : {!! $attendance->day !!} | Checked IN : {!! $attendance->check_in !!} | Check OUT : {!! $attendance->check_out !!}</li>
+                            <li>Attended Date : <strong>{!! $attendance->day->toDateString() !!}</strong>
+                                <ul>
+                                    <li><strong>Checked IN : {!! $attendance->check_in->toTimeString() !!}</strong></li>
+                                    <li><strong>Check OUT : {!! $attendance->check_out->toTimeString() !!}</strong></li>
+                                </ul>
+                            </li>
                         @endforeach
                     </ul>
                 @endif

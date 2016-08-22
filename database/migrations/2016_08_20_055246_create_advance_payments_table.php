@@ -16,6 +16,7 @@ class CreateAdvancePaymentsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->double('amount');
+            $table->boolean('done');
             $table->date('month');
             $table->timestamps();
         });
