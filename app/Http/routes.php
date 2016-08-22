@@ -35,6 +35,9 @@ Route::resource('system/advertisements', 'Advertisements\AdvertisingController')
 // Sithira's routes
 Route::resource('system/employee', 'Employee\EmployeeController');
 
+// Nimansa's routes
+Route::resource('system/accounts/', 'Accounts\AccountController');
+
 // stats on employee
 Route::get('/system/employee/{employee}/stats/salary-slips', 'Employee\EmployeeController@getSalarySlip');
 Route::get('/system/employee/{employee}/stats/overtimes', 'Employee\EmployeeController@getOverTime');

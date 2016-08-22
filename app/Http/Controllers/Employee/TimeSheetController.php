@@ -17,9 +17,9 @@ class TimeSheetController extends Controller
     {
         TimeSheet::create([
             'user_id' => $employee,
-            'date' => Carbon::now()->toDateString(),
+            'day' => Carbon::now()->toDateString(),
             'check_in' => Carbon::now(),
-            'check_out' => null
+            'check_out' => null,
         ]);
     }
 
@@ -38,7 +38,7 @@ class TimeSheetController extends Controller
         $person = User::findOrFail($employee);
 
         // get the time sheet of the day if any exists
-        $timeSheet = $person->timesheet->where('day', $today)->first();
+        $timeSheet = TimeSheet::where('user_id', $person->id)->where('day', $today)->first();
 
         // quick check for timeSheet existence
         if ($timeSheet != null) {

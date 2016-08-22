@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTimeSheetsTable extends Migration
+class CreateAccountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,8 @@ class CreateTimeSheetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('time_sheets', function (Blueprint $table) {
+        Schema::create('accounts', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
-            $table->date('day');
-            $table->dateTime('check_in');
-            $table->dateTime('check_out')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -30,6 +25,6 @@ class CreateTimeSheetsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('time_sheets');
+        Schema::drop('accounts');
     }
 }

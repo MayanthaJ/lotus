@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AdvancePayment extends Model
 {
+    public $guarded = ['id'];
     /**
      * Get the employee associated with a adPayment
      *
