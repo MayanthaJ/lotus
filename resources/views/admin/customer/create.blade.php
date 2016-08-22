@@ -9,7 +9,7 @@
                 <h2>Add Customer</h2>
                 @include('notifications._message')
                 {!! Form::open(['action' => 'Customer\CustomerController@store']) !!}
-                @include('admin.customer.partials._formPartial',['btn' => 'Add Customer', 'password' => true])
+                @include('admin.customer.partials._formPartial',['btn' => 'Add Customer'])
                 {!! Form::close() !!}
             </div>
 

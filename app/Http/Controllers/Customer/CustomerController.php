@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Models\Customer\Customer;
+
+use App\Models\Package\Package;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -30,8 +32,11 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
-        return view('admin.customer.create');
+        //get package details
+        $packages = Package::pluck('name','id');
+        //dd($package);
+
+        return view('admin.customer.create', compact('packages'));
 
     }
 
@@ -43,7 +48,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-       // dd($request);
+        // dd($request);
         $this->validate($request, [
             'fname' => 'required|min:3|max:15',
             'sname' => 'required|min:3|max:15',
@@ -59,13 +64,14 @@ class CustomerController extends Controller
             'otherName' => $request->otherName,
             'age' => $request->age,
             'dob' => $request->dob,
-            'number' => $request->phoneNumber,
+            'number' => $request->number,
             'nic' => $request->nic,
-            'passport' => $request->passportId,
+            'passport' => $request->passport,
             'address1' => $request->address1,
             'address2' => $request->address2
         ]);
 
+        return \Redirect::to('/system/customer');
 
     }
 
@@ -88,8 +94,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        $customer=Customer::find($id);
-        return view('admin.customer.edit',compact('customer'));
+        $customer = Customer::find($id);
+        return view('admin.customer.edit', compact('customer'));
     }
 
     /**
@@ -101,7 +107,9 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //get customer model
+        $customer = customer::findOrFail($id);
+
     }
 
     /**
@@ -120,7 +128,7 @@ class CustomerController extends Controller
      */
     public function view()
     {
-        $customers=Customer::all();
-        return view('admin.customer.view',compact('customers'));
+        $customers = Customer::all();
+        return view('admin.customer.view', compact('customers'));
     }
 }

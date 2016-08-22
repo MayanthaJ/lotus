@@ -10,7 +10,7 @@
                 </h2>
                 <br />
 
-                {!! Form::model($customer, ['method' => 'PATCH', 'action' => ['Employee\EmployeeController@update', $customer->id]]) !!}
+                {!! Form::model($customer, ['method' => 'PATCH', 'action' => ['Customer\CustomerController@update', $customer->id]]) !!}
                 @include('admin.customer.partials._formPartial', ['btn' => 'Update Customer', 'password' => false, 'terminate' => true])
                 {!! Form::close() !!}
 
