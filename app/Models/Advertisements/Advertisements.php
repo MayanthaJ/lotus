@@ -1,12 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models\Advertisements;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Advertisements extends Model
 {
 
+    //
     protected $fillable =[
 
         'name',
@@ -22,6 +23,5 @@ class Advertisements extends Model
 
 
     ];
-
 
 }

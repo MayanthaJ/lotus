@@ -151,6 +151,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         CodeZero\Flash\FlashServiceProvider::class,
 
+
         /*
          * Application Service Providers...
          */
