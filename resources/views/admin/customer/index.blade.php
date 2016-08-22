@@ -13,8 +13,9 @@
                        <a href="{!! asset('system/customer/update') !!}"> Edit Customer</a>
                    </div>
                    <div class="col-md-3">
-                       <a href="{!! asset('system/customer/show') !!}"> Add View</a>
+                       <a href="{!! asset('system/customer/view') !!}"> Add View</a>
                    </div>
+                   <hr />
                </div>
            </div>
         </div>
