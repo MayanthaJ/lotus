@@ -46,15 +46,6 @@ class AdvertisingController extends Controller
     public function store(Request $request)
     {
 
-//        Request $request
-//        $this->validate($request, [
-//            'name' => 'require|min:3',
-//            'type' => 'required'
-//        ]);
-
-//        dd($request);
-
-
         $input = Request::all();
 
         $input['created_at'] = Carbon::now();
@@ -62,7 +53,7 @@ class AdvertisingController extends Controller
 
         Advertisements::create($request->all());
 
-//        return redirect('admin/advertising/create');
+
 
     }
 
@@ -86,6 +77,8 @@ class AdvertisingController extends Controller
     public function edit($id)
     {
         //
+        $ad = Advertisements::find($id) ;
+        return view('admin.advertisements.edit', compact('ad'));
     }
 
 //    /**
@@ -98,6 +91,10 @@ class AdvertisingController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $ad = Advertisements::findOrFail($id);
+
+        $ad->update($request->all());
+        $ad['updated_at']=Carbon::now();
     }
 
     /**
