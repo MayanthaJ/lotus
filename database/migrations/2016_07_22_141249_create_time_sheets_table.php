@@ -17,8 +17,8 @@ class CreateTimeSheetsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->date('day');
             $table->dateTime('check_in');
-            $table->dateTime('check_out');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->dateTime('check_out')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -22,9 +22,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\AdvancePayment whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\AdvancePayment whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property boolean $done
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\AdvancePayment whereDone($value)
  */
 class AdvancePayment extends Model
 {
+    public $guarded = ['id'];
     /**
      * Get the employee associated with a adPayment
      *

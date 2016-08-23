@@ -24,6 +24,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property float $decrement
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\Loan whereIsOver($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\Loan whereDecrement($value)
+ * @property float $remaining
+ * @property integer $paytime
+ * @property-read \App\Models\Employee\LoanType $type
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\Loan whereRemaining($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\Loan wherePaytime($value)
  */
 class Loan extends Model
 {
@@ -37,6 +42,6 @@ class Loan extends Model
      */
     public function type()
     {
-        return $this->hasOne(LoanType::class, 'id');
+        return $this->hasOne(LoanType::class, 'id', 'loan_type_id');
     }
 }

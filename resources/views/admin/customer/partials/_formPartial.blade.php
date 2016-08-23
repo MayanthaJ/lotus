@@ -1,7 +1,7 @@
 {!! Form::label('tour','Select Tour') !!}
-{!! Form::select('tour', array('1' => 'Dambhadiwa', '2' => 'Singapore'), null, ['placeholder' => 'Select Tour...']) !!}
+{!! Form::select('tour', $packages, null, ['placeholder' => 'Select Package...']) !!}
 {!! Form::label('tourDate') !!}
-{!! Form::date('tourDate', \Carbon\Carbon::now()) !!}
+{!! Form::Select('tourDate',$tours, null, ['placeholder' => 'Select Tour Date...']) !!}
 
 <br />
 {!! Form::label('fname', 'Fist Name :') !!}
@@ -26,17 +26,23 @@
 <br />
 {!! Form::label('dob','Date Of Birth :') !!}
 {!! Form::date('dob', \Carbon\Carbon::now()) !!}
+
+<br />
+<br />
+{!! Form::label('gender','Gender :') !!}
+{!! Form::Select('gender',['1'=>'Male','0'=>'Female'], null) !!}
+
 <br />
 {!! Form::label('phoneNumber','Phone Number :') !!}
-{!! Form::text('phoneNumber', null,['class'=>'form-control']) !!}
+{!! Form::text('number', null,['class'=>'form-control']) !!}
 
 <br />
 {!! Form::label('nic','NIC Number') !!}
 {!! Form::text('nic', null,['class'=>'form-control']) !!}
 
 <br />
-{!! Form::label('passportId','Passport ID :') !!}
-{!! Form::text('passportId', null,['class' => 'form-control']) !!}
+{!! Form::label('passport_id','Passport ID :') !!}
+{!! Form::text('passport', null,['class' => 'form-control']) !!}
 
 <br />
 {!! Form::label('address1','Address 1 :') !!}

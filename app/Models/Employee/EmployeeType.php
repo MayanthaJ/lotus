@@ -4,6 +4,7 @@ namespace App\Models\Employee;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * App\Models\Employee\EmployeeType
@@ -30,6 +31,8 @@ class EmployeeType extends Model
      */
     public function employees()
     {
-        return $this->hasMany(User::class, 'user_id');
+
+        return $this->belongsToMany(User::class, 'employee_type_user', 'employee_type_id', 'user_id');
+
     }
 }

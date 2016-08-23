@@ -17,15 +17,15 @@ class CreateCustomerTable extends Migration
             $table->string('fname');
             $table->string('sname');
             $table->string('lname');
-            $table->string('otherName');
+            $table->string('otherName')->nullable(0);
             $table->integer('age');
             $table->date('dob');
+            $table->boolean('gender');
             $table->string('number');
             $table->string('nic')->unique();
-            $table->string('passport');
+            $table->boolean('passport');
             $table->string('address1');
             $table->string('address2')->nullable();
-            $table->string('loyalty');
             $table->boolean('terminated')->default(0);
             $table->timestamps();
 

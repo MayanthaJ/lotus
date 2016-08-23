@@ -7,7 +7,9 @@ use App\Models\Employee\Leave;
 use App\Models\Employee\LeaveTypes;
 use App\Models\Employee\Loan;
 use App\Models\Employee\LoanType;
+use App\Models\Employee\NoPay;
 use App\User;
+use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
 
@@ -33,10 +35,15 @@ class Additional extends Controller
             'amount' => 'required'
         ]);
 
+        $loanType = LoanType::findOrFail($request->loan_name_lists);
+
         Loan::create([
             'loan_type_id' => $request->loan_name_lists,
             'user_id' => $request->employee_names,
             'amount' => $request->amount,
+            'remaining' => $request->amount,
+            'decrement' => $request->decrement,
+            'paytime' => $loanType->installment
         ]);
 
         Flash::success('Loan added to user !');
@@ -50,11 +57,13 @@ class Additional extends Controller
 
         $employee_names = User::pluck('name', 'id');
 
-        return view('admin.employee.various.loans.create', compact('leave_type_lists', 'employee_names'));
+        return view('admin.employee.various.leaves.create', compact('leave_type_lists', 'employee_names'));
     }
 
     public function postAddLeave(Request $request)
     {
+
+        $user = User::findOrFail($request->employee_names);
 
         $this->validate($request, [
             'leave_type_lists' => 'required',
@@ -63,10 +72,20 @@ class Additional extends Controller
         ]);
 
         Leave::create([
-            'leave_type_lists' => $request->leave_type_lists,
-            'employee_names' => $request->employee_names,
-            'reason' => $request->reason
+            'leavetype_id' => $request->leave_type_lists,
+            'user_id' => $user->id,
+            'reason' => $request->reason,
+            'time' => Carbon::now()->toTimeString()
         ]);
+
+        if($user->leaves->count() >= 35) {
+            NoPay::create([
+                'user_id' => $user->id,
+                'day' => Carbon::now()->toTimeString()
+            ]);
+
+            Flash::warning("Employee is now on NoPay !");
+        }
 
         Flash::success("Leave added to employee");
 

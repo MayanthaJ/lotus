@@ -10,17 +10,20 @@ class CreateVehicle extends Migration
      *
      * @return void
      */
+    
     public function up()
     {
         Schema::create('vehicle', function (Blueprint $table){
-           $table->increments('id');
+           
+            $table->increments('id');
             $table->string('vehicle_name');
-            $table->string('reg_no');
-            $table->date('m_year');
+            $table->string('reg_no')->unique();
+            $table->string('m_year');
             $table->string('color');
             $table->string('type');
             $table->string('b_type');
             $table->double('cost_per_day');
+            $table->boolean('terminated')->default(0);
             $table->timestamps();
             
         });

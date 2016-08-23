@@ -20,7 +20,9 @@ class RentalController extends Controller
      */
     public function index()
     {
-        return view('admin.rental.index');
+        $vehicles = Vehicle::all();
+
+        return view('admin.rental.vehicle.index', compact('vehicles'));
     }
 
     /**
@@ -30,7 +32,7 @@ class RentalController extends Controller
      */
     public function create()
     {
-        return view('admin.rental.create');
+        return view('admin.rental.vehicle.create');
     }
 
     /**
@@ -45,30 +47,29 @@ class RentalController extends Controller
         // validate the request object
         $this->validate($request, [
             'vehicle_name' => 'required|min:3|max:15',
-            'm_year' => 'required',
-            'reg_no' => 'required',
-            'added_date' => 'required',
-            'color' => 'required',
+            'm_year' => 'required|min:4|max:4',
+            'reg_no' => 'required|max:50',
+            'color' => 'required|min:3|max:10',
             'type' => 'required',
             'b_type' => 'required',
         ]);
 
         // Vehicle object
-        $vehicle = Vehicle::create([
+        Vehicle::create([
             'vehicle_name' => $request->vehicle_name,
             'm_year' => $request->m_year,
             'reg_no' => $request->reg_no,
-            'added_date' => $request->added_date,
             'color' => $request->color,
             'type' => $request->type,
             'b_type' => $request->b_type,
+            'terminated' => ($request->has('terminated')) ? 1 : 0,
         ]);
 
         // Sends a success message
         Flash::success("Vehicle Added Successfully !");
 
         // return to a url
-        return Redirect::to('/system/rental');
+        return Redirect::to('/system/rental/vehicle');
 
     }
 
@@ -91,7 +92,9 @@ class RentalController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vehicle = Vehicle::findOrFail($id);
+
+        return view('admin.rental.vehicle.edit', compact('vehicle'));
     }
 
     /**
@@ -101,9 +104,38 @@ class RentalController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
-        //
+
+        // validate the request object
+        $this->validate($request, [
+            'vehicle_name' => 'required|min:3|max:15',
+            'm_year' => 'required|min:4|max:4',
+            'reg_no' => 'required|max:50',
+            'color' => 'required|min:3|max:10',
+            'type' => 'required',
+            'b_type' => 'required',
+        ]);
+
+        $vehicle = Vehicle::findOrFail($id);
+
+        $vehicle->vehicle_name = $request->vehicle_name;
+        $vehicle->reg_no = $request->reg_no;
+        $vehicle->m_year = $request->m_year;
+        $vehicle->color = $request->color;
+        $vehicle->type = $request->type;
+        $vehicle->b_type = $request->b_type;
+        $vehicle->cost_per_day = $request->cost_per_day;
+        $vehicle->terminated = ($request->has('terminated')) ? 1 : 0;
+
+        if($vehicle->save()) {
+            Flash::success("Vehicle updated successfully");
+        } else {
+            Flash::error("An Error occured !");
+        }
+
+        return Redirect::back();
     }
 
     /**
@@ -112,6 +144,7 @@ class RentalController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
         //

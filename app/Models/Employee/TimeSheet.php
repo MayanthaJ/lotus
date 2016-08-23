@@ -28,9 +28,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class TimeSheet extends Model
 {
-    public $fillable = ['id'];
+    public $guarded = ['id'];
 
-    public $dates  = ['created_at', 'updated_at', 'check_in', 'check_out', 'day'];
+    public $dates  = ['check_in', 'check_out', 'day'];
 
     /**
      * Get the overtimes related a timesheet
@@ -49,6 +49,6 @@ class TimeSheet extends Model
      */
     public function employee()
     {
-        return $this->hasOne(User::class, 'user_id');
+        return $this->hasOne(User::class, 'id');
     }
 }

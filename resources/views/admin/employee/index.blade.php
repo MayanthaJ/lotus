@@ -40,7 +40,7 @@
                             </td>
 
                             <td>
-                                <a href="{!! url('/system/employee/'.$employee->id.'/edit') !!}" class="btn btn-default">
+                                <a href="{!! url('/system/employee/'.$employee->id.'/') !!}" class="btn btn-default">
                                     view employee
                                 </a>
                             </td>

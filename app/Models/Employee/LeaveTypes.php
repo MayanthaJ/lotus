@@ -16,8 +16,15 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\LeaveTypes whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\LeaveTypes whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\LeaveTypes whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\Loan[] $loans
  */
 class LeaveTypes extends Model
 {
     public $guarded = ['id'];
+
+    public function loans()
+    {
+        return $this->hasMany(Loan::class, 'loan_type_id');
+    }
+
 }

@@ -17,7 +17,7 @@ _please take a note that these are basic functions_
             <li>Advance Payments ✓</li>
             <li>Loans ✓</li>
             <li>Sallary Slip Generation ✓</li>
-            <li>BASIC GUI - X </li>
+            <li>BASIC GUI - ✓ </li>
         </ul>
     </li>
    
@@ -49,13 +49,14 @@ _please take a note that these are basic functions_
   <li>Package Management ( Danji )
        <ul>
           <li>Add / Manage Packages</li>
+          <li>Get Details</li>
        </ul>
   </li>
   
   <li>Rental System ( Nuwan )
         <ul>
-            <li>Add  / Manage Vehicles</li>
-            <li>Add  / Manage Drivers</li>
+            <li>Add  / Manage Vehicles ✓</li>
+            <li>Add  / Manage Drivers ✓</li>
             <li>Assign Trips</li>
         </ul>
   </li>

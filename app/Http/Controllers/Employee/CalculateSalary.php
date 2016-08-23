@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Employee;
 
+use App\Models\Employee\EPF;
+use App\Models\Employee\PayeTax;
 use App\Models\Employee\SalarySlip;
 use App\User;
 use Auth;
@@ -49,15 +51,13 @@ class CalculateSalary extends Controller
 
         $currentYear = Carbon::now()->year;
 
-        \DB::enableQueryLog();
-
         $timesheets = $user->timesheet()->with('overtime')->where('day', '>=', $currentMonth)->get();
 
         $travels = $user->travels()->where('date', '>=', $currentMonth)->get();
 
         $leaves = $user->leaves()->where('time', '>=', $currentYear)->get();
 
-        $loans = $user->loans()->where('isOver', '!=', 1)->get();
+        $loans = $user->loans()->where('paytime', '!=', 0)->get();
 
         $advances = $user->advance()->where('month', '>=', $currentMonth)->get();
 
@@ -70,7 +70,20 @@ class CalculateSalary extends Controller
 
         $loanDeductions = 0;
         foreach ($loans as $loan) {
-            $loanDeductions += $loan->decrement;
+            if ($loan->paytime != 0) {
+                if (($loan->remaining - $loan->decrement) <= 0) {
+                    dd(($loan->remaining - $loan->decrement));
+                    $loanDeductions += $loan->decrement + (($loan->decrement * $loan->type->rate) / 100);
+                    $loan->remaining = ($loan->decrement - $loan->decrement);
+                    $loan->paytime = 0;
+                    $loan->save();
+                } else {
+                    $loanDeductions += $loan->decrement + (($loan->decrement * $loan->type->rate) / 100);
+                    $loan->remaining = ($loan->amount - $loan->decrement);
+                    $loan->paytime = $loan->paytime - 1;
+                    $loan->save();
+                }
+            }
         }
 
         $noPay = 0;
@@ -96,19 +109,34 @@ class CalculateSalary extends Controller
 
         $advancePay = 0;
         foreach ($advances as $advance) {
-            $advancePay += $advance->amount;
+            if($advance->done != 0) {
+                $advancePay += $advance->amount;
+                $advance->done = 1;
+                $advance->save();
+            }
         }
 
         $payOfMonth = ($basicSalary + $otPay + $travelPay) - ($loanDeductions + $advancePay + $noPay + $epf + $payeTax);
 
         //dd($basicSalary, $otPay, $travelPay, $loanDeductions, $advancePay, $noPay, $epf, $payeTax);
 
-        $salarySlip = SalarySlip::create([
+        SalarySlip::create([
             'user_id' => $user->id,
             'month' => date('Y-m-d'),
             'pay' => $payOfMonth
         ]);
 
+        EPF::create([
+            'user_id' => $user->id,
+            'amount' => $epf,
+            'month' => $currentMonth->toDateString()
+        ]);
+
+        PayeTax::create([
+            'user_id' => $user->id,
+            'amount' => $payeTax,
+            'month' => $currentMonth->toDateString()
+        ]);
 
     }
 }
