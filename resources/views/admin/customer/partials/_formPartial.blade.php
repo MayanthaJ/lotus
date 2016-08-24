@@ -1,7 +1,7 @@
 {!! Form::label('tour','Select Tour') !!}
-{!! Form::select('tour', $packages, null, ['placeholder' => 'Select Tour...']) !!}
+{!! Form::select('tour', $packages, null, ['placeholder' => 'Select Package...']) !!}
 {!! Form::label('tourDate') !!}
-{!! Form::Select('tourDate',$packages, null, ['placeholder' => 'Select Tour Date...']) !!}
+{!! Form::Select('tourDate',$tours, null, ['placeholder' => 'Select Tour Date...']) !!}
 
 <br />
 {!! Form::label('fname', 'Fist Name :') !!}
@@ -35,7 +35,7 @@
 {!! Form::text('nic', null,['class'=>'form-control']) !!}
 
 <br />
-{!! Form::label('passportId','Passport ID :') !!}
+{!! Form::label('passport_id','Passport ID :') !!}
 {!! Form::text('passport', null,['class' => 'form-control']) !!}
 
 <br />

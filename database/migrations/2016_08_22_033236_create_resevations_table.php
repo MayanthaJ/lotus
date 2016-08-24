@@ -35,6 +35,6 @@ class CreateResevationsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('resevations');
+        Schema::drop('reservations');
     }
 }

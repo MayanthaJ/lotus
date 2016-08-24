@@ -1,14 +1,20 @@
 <?php
+/**
+use flash | redirect
+ **/
 
 namespace App\Http\Controllers\Customer;
 
 use App\Models\Customer\Customer;
 
 use App\Models\Package\Package;
+use App\Models\Tour\Tour;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Flash;
+use Redirect;
 
 class CustomerController extends Controller
 {
@@ -34,9 +40,12 @@ class CustomerController extends Controller
     {
         //get package details
         $packages = Package::pluck('name','id');
-        //dd($package);
 
-        return view('admin.customer.create', compact('packages'));
+        //condition use to select upcoming tours
+        $tours= Tour::where('id','>', 0)->pluck('departure','id');
+
+        // return view.blade
+        return view('admin.customer.create', compact('packages','tours'));
 
     }
 
@@ -49,6 +58,7 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+        /*
         $this->validate($request, [
             'fname' => 'required|min:3|max:15',
             'sname' => 'required|min:3|max:15',
@@ -56,6 +66,7 @@ class CustomerController extends Controller
             'otherName' => 'required|min:3|max:15',
             'age' => 'required|numeric'
         ]);
+        */
 
         $customer = Customer::create([
             'fname' => $request->fname,
@@ -94,8 +105,15 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
+        //get the customer details
         $customer = Customer::find($id);
-        return view('admin.customer.edit', compact('customer'));
+        //get package details
+        $packages = Package::pluck('name','id');
+
+        //condition use to select upcoming tours
+        $tours= Tour::where('id','>', 0)->pluck('departure','id');
+
+        return view('admin.customer.edit', compact('customer','tours','packages'));
     }
 
     /**
@@ -108,7 +126,30 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         //get customer model
+
         $customer = customer::findOrFail($id);
+
+        $customer->fname = $request->fname;
+        $customer->sname = $request->sname;
+        $customer->lname = $request->lname;
+        $customer->otherName = $request->otherName;
+        $customer->age=$request->age;
+        $customer->dob=$request->dob;
+        $customer->number=$request->number;
+        $customer->nic=$request->nic;
+        $customer->passport=$request->passport;
+        $customer->address1=$request->address1;
+        $customer->address2=$request->address2;
+
+        //boolean if need :
+
+        // save and exit
+        if ($customer->save()) {
+            Flash::success("Changes updated !");
+        }
+
+        // return to the original page
+        return Redirect::back();
 
     }
 
