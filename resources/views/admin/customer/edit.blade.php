@@ -2,7 +2,17 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-9">
+            <div class="col-md-2">
+                <a href="/system/customer">Customer</a>
+            </div>
+            <div class="col-md-2">
+                <a href="/system/customer/view">View Customer</a>
+            </div>
+            <div class="col-md-2">
+                <a href="/system/customer/view">Update Customer</a>
+            </div>
+            <hr />
+            <div class="col-sm-12 col-md-12">
                 @include('notifications._message')
                 <h2>Edit Employee
                     <br />
