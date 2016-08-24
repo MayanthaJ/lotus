@@ -80,5 +80,4 @@ class Customer extends Model
     }
 
 
-
 }
