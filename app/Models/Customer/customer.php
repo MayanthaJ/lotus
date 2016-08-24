@@ -78,6 +78,4 @@ class Customer extends Model
     {
         return $this->hasMany(CustomerPackage::class, 'customer_id', 'id');
     }
-
-
 }
