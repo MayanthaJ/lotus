@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Rental\Vehicle whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Rental\Vehicle whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property boolean $terminated
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Rental\Vehicle whereTerminated($value)
  */
 class Vehicle extends Model
 {

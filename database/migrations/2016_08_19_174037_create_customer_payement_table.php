@@ -14,11 +14,11 @@ class CreateCustomerPayementTable extends Migration
     {
         Schema::create('customer_payment', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('customer_id');
-            $table->double('total_amount');
-            $table->double('advance_amount');
-            $table->double('net_amount');
+            $table->unsignedInteger('customer_id');
+            $table->double('advance');
+            $table->double('total');
             $table->timestamps();
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
         });
     }
 

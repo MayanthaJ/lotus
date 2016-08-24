@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustomerPackage extends Migration
+class CreateIncomesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,11 @@ class CreateCustomerPackage extends Migration
      */
     public function up()
     {
-        // customer and tour relationship
-        Schema::create('customer_package',function(Blueprint $table){
-            $table->Integer('customer_id');
-            $table->Integer('package_id');
+        Schema::create('incomes', function (Blueprint $table) {
+            $table->increments('id');
+            $table->date('month');
+            $table->double('income');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +27,6 @@ class CreateCustomerPackage extends Migration
      */
     public function down()
     {
-        Schema::drop('customer_package');
+        Schema::drop('incomes');
     }
 }

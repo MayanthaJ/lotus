@@ -14,12 +14,13 @@ class CreateTours extends Migration
     {
         Schema::create('tours',function (Blueprint $table){
             $table->increments('id');
-            $table->integer('package_id');
+            $table->unsignedInteger('package_id');
             $table->string('name');
             $table->date('departure');
             $table->time('time');
             $table->string('description');
             $table->timestamps();
+            $table->foreign('package_id')->references('id')->on('package')->onDelete('cascade');
         });
     }
 
