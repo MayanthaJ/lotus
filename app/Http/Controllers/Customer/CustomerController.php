@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Redirect;
 
 class CustomerController extends Controller
@@ -67,7 +68,6 @@ class CustomerController extends Controller
             'age' => 'required|numeric'
         ]);
         */
-
         $customer = Customer::create([
             'fname' => $request->fname,
             'sname' => $request->sname,
@@ -81,7 +81,9 @@ class CustomerController extends Controller
             'address1' => $request->address1,
             'address2' => $request->address2
         ]);
-
+        DB::table('customer_tour')->insert([
+            'customer_id'=>$customer->id ,'tour_id'=>$request->tourDate
+        ]);
         return \Redirect::to('/system/customer');
 
     }
