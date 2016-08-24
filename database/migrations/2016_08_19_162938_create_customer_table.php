@@ -20,6 +20,7 @@ class CreateCustomerTable extends Migration
             $table->string('otherName')->nullable(0);
             $table->integer('age');
             $table->date('dob');
+            $table->boolean('gender');
             $table->string('number');
             $table->string('nic')->unique();
             $table->boolean('passport');

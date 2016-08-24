@@ -15,7 +15,10 @@ class CreatePackage extends Migration
         Schema::create('package',function(Blueprint $table){
             $table->increments('id');
             $table->string('code')->unique();
-            $table->String('name');
+            $table->string('name');
+            $table->string('country');
+            $table->string('destination');
+            $table->integer('days');
             $table->double('price');
             $table->string('description');
             $table->boolean('terminated')->default(0);
