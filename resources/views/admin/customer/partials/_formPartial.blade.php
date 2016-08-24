@@ -1,4 +1,4 @@
-{!! Form::label('tour','Select Tour') !!}
+{!! Form::label('tour','Select Package') !!}
 {!! Form::select('tour', $packages, null, ['placeholder' => 'Select Package...']) !!}
 {!! Form::label('tourDate') !!}
 {!! Form::Select('tourDate',$tours, null, ['placeholder' => 'Select Tour Date...']) !!}
@@ -25,7 +25,7 @@
 
 <br />
 {!! Form::label('dob','Date Of Birth :') !!}
-{!! Form::date('dob', \Carbon\Carbon::now()) !!}
+{!! Form::date('dob', \Carbon\Carbon::setTestNow()) !!}
 
 <br />
 <br />
