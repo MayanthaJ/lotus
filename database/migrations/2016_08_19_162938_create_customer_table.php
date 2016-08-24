@@ -26,6 +26,7 @@ class CreateCustomerTable extends Migration
             $table->boolean('passport');
             $table->string('address1');
             $table->string('address2')->nullable();
+            $table->integer('loyalty');
             $table->boolean('terminated')->default(0);
             $table->timestamps();
 

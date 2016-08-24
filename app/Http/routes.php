@@ -83,6 +83,7 @@ Route::group(['middleware' => 'adminOrManager'], function (){
 // Achala's routes
 Route::get('/system/customer/view/', 'Customer\CustomerController@view');
 Route::resource('/system/customer', 'Customer\CustomerController');
+Route::resource('system/ticket','Ticket\TicketController');
 
 //Nuwan's Routes
 Route::resource('system/rental/vehicle','Rental\RentalController');
