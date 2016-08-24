@@ -26,6 +26,12 @@
 <br />
 {!! Form::label('dob','Date Of Birth :') !!}
 {!! Form::date('dob', \Carbon\Carbon::now()) !!}
+
+<br />
+<br />
+{!! Form::label('gender','Gender :') !!}
+{!! Form::Select('gender',['1'=>'Male','0'=>'Female'], null) !!}
+
 <br />
 {!! Form::label('phoneNumber','Phone Number :') !!}
 {!! Form::text('number', null,['class'=>'form-control']) !!}
