@@ -12,15 +12,14 @@
         "codezero/flash": "^1.0",
         "filp/whoops": "^2.1",
         "doctrine/dbal": "^2.5",
-        "khill/lavacharts": "^3.0"
+        "laracasts/generators": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",
         "symfony/css-selector": "2.8.*|3.0.*",
-        "symfony/dom-crawler": "2.8.*|3.0.*",
-        "laracasts/generators": "^1.1"
+        "symfony/dom-crawler": "2.8.*|3.0.*"
     },
     "autoload": {
         "classmap": [

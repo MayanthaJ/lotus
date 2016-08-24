@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "405bb362418d8fba8668698e162fe904",
-    "content-hash": "76e6d34c3f50e1e10f45123695782b99",
+    "hash": "7dcee3038501699cb8ae406187730423",
+    "content-hash": "01158903c3786f4c89aa3257b221d063",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -937,37 +937,30 @@
             "time": "2015-12-05 17:17:57"
         },
         {
-            "name": "khill/lavacharts",
-            "version": "3.0.4",
+            "name": "laracasts/generators",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/kevinkhill/lavacharts.git",
-                "reference": "c95cf815948db511c9c44270d50f7bc37861d81d"
+                "url": "https://github.com/laracasts/Laravel-5-Generators-Extended.git",
+                "reference": "d6afcc60dff846980393d59f6df2074b8a297b08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kevinkhill/lavacharts/zipball/c95cf815948db511c9c44270d50f7bc37861d81d",
-                "reference": "c95cf815948db511c9c44270d50f7bc37861d81d",
+                "url": "https://api.github.com/repos/laracasts/Laravel-5-Generators-Extended/zipball/d6afcc60dff846980393d59f6df2074b8a297b08",
+                "reference": "d6afcc60dff846980393d59f6df2074b8a297b08",
                 "shasum": ""
             },
             "require": {
-                "nesbot/carbon": "~1.14",
+                "illuminate/support": "~5.0",
                 "php": ">=5.4.0"
             },
             "require-dev": {
-                "mockery/mockery": "~0.9",
-                "mybuilder/phpunit-accelerator": "~1.1",
-                "phpunit/phpunit": "~4.5",
-                "satooshi/php-coveralls": "~1.0",
-                "squizlabs/php_codesniffer": "~2.5"
-            },
-            "suggest": {
-                "khill/datatableplus": "Adds extra features to DataTables such as csv and laravel collection parsing."
+                "phpspec/phpspec": "~2.1"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Khill\\Lavacharts\\": "src/"
+                    "Laracasts\\Generators\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -976,54 +969,16 @@
             ],
             "authors": [
                 {
-                    "name": "Kevin Hill",
-                    "email": "kevinkhill@gmail.com",
-                    "role": "Creator"
-                },
-                {
-                    "name": "deringer",
-                    "homepage": "https://github.com/deringer",
-                    "role": "Contributor"
-                },
-                {
-                    "name": "stevebauman",
-                    "homepage": "https://github.com/stevebauman",
-                    "role": "Contributor"
-                },
-                {
-                    "name": "rajivseelam",
-                    "homepage": "https://github.com/rajivseelam",
-                    "role": "Contributor"
-                },
-                {
-                    "name": "tobias-kuendig",
-                    "homepage": "https://github.com/tobias-kuendig",
-                    "role": "Contributor"
-                },
-                {
-                    "name": "Stonos",
-                    "homepage": "https://github.com/Stonos",
-                    "role": "Contributor"
-                },
-                {
-                    "name": "MicahKV",
-                    "email": "micah138@yahoo.com",
-                    "role": "Contributor"
-                },
-                {
-                    "name": "SendDerek",
-                    "homepage": "https://github.com/SendDerek",
-                    "role": "Contributor"
+                    "name": "Jeffrey Way",
+                    "email": "jeffrey@laracasts.com"
                 }
             ],
-            "description": "PHP wrapper library for the Google Chart API",
-            "homepage": "http://lavacharts.com",
+            "description": "Extend Laravel 5's generators.",
             "keywords": [
-                "charts",
-                "google",
-                "graphs"
+                "generators",
+                "laravel"
             ],
-            "time": "2016-04-28 14:43:39"
+            "time": "2015-12-31 18:44:32"
         },
         {
             "name": "laravel/framework",
@@ -2756,50 +2711,6 @@
                 "test"
             ],
             "time": "2015-05-11 14:41:42"
-        },
-        {
-            "name": "laracasts/generators",
-            "version": "1.1.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laracasts/Laravel-5-Generators-Extended.git",
-                "reference": "d6afcc60dff846980393d59f6df2074b8a297b08"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laracasts/Laravel-5-Generators-Extended/zipball/d6afcc60dff846980393d59f6df2074b8a297b08",
-                "reference": "d6afcc60dff846980393d59f6df2074b8a297b08",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "~5.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpspec/phpspec": "~2.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Laracasts\\Generators\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jeffrey Way",
-                    "email": "jeffrey@laracasts.com"
-                }
-            ],
-            "description": "Extend Laravel 5's generators.",
-            "keywords": [
-                "generators",
-                "laravel"
-            ],
-            "time": "2015-12-31 18:44:32"
         },
         {
             "name": "mockery/mockery",

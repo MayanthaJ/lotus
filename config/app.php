@@ -152,6 +152,7 @@ return [
         CodeZero\Flash\FlashServiceProvider::class,
         Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
 
+
         /*
          * Application Service Providers...
          */

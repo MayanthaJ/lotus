@@ -11,5 +11,22 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Advertisements extends Model
 {
-    public $guarded = ['id'];
+
+    //
+    protected $fillable =[
+
+        'name',
+
+        'type',
+
+        'file',
+
+        'created_at',
+
+        'updated_at'
+
+
+
+    ];
+
 }
