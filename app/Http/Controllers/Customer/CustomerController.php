@@ -1,8 +1,4 @@
 <?php
-/**
-use flash | redirect
- **/
-
 namespace App\Http\Controllers\Customer;
 
 use App\Models\Customer\Customer;
