@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Advertisements;
 
+use App\Http\Requests\AdCreateRequest;
 use App\Models\Advertisements\Advertisements;
+use App\Models\Advertisements\AdvertisementType;
 use Carbon\Carbon;
-use Request;
-
-
-use App\Http\Requests;
-
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Redirect;
+
 
 
 class AdvertisingController extends Controller
@@ -34,7 +34,10 @@ class AdvertisingController extends Controller
      */
     public function create()
     {
-        return view('admin.advertisements.create');
+
+        $type_id = AdvertisementType::pluck('name', 'id');
+
+        return view('admin.advertisements.create', compact('type_id'));
     }
 
 //    /**
@@ -43,17 +46,11 @@ class AdvertisingController extends Controller
 //     * @param  \Illuminate\Http\Request $request
 //     * @return \Illuminate\Http\Response
 //     */
-    public function store(Request $request)
+    public function store(AdCreateRequest $request)
     {
-
-        $input = Request::all();
-
-        $input['created_at'] = Carbon::now();
-        $input['updated_at']= Carbon::now();
-
         Advertisements::create($request->all());
 
-
+        return Redirect::back();
 
     }
 
@@ -65,7 +62,10 @@ class AdvertisingController extends Controller
      */
     public function show($id)
     {
-        //
+        $advertisement = Advertisements::findOrFail($id);
+
+        return view('admin.advertisements.show', compact('advertisement'));
+
     }
 
     /**
@@ -77,8 +77,11 @@ class AdvertisingController extends Controller
     public function edit($id)
     {
         //
-        $ad = Advertisements::find($id) ;
-        return view('admin.advertisements.edit', compact('ad'));
+        $ad = Advertisements::findOrFail($id);
+
+        $type_id = AdvertisementType::pluck('name', 'id');
+
+        return view('admin.advertisements.edit', compact('ad', 'type_id'));
     }
 
 //    /**
@@ -93,8 +96,15 @@ class AdvertisingController extends Controller
         //
         $ad = Advertisements::findOrFail($id);
 
-        $ad->update($request->all());
-        $ad['updated_at']=Carbon::now();
+
+        $ad->name = $request->name;
+
+        $ad->type = $request->type;
+
+        $ad->save();
+
+        return Redirect::back();
+
     }
 
     /**

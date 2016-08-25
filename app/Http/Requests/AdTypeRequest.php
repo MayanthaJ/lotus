@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class AdCreateRequest extends Request
+class AdTypeRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,10 @@ class AdCreateRequest extends Request
     public function rules()
     {
         return [
-
+            //
             'name' => 'required',
 
-
-            //
+            'description' => 'required'
         ];
     }
 }

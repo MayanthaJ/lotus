@@ -32,6 +32,7 @@ Route::get('/system', 'HomeController@getDashBoard');
 //Route::resource('tourpackage', 'Tour\TourPackageController');
 
 // Udana's routes
+Route::resource('system/advertisements/types', 'Advertisements\AdvertisementTypesController');
 Route::resource('system/advertisements', 'Advertisements\AdvertisingController');
 
 

@@ -4,15 +4,10 @@ namespace App\Models\Advertisements;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * App\Models\Advertisements\Advertisements
- *
- * @mixin \Eloquent
- */
-class Advertisements extends Model
+class AdvertisementType extends Model
 {
-
     //
     protected $guarded = ['id'];
+
 
 }

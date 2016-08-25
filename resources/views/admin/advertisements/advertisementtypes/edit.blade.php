@@ -6,26 +6,17 @@
 
     <hr/>
 
-    {!! Form::model($ad,['method' => 'PATCH', 'action' => ['Advertisements\AdvertisingController@update', $ad->id], 'files' => true]) !!}
+    {!! Form::model($type,['method' => 'PATCH', 'action' => ['Advertisements\AdvertisementTypesController@store', $type->id]]) !!}
 
     <div class="form-control">
 
-        {!! Form::label('name', 'Advertisement Name : ') !!}
+        {!! Form::label('name', 'Type Name : ') !!}
         {!! Form::text('name',null,['class' => 'form-control']) !!}
         <br><br />
-        {!! Form::label('type_id', 'Advertisement Type : ') !!}
-        {!! Form::select('type_id', $type_id, null, ['class' => 'form-control']) !!}
 
-
-
-        <br><br />
-
-
-        {!! Form::label('file','Upload new Ad material here: ') !!}
-        {!! Form::file('file') !!}
-
-
-        <br><br />
+        {!! Form::label('description','Description : ') !!}
+        {!! Form::text('description',null,['class' => 'form-control']) !!}
+        <br><br/>
 
         {!! Form::submit('Update',['class' => 'btn btn-primary form-control']) !!}
         {!! Form::button('Back') !!}
