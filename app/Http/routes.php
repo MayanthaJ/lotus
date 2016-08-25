@@ -22,8 +22,45 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::get('/test/{test}', 'Employee\CalculateSalary@calculateSalaray');
-Route::get('/test/', function(){
-    (new \App\Http\Controllers\Accounts\AccountController())->testCalcs();
+Route::get('/test/', function () {
+    //(new \App\Http\Controllers\Accounts\AccountController())->testCalcs();
+
+    $finances = Lava::DataTable();
+
+    $finances->addDateColumn('Date')
+        ->addNumberColumn('Max Temp')
+        ->addNumberColumn('Mean Temp')
+        ->addNumberColumn('Min Temp')
+        ->addRow(['2014-10-1', 67, 65, 62])
+        ->addRow(['2014-10-2', 68, 65, 61])
+        ->addRow(['2014-10-3', 68, 62, 55])
+        ->addRow(['2014-10-4', 72, 62, 52])
+        ->addRow(['2014-10-5', 61, 54, 47])
+        ->addRow(['2014-10-6', 70, 58, 45])
+        ->addRow(['2014-10-7', 74, 70, 65])
+        ->addRow(['2014-10-8', 75, 69, 62])
+        ->addRow(['2014-10-9', 69, 63, 56])
+        ->addRow(['2014-10-10', 64, 58, 52])
+        ->addRow(['2014-10-11', 59, 55, 50])
+        ->addRow(['2014-10-12', 65, 56, 46])
+        ->addRow(['2014-10-13', 66, 56, 46])
+        ->addRow(['2014-10-14', 75, 70, 64])
+        ->addRow(['2014-10-15', 76, 72, 68])
+        ->addRow(['2014-10-16', 71, 66, 60])
+        ->addRow(['2014-10-17', 72, 66, 60])
+        ->addRow(['2014-10-18', 63, 62, 62]);
+
+    $columnchart = Lava::LineChart('Finances', $finances, [
+        'title' => 'Company Performance',
+        'titleTextStyle' => [
+            'color' => '#eb6b2c',
+            'fontSize' => 14
+        ]
+    ]);
+
+    return view('testView', compact('columnchart'));
+
+
 });
 
 Route::get('/system', 'HomeController@getDashBoard');
@@ -54,7 +91,7 @@ Route::get('/system/employee/{employee}/stats/travel', 'Employee\EmployeeControl
  *******************************************/
 
 // loans routes
-Route::group(['middleware' => 'adminOrManager'], function (){
+Route::group(['middleware' => 'adminOrManager'], function () {
     Route::get('/system/admin/employee/loan/create', 'Employee\General\Additional@getAddLoan');
     Route::post('/system/admin/employee/loan/create', 'Employee\General\Additional@postAddLoan');
 
@@ -66,15 +103,15 @@ Route::group(['middleware' => 'adminOrManager'], function (){
     Route::get('/system/admin/employee/advance/create', 'Employee\General\Additional@getAdvancePayView');
     Route::post('/system/admin/employee/advance/create', 'Employee\General\Additional@postAdvancePayView');
 
-    Route::get('/api/secured/employee/loans/{employee}', function($employee) {
+    Route::get('/api/secured/employee/loans/{employee}', function ($employee) {
         return \App\User::findOrFail($employee)->loans->toJson();
     });
 
-    Route::get('/api/secured/employee/leaves/{employee}', function($employee) {
+    Route::get('/api/secured/employee/leaves/{employee}', function ($employee) {
         return \App\User::findOrFail($employee)->leaves->toJson();
     });
 
-    Route::get('/api/secured/employee/advance/{employee}', function($employee) {
+    Route::get('/api/secured/employee/advance/{employee}', function ($employee) {
         return \App\User::findOrFail($employee)->advance->toJson();
     });
 });
@@ -83,12 +120,12 @@ Route::group(['middleware' => 'adminOrManager'], function (){
 // Achala's routes
 Route::get('/system/customer/view/', 'Customer\CustomerController@view');
 Route::resource('/system/customer', 'Customer\CustomerController');
-Route::resource('system/ticket','Ticket\TicketController');
+Route::resource('system/ticket', 'Ticket\TicketController');
 
 //Nuwan's Routes
-Route::resource('system/rental/vehicle','Rental\RentalController');
-Route::resource('system/rental/driver','Rental\DriverController');
-Route::resource('system/rental/reservation','Rental\ReservationController');
+Route::resource('system/rental/vehicle', 'Rental\RentalController');
+Route::resource('system/rental/driver', 'Rental\DriverController');
+Route::resource('system/rental/reservation', 'Rental\ReservationController');
 
 // System test routes ( timesheet )
 Route::get('/attendance/{employee}/check-out', 'Employee\TimeSheetController@checkOut');

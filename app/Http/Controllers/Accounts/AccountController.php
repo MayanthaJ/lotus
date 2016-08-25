@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers\Accounts;
 
+use App\Http\Controllers\Controller;
 use App\Models\Accounts\Income;
 use App\Models\Accounts\Income\ReservationIncome;
-use App\Models\Accounts\Income\TourIncome;
 use App\Models\Rental\Reservation;
-use App\Models\Tour\Tour;
 use Carbon\Carbon;
-use DB;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class AccountController extends Controller
 {
@@ -126,7 +121,8 @@ class AccountController extends Controller
 
 
         // go through reservations and get all reservation created at today (from $today variable)
-        $reservations = Reservation::where(DB::raw('MONTH(created_at)'), '=', $carbon->month)->get();
+        $reservations = Reservation::whereDate('created_at', '=', $today)->get();
+
 
         // we recieved an collection (means an array of table rows) .. so it is required to loop the
         // go get the values of each one of them ... so we are using a foreach loop
@@ -148,19 +144,21 @@ class AccountController extends Controller
         }
 
         // get All tours
-        /*$tours = Tour::whereCreatedAt($today)->get();
+        /*    $tours = Tour::whereDate('created_at', '=', $today)->get();
 
-        foreach ($tours as $tour) {
-            // same thing as the previous foreach
-            TourIncome::create([
-                'tour_id' => $tour->id,
-                'income_id' => $income->id,
-                // here we are just calling the package[method] (relationship in the Tour model) to get the package
-                // associated with tour.... then gets its ID
-                'amount' => $tour->package->id,
-                'date' => $today
-            ]);
-        }*/
+
+            foreach ($tours as $tour) {
+                // same thing as the previous foreach
+                TourIncome::create([
+                    'tour_id' => $tour->id,
+                    'income_id' => $income->id,
+                    // here we are just calling the package[method] (relationship in the Tour model) to get the package
+                    // associated with tour.... then gets its ID
+                    'amount' => $tour->package->price,
+                    'date' => $today
+                ]);
+            }
+        */
 
         // since we have calucated the income for the day
         // we are saving it to the database
