@@ -2,7 +2,6 @@
 
 namespace App\Models\Tour;
 
-use App\Models\Package\Package;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -28,15 +27,5 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Tour extends Model
 {
-    public $guarded = ['id'];
-
-    /**
-     * Get the package of a tour
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function package()
-    {
-        return $this->hasOne(Package::class, 'package_id');
-    }
+    //
 }

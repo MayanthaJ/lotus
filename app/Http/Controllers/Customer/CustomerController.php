@@ -39,10 +39,10 @@ class CustomerController extends Controller
         $packages = Package::pluck('name','id');
 
         //condition use to select upcoming tours
-        $tours= Tour::where('id','>', 0)->pluck('departure','id');
+        //$tours= Tour::where('id','>', 0)->pluck('departure','id');
 
         // return view.blade
-        return view('admin.customer.create', compact('packages','tours'));
+        return view('admin.customer.create', compact('packages'));
 
     }
 
@@ -55,7 +55,7 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        /*
+
         $this->validate($request, [
             'fname' => 'required|min:3|max:15',
             'sname' => 'required|min:3|max:15',
@@ -63,7 +63,7 @@ class CustomerController extends Controller
             'otherName' => 'required|min:3|max:15',
             'age' => 'required|numeric'
         ]);
-        */
+
         $customer = Customer::create([
             'fname' => $request->fname,
             'sname' => $request->sname,
@@ -71,6 +71,7 @@ class CustomerController extends Controller
             'otherName' => $request->otherName,
             'age' => $request->age,
             'dob' => $request->dob,
+            'gender'=> $request->gender,
             'number' => $request->number,
             'nic' => $request->nic,
             'passport' => $request->passport,
@@ -106,12 +107,11 @@ class CustomerController extends Controller
         //get the customer details
         $customer = Customer::find($id);
         //get package details
-        $packages = Package::pluck('name','id');
-
+        //$packages = Package::pluck('name','id');
         //condition use to select upcoming tours
-        $tours= Tour::where('id','>', 0)->pluck('departure','id');
-
-        return view('admin.customer.edit', compact('customer','tours','packages'));
+        //$tours= Tour::where('id','>', 0)->pluck('departure','id');
+        //return view
+        return view('admin.customer.edit', compact('customer','tours_package'));
     }
 
     /**
@@ -133,13 +133,16 @@ class CustomerController extends Controller
         $customer->otherName = $request->otherName;
         $customer->age=$request->age;
         $customer->dob=$request->dob;
+        $customer->gender=$request->gender;
         $customer->number=$request->number;
         $customer->nic=$request->nic;
         $customer->passport=$request->passport;
         $customer->address1=$request->address1;
         $customer->address2=$request->address2;
 
+
         //boolean if need :
+
 
         // save and exit
         if ($customer->save()) {
@@ -159,7 +162,14 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //get Customer
+        $customer = Customer::findOrFail($id);
+
+        if($customer->delete()){
+            Flash::success('Customer Permanently Deleted ');
+        }else{
+            Flash::error('Fail Delete Customer');
+        }
     }
 
     /**
@@ -167,7 +177,33 @@ class CustomerController extends Controller
      */
     public function view()
     {
-        $customers = Customer::all();
+        $customers = Customer::all()->where('terminated','=','0');
         return view('admin.customer.view', compact('customers'));
+    }
+    /**
+    *Terminated Customer
+     **/
+    public function  terminate($id){
+       $Status= DB::table('customers')->where('id', $id)->update(['terminated' => 1]);
+        if($Status){
+            Flash::success('Customer Deleted');
+        }else{
+            Flash::error('Error Customer deletion');
+        }
+        return Redirect::back();
+
+    }
+    /**
+     * undo customer terminate
+     * */
+    public function  undoterminate($id){
+        $Status= DB::table('customers')->where('id', $id)->update(['terminated' => 0]);
+        if($Status){
+            Flash::success('Customer Deleted');
+        }else{
+            Flash::error('Error Customer deletion');
+        }
+        return Redirect::back();
+
     }
 }

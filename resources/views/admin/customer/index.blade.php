@@ -3,20 +3,12 @@
     {!! Html::style('customer/css/home.css') !!}
 @endsection
 @section('content')
-        <div class="container">
-           <div class="page-container">
-               <div class="row">
-                   <div class="col-md-3">
-                       <a href="{!! asset('system/customer/create') !!}"> Add Customer</a>
-                   </div>
-                   <div class="col-md-3">
-                       <a href="{!! asset('system/customer/update') !!}"> Edit Customer</a>
-                   </div>
-                   <div class="col-md-3">
-                       <a href="{!! asset('system/customer/view') !!}"> Add View</a>
-                   </div>
-                   <hr />
-               </div>
-           </div>
+    <div class="container">
+        <div class="row">
+            <a class="btn btn-default" href="/">Home</a>
+            <a style="background-color: aliceblue;" class="btn btn-default" href="/system/customer">Customer</a>
+            <a class="btn btn-default" href="/system/customer/create">Add Customer</a>
+            <a class="btn btn-default" href="/system/customer/view">View</a>
         </div>
+    </div>
 @endsection

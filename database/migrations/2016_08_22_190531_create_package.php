@@ -22,6 +22,7 @@ class CreatePackage extends Migration
             $table->double('price');
             $table->string('description');
             $table->boolean('terminated')->default(0);
+            $table->timestamps();
         });
     }
 
