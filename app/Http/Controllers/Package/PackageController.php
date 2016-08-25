@@ -121,10 +121,10 @@ class PackageController extends Controller
     }
 
     //termiate package
+
     public function  terminate($id){
         //delete temporally by set package teminated atribute to true
-        $success= DB::table('package')->where('id', $id)->update(['terminated' => 1]);
-
+        $success= DB::table('package')->where('id', $id)->update(['terminated'=> 1]);
         //if success return true flash message to redirect page
         if($success){
             Flash::success('Package Successfully Deleted');

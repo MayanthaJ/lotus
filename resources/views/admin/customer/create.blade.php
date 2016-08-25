@@ -34,19 +34,22 @@
        $(document).on('change','.package_selector',function(){
            var packageID=$(this).find(':selected').val();
            var loopdata =" ";
-           var url='/api/secured/customer/tours';
+           var url='/api/secured/customer/tours/'+packageID;
            $.ajax({
                    type :"GET",
-                   url : url + packageID,
+                   url : url,
                    dataType: "json",
-                   success: function (data) {
+                   success: function (data){
                        for(i = 0; i < data.length; i++){
                            loopdata += '<option value="'+data[i].id+'">'+data[i].departure+' </option>';
+                       }
+                       if(data.length == 0){
+                           loopdata='mukuh naha';
                        }
 
                    }
            });
-           alert("Ajax ekata data gatha yuthui");
+           alert(loopdata);
        });
     </script>
 @endsection

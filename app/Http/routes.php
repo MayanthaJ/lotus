@@ -86,9 +86,12 @@ Route::get('/system/customer/undo/{id}/terminate','Customer\CustomerController@u
 Route::get('/system/customer/view/', 'Customer\CustomerController@view');
 Route::resource('/system/customer', 'Customer\CustomerController');
 Route::resource('system/ticket','Ticket\TicketController');
-//Achala's ajax
+
+//Achala's ajaxs
+
 Route::get('/api/secured/customer/tours/{package_id}',function($package_id){
-    return \App\Models\Tour\Tour::all()->toJson();
+    return \App\Models\Tour\Tour::where('package_id',$package_id)->get()->pluck('name','id');
+
 });
 
 //Nuwan's Routes
@@ -97,6 +100,9 @@ Route::resource('system/rental/driver','Rental\DriverController');
 Route::resource('system/rental/reservation','Rental\ReservationController');
 
 // Danajalee's routes
+
+Route::get('/system/package/{id}/terminate','Package\PackageController@terminate');
+
 Route::resource('/system/package','Package\PackageController');
 
 // System test routes ( timesheet )

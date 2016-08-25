@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
+        @include('notifications._message')
         <div class="row">
             <a class="btn btn-default" href="/">Home</a>
             <a style="background-color: aliceblue;" class="btn btn-default" href="/system/package">Package</a>

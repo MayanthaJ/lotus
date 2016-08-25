@@ -36,7 +36,7 @@ class CustomerController extends Controller
     public function create()
     {
         //get package details
-        $packages = Package::pluck('name','id');
+        $packages = Package::where('terminated',0)->pluck('name','id');
 
         //condition use to select upcoming tours
         //$tours= Tour::where('id','>', 0)->pluck('departure','id');
@@ -54,8 +54,6 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-
         $this->validate($request, [
             'fname' => 'required|min:3|max:15',
             'sname' => 'required|min:3|max:15',

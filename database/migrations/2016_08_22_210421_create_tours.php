@@ -19,6 +19,7 @@ class CreateTours extends Migration
             $table->date('departure');
             $table->time('time');
             $table->string('description');
+            $table->integer('coustomer_count')->default(40);
             $table->timestamps();
             $table->foreign('package_id')->references('id')->on('package')->onDelete('cascade');
         });
