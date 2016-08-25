@@ -87,11 +87,9 @@ Route::get('/system/customer/undo/{id}/terminate','Customer\CustomerController@u
 Route::get('/system/customer/view/', 'Customer\CustomerController@view');
 Route::resource('/system/customer', 'Customer\CustomerController');
 Route::resource('system/ticket','Ticket\TicketController');
-
 //Achala's ajaxs
-
 Route::get('/api/secured/customer/tours/{package_id}',function($package_id){
-    return \App\Models\Tour\Tour::where('package_id',$package_id)->get()->pluck('name','id');
+    return \App\Models\Tour\Tour::where('package_id', $package_id)->get();
 
 });
 

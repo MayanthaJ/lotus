@@ -95,13 +95,13 @@ class AccountController extends Controller
 
     public function testCalcs()
     {
-        $this->calcAccountsPerMonth();
+        $this->calculateIncomePerDay();
     }
 
     /**
      * Calculate the income of the day
      */
-    private function calcAccountsPerMonth()
+    private function calculateIncomePerDay()
     {
 
         $carbon = Carbon::now();
@@ -109,8 +109,6 @@ class AccountController extends Controller
         $today = $carbon->toDateString();
 
         $inComeOfTheDay = 0;
-
-        //dd($today);
 
         // create a income model instance
         // just like creating a row in the income table
@@ -162,11 +160,18 @@ class AccountController extends Controller
 
         // since we have calucated the income for the day
         // we are saving it to the database
-        // like updating the rows
+        // like updating the rows$
         $income->income = $inComeOfTheDay;
 
         $income->save();
 
+    }
+
+
+
+    private function calculateExpensePerDay()
+    {
+        // salary , ads,
     }
 
 }
