@@ -33,8 +33,11 @@ class UserRequestValidator extends Request
                 return [
                     'name' => 'required|min:3|max:50',
                     'lastname' => 'required|min:5|max:50',
-                    'nic' => 'required|min:10|max:10',
+                    'nic' => 'required|min:10|max:10|regex:/^[0-9]{9}[vVxX]$/',
                     'email' => 'required|unique:users,email|email',
+                    'age' => 'required',
+                    'address' => 'required',
+                    'hour_rate' => 'required',
                     'password' => 'required|min:8',
                     'basic' => 'required',
                 ];
@@ -44,9 +47,11 @@ class UserRequestValidator extends Request
                 return [
                     'name' => 'required|min:3|max:50',
                     'lastname' => 'required|min:5|max:50',
-                    'nic' => 'required|min:10|max:10',
+                    'nic' => 'required|min:10|max:10|regex:/^[0-9]{9}[vVxX]$/',
                     'email' => 'required|email',
                     'basic' => 'required',
+                    'address' => 'required',
+                    'hour_rate' => 'required',
                 ];
             }
             default:

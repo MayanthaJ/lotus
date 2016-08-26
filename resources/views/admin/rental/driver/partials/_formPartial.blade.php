@@ -20,12 +20,12 @@
 
 <br/>
 {!! Form::label('age', 'Age :') !!}
-{!! Form::text('age', null, ['class' => 'form-control']) !!}
+{!! Form::number('age', null, ['class' => 'form-control']) !!}
 
 
 <br/>
 {!! Form::label('basic', 'Basic Salary :') !!}
-{!! Form::text('basic', null, ['class' => 'form-control']) !!}
+{!! Form::number('basic', null, ['class' => 'form-control']) !!}
 
 <br/>
 {!! Form::label('address', 'Address :') !!}

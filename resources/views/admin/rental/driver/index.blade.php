@@ -9,6 +9,11 @@
                     <br />
                     <small><a href="{!! url('/system/rental/driver/create') !!}">Add Driver</a></small>
                 </h2>
+                @include('notifications._message')
+                <div id="ajax-search">
+                    {!! Form::text('search', null, ['class' => 'form-control']) !!}
+                    {!! Form::submit('Search', ['class' => 'btn btn-xs btn-primary pull-right']) !!}
+                </div>
 
                 <br />
 
@@ -25,6 +30,7 @@
                     </tr>
 
                     @foreach($users as $user)
+
                         <tr>
                             <td>{!! $user->id !!}</td>
                             <td>{!! $user->name !!}</td>

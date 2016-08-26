@@ -28,13 +28,13 @@
 
 <br />
 {!! Form::label('type') !!}
-{!! Form::select('type', [0 => 'Car', 1 => 'Van'], null, ['class' => 'form-control']) !!}
+{!! Form::select('type', ['Car' => 'Car', 'Van' => 'Van'], null, ['class' => 'form-control']) !!}
 
 
 <br />
 
 {!! Form::label('Body Type') !!}
-{!! Form::select('b_type', [0 => 'Saloon', 1 => 'Hatch-Back' ,2 => 'Wagon'], null, ['class' => 'form-control']) !!}
+{!! Form::select('b_type', ['None' => 'None','Saloon' => 'Saloon', 'Hatch-Back' => 'Hatch-Back' ,'Wagon' => 'Wagon'], null, ['class' => 'form-control']) !!}
 
 <br />
 {!! Form::submit($btn, ['class' => 'btn btn-default btn-block']) !!}

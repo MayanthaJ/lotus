@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-                <a class="btn btn-default" href="/">Home</a>
+                <a class="btn btn-default" href="/system">Home</a>
                 <a class="btn btn-default" href="/system/customer">Customer</a>
                 <a class="btn btn-default" href="/system/customer/create">Add Customer</a>
                 <a style="background-color: aliceblue;" class="btn btn-default" href="/system/customer/view">View</a>
@@ -13,7 +13,7 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Other Name</th>
+            <th>Other Name</th> 
             <th>Age</th>
             <th>Date Of Birth</th>
             <th>Mobile</th>
@@ -37,10 +37,10 @@
                 <td>{!! $customer->passport !!}</td>
                 <td>{!! $customer->address1 !!}</td>
                 <td>{!! $customer->address2 !!}</td>
-                <td>{!! $customer->loyalty !!}</td>
+                <td><?php echo \App\Models\Loyalty\Loyalty::find($customer->loyalty_id)->type ?></td>
                 <td>
                     <a href="{!! url('/system/customer/'.$customer->id.'/edit') !!}" class="btn btn-default">
-                        View
+                        edit
                     </a>
                     <a href="{!! url('/system/customer/'.$customer->id.'/terminate') !!}" class="btn btn-default">
                         Delete

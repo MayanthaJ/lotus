@@ -7,9 +7,11 @@ use App\Models\Rental\Reservation;
 use App\Models\Rental\Vehicle;
 use App\User;
 use Illuminate\Http\Request;
+use flash;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class ReservationController extends Controller
 {
@@ -21,7 +23,10 @@ class ReservationController extends Controller
 
     public function index()
     {
-        $reservations = Reservation::with('vehicle')->get();
+        $reservations = Reservation::all();
+
+
+        //dd($reservations[1]->start_date->diffInDays($reservations[1]->end_date, false));
 
         return view('admin.rental.reservation.index', compact('reservations'));
     }
@@ -57,16 +62,17 @@ class ReservationController extends Controller
         // validate the request object
         $this->validate($request, [
             'destination' => 'required|min:3|max:50',
-            'payment' => 'required|min:2|max:10',
+            //'payment' => 'required|min:2|max:10',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
 
         ]);
 
+
         // Reservation object
         Reservation::create([
             'destination' => $request->destination,
-            'payment' => $request->payment,
+            //'payment' => $request->payment,
             'vehicle_id' => $request->vehicle_id,
             'driver_id' => $request->driver_id,
             'start_date' => $request->start_date,
@@ -125,7 +131,6 @@ class ReservationController extends Controller
         // validate the request object
         $this->validate($request, [
             'destination' => 'required|min:3|max:50',
-            'payment' => 'required|min:2|max:10',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
 
@@ -143,11 +148,12 @@ class ReservationController extends Controller
 
         if($reservation->save()) {
             \Flash::success("Reservation Details updated successfully");
+
         } else {
             \Flash::error("An Error occured !");
         }
 
-        return \Redirect::back();
+        return \Redirect::to('/system/rental/reservation/');
 
 }
 

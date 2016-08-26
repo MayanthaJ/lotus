@@ -16,10 +16,6 @@
 {!! Form::select('vehicle_id', $vehicles, null, ['class' => 'form-control']) !!}
 
 <br />
-{!! Form::label('payment', 'Payment   :') !!}
-{!! Form::text('payment', null, ['class' => 'form-control']) !!}
-
-<br />
 {!! Form::label('destination', 'Destination   :') !!}
 {!! Form::text('destination', null, ['class' => 'form-control']) !!}
 
