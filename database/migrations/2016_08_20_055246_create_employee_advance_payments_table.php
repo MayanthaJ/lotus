@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdvancePaymentsTable extends Migration
+class CreateEmployeeAdvancePaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,6 +19,7 @@ class CreateAdvancePaymentsTable extends Migration
             $table->boolean('done');
             $table->date('month');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

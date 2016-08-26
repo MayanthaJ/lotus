@@ -27,7 +27,6 @@ class AdCreateRequest extends Request
 
             'name' => 'required',
 
-            'type' => 'required'
 
             //
         ];

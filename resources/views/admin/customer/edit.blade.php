@@ -21,7 +21,7 @@
                 <br />
 
                 {!! Form::model($customer, ['method' => 'PATCH', 'action' => ['Customer\CustomerController@update', $customer->id]]) !!}
-                @include('admin.customer.partials._formPartial', ['btn' => 'Update Customer', 'password' => false, 'terminate' => true])
+                @include('admin.customer.partials._formPartial', ['btn' => 'Update Customer',])
                 {!! Form::close() !!}
 
                 <div class="col-sm-12 col-md-3">

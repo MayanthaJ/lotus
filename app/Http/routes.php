@@ -23,7 +23,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/test/{test}', 'Employee\CalculateSalary@calculateSalaray');
 Route::get('/test/', function(){
-
+    (new \App\Http\Controllers\Accounts\AccountController())->testCalcs();
 });
 
 Route::get('/system', 'HomeController@getDashBoard');
@@ -32,6 +32,7 @@ Route::get('/system', 'HomeController@getDashBoard');
 //Route::resource('tourpackage', 'Tour\TourPackageController');
 
 // Udana's routes
+Route::resource('system/advertisements/types', 'Advertisements\AdvertisementTypesController');
 Route::resource('system/advertisements', 'Advertisements\AdvertisingController');
 
 
@@ -81,9 +82,16 @@ Route::group(['middleware' => 'adminOrManager'], function (){
 
 
 // Achala's routes
+Route::get('/system/customer/{id}/terminate','Customer\CustomerController@terminate');
+Route::get('/system/customer/undo/{id}/terminate','Customer\CustomerController@undoterminate');
 Route::get('/system/customer/view/', 'Customer\CustomerController@view');
 Route::resource('/system/customer', 'Customer\CustomerController');
 Route::resource('system/ticket','Ticket\TicketController');
+//Achala's ajaxs
+Route::get('/api/secured/customer/tours/{package_id}',function($package_id){
+    return \App\Models\Tour\Tour::where('package_id', $package_id)->get();
+
+});
 
 
 //Nuwan's Routes
@@ -96,6 +104,12 @@ Route::resource('system/rental/reservation','Rental\ReservationController');
 Route::resource('system/rental','HomeController@getRentalDashboard');
 
 
+
+// Danajalee's routes
+
+Route::get('/system/package/{id}/terminate','Package\PackageController@terminate');
+
+Route::resource('/system/package','Package\PackageController');
 
 // System test routes ( timesheet )
 Route::get('/attendance/{employee}/check-out', 'Employee\TimeSheetController@checkOut');

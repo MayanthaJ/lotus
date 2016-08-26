@@ -23,32 +23,32 @@ _please take a note that these are basic functions_
    
   <li> Accounts handling ( Nimansa )
        <ul>
-           <li>Get monthly expenses</li>
-           <li>Get monthly income</li>
-           <li>Show profit</li>
+           <li>Get monthly expenses ✓</li>
+           <li>Get monthly income ✓</li>
+           <li>Show profit and loss ✓</li>
        </ul>
   </li>
   
   <li> Customer Handling ( Achala )
        <ul>
-            <li>CRUD customer</li>
-            <li>Loyality fetures</li>
+            <li>CRUD customer ✓</li>
+            <li>Loyality fetures ✓</li>
             <li>AirTicket resavations</li>
        </ul>
   </li>
   
   <li>Tour Package Management ( Rashinda )
        <ul>
-            <li>Assign customers to tours</li>     
+            <li>Assign customers to tours ✓</li>     
             <li>Set up tour</li>     
-            <li>Add / Manage Hotels</li>     
+            <li>Add / Manage Hotels ✓</li>     
             <li>Add / Manage Guides</li>     
        </ul>
   </li>
   
   <li>Package Management ( Danji )
        <ul>
-          <li>Add / Manage Packages</li>
+          <li>Add / Manage Packages ✓</li>
           <li>Get Details</li>
        </ul>
   </li>

@@ -1,5 +1,14 @@
 @extends('layouts.app')
 @section('content')
+    <div class="container">
+        <div class="row">
+                <a class="btn btn-default" href="/">Home</a>
+                <a class="btn btn-default" href="/system/customer">Customer</a>
+                <a class="btn btn-default" href="/system/customer/create">Add Customer</a>
+                <a style="background-color: aliceblue;" class="btn btn-default" href="/system/customer/view">View</a>
+        </div>
+    </div>
+    <br />
     <table class="table table-responsive">
         <tr>
             <th>ID</th>
@@ -12,6 +21,7 @@
             <th>Passport</th>
             <th>Address </th>
             <th>Alternative Address </th>
+            <th>Loyalty</th>
             <th> </th>
         </tr>
         <?php $count=1; ?>
@@ -30,7 +40,10 @@
                 <td>{!! $customer->loyalty !!}</td>
                 <td>
                     <a href="{!! url('/system/customer/'.$customer->id.'/edit') !!}" class="btn btn-default">
-                        view Customer
+                        View
+                    </a>
+                    <a href="{!! url('/system/customer/'.$customer->id.'/terminate') !!}" class="btn btn-default">
+                        Delete
                     </a>
                 </td>
             </tr>

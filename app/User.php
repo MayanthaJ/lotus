@@ -67,6 +67,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property float $hour_rate
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee\AdvancePayment[] $advance
  * @method static \Illuminate\Database\Query\Builder|\App\User whereHourRate($value)
+ * @property integer $age
+ * @property string $address
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereAge($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereAddress($value)
  */
 class User extends Authenticatable
 {

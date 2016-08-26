@@ -14,8 +14,11 @@ class CreateCustomerTour extends Migration
     {
         //Customer tour Table
         Schema::create('customer_tour',function (Blueprint $table){
-            $table->integer('customer_id');
-            $table->integer('tour_id');
+            $table->unsignedInteger('customer_id');
+            $table->unsignedInteger('tour_id');
+            $table->foreign('tour_id')->references('id')->on('tours')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->primary(['customer_id', 'tour_id']);
         });
     }
 

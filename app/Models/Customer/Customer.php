@@ -2,6 +2,8 @@
 
 namespace App\Models\Customer;
 
+use App\Models\Package\Package;
+use App\Models\Tour\Tour;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -40,9 +42,40 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereTerminated($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereUpdatedAt($value)
+ * @property boolean $gender
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereGender($value)
  */
 class Customer extends Model
 {
     public $guarded = ['id'];
 
+    /**
+     * Get the tours belongs to customer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tours()
+    {
+        return $this->belongsToMany(Tour::class, 'customer_tour', 'tour_id', 'customer_id');
+    }
+
+    /**
+     * Get the packages related to user ( through tour )
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function packages()
+    {
+        return $this->hasManyThrough(Package::class, Tour::class, 'package_id', 'id');
+    }
+
+    /**
+     * Get the payments related to customer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function payments()
+    {
+        return $this->hasMany(CustomerPackage::class, 'customer_id', 'id');
+    }
 }

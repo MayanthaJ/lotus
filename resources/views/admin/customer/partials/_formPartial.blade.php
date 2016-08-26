@@ -1,7 +1,7 @@
 {!! Form::label('tour','Select Package') !!}
-{!! Form::select('tour', $packages, null, ['placeholder' => 'Select Package...']) !!}
+{!! Form::select('tour', $packages, null, ['placeholder' => 'Select Package...','class'=>'package_selector']) !!}
 {!! Form::label('tourDate') !!}
-{!! Form::Select('tourDate',$tours, null, ['placeholder' => 'Select Tour Date...']) !!}
+{!! Form::select('tourDate', [], null, ['placeholder' => 'Select Tour Date...']) !!}
 
 <br />
 {!! Form::label('fname', 'Fist Name :') !!}
