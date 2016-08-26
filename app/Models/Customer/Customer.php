@@ -44,6 +44,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereUpdatedAt($value)
  * @property boolean $gender
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereGender($value)
+ * @property integer $loyalty_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tour\Tour[] $tours
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Package\Package[] $packages
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerPackage[] $payments
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereLoyaltyId($value)
  */
 class Customer extends Model
 {

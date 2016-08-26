@@ -31,6 +31,21 @@
                     </tr>
 
                     <tr>
+                        <td>Age</td>
+                        <td>{!! $employee->age !!}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Address</td>
+                        <td>{!! $employee->address !!}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Hourly Rate</td>
+                        <td>{!! $employee->hour_rate !!}</td>
+                    </tr>
+
+                    <tr>
                         <td>Basic Salary</td>
                         <td>{!! $employee->basic !!}</td>
                     </tr>
