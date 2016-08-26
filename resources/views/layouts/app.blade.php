@@ -56,6 +56,7 @@
                     <li><a href="{{ url('/system/accounts') }}">Accounts</a></li>
                     <li><a href="{{ url('/system/rental') }}">Rental Management</a></li>
                     <li><a href="{{ url('/system/tour') }}">Rental Management</a></li>
+                    <li><a href="{{ url('/system/advertisements') }}">Advertisements and Marketing</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
