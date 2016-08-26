@@ -44,6 +44,15 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'code'=>'required|numeric|min:3',
+            'name'=>'required|min:5|max:20',
+            'country'=>'required|max:50',
+            'destination'=>'required|min:3',
+            'days'=>'required|numeric|min:1',
+            'price'=>'required|numeric|min:1'
+        ]);
+
         $package=Package::create([
             'code'=>$request->code,
             'name'=>$request->name,
@@ -76,6 +85,7 @@ class PackageController extends Controller
     public function edit($id)
     {
 
+
         $package = Package::find($id);
 
         return view('admin.package.edit', compact('package'));
@@ -90,6 +100,16 @@ class PackageController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $this->validate($request, [
+            'code'=>'required|numeric',
+            'name'=>'required|min:1|max:20',
+            'country'=>'required|min:1|max:50',
+            'destination'=>'required|min:5',
+            'days'=>'required|numeric|min:1',
+            'price'=>'required|numeric|min:1'
+        ]);
+
         $package = package::findOrFail($id);
 
         $package->code = $request->code;

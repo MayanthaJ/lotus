@@ -2,9 +2,8 @@
 {!! Form::select('tour', $packages, null, ['placeholder' => 'Select Package...','class'=>'package_selector']) !!}
 {!! Form::label('tourDate') !!}
 {!! Form::select('tourDate', [], null, ['placeholder' => 'Select Tour Date...']) !!}
-
-<br />
-{!! Form::label('fname', 'Fist Name :') !!}
+<hr />
+{!! Form::label('fname', 'First Name :') !!}
 {!! Form::text('fname', null, ['class' => 'form-control']) !!}
 
 <br/>
@@ -51,6 +50,17 @@
 <br />
 {!! Form::label('address2','Address 2 :') !!}
 {!! Form::text('address2', null,['class'=>'form-control']) !!}
+
+<br />
+@if($advance_payment)
+    {!! Form::label('advance-payemnt','Advance Payment :') !!}
+    {!! Form::text('advancePayment', null,['class'=>'form-control']) !!}
+    @endif
+
+<hr />
+{!! Form::label('Loyalty     :') !!}
+{!! Form::select('loyalty', $loyalty, null, ['placeholder' => 'Select Loyalty type...']) !!}
+<br />
 
 <br />
 {!! Form::submit($btn, ['class' => 'btn btn-default btn-block']) !!}

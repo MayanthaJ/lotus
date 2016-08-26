@@ -2,6 +2,7 @@
 
 namespace App\Models\Customer;
 
+use App\Models\Loyalty\Loyalty;
 use App\Models\Package\Package;
 use App\Models\Tour\Tour;
 use Illuminate\Database\Eloquent\Model;
@@ -78,4 +79,5 @@ class Customer extends Model
     {
         return $this->hasMany(CustomerPackage::class, 'customer_id', 'id');
     }
+
 }

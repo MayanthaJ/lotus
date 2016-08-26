@@ -3,7 +3,7 @@
     <div class="container">
         @include('notifications._message')
         <div class="row">
-            <a class="btn btn-default" href="/">Home</a>
+            <a class="btn btn-default" href="/system">Home</a>
             <a style="background-color: aliceblue;" class="btn btn-default" href="/system/package">Package</a>
             <a class="btn btn-default" href="/system/package/create">Add</a>
         </div>

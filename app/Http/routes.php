@@ -40,7 +40,7 @@ Route::resource('system/advertisements', 'Advertisements\AdvertisingController')
 Route::resource('system/employee', 'Employee\EmployeeController');
 
 // Nimansa's routes
-Route::resource('system/accounts/', 'Account\AccountController');
+Route::resource('system/accounts/', 'Accounts\AccountController');
 
 // stats on employee
 Route::get('/system/employee/{employee}/stats/salary-slips', 'Employee\EmployeeController@getSalarySlip');
@@ -87,11 +87,18 @@ Route::get('/system/customer/undo/{id}/terminate','Customer\CustomerController@u
 Route::get('/system/customer/view/', 'Customer\CustomerController@view');
 Route::resource('/system/customer', 'Customer\CustomerController');
 Route::resource('system/ticket','Ticket\TicketController');
+//customer add to another tour
+Route::get('/system/customer/{id}/add_to_another','Customer\CustomerController@addToAnother');
 //Achala's ajaxs
 Route::get('/api/secured/customer/tours/{package_id}',function($package_id){
     return \App\Models\Tour\Tour::where('package_id', $package_id)->get();
 
 });
+
+// Loyalty routes
+Route::get('/system/loyalty/{id}/terminate','Loyalty\LoyaltyController@terminate');
+Route::get('system/loyalty/view','Loyalty\LoyaltyController@view');
+Route::resource('/system/loyalty','Loyalty\LoyaltyController');
 
 
 //Nuwan's Routes
