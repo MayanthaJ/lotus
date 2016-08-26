@@ -41,7 +41,7 @@
                             <td>{!! $vehicle->terminated !!}</td>
                             <td></td>
                             <td>
-                                <a href="{!! url('/system/rental/'.$vehicle->id.'/edit') !!}" class="btn btn-default">
+                                <a href="{!! url('/system/rental/vehicle/'.$vehicle->id.'/edit') !!}" class="btn btn-default">
                                     view vehicle
                                 </a>
                             </td>
