@@ -39,7 +39,7 @@ Route::resource('system/advertisements', 'Advertisements\AdvertisingController')
 Route::resource('system/employee', 'Employee\EmployeeController');
 
 // Nimansa's routes
-Route::resource('system/accounts/', 'Accounts\AccountController');
+Route::resource('system/accounts/', 'Account\AccountController');
 
 // stats on employee
 Route::get('/system/employee/{employee}/stats/salary-slips', 'Employee\EmployeeController@getSalarySlip');
@@ -85,10 +85,17 @@ Route::get('/system/customer/view/', 'Customer\CustomerController@view');
 Route::resource('/system/customer', 'Customer\CustomerController');
 Route::resource('system/ticket','Ticket\TicketController');
 
+
 //Nuwan's Routes
+Route::resource('system/rental/income','Rental\IncomeController');
+Route::resource('system/rental/expense','Rental\ExpenseController');
+Route::resource('system/rental/profit','Rental\ProfitController');
 Route::resource('system/rental/vehicle','Rental\RentalController');
 Route::resource('system/rental/driver','Rental\DriverController');
 Route::resource('system/rental/reservation','Rental\ReservationController');
+Route::resource('system/rental','HomeController@getRentalDashboard');
+
+
 
 // System test routes ( timesheet )
 Route::get('/attendance/{employee}/check-out', 'Employee\TimeSheetController@checkOut');

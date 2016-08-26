@@ -150,7 +150,6 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         CodeZero\Flash\FlashServiceProvider::class,
-        Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
 
 
         /*
@@ -209,7 +208,6 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Flash' => CodeZero\Flash\Facade\Flash::class,
-        'Lava' => Khill\Lavacharts\Lavacharts::class,
 
     ],
 

@@ -22,7 +22,9 @@
                         <th>Color</th>
                         <th>Type</th>
                         <th>Body Type</th>
-                        <th>Availability</th>
+                        <th>Cost Per Day</th>
+                        <th>Terminated</th>
+
                         <th></th>
                     </tr>
 
@@ -44,7 +46,7 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="{!! url('/system/rental/'.$vehicle->id.'/edit') !!}" class="btn btn-default">
+                                <a href="{!! url('/system/rental/reservation/create',$vehicle->vehicle_name) !!}" class="btn btn-default">
                                     make reservation
                                 </a>
                             </td>

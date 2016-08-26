@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 @include('notifications._message')
                 <h2>Reservation List
-                    <br/>
+                    <br />
                     <small><a href="{!! url('/system/rental/reservation/create') !!}">Add Reservation</a></small>
                 </h2>
 
@@ -18,19 +18,27 @@
                         <th>Reservation ID</th>
                         <th>Start Date</th>
                         <th>End Date</th>
-                        <th>Vehicle</th>
+                        <th>No of Days</th>
+                        <th>Total Cost</th>
                         <th>Driver Name</th>
+                        <th>Destination</th>
                         <th></th>
                     </tr>
 
                     @foreach($reservations as $reservation)
+                        <?php
 
+                        $x = \App\User::find($reservation->driver_id);
+
+                        ?>
                         <tr>
                             <td>{!! $reservation->id !!}</td>
                             <td>{!! $reservation->start_date!!}</td>
                             <td>{!! $reservation->end_date !!}</td>
-                            <td>{!! $reservation->vehicle_id!!}</td>
-                            <td>{!! $reservation->driver_id !!}</td>
+                            <td>{!! $reservation->start_date->diffInDays($reservation->end_date, false) !!}</td>
+                            <td>{!! $reservation->start_date->diffInDays($reservation->end_date, false)*1200 !!}</td>
+                            <td>{!! $x->name !!}</td>
+                            <td>{!! $reservation->destination !!}</td>
                             <td></td>
                             <td>
                                 <a href="{!! url('/system/rental/reservation/'.$reservation->id.'/edit') !!}"
@@ -41,6 +49,7 @@
                         </tr>
                     @endforeach
                 </table>
+
 
             </div>
             <div class="col-md-12"></div>
