@@ -25,7 +25,7 @@ Route::get('/test/{test}', 'Employee\CalculateSalary@calculateSalaray');
 Route::get('/test/', function () {
     (new \App\Http\Controllers\Accounts\AccountController())->testCalcs();
 });
-
+ 
 Route::get('/system', 'HomeController@getDashBoard');
 
 // Rashinda's routes
