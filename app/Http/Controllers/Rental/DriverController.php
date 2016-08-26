@@ -18,9 +18,11 @@ class DriverController extends Controller
      */
     public function index()
     {
+        
         $users = User::all();
 
         return view('admin.rental.driver.index', compact('users'));
+
     }
 
     /**
@@ -41,28 +43,34 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        //dd($request);
 
         // validate the request object
         $this->validate($request, [
+
             'name' => 'required|min:3|max:15',
             'lastname' => 'required|min:3|max:15',
-            'email' => 'required|max:50',
-            'password' => 'required|min:3|max:10',
-           
-        ]);
+            'email' => 'required|email',
+            'password' => 'required|min:3|max:20',
+            'nic' => 'required|regex:/^[0-9]{9}[vVxX]$/',
+            'age' => 'required|min:2|max:2',
+            'address'=>'required|min:5|max:100',
+            'basic'=>'required|min:1|max:10',
 
-        // Vehicle object
+        ]);
+      
+        // Driver obxject
         User::create([
             'name' => $request->name,
             'lastname' => $request->lastname,
-            'age' => $request->age,
-            'address' => $request->address,
             'email' => $request->email,
-            'password' => $request->password,
+            'age' => (int)$request->age,
+            'password' => bcrypt($request->passsword),
             'nic' => $request->nic,
-            'basic' => $request->basic,
+            'basic' => (double)$request->basic,
+            'address' => $request -> address,
            // 'terminated' => ($request->has('terminated')) ? 1 : 0,
+            
         ]);
 
 
@@ -108,14 +116,16 @@ class DriverController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request);
+        //dd($request);
         // validate the request object
         $this->validate($request, [
+
             'name' => 'required|min:3|max:15',
             'lastname' => 'required|min:5|max:15',
             'email' => 'required|max:50',
-            'nic' => 'required',
             'basic' => 'required',
+            'nic' => 'required|min:10|max:10',
+            'age' => 'required|min:2|max:2',
 
         ]);
 
@@ -124,6 +134,8 @@ class DriverController extends Controller
         $user->name = $request->name;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
+        $user->age = $request->age;
+        $user->address = $request->address;
         $user->password = $request->password;
         $user->nic = $request->nic;
         $user->basic = $request->basic;

@@ -32,6 +32,7 @@ Route::get('/system', 'HomeController@getDashBoard');
 //Route::resource('tourpackage', 'Tour\TourPackageController');
 
 // Udana's routes
+Route::resource('system/advertisements/types', 'Advertisements\AdvertisementTypesController');
 Route::resource('system/advertisements', 'Advertisements\AdvertisingController');
 
 // Sithira's routes
@@ -43,6 +44,7 @@ Route::resource('system/accounts/', 'Accounts\AccountController');
 Route::get('system/accounts/stats/{expense}/expense', 'Accounts\AccountController@getMoreExpense');
 Route::get('system/accounts/stats/{income}/income', 'Accounts\AccountController@getMoreIncome');
 Route::get('system/accounts/graphs/', 'Accounts\AccountController@getGraphsView');
+Route::resource('system/accounts/', 'Account\AccountController');
 
 // stats on employee
 Route::get('/system/employee/{employee}/stats/salary-slips', 'Employee\EmployeeController@getSalarySlip');
@@ -94,16 +96,27 @@ Route::get('/system/customer/view/', 'Customer\CustomerController@view');
 Route::resource('/system/customer', 'Customer\CustomerController');
 Route::resource('system/ticket', 'Ticket\TicketController');
 
+Route::resource('system/ticket','Ticket\TicketController');
 //Achala's ajaxs
 Route::get('/api/secured/customer/tours/{package_id}', function ($package_id) {
     return \App\Models\Tour\Tour::where('package_id', $package_id)->get();
 
 });
 
+
 //Nuwan's Routes
 Route::resource('system/rental/vehicle', 'Rental\RentalController');
 Route::resource('system/rental/driver', 'Rental\DriverController');
 Route::resource('system/rental/reservation', 'Rental\ReservationController');
+Route::resource('system/rental/income','Rental\IncomeController');
+Route::resource('system/rental/expense','Rental\ExpenseController');
+Route::resource('system/rental/profit','Rental\ProfitController');
+Route::resource('system/rental/vehicle','Rental\RentalController');
+Route::resource('system/rental/driver','Rental\DriverController');
+Route::resource('system/rental/reservation','Rental\ReservationController');
+Route::resource('system/rental','HomeController@getRentalDashboard');
+
+
 
 // Danajalee's routes
 
