@@ -31,5 +31,10 @@ class HomeController extends Controller
     {
         return view('admin.dashboard');
     }
+
+    public function getRentalDashBoard()
+    {
+        return view('admin.Rental.RentalDashboard');
+    }
 }
 

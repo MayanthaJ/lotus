@@ -37,17 +37,16 @@
           </div>
       </div>
 
-      {{--panel for Settings--}}
+      {{--panel for Accounts--}}
       <div class="panel panel-default">
-          <div class="panel-heading">Settings</div>
+          <div class="panel-heading">Accounts Management</div>
           <div class="panel-body">
-              <a class="btn btn-success btn-lg">X</a>
-              <a class="btn btn-danger btn-lg">X</a>
-              <a class="btn btn-primary btn-lg">X</a>
+              <a class="btn btn-success btn-lg" href="{!! url('system/rental/income')!!}">Income</a>
+              <a class="btn btn-danger btn-lg"  href="{!! url('system/rental/expense')!!}">Expenses</a>
+              <a class="btn btn-primary btn-lg"  href="{!! url('system/rental/profit')!!}">Profit</a>
           </div>
       </div>
   </div>
-
   </div>
 
 @endsection

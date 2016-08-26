@@ -4,7 +4,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <a class="btn btn-default" href="/">Home</a>
+            <a class="btn btn-default" href="/system">Home</a>
             <a class="btn btn-default" href="/system/customer">Customer</a>
             <a style="background-color: aliceblue;" class="btn btn-default" href="/system/customer/create">Add
                 Customer</a>
@@ -15,12 +15,33 @@
     <br/>
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 col-md-6"></div>
+            <!-- view -->
+            <div class="col-sm-6 col-md-6">
+                <h2>Package List</h2>
+                <table class="table table-responsive">
+                    <tr>
+                        <th></th>
+                        <th>Code</th>
+                        <th>Package</th>
+                        <th>Amount</th>
+                        <th> </th>
+                    </tr>
+                    <?php $count=1; ?>
+                    @foreach($packagesAll as $package)
+                        <tr>
+                            <td><?php echo $count; $count++ ?></td>
+                            <td>{!! $package->code !!}</td>
+                            <th>{!! $package->name !!}</th>
+                            <th>{!! $package->price !!}</th>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
             <div class="col-sm-6 col-md-6">
                 <h2>Add Customer</h2>
                 @include('notifications._message')
                 {!! Form::open(['action' => 'Customer\CustomerController@store']) !!}
-                @include('admin.customer.partials._formPartial',['btn' => 'Add Customer'])
+                @include('admin.customer.partials._formPartial',['btn' => 'Add Customer','advance_payment'=>'1'])
                 {!! Form::close() !!}
             </div>
 

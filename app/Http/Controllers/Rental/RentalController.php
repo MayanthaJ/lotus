@@ -52,7 +52,10 @@ class RentalController extends Controller
             'color' => 'required|min:3|max:10',
             'type' => 'required',
             'b_type' => 'required',
+            'cost_per_day' => 'required|numeric',
         ]);
+
+       // $diff=$request->
 
         // Vehicle object
         Vehicle::create([
@@ -61,6 +64,7 @@ class RentalController extends Controller
             'reg_no' => $request->reg_no,
             'color' => $request->color,
             'type' => $request->type,
+            'cost_per_day' => $request->cost_per_day,
             'b_type' => $request->b_type,
             'terminated' => ($request->has('terminated')) ? 1 : 0,
         ]);

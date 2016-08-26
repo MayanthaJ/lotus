@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Customer;
 
 use App\Models\Customer\Customer;
 
+use App\Models\Loyalty\Loyalty;
 use App\Models\Package\Package;
 use App\Models\Tour\Tour;
 use Illuminate\Http\Request;
@@ -25,7 +26,8 @@ class CustomerController extends Controller
         //$customer=customer::all();
         //dd($customer);
         //return view('admin.customer.index');
-        return view('admin.customer.index');
+        $customers = Customer::all()->where('terminated', '=', '0');
+        return view('admin.customer.index',compact('customers'));
     }
 
     /**
@@ -36,13 +38,16 @@ class CustomerController extends Controller
     public function create()
     {
         //get package details
-        $packages = Package::where('terminated',0)->pluck('name','id');
+        $packages = Package::where('terminated', 0)->pluck('name', 'id');
+        $packagesAll= Package::all();
+        //get loyalty Details
+        $loyalty = Loyalty::all()->pluck('type', 'id');
 
         //condition use to select upcoming tours
         //$tours= Tour::where('id','>', 0)->pluck('departure','id');
 
         // return view.blade
-        return view('admin.customer.create', compact('packages'));
+        return view('admin.customer.create', compact('packages', 'loyalty','packagesAll'));
 
     }
 
@@ -54,13 +59,29 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+
+       $this->validate($request, [
+            'tour'=>'required',
+            'tourDate'=>'required',
             'fname' => 'required|min:3|max:15',
             'sname' => 'required|min:3|max:15',
             'lname' => 'required|min:3|max:15',
             'otherName' => 'required|min:3|max:15',
-            'age' => 'required|numeric'
+            'age' => 'required|numeric',
+            'dob' => 'required|before:now',
+            'gender' => 'required',
+            'number' => 'required',
+            'nic' => 'required|regex:/^[0-9]{9}[vVxX]$/',
+            'passport' => 'required',
+            'address1' => 'required|min:10|max:255',
+            'address2' => 'required|min:10|max:255',
+            'advancePayment'=>'required|numeric|min:10000',
+            'loyalty' => 'required'
         ]);
+
+        $price=Package::where('id',$request->tour)->first()->price;
+        $discount=Loyalty::where('id',$request->loyalty)->first()->discount;
+        $discountAmount=$this->discountGenerator($price,$discount);
 
         $customer = Customer::create([
             'fname' => $request->fname,
@@ -69,16 +90,33 @@ class CustomerController extends Controller
             'otherName' => $request->otherName,
             'age' => $request->age,
             'dob' => $request->dob,
-            'gender'=> $request->gender,
+            'gender' => $request->gender,
             'number' => $request->number,
             'nic' => $request->nic,
             'passport' => $request->passport,
             'address1' => $request->address1,
-            'address2' => $request->address2
+            'address2' => $request->address2,
+            'loyalty_id' => $request->loyalty
         ]);
-        DB::table('customer_tour')->insert([
-            'customer_id'=>$customer->id ,'tour_id'=>$request->tourDate
+
+        // insert value customer tours
+
+        DB::table('customer_tour')
+            ->insert([
+                'customer_id' => $customer->id,
+                'tour_id' => $request->tourDate
+            ]);
+
+        //insert value customer payment
+
+        DB::table('customer_payment')
+            ->insert([
+            'customer_id'=>$customer->id,
+                'advance'=>$request->advancePayment,
+                'total'=>$discountAmount
         ]);
+
+        //return view('admin.customer.report.addCustomerInfo',compact('customer','price','discount','discountAmount'));
         return \Redirect::to('/system/customer');
 
     }
@@ -105,11 +143,11 @@ class CustomerController extends Controller
         //get the customer details
         $customer = Customer::find($id);
         //get package details
-        //$packages = Package::pluck('name','id');
-        //condition use to select upcoming tours
+        $packages = Package::pluck('name', 'id');
+        $loyalty = Loyalty::pluck('type', 'id');
         //$tours= Tour::where('id','>', 0)->pluck('departure','id');
         //return view
-        return view('admin.customer.edit', compact('customer','tours_package'));
+        return view('admin.customer.edit', compact('customer', 'packages', 'loyalty'));
     }
 
     /**
@@ -121,6 +159,26 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $this->validate($request, [
+            'tour'=>'required',
+            'tourDate'=>'required',
+            'fname' => 'required|min:3|max:15',
+            'sname' => 'required|min:3|max:15',
+            'lname' => 'required|min:3|max:15',
+            'otherName' => 'required|min:3|max:15',
+            'age' => 'required|numeric',
+            'dob' => 'required|before:now',
+            'gender' => 'required',
+            'number' => 'required|numeric',
+            'nic' => 'required|regex:/^[0-9]{9}[vVxX]$/',
+            'passport' => 'required|min:10|max:10',
+            'address1' => 'required|min:10|max:255',
+            'address2' => 'required|min:10|max:255',
+            'advancePayment'=>'required|numeric|min:10000',
+            'loyalty' => 'required'
+        ]);
+
         //get customer model
 
         $customer = customer::findOrFail($id);
@@ -129,14 +187,14 @@ class CustomerController extends Controller
         $customer->sname = $request->sname;
         $customer->lname = $request->lname;
         $customer->otherName = $request->otherName;
-        $customer->age=$request->age;
-        $customer->dob=$request->dob;
-        $customer->gender=$request->gender;
-        $customer->number=$request->number;
-        $customer->nic=$request->nic;
-        $customer->passport=$request->passport;
-        $customer->address1=$request->address1;
-        $customer->address2=$request->address2;
+        $customer->age = $request->age;
+        $customer->dob = $request->dob;
+        $customer->gender = $request->gender;
+        $customer->number = $request->number;
+        $customer->nic = $request->nic;
+        $customer->passport = $request->passport;
+        $customer->address1 = $request->address1;
+        $customer->address2 = $request->address2;
 
 
         //boolean if need :
@@ -163,9 +221,9 @@ class CustomerController extends Controller
         //get Customer
         $customer = Customer::findOrFail($id);
 
-        if($customer->delete()){
+        if ($customer->delete()) {
             Flash::success('Customer Permanently Deleted ');
-        }else{
+        } else {
             Flash::error('Fail Delete Customer');
         }
     }
@@ -175,33 +233,65 @@ class CustomerController extends Controller
      */
     public function view()
     {
-        $customers = Customer::all()->where('terminated','=','0');
+        $customers = Customer::all()->where('terminated', '=', '0');
         return view('admin.customer.view', compact('customers'));
     }
+
     /**
-    *Terminated Customer
+     *Terminated Customer
      **/
-    public function  terminate($id){
-       $Status= DB::table('customers')->where('id', $id)->update(['terminated' => 1]);
-        if($Status){
+    public function terminate($id)
+    {
+        $Status = DB::table('customers')->where('id', $id)->update(['terminated' => 1]);
+        if ($Status) {
             Flash::success('Customer Deleted');
-        }else{
+        } else {
             Flash::error('Error Customer deletion');
         }
         return Redirect::back();
 
     }
+
     /**
      * undo customer terminate
      * */
-    public function  undoterminate($id){
-        $Status= DB::table('customers')->where('id', $id)->update(['terminated' => 0]);
-        if($Status){
+    public function undoterminate($id)
+    {
+        $Status = DB::table('customers')->where('id', $id)->update(['terminated' => 0]);
+        if ($Status) {
             Flash::success('Customer Deleted');
-        }else{
+        } else {
             Flash::error('Error Customer deletion');
         }
         return Redirect::back();
+
+    }
+
+    /**
+     *Customer View Search
+     * @param Request $request
+     */
+    public function search(Request $request)
+    {
+        dd($request);
+    }
+
+    /**
+     * Customer add to many tours
+     * @param $id
+     * @param Request $request
+     */
+    public function addToAnother($id, Request $request){
+
+    }
+
+    /**
+     * @param $value
+     * @param $discount
+     */
+    public function discountGenerator($value,$discount){
+        $x=($value*$discount)/100;
+        return $value-$x;
 
     }
 }

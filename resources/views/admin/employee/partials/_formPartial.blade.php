@@ -32,6 +32,18 @@
 {!! Form::label('basic', 'Basic Salary') !!}
 {!! Form::text('basic', null, ['class' => 'form-control']) !!}
 
+<br />
+{!! Form::label('address', 'Address') !!}
+{!! Form::text('address', null, ['class' => 'form-control']) !!}
+
+<br />
+{!! Form::label('age', 'Age : ') !!}
+{!! Form::text('age', null, ['class' => 'form-control']) !!}
+
+<br/>
+{!! Form::label('hour_rate', 'Hour Rate : ') !!}
+{!! Form::text('hour_rate', null, ['class' => 'form-control']) !!}
+
 <br/>
 {!! Form::label('Access type : ') !!}
 {!! Form::select('type_lists[]', $type_lists, null, ['multiple', 'class' => 'form-control']) !!}
