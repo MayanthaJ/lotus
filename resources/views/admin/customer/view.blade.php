@@ -13,7 +13,7 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Other Name</th>
+            <th>Other Name</th> 
             <th>Age</th>
             <th>Date Of Birth</th>
             <th>Mobile</th>
