@@ -11,7 +11,7 @@
 
     <div class="col-xs-12 com-md-6">
 
-    {!! Form::model($type,['method' => 'PATCH', 'action' => ['Advertisements\AdvertisementTypesController@store', $type->id]]) !!}
+    {!! Form::model($type,['method' => 'PATCH', 'action' => ['Advertisements\AdvertisementTypesController@update', $type->id]]) !!}
 
     <br><br />
 
