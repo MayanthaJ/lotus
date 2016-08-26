@@ -7,10 +7,17 @@
    @include('notifications._message')
 
     <hr/>
+    <div class="col-xs-12 com-md-3">
+        @include('admin.advertisements.partials._custNav')
+    </div>
+
+    <div class="col-xs-12 com-md-6">
 
     {!! Form::open(['action' => 'Advertisements\AdvertisingController@store', 'files' => true]) !!}
 
-    <div class="form-control">
+    <div>
+
+        <br><br />
 
         {!! Form::label('name','Advertisement Name : ') !!}
         {!! Form::text('name',null,['class' => 'form-control']) !!}
@@ -28,12 +35,14 @@
         <br><br/>
 
         {!! Form::submit('Add',['class' => 'btn btn-primary form-control']) !!}
-        {!! Form::button('Back') !!}
+        <br><br />
+        <a href="/system/advertisements/" class="btn btn-primary form-control">Back</a>
 
     </div>
 
     {!! Form::close()!!}
 
+    </div>
 
 
 @stop

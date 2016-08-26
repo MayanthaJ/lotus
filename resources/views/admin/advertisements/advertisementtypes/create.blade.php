@@ -7,8 +7,15 @@
         @include('notifications._message')
 
     <hr/>
+    <div class="col-xs-12 com-md-3">
+        @include('admin.advertisements.partials._custNav')
+    </div>
+
+    <div class="col-xs-12 com-md-6">
 
     {!! Form::open(['action' => 'Advertisements\AdvertisementTypesController@store', 'files' => true]) !!}
+
+    <br><br />
 
     <div>
 
@@ -22,11 +29,14 @@
 
 
         {!! Form::submit('Add',['class' => 'btn btn-primary form-control']) !!}
-        {!! Form::button('Back',['class' => 'btn btn-primary form-control']) !!}
+        <br><br />
+        <a href="/system/advertisements/types" class="btn btn-primary form-control">Back</a>
 
     </div>
 
     {!! Form::close()!!}
+
+    </div>
 
 
 @stop

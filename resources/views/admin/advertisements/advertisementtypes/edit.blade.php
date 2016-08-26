@@ -5,10 +5,17 @@
     <h1>Update</h1>
 
     <hr/>
+    <div class="col-xs-12 com-md-3">
+        @include('admin.advertisements.partials._custNav')
+    </div>
+
+    <div class="col-xs-12 com-md-6">
 
     {!! Form::model($type,['method' => 'PATCH', 'action' => ['Advertisements\AdvertisementTypesController@store', $type->id]]) !!}
 
-    <div class="form-control">
+    <br><br />
+
+    <div>
 
         {!! Form::label('name', 'Type Name : ') !!}
         {!! Form::text('name',null,['class' => 'form-control']) !!}
@@ -19,11 +26,14 @@
         <br><br/>
 
         {!! Form::submit('Update',['class' => 'btn btn-primary form-control']) !!}
-        {!! Form::button('Back') !!}
+        <br><br />
+        <a href="/system/advertisements/types" class="btn btn-primary form-control">Back</a>
 
     </div>
 
     {!! Form::close()!!}
+
+        </div>
 
     @if($errors->any())
 
