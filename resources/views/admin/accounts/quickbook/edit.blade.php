@@ -6,8 +6,9 @@
             <div class="col-xs-12 col-md-3"></div>
             <div class="col-xs-12 col-md-6">
                 <h3>Edit a QuickBook Record</h3>
-                {!! Form::model($quickbook, ['action' => ['Accounts\QuickBookController@store', $quickbook->id]]) !!}
-                @include('admin.accounts.quickbook.partials._formPartial', ['btn' => 'Add a QuickBook record'])
+                @include('notifications._message')
+                {!! Form::model($quickbook, ['method' => 'PATCH', 'action' => ['Accounts\QuickBookController@update', $quickbook->id]]) !!}
+                @include('admin.accounts.quickbook.partials._formPartial', ['btn' => 'Edit QuickBook record'])
                 {!! Form::close() !!}
             </div>
             <div class="col-xs-12 col-md-3">

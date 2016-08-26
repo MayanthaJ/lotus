@@ -10,6 +10,7 @@
 
                 <ol>
                     <li><a href="{!! url('/system/accounts/graphs/') !!}">View Graphs</a></li>
+                    <li><a href="{!! url('/system/accounts/quickbook/') !!}">Access QuickBook</a></li>
                 </ol>
 
                 <br/>

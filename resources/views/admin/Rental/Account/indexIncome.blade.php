@@ -7,10 +7,10 @@
             <div class="col-md-12">
                 @include('notifications._message')
                 <h2>Overview Income
-                    <br />
+                    <br/>
                     <small><a href="{!! url('/system/rental/income') !!}">Add Income</a></small>
                 </h2>
-                <br />
+                <br/>
 
                 <table class="table table-responsive">
                     <tr>
@@ -24,23 +24,33 @@
 
                     <!--variable to collect expenses-->
 
-                    <?php $total=0; $num=1 ?>
+                    <?php $total = 0; $num = 1 ?>
                     @foreach($Reservations as $Reservation)
                         <tr>
                             <td>{!! $num !!}</td>
                             <td>{!! $Reservation->id !!}</td>
                             <td>{!! $Reservation->end_date!!}</td>
+<<<<<<< Updated upstream
                             <td> Rental Income </td>
                             <td>{!! $Reservation->start_date->diffInDays($Reservation->end_date, false)*1200 !!}</td>
+=======
+                            <td> Rental Income</td>
+                            <td>{!! $Reservation->payment !!}</td>
+>>>>>>> Stashed changes
 
                             <td>
-                                <a href="{!! url('/system/rental/reservation/'.$Reservation->id.'/edit') !!}" class="btn btn-default">
+                                <a href="{!! url('/system/rental/reservation/'.$Reservation->id.'/edit') !!}"
+                                   class="btn btn-default">
                                     View Income
                                 </a>
                             </td>
 
 
+<<<<<<< Updated upstream
                             <?php $total = $total + ($Reservation->start_date->diffInDays($Reservation->end_date, false)*1200 ) ; ?>
+=======
+                            <?php $total = $total + ($Reservation->payment); ?>
+>>>>>>> Stashed changes
                             <?php $num = $num + 1; ?>
 
                         </tr>

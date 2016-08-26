@@ -50,6 +50,8 @@ class QuickBookController extends Controller
             'description' => $request->description
         ]);
 
+        Flash::success("QuickBook Record added !");
+
         return Redirect::to('/system/accounts/quickbook');
     }
 

@@ -6,7 +6,8 @@
             <div class="col-xs-12 col-md-3"></div>
             <div class="col-xs-12 col-md-6">
                 <h3>QuickBook Records</h3>
-                <a href="{!! url('/system/accounts/quickboook/create') !!}">Add to QuickBook</a>
+                @include('notifications._message')
+                <a href="{!! url('/system/accounts/quickbook/create') !!}">Add to QuickBook</a>
                 <br />
                 <ul>
                     @foreach($quickbooks as $quickbook)

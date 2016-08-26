@@ -28,9 +28,6 @@ Route::get('/test/', function () {
 
 Route::get('/system', 'HomeController@getDashBoard');
 
-// Rashinda's routes
-//Route::resource('tourpackage', 'Tour\TourPackageController');
-
 // Udana's routes
 Route::resource('system/advertisements/types', 'Advertisements\AdvertisementTypesController');
 Route::resource('system/advertisements', 'Advertisements\AdvertisingController');
@@ -44,7 +41,6 @@ Route::resource('system/accounts/', 'Accounts\AccountController');
 Route::get('system/accounts/stats/{expense}/expense', 'Accounts\AccountController@getMoreExpense');
 Route::get('system/accounts/stats/{income}/income', 'Accounts\AccountController@getMoreIncome');
 Route::get('system/accounts/graphs/', 'Accounts\AccountController@getGraphsView');
-Route::resource('system/accounts/', 'Account\AccountController');
 
 // stats on employee
 Route::get('/system/employee/{employee}/stats/salary-slips', 'Employee\EmployeeController@getSalarySlip');
@@ -88,7 +84,6 @@ Route::group(['middleware' => 'adminOrManager'], function () {
     });
 });
 
-
 // Achala's routes
 Route::get('/system/customer/{id}/terminate', 'Customer\CustomerController@terminate');
 Route::get('/system/customer/undo/{id}/terminate', 'Customer\CustomerController@undoterminate');
@@ -97,12 +92,12 @@ Route::resource('/system/customer', 'Customer\CustomerController');
 Route::resource('system/ticket', 'Ticket\TicketController');
 
 Route::resource('system/ticket','Ticket\TicketController');
+
 //Achala's ajaxs
 Route::get('/api/secured/customer/tours/{package_id}', function ($package_id) {
     return \App\Models\Tour\Tour::where('package_id', $package_id)->get();
 
 });
-
 
 //Nuwan's Routes
 Route::resource('system/rental/vehicle', 'Rental\RentalController');
@@ -117,11 +112,8 @@ Route::resource('system/rental/reservation','Rental\ReservationController');
 Route::resource('system/rental','HomeController@getRentalDashboard');
 
 
-
 // Danajalee's routes
-
 Route::get('/system/package/{id}/terminate', 'Package\PackageController@terminate');
-
 Route::resource('/system/package', 'Package\PackageController');
 
 // System test routes ( timesheet )
