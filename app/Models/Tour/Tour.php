@@ -27,5 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Tour extends Model
 {
-    //
+    public $table = 'tours';
+
+    public $guarded = ['id'];
+
 }

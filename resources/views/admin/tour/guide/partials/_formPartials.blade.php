@@ -11,8 +11,9 @@
 {!! Form::text('email', null, ['class' => 'form-control']) !!}
 
 <br/>
+
 {!! Form::label('password', 'Password : ') !!}
-{!! Form::text('password', null, ['class' => 'form-control']) !!}
+{!! Form::password('password', null, ['class' => 'form-control']) !!}
 
 <br />
 
@@ -25,12 +26,13 @@
 {!! Form::text('basic', null, ['class' => 'form-control']) !!}
 <br />
 
-{!! checkbox::label('gender', 'Gender : ') !!}
-{!! checkbox::text('gender', null, ['class' => 'form-control']) !!}
+{!! Form::label('gender','Gender :') !!}
+{!! Form::Select('gender',['1'=>'Male','0'=>'Female'], null) !!}
+
 <br/>
 
 {!! Form::label('hired_date', 'Hire Date : ') !!}
-{!! Form::text('hired_date', null, ['class' => 'form-control']) !!}
+{!! Form::date('hired_date', null, ['class' => 'form-control']) !!}
 <br/>
 
 {!! Form::submit($btn, ['class' => 'btn btn-default btn-block']) !!}

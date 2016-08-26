@@ -29,7 +29,15 @@ Route::get('/test/', function(){
 Route::get('/system', 'HomeController@getDashBoard');
 
 // Rashinda's routes
-//Route::resource('tourpackage', 'Tour\TourPackageController');
+Route::get('/system/tour/', 'Tour\TourController@index');
+Route::get('/system/tour/hotels/{id}/show','Tour\hotels\HotelController@show');
+Route::resource('system/tour/hotels', 'Tour\hotels\HotelController'); // <- this already calls the @create method
+Route::resource('system/tour/guide', 'Tour\guide\GuideController'); // <- this already calls the @create method
+Route::get('/system/tour/guide/{id}/show','Tour\guide\GuideController@show');
+Route::resource('system/tour/tourmanage','Tour\tourmanage\TourManageController');
+//Route::get('/system/tour/tourmanage/{id}/show','Tour\tourmanage\TourManageController@show');
+
+
 
 // Udana's routes
 Route::resource('system/advertisements/types', 'Advertisements\AdvertisementTypesController');

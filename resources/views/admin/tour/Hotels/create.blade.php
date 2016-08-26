@@ -4,11 +4,11 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-9">
-                <h2>Add Guide</h2>
+                <h2>Add Hotel</h2>
                 @include('notifications._message')
-                {!! Form::open(['action' => 'Tour\guide\GuideController@store']) !!}
+                {!! Form::open(['action' => 'Tour\hotels\HotelController@store']) !!}
 
-                @include('admin.tour.guide.partials._formPartials', ['btn' => 'Add Guide', 'password' => true, 'terminate' => false])
+                @include('admin.tour.Hotels.partials._formPartial', ['btn' => 'Add Hotel', 'password' => true, 'terminate' => false])
                 {!! Form::close() !!}
 
             </div>

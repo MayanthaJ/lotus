@@ -4,13 +4,13 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-9">
-                <h2>Edit Guide </h2>
+                <h2>Edit Hotel </h2>
                 @include('notifications._message')
                 <br />
-                <small>Guide ID: {!! $guide->id!!}</small>
+                <small>Hotel ID: {!! $hotel->id!!}</small>
 
-                {!! Form::model($guide, ['method' => 'PATCH', 'action' => ['Tour\guide\GuideController@update', $guide->id]]) !!}
-                @include('admin.tour.guide.partials._formPartials', ['btn' => 'Edit Guide', 'password' => true, 'terminate' => false])
+                {!! Form::model($hotel, ['method' => 'PATCH', 'action' => ['Tour\hotels\HotelController@update', $hotel->id]]) !!}
+                @include('admin.tour.Hotels.partials._formPartial', ['btn' => 'Edit Hotel', 'password' => true, 'terminate' => false])
                 {!! Form::close() !!}
 
             </div>

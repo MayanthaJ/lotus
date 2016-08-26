@@ -4,24 +4,24 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-9">
-                <h3>Guide Page</h3>
+                <h3>Hotel Page</h3>
                 @include('notifications._message')
 
-                <small><a href="{!! url('/system/tour/guide/create') !!}">Add Guide</a></small>
+                <small><a href="{!! url('/system/tour/hotels/create') !!}">Add Hotel</a></small>
                 <br />
                 <br />
-                @if($guides->isEmpty())
-                    <p><a href="{!! url('system/tour/guide/create') !!}">Add hotel</a></p>
+                @if($hotels->isEmpty())
+                    <p><a href="{!! url('system/tour/hotels/create') !!}">Add hotel</a></p>
                 @else
                     <table class="table table-hover">
                         <tr>
                             <th>Name</th>
 
                         </tr>
-                        @foreach($guides as $guide)
+                        @foreach($hotels as $hotel)
                             <tr>
                                 <td>
-                                    {!! $guide->name !!}
+                                    {!! $hotel->name !!}
                                 </td>
 
                                 <td>
@@ -31,11 +31,12 @@
 
                                 <td>
                                     <a class="btn btn-default"
-                                       href="{!! url('/system/tour/guide/'.$guide->id.'/edit') !!}">Edit </a>
+                                       href="{!! url('/system/tour/hotels/'.$hotel->id.'/edit') !!}">Edit </a>
                                 </td>
+
                                 <td>
                                     <a class="btn btn-default"
-                                       href="{!! url('/system/tour/guide/'.$guide->id.'/show') !!}">View </a>
+                                       href="{!! url('/system/tour/hotels/'.$hotel->id.'/show') !!}">View</a>
                                 </td>
 
                             </tr>
