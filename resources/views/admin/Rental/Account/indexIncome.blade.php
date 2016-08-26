@@ -31,7 +31,7 @@
                             <td>{!! $Reservation->id !!}</td>
                             <td>{!! $Reservation->end_date!!}</td>
                             <td> Rental Income </td>
-                            <td>{!! $Reservation->payment !!}</td>
+                            <td>{!! $Reservation->start_date->diffInDays($Reservation->end_date, false)*1200 !!}</td>
 
                             <td>
                                 <a href="{!! url('/system/rental/reservation/'.$Reservation->id.'/edit') !!}" class="btn btn-default">
@@ -40,7 +40,7 @@
                             </td>
 
 
-                            <?php $total = $total + ($Reservation->payment) ; ?>
+                            <?php $total = $total + ($Reservation->start_date->diffInDays($Reservation->end_date, false)*1200 ) ; ?>
                             <?php $num = $num + 1; ?>
 
                         </tr>
