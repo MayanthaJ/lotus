@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Accounts;
 
 use App\Http\Controllers\Controller;
+use App\Models\Accounts\Expense;
+use App\Models\Accounts\Expense\SalaryExpense;
 use App\Models\Accounts\Income;
 use App\Models\Accounts\Income\ReservationIncome;
+use App\Models\Accounts\Income\TourIncome;
+use App\Models\Employee\SalarySlip;
 use App\Models\Rental\Reservation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Lava;
 
 class AccountController extends Controller
 {
@@ -20,7 +25,9 @@ class AccountController extends Controller
     {
         $incomes = Income::all();
 
-        return view('admin.accounts.index', compact('incomes'));
+        $expenses = Expense::all();
+
+        return view('admin.accounts.index', compact('incomes', 'expenses'));
     }
 
     /**
@@ -36,7 +43,7 @@ class AccountController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,7 +54,7 @@ class AccountController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -60,7 +67,7 @@ class AccountController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -73,8 +80,8 @@ class AccountController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -85,7 +92,7 @@ class AccountController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -93,9 +100,59 @@ class AccountController extends Controller
         //
     }
 
+    public function getMoreExpense($expense)
+    {
+        $salaryExpenses = SalaryExpense::whereExpenseId($expense)->get();
+
+        return view('admin.accounts.viewExpenses', compact('salaryExpenses'));
+    }
+
+    public function getMoreIncome($income)
+    {
+        $reservationIncomes = ReservationIncome::whereIncomeId($income)->get();
+
+        $tourIncomes = TourIncome::whereIncomeId($income)->get();
+
+        return view('admin.accounts.viewIncomes', compact('reservationIncomes', 'tourIncomes'));
+    }
+
     public function testCalcs()
     {
-        $this->calculateIncomePerDay();
+        $this->calculateExpensePerDay();
+    }
+
+    public function getGraphsView()
+    {
+        $finances = Lava::DataTable();
+
+        $finances->addDateColumn('Year')
+            ->addNumberColumn('Income')
+            ->addNumberColumn('Expenses')
+            ->setDateTimeFormat('Y');
+
+        $carbon = Carbon::now();
+
+        $today = $carbon->toDateString();
+
+        $expenses = Expense::whereDate('day', '=', $today)->get();
+
+        $income = Income::whereDate('month', '=', $today)->get();
+
+
+        for ($i = 0; $i < $expenses->count(); $i++) {
+            $finances->addRow([date('Y'), (int)$expenses[$i]->expense, $income[$i]->income]);
+        }
+
+
+        $columnchart = Lava::ColumnChart('Finances', $finances, [
+            'title' => 'Company Performance',
+            'titleTextStyle' => [
+                'color' => '#eb6b2c',
+                'fontSize' => 14
+            ]
+        ]);
+
+        return view('testView', compact('columnchart'));
     }
 
     /**
@@ -168,10 +225,37 @@ class AccountController extends Controller
     }
 
 
-
     private function calculateExpensePerDay()
     {
-        // salary , ads,
+        $carbon = Carbon::now();
+
+        $today = $carbon->toDateString();
+
+        $expenseOfDay = 0;
+
+        $expense = Expense::create([
+            'day' => $today,
+            'expense' => 0
+        ]);
+
+        $employeesPayments = SalarySlip::whereDate('month', '=', $today)->get();
+
+        foreach ($employeesPayments as $employeesPayment) {
+
+            SalaryExpense::create([
+                'user_id' => $employeesPayment->user_id,
+                'expense_id' => $expense->id,
+                'amount' => $employeesPayment->pay,
+                'day' => $today
+            ]);
+
+            $expenseOfDay = $expenseOfDay + $expenseOfDay;
+        }
+
+        $expense->expense = $expenseOfDay;
+
+        $expense->save();
+
     }
 
 }

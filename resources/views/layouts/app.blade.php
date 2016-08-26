@@ -43,14 +43,19 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                    Lotus AlphaDev
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/system') }}">Home</a></li>
+                    <li><a href="{{ url('/system/employee') }}">HR Management</a></li>
+                    <li><a href="{{ url('/system/customer') }}">Customer Management</a></li>
+                    <li><a href="{{ url('/system/accounts') }}">Accounts</a></li>
+                    <li><a href="{{ url('/system/rental') }}">Rental Management</a></li>
+                    <li><a href="{{ url('/system/tour') }}">Rental Management</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -58,7 +63,6 @@
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
