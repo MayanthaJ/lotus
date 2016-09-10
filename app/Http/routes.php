@@ -14,18 +14,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 // employee login route ( do not remove )
 Route::auth();
 
 // main home page controller ( do not remove )
 Route::get('/home', 'HomeController@index');
-
+/**
+ * DIRECT TEST PURPOSES
+ */
 Route::get('/test/{test}', 'Employee\CalculateSalary@calculateSalaray');
 Route::get('/test/', function () {
     (new \App\Http\Controllers\Accounts\AccountController())->testCalcs();
 });
- 
+
+// Main App Controller
 Route::get('/system', 'HomeController@getDashBoard');
 
 // Rashinda's routes
