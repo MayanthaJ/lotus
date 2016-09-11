@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Rental;
 
+use App\Http\Controllers\Controller;
+use App\Models\Employee\SalarySlip;
+use App\Models\Rental\Reservation;
 use App\Models\Rental\Vehicle;
 use Flash;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Redirect;
 
 class RentalController extends Controller
@@ -152,5 +151,28 @@ class RentalController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /*
+     * Other methods to display rental stuff
+     */
+
+    public function getRentalIncome()
+    {
+        $Reservations = Reservation::all();
+
+        return view('admin.Rental.Account.indexIncome', compact('Reservations'));
+    }
+
+    public function getRentalExpenses()
+    {
+        $SalarySlips = SalarySlip::all();
+
+        return view('admin.Rental.Account.indexExpense', compact('SalarySlips'));
+    }
+
+    public function getRentalProfit()
+    {
+        return null;
     }
 }

@@ -11,6 +11,8 @@
     {!! Html::style('css/bootstrap.min.css') !!}
     {!! Html::style('css/fontawesome.min.js') !!}
     {!! Html::style('css/custom.min.css') !!}
+    {!! Html::style('css/formValidation.min.css') !!}
+    {!! Html::style('css/AdminLTE.min.css') !!}
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -87,6 +89,10 @@
     {!! Html::script('js/jquery.min.js') !!}
 
     {!! Html::script('js/bootstrap.min.js') !!}
+
+    {!! Html::script('js/app.min.js') !!}
+
+    {!! Html::script('js/formValidation.min.js') !!}
 
     @yield('js')
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}

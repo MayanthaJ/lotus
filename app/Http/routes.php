@@ -98,13 +98,15 @@ Route::group(['middleware' => 'adminOrManager'], function () {
     });
 });
 
+
+// todo : sorriund them in middleWare of entry operator
+
 // Achala's routes
 Route::get('/system/customer/{id}/terminate', 'Customer\CustomerController@terminate');
 Route::get('/system/customer/undo/{id}/terminate', 'Customer\CustomerController@undoterminate');
 Route::get('/system/customer/view/', 'Customer\CustomerController@view');
 Route::resource('/system/customer', 'Customer\CustomerController');
 Route::resource('system/ticket', 'Ticket\TicketController');
-
 Route::resource('system/ticket','Ticket\TicketController');
 
 //Achala's ajaxs
@@ -114,16 +116,12 @@ Route::get('/api/secured/customer/tours/{package_id}', function ($package_id) {
 });
 
 //Nuwan's Routes
+Route::get('system/rental/income', 'Rental\RentalController@getRentalIncome');
+Route::get('system/rental/expense', 'Rental\RentalController@getRentalExpenses');
+Route::get('system/rental/profit', 'Rental\RentalController@getRentalProfit');
 Route::resource('system/rental/vehicle', 'Rental\RentalController');
 Route::resource('system/rental/driver', 'Rental\DriverController');
 Route::resource('system/rental/reservation', 'Rental\ReservationController');
-Route::resource('system/rental/income','Rental\IncomeController');
-Route::resource('system/rental/expense','Rental\ExpenseController');
-Route::resource('system/rental/profit','Rental\ProfitController');
-Route::resource('system/rental/vehicle','Rental\RentalController');
-Route::resource('system/rental/driver','Rental\DriverController');
-Route::resource('system/rental/reservation','Rental\ReservationController');
-Route::resource('system/rental','HomeController@getRentalDashboard');
 
 
 // Danajalee's routes
