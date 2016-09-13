@@ -1,4 +1,4 @@
-@extends('layouts.mainLayout')
+@extends('layouts.MainLayOutNav')
 
 {{--@section('content')--}}
 {{--<div class="container">--}}

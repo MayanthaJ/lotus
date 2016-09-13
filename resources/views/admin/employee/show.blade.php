@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.MainLayOutNav')
 
 @section('content')
-    <div class="container">
+
         <div class="row">
             <div class="col-xs-12 col-md-9">
                 <h2>Employee View <br />
@@ -75,20 +75,33 @@
                 </table>
             </div>
             <div class="col-xs-12 col-md-3">
-                <div class="bar-panel">
-                    <a href="{!! url('system/employee/'.$employee->id.'/stats/salary-slips') !!}">Salary Slips</a>
-                    <br />
-                    <a href="{!! url('system/employee/'.$employee->id.'/stats/overtimes') !!}">Over Time</a>
-                    <br />
-                    <a href="{!! url('system/employee/'.$employee->id.'/stats/leaves') !!}">Leaves</a>
-                    <br />
-                    <a href="{!! url('system/employee/'.$employee->id.'/stats/attendance') !!}">Attendance</a>
-                    <br />
-                    <a href="{!! url('system/employee/'.$employee->id.'/stats/travel') !!}">Travel</a>
-                    <br />
-                    <a href="{!! url('system/employee/'.$employee->id.'/stats/loans') !!}">Loans</a>
-                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="{!! url('system/employee/'.$employee->id.'/stats/salary-slips') !!}">Salary Slips</a>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a href="{!! url('system/employee/'.$employee->id.'/stats/overtimes') !!}">Over Time</a>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a href="{!! url('system/employee/'.$employee->id.'/stats/leaves') !!}">Leaves</a>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a href="{!! url('system/employee/'.$employee->id.'/stats/attendance') !!}">Attendance</a>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a href="{!! url('system/employee/'.$employee->id.'/stats/travel') !!}">Travel</a>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a href="{!! url('system/employee/'.$employee->id.'/stats/loans') !!}">Loans</a>
+                    </li>
+
+                </ul>
             </div>
         </div>
-    </div>
+
 @endsection

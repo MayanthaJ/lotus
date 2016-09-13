@@ -2,21 +2,14 @@
 
 
 @section('content')
-
-    <h1>Advertising and Marketing</h1>
-
-    <hr/>
-
-
     <div class="container">
         <div class="row">
             <div class="col-xs-12 com-md-3">
                 @include('admin.advertisements.partials._custNav')
             </div>
             <div class="col-xs-12 com-md-6">
-
-                <h1>Ad and Marketing Materials</h1>
-
+                <h3>Advertising and Marketing</h3>
+                <h4>List of Advertisement</h4>
                 <ul>
                     @foreach ($advertisements as $ad)
                         <li>

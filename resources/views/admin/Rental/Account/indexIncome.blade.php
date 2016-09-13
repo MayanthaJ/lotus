@@ -30,13 +30,9 @@
                             <td>{!! $num !!}</td>
                             <td>{!! $Reservation->id !!}</td>
                             <td>{!! $Reservation->end_date!!}</td>
-<<<<<<< Updated upstream
+
                             <td> Rental Income </td>
                             <td>{!! $Reservation->start_date->diffInDays($Reservation->end_date, false)*1200 !!}</td>
-=======
-                            <td> Rental Income</td>
-                            <td>{!! $Reservation->payment !!}</td>
->>>>>>> Stashed changes
 
                             <td>
                                 <a href="{!! url('/system/rental/reservation/'.$Reservation->id.'/edit') !!}"
@@ -46,11 +42,11 @@
                             </td>
 
 
-<<<<<<< Updated upstream
+
                             <?php $total = $total + ($Reservation->start_date->diffInDays($Reservation->end_date, false)*1200 ) ; ?>
-=======
+
                             <?php $total = $total + ($Reservation->payment); ?>
->>>>>>> Stashed changes
+
                             <?php $num = $num + 1; ?>
 
                         </tr>

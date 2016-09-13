@@ -54,11 +54,12 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/system') }}">Home</a></li>
-                    <li><a href="{{ url('/system/employee') }}">HR Management</a></li>
-                    <li><a href="{{ url('/system/customer') }}">Customer Management</a></li>
+                    <li><a href="{{ url('/system/employee') }}">HR</a></li>
+                    <li><a href="{{ url('/system/package') }}">Package</a></li>
+                    <li><a href="{{ url('/system/customer') }}">Customer</a></li>
                     <li><a href="{{ url('/system/accounts') }}">Accounts</a></li>
-                    <li><a href="{{ url('/system/rental') }}">Rental Management</a></li>
-                    <li><a href="{{ url('/system/tour') }}">Rental Management</a></li>
+                    <li><a href="{{ url('/system/rental') }}">Rental</a></li>
+                    <li><a href="{{ url('/system/tour') }}">Tour</a></li>
                     <li><a href="{{ url('/system/advertisements') }}">Advertisements and Marketing</a></li>
                 </ul>
 

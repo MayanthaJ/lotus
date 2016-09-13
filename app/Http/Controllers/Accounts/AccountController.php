@@ -104,6 +104,8 @@ class AccountController extends Controller
     {
         $salaryExpenses = SalaryExpense::whereExpenseId($expense)->get();
 
+        // advertisement expenses tobe calculated
+
         return view('admin.accounts.viewExpenses', compact('salaryExpenses'));
     }
 
@@ -112,6 +114,8 @@ class AccountController extends Controller
         $reservationIncomes = ReservationIncome::whereIncomeId($income)->get();
 
         $tourIncomes = TourIncome::whereIncomeId($income)->get();
+
+        // Air ticket incomes to be calculated
 
         return view('admin.accounts.viewIncomes', compact('reservationIncomes', 'tourIncomes'));
     }
