@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.MainLayOutNav')
 @section('content')
     <div class="container">
         <div class="row">
@@ -35,8 +35,8 @@
                 <td>{!! $customer->number !!}</td>
                 <td>{!! $customer->nic !!}</td>
                 <td>{!! $customer->passport !!}</td>
-                <td>{!! $customer->address1 !!}</td>
-                <td>{!! $customer->address2 !!}</td>
+                <td></td>
+                <td></td>
                 <td><?php echo \App\Models\Loyalty\Loyalty::find($customer->loyalty_id)->type ?></td>
                 <td>
                     <a href="{!! url('/system/customer/'.$customer->id.'/edit') !!}" class="btn btn-default">
