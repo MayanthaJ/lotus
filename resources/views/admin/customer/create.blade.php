@@ -1,6 +1,4 @@
-@extends('layouts.app')
-@section('style')
-@endsection
+@extends('layouts.MainLayOutNav')
 @section('content')
     <div class="container">
         <div class="row">
