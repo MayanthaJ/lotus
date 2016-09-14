@@ -3,6 +3,9 @@
 
 @section('content')
 
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
     <h1>Create an Advertisement</h1>
    @include('notifications._message')
 
@@ -27,6 +30,11 @@
 
         <br><br />
 
+        {!! Form::label('expense', 'Expense: ') !!}
+        {!! Form::text('expense', null,['class' => 'form control']) !!}
+
+        <br><br />
+
 
         {!! Form::label('file','Upload Ad material here: ') !!}
         {!! Form::file('file') !!}
@@ -43,7 +51,7 @@
     {!! Form::close()!!}
 
     </div>
-
+</div>
 
 @stop
 

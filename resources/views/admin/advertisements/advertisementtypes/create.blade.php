@@ -3,6 +3,9 @@
 
 @section('content')
 
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
     <h1>Create an Advertisement Type</h1>
         @include('notifications._message')
 
@@ -24,7 +27,7 @@
         <br><br/>
 
         {!! Form::label('description','Description : ') !!}
-        {!! Form::text('description',null,['class' => 'form-control']) !!}
+        {!! Form::textarea('description',null,['class' => 'form-control']) !!}
         <br><br/>
 
 
@@ -37,7 +40,7 @@
     {!! Form::close()!!}
 
     </div>
-
+</div>
 
 @stop
 

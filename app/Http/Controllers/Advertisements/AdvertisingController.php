@@ -99,6 +99,8 @@ class AdvertisingController extends Controller
 
         $ad->name = $request->name;
 
+        $ad->expense = $request->expense;
+
         $ad->type_id = $request->type_id;
 
         $ad->save();

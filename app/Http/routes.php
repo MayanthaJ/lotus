@@ -44,6 +44,7 @@ Route::resource('system/tour/tourmanage','Tour\tourmanage\TourManageController')
 // Udana's routes
 Route::resource('system/advertisements/types', 'Advertisements\AdvertisementTypesController');
 Route::resource('system/advertisements', 'Advertisements\AdvertisingController');
+Route::resource('system/advertisements/feedback','Advertisements\FeedbackController');
 
 // Sithira's routes
 Route::resource('system/employee', 'Employee\EmployeeController');

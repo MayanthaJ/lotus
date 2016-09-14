@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdvertisments extends Migration
+class CreateFeedback extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,17 @@ class CreateAdvertisments extends Migration
      */
     public function up()
     {
-        Schema::create('advertisements', function (Blueprint $table) {
+        //
+        Schema::create('feedback', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('subject');
             $table->text('name');
-            $table->unsignedInteger('type_id');
-            $table->double('expense');
-            $table->string('sys');
-            $table->string('sys_url');
+            $table->text('email');
+            $table->integer('contact');
+            $table->longText('comment');
             $table->timestamps();
 
-            $table->foreign('type_id')->references('id')->on('advertisement_types')->onDelete('cascade');
+
         });
     }
 
@@ -32,6 +33,6 @@ class CreateAdvertisments extends Migration
      */
     public function down()
     {
-        Schema::drop('advertisements');
+        //
     }
 }
