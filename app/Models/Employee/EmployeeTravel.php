@@ -2,6 +2,7 @@
 
 namespace App\Models\Employee;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -28,6 +29,8 @@ class EmployeeTravel extends Model
 {
     public $guarded = ['id'];
 
+    public $dates = ['date'];
+
     /**
      *  Get the type details of a employee travel
      *
@@ -36,5 +39,10 @@ class EmployeeTravel extends Model
     public function type()
     {
         return $this->hasOne(EmployeeTravelType::class, 'traveltype_id');
+    }
+
+    public function employee()
+    {
+        return $this->hasOne(User::class, 'id');
     }
 }

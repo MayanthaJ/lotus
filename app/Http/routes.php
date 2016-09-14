@@ -46,7 +46,19 @@ Route::resource('system/advertisements/types', 'Advertisements\AdvertisementType
 Route::resource('system/advertisements', 'Advertisements\AdvertisingController');
 
 // Sithira's routes
+Route::get('system/employee/attendance', 'Employee\EmployeeController@getAllAttendance');
+
 Route::resource('system/employee', 'Employee\EmployeeController');
+
+// stats on employee
+Route::get('/system/employee/{employee}/stats/salary-slip/{id}', 'Employee\EmployeeController@getSalarySlipInfo');
+Route::get('/system/employee/{employee}/stats/salary-slips', 'Employee\EmployeeController@getSalarySlip');
+Route::get('/system/employee/{employee}/stats/overtimes', 'Employee\EmployeeController@getOverTime');
+Route::get('/system/employee/{employee}/stats/loans', 'Employee\EmployeeController@getLoans');
+Route::get('/system/employee/{employee}/stats/leaves', 'Employee\EmployeeController@getLeaves');
+Route::get('/system/employee/{employee}/stats/attendance', 'Employee\EmployeeController@getAttendance');
+Route::get('/system/employee/{employee}/stats/travel', 'Employee\EmployeeController@getTravel');
+
 
 // Nimansa's routes
 Route::resource('system/accounts/', 'Accounts\AccountController');
@@ -55,14 +67,6 @@ Route::resource('system/accounts/', 'Accounts\AccountController');
 Route::get('system/accounts/stats/{expense}/expense', 'Accounts\AccountController@getMoreExpense');
 Route::get('system/accounts/stats/{income}/income', 'Accounts\AccountController@getMoreIncome');
 Route::get('system/accounts/graphs/', 'Accounts\AccountController@getGraphsView');
-
-// stats on employee
-Route::get('/system/employee/{employee}/stats/salary-slips', 'Employee\EmployeeController@getSalarySlip');
-Route::get('/system/employee/{employee}/stats/overtimes', 'Employee\EmployeeController@getOverTime');
-Route::get('/system/employee/{employee}/stats/loans', 'Employee\EmployeeController@getLoans');
-Route::get('/system/employee/{employee}/stats/leaves', 'Employee\EmployeeController@getLeaves');
-Route::get('/system/employee/{employee}/stats/attendance', 'Employee\EmployeeController@getAttendance');
-Route::get('/system/employee/{employee}/stats/travel', 'Employee\EmployeeController@getTravel');
 
 /********************************************
  * Employee additional links (advance, loans)

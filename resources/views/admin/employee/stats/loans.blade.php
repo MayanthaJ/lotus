@@ -8,11 +8,22 @@
                 @if($loans->isEmpty())
                     <p>You have take no loans</p>
                 @else
-                    <ul>
+                    <table class="table table-responsive">
+                        <tr>
+                            <th>Loan Amount</th>
+                            <th>Monthly Decrement</th>
+                            <th>Rate</th>
+                            <th>Installment</th>
+                        </tr>
                         @foreach($loans as $loan)
-                            <li>Loan Amount : {!! $loan->amount !!} | Monthly decrement : {!! $loan->decrement !!} | Rate : {!! $loan->type->rate !!} | Installment : {!! $loan->type->installment !!} </li>
+                            <tr>
+                                <td>{!! $loan->amount !!}</td>
+                                <td>{!! $loan->decrement !!}</td>
+                                <td>{!! $loan->type->rate !!}</td>
+                                <td>{!! $loan->type->installment !!}</td>
+                            </tr>
                         @endforeach
-                    </ul>
+                    </table>
                 @endif
             </div>
         </div>

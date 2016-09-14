@@ -1,5 +1,13 @@
 @extends('layouts.MainLayOutNav')
 
+@section('styles')
+    <style type="text/css">
+        .list-group-item {
+            background-color: #363942;
+        }
+    </style>
+@endsection
+
 @section('content')
 
         <div class="row">

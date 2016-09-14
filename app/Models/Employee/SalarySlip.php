@@ -2,6 +2,7 @@
 
 namespace App\Models\Employee;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -24,4 +25,9 @@ use Illuminate\Database\Eloquent\Model;
 class SalarySlip extends Model
 {
     public $guarded = ['id'];
+
+    public function employee()
+    {
+        return $this->hasOne(User::class, 'id');
+    }
 }

@@ -17,9 +17,6 @@
             <li class="nav-category">
                 Main
             </li>
-            <li class="active">
-                <a href="{!! url('/') !!}">Dashboard</a>
-            </li>
 
             @if(in_array('Admin', $searchable) || in_array('Management', $searchable))
                 <li>
@@ -86,6 +83,17 @@
                     </ul>
                 </li>
             @endif
+
+            <li>
+                <a href="#rental" data-toggle="collapse" aria-expanded="false">Rental Management</a>
+            </li>
+
+            <ul id="rental" class="nav nav-second collapse">
+                <li><a href="{!! url('/system/rental/') !!}">Rental home</a></li>
+                <li><a href="{!! url('/system/rental/reservation') !!}">Reservation Management</a></li>
+                <li><a href="{!! url('/system/rental/vehicle') !!}">Vehicle Management</a></li>
+                <li><a href="{!! url('/system/rental/driver') !!}">Driver Management</a></li>
+            </ul>
 
         </ul>
     </nav>

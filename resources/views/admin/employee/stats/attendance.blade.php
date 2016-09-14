@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.MainLayOutNav')
 
 @section('content')
-    <div class="container">
+
         <div class="row">
             <div class="col-xs-12 col-md-9">
                 <h3>Employee Attendance<br/>
@@ -23,17 +23,25 @@
 
                         @foreach($attendances as $attendance)
                             <tr>
-                                <td><strong>Attended Date : <strong>{!! $attendance->day->toDateString() !!}</strong>
+                                <td>
+                                    <strong>Attended Date : {!! $attendance->day->toDateString() !!}</strong>
                                 </td>
-                                <td><strong>Checked IN : {!! $attendance->check_in->toTimeString() !!}</strong></td>
-                                <td><strong>Check OUT
-                                        : {!! ($attendance->check_out == null) ? "Not checked out !" : $attendance->check_out->toTimeString() !!}</strong>
+
+                                <td>
+                                    <strong>Checked IN : {!! $attendance->check_in->toTimeString() !!}</strong>
+                                </td>
+
+                                <td>
+                                    <strong>
+                                        Check OUT : {!! ($attendance->check_out == null) ? "Not checked out !" : $attendance->check_out->toTimeString() !!}</strong>
                                 </td>
                             </tr>
                         @endforeach
                     </table>
                 @endif
             </div>
+
+            @include('admin.employee.stats._statPartial')
         </div>
-    </div>
+
 @endsection

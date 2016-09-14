@@ -4,7 +4,13 @@ namespace App\Http\Controllers\Employee;
 
 use App\Http\Requests\UserRequestValidator;
 use App\Models\Employee\AdminTypes;
+use App\Models\Employee\EmployeeTravel;
 use App\Models\Employee\EmployeeType;
+use App\Models\Employee\EPF;
+use App\Models\Employee\Leave;
+use App\Models\Employee\OverTime;
+use App\Models\Employee\SalarySlip;
+use App\Models\Employee\TimeSheet;
 use App\User;
 use Auth;
 use Carbon\Carbon;
@@ -269,6 +275,53 @@ class EmployeeController extends Controller
         $travels = User::find(Auth::id())->travels;
 
         return view('admin.employee.stats.travel', compact('travels'));
+    }
+
+    public function getAllAttendance()
+    {
+        $thisMonth = Carbon::today();
+
+        $timeSheets = TimeSheet::with('employee')->whereDate('day', '=', $thisMonth->toDateString())->get();
+
+        return view('admin.employee.overview.getAttendace', compact('timeSheets'));
+    }
+
+    public function getSalarySlipInfo($employee, $id)
+    {
+
+        $salarySlip = SalarySlip::where('id', $id)->first();
+
+        $current = Carbon::today();
+
+        $startOfMonth = Carbon::now()->startOfMonth();
+
+        $timeSheets = TimeSheet::whereBetween('day', [$startOfMonth->toDateString(), $current->toDateString()])
+            ->where('user_id', $salarySlip->user_id)
+            ->get();
+
+        $timeSheetsArray = array();
+
+        foreach ($timeSheets as $timeSheet) {
+            $timeSheetsArray[] = $timeSheet->id;
+        }
+
+        $overTimes = OverTime::whereIn('timesheet_id', $timeSheetsArray)->get();
+
+        $leaves = Leave::whereBetween('created_at', [$startOfMonth, $current])
+            ->where('user_id', $salarySlip->user_id)
+            ->get();
+
+        $travels = EmployeeTravel::whereBetween('date', [$startOfMonth->toDateString(), $current->toDateString()])
+            ->where('user_id', $salarySlip->user_id)
+            ->get();
+
+        $epf = EPF::where('user_id', $salarySlip->user_id)
+            ->whereBetween('created_at', [$startOfMonth, $current])
+            ->first();
+
+
+        return view('admin.employee.overview.getPayslipOverview', compact('salarySlip', 'overTimes', 'leaves', 'travels', 'epf'));
+
     }
 
 }
