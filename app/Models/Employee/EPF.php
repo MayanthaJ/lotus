@@ -14,6 +14,10 @@ use Illuminate\Database\Eloquent\Model;
 class EPF extends Model
 {
 
+    public $table = 'e_p_fs';
+
+    public $guarded = ['id'];
+
     /**
      * Get the user associated with EPF
      *

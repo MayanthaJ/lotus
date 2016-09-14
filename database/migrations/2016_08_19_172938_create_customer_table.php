@@ -21,15 +21,11 @@ class CreateCustomerTable extends Migration
             $table->integer('age');
             $table->date('dob');
             $table->boolean('gender');
-            $table->string('number');
             $table->string('nic')->unique();
             $table->string('passport')->unique();
-            $table->string('address1');
-            $table->string('address2')->nullable();
             $table->unsignedInteger('loyalty_id')->nullable();
             $table->boolean('terminated')->default(0);
             $table->timestamps();
-
             $table->foreign('loyalty_id')->references('id')->on('loyalty')->onDelete('set null');
 
         });

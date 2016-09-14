@@ -34,7 +34,7 @@
 <section class="content">
 
     <div class="back-link">
-        <a href="index.html" class="btn btn-accent">Back to Dashboard</a>
+        <a href="{!! url('/system') !!}" class="btn btn-accent">Back to Dashboard</a>
     </div>
 
     <div class="container-center animated slideInDown">

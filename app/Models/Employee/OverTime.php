@@ -35,6 +35,6 @@ class OverTime extends Model
      */
     public function timesheet()
     {
-        return $this->hasOne(TimeSheet::class, 'timesheet_id');
+        return $this->hasOne(TimeSheet::class, 'id');
     }
 }

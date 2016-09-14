@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="{!! url('styles/stroke-icons/style.css') !!}"/>
     <link rel="stylesheet" href="{!! url('styles/style.css') !!}">
 
+    @yield('styles')
+
 </head>
 <body>
 
