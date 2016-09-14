@@ -31,7 +31,7 @@
         <br><br />
 
         {!! Form::label('expense', 'Expense: ') !!}
-        {!! Form::text('expense', null,['class' => 'form control']) !!}
+        {!! Form::text('expense', null,['class' => 'form-control']) !!}
 
         <br><br />
 
