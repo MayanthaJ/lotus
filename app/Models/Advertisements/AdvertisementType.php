@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 class AdvertisementType extends Model
 {
     //
+    public $table = "advertisement_types";
     protected $guarded = ['id'];
-
 
 }

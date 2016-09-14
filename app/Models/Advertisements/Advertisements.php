@@ -13,6 +13,7 @@ class Advertisements extends Model
 {
 
     //
+
     protected $guarded = ['id'];
 
 }

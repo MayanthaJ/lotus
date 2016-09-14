@@ -2,6 +2,9 @@
 
 @section('content')
 
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
     <h1>Update</h1>
 
     <hr/>
@@ -30,6 +33,8 @@
         <a href="/system/advertisements/types" class="btn btn-primary form-control">Back</a>
 
     </div>
+
+        </div>
 
     {!! Form::close()!!}
 

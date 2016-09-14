@@ -36,6 +36,7 @@
                 {!! Form::label('email','E-mail : ') !!}
                 {!! Form::text('email',null,['class' => 'form-control']) !!}
 
+                <br><br/>
 
                 {!! Form::label('comment','Comment : ') !!}
                 {!! Form::textarea('comment',null,['class' => 'form-control']) !!}
@@ -53,5 +54,17 @@
         </div>
 
     </div>
+
+    @if($errors->any())
+
+        <ul class="alert alert-danger">
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+
+            @endforeach
+
+        </ul>
+
+    @endif
 
 @stop

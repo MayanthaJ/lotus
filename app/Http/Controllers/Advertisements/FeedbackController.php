@@ -6,8 +6,8 @@ use App\Models\Advertisements\Feedback;
 use App\Http\Requests\FeedbackRequest;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Redirect;
 
 class FeedbackController extends Controller
 {

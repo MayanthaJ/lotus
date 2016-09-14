@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <h1>Advertising and Marketing</h1>
+    <h1>Feedback</h1>
 
     <hr/>
 
@@ -20,7 +20,7 @@
                             <h3> {!! $feedback->topic !!}
                                 <br />
                                 <small> {!! $feedback->name !!}</small>
-                                <a href="/system/advertisements/feedback/{{ $feedback->id }}/edit" class="btn btn-xs btn-primary">Edit this Type</a>
+                                <a href="/system/advertisements/feedback/{{ $feedback->id }}" class="btn btn-xs btn-primary">View Feedback</a>
                             </h3>
                         </li>
                     @endforeach
