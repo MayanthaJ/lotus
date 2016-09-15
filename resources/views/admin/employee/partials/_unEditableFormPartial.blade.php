@@ -1,17 +1,17 @@
 <div class="form-group">
     {!! Form::label('name', 'Name :') !!}
-    {!! Form::text('name', null, ['class' => 'form-control']) !!}
+    {!! Form::text('name', null, ['class' => 'form-control', 'disabled']) !!}
 
 </div>
 
 <div class="form-group">
     {!! Form::label('lastname', 'Lastname :') !!}
-    {!! Form::text('lastname', null, ['class' => 'form-control']) !!}
+    {!! Form::text('lastname', null, ['class' => 'form-control', 'disabled']) !!}
 </div>
 
 <div class="form-group">
     {!! Form::label('email', 'Email :') !!}
-    {!! Form::text('email', null, ['class' => 'form-control']) !!}
+    {!! Form::text('email', null, ['class' => 'form-control', 'disabled']) !!}
 </div>
 
 
@@ -19,24 +19,20 @@
     @if($password)
         {!! Form::label('password', 'Password : ') !!}
         {!! Form::password('password', ['class' => 'form-control']) !!}
-
-        <br/>
     @else
         {!! Form::label('Reset password') !!}
         {!! Html::link('/system/employee/password/edit', 'Reset password ?') !!}
-
-        <br/>
     @endif
 </div>
 
 <div class="form-group">
     {!! Form::label('nic', 'NIC : ') !!}
-    {!! Form::text('nic', null, ['class' => 'form-control']) !!}
+    {!! Form::text('nic', null, ['class' => 'form-control', 'disabled']) !!}
 </div>
 
 <div class="form-group">
     {!! Form::label('dob', 'Date of Birth : ') !!}
-    {!! Form::datetimeLocal('dob', null, ['class' => 'form-control']) !!}
+    {!! Form::datetimeLocal('dob', null, ['class' => 'form-control', 'disabled']) !!}
 </div>
 
 <div class="form-group">
@@ -68,7 +64,7 @@
 
 <div class="form-group">
     {!! Form::label('gender') !!}
-    {!! Form::select('gender', [0 => 'female', 1 => 'male'], null, ['class' => 'form-control']) !!}
+    {!! Form::select('gender', [0 => 'female', 1 => 'male'], null, ['class' => 'form-control', 'disabled']) !!}
 </div>
 
 <div class="form-group">

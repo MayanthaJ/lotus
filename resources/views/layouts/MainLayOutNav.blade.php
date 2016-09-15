@@ -333,6 +333,10 @@
 {!! Html::script('vendor/pacejs/pace.min.js') !!}
 {!! Html::script('vendor/jquery/dist/jquery.min.js') !!}
 {!! Html::script('vendor/bootstrap/js/bootstrap.min.js') !!}
+
+{!! Html::script('js/formValidation.min.js') !!}
+{!! Html::script('js/framework/bootstrap.min.js') !!}
+
 {!! Html::script('vendor/toastr/toastr.min.js') !!}
 {!! Html::script('vendor/sparkline/index.js') !!}
 {!! Html::script('vendor/flot/jquery.flot.min.js') !!}
@@ -344,6 +348,7 @@
 @yield('js')
 
 <!-- App scripts -->
+@yield('js')
 
 <script>
     $(document).ready(function () {
@@ -441,31 +446,31 @@
         sparklineCharts();
 
 
-        // Flot charts data and options
-        var data1 = [[0, 16], [1, 24], [2, 11], [3, 7], [4, 10], [5, 15], [6, 24], [7, 30]];
-        var data2 = [[0, 26], [1, 44], [2, 31], [3, 27], [4, 36], [5, 46], [6, 56], [7, 66]];
-
-        var chartUsersOptions = {
-            series: {
-                splines: {
-                    show: true,
-                    tension: 0.4,
-                    lineWidth: 1,
-                    fill: 1
-
-                }
-
-            },
-            grid: {
-                tickColor: "#404652",
-                borderWidth: 0,
-                borderColor: '#404652',
-                color: '#404652'
-            },
-            colors: ["#f7af3e", "#DE9536"]
-        };
-
-        $.plot($("#flot-line-chart"), [data2, data1], chartUsersOptions);
+//        // Flot charts data and options
+//        var data1 = [[0, 16], [1, 24], [2, 11], [3, 7], [4, 10], [5, 15], [6, 24], [7, 30]];
+//        var data2 = [[0, 26], [1, 44], [2, 31], [3, 27], [4, 36], [5, 46], [6, 56], [7, 66]];
+//
+//        var chartUsersOptions = {
+//            series: {
+//                splines: {
+//                    show: true,
+//                    tension: 0.4,
+//                    lineWidth: 1,
+//                    fill: 1
+//
+//                }
+//
+//            },
+//            grid: {
+//                tickColor: "#404652",
+//                borderWidth: 0,
+//                borderColor: '#404652',
+//                color: '#404652'
+//            },
+//            colors: ["#f7af3e", "#DE9536"]
+//        };
+//
+//        $.plot($("#flot-line-chart"), [data2, data1], chartUsersOptions);
 
 
         // Run toastr notification with Welcome message

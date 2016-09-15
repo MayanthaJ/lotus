@@ -25,7 +25,7 @@
 
     {!! Html::style('css/formValidation.min.css') !!}
 
-    @yield('style')
+    @yield('js')
 
 </head>
 <body>
@@ -54,6 +54,7 @@
 
 <!-- App scripts -->
 
+@yield('js')
 
 </body>
 

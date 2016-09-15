@@ -2,9 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-use Auth;
-
 class UserRequestValidator extends Request
 {
     /**
@@ -45,10 +42,10 @@ class UserRequestValidator extends Request
             case 'PUT':
             case 'PATCH': {
                 return [
-                    'name' => 'required|min:3|max:50',
-                    'lastname' => 'required|min:5|max:50',
-                    'nic' => 'required|min:10|max:10|regex:/^[0-9]{9}[vVxX]$/',
-                    'email' => 'required|email',
+                    //'name' => 'required|min:3|max:50',
+                    //'lastname' => 'required|min:5|max:50',
+                    //'nic' => 'required|min:10|max:10|regex:/^[0-9]{9}[vVxX]$/',
+                    //'email' => 'required|email',
                     'basic' => 'required',
                     'address' => 'required',
                     'hour_rate' => 'required',

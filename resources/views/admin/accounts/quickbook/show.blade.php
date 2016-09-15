@@ -1,11 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.MainLayOutNav')
 
 @section('content')
-    <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-md-3"></div>
-            <div class="col-xs-12 col-md-6">
-                <h3>QuickBook Records</h3>
+            <div class="col-xs-12 col-md-9">
+                <h3>QuickBook Record</h3>
                 <a href="{!! url('/system/accounts/quickbook/create') !!}">Add to QuickBook</a>
                 <br />
                 <br />
@@ -23,8 +21,14 @@
                         <td>{!! $quickbook->description !!}</td>
                     </tr>
                 </table>
+
+                <br/>
+                <br/>
+                <br/>
+
+                <h3>Modifications of <strong>#1500{!! $quickbook->id !!}</strong></h3>
+
             </div>
             <div class="col-xs-12 col-md-3"></div>
         </div>
-    </div>
 @endsection

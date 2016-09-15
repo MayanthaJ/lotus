@@ -12,7 +12,6 @@ use App\Models\Employee\SalarySlip;
 use App\Models\Rental\Reservation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Lava;
 
 class AccountController extends Controller
 {
@@ -125,14 +124,47 @@ class AccountController extends Controller
         $this->calculateExpensePerDay();
     }
 
+    private function calculateExpensePerDay()
+    {
+        $carbon = Carbon::now();
+
+        $today = $carbon->toDateString();
+
+        $expenseOfDay = 0;
+
+        $expense = Expense::create([
+            'day' => $today,
+            'expense' => 0
+        ]);
+
+        $employeesPayments = SalarySlip::whereDate('month', '=', $today)->get();
+
+        foreach ($employeesPayments as $employeesPayment) {
+
+            SalaryExpense::create([
+                'user_id' => $employeesPayment->user_id,
+                'expense_id' => $expense->id,
+                'amount' => $employeesPayment->pay,
+                'day' => $today
+            ]);
+
+            $expenseOfDay = $expenseOfDay + $expenseOfDay;
+        }
+
+        $expense->expense = $expenseOfDay;
+
+        $expense->save();
+
+    }
+
     public function getGraphsView()
     {
-        $finances = Lava::DataTable();
-
-        $finances->addDateColumn('Year')
-            ->addNumberColumn('Income')
-            ->addNumberColumn('Expenses')
-            ->setDateTimeFormat('Y');
+//        $finances = Lava::DataTable();
+//
+//        $finances->addDateColumn('Year')
+//            ->addNumberColumn('Income')
+//            ->addNumberColumn('Expenses')
+//            ->setDateTimeFormat('Y');
 
         $carbon = Carbon::now();
 
@@ -142,21 +174,28 @@ class AccountController extends Controller
 
         $income = Income::whereDate('month', '=', $today)->get();
 
+//        for ($i = 0; $i < $expenses->count(); $i++) {
+//            $finances->addRow([date('Y'), (int)$expenses[$i]->expense, $income[$i]->income]);
+//        }
+
+
+//        $columnchart = Lava::ColumnChart('Finances', $finances, [
+//            'title' => 'Company Performance',
+//            'titleTextStyle' => [
+//                'color' => '#eb6b2c',
+//                'fontSize' => 14
+//            ]
+//        ]);
+
+        $sendArray = array();
+        $sendArray2 = array();
 
         for ($i = 0; $i < $expenses->count(); $i++) {
-            $finances->addRow([date('Y'), (int)$expenses[$i]->expense, $income[$i]->income]);
+            $sendArray[] = [$i, (int)$expenses[$i]->expense];
+            $sendArray2[] = [$i, (int)$income[$i]->income];
         }
 
-
-        $columnchart = Lava::ColumnChart('Finances', $finances, [
-            'title' => 'Company Performance',
-            'titleTextStyle' => [
-                'color' => '#eb6b2c',
-                'fontSize' => 14
-            ]
-        ]);
-
-        return view('testView', compact('columnchart'));
+        return view('testView', compact('sendArray', 'sendArray2'));
     }
 
     /**
@@ -225,40 +264,6 @@ class AccountController extends Controller
         $income->income = $inComeOfTheDay;
 
         $income->save();
-
-    }
-
-
-    private function calculateExpensePerDay()
-    {
-        $carbon = Carbon::now();
-
-        $today = $carbon->toDateString();
-
-        $expenseOfDay = 0;
-
-        $expense = Expense::create([
-            'day' => $today,
-            'expense' => 0
-        ]);
-
-        $employeesPayments = SalarySlip::whereDate('month', '=', $today)->get();
-
-        foreach ($employeesPayments as $employeesPayment) {
-
-            SalaryExpense::create([
-                'user_id' => $employeesPayment->user_id,
-                'expense_id' => $expense->id,
-                'amount' => $employeesPayment->pay,
-                'day' => $today
-            ]);
-
-            $expenseOfDay = $expenseOfDay + $expenseOfDay;
-        }
-
-        $expense->expense = $expenseOfDay;
-
-        $expense->save();
 
     }
 

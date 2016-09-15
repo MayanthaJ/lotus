@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Employee;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequestValidator;
 use App\Models\Employee\AdminTypes;
 use App\Models\Employee\EmployeeTravel;
@@ -17,9 +18,6 @@ use Carbon\Carbon;
 use File;
 use Flash;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Redirect;
 
 class EmployeeController extends Controller
@@ -82,20 +80,29 @@ class EmployeeController extends Controller
      */
     public function store(UserRequestValidator $request)
     {
+
+        $birthDay = Carbon::parse($request->dob);
+
+        $currentTime = Carbon::now();
+
+        $carbon = new Carbon();
+
+        $age = $carbon->diffInYears($birthDay);
+
         // create the employee
         $employee = User::create([
             'name' => $request->name,
             'lastname' => $request->lastname,
             'email' => $request->email,
             'hour_rate' => $request->hour_rate,
-            'age' => $request->age,
+            'age' => $age,
             'address' => $request->address,
             'password' => bcrypt($request->password),
             'nic' => $request->nic,
             'basic' => $request->basic,
             'gender' => ($request->has('gender')) ? 1 : 0,
             'terminated' => 0,
-            'hired_date' => Carbon::now(),
+            'hired_date' => $currentTime->toDateString(),
             'terminated_date' => null
         ]);
 
@@ -166,9 +173,9 @@ class EmployeeController extends Controller
         // set the normal employee columns
         $employee->name = $request->name;
         $employee->lastname = $request->lastname;
-        $employee->nic = $request->nic;
-        $employee->gender = $request->gender;
         $employee->basic = $request->basic;
+        $employee->hour_rate = $request->hour_rate;
+        $employee->address = $request->address;
 
         // since we have only checkbox it's only available in the dom if
         // its ticked, so we have to check for the existence
@@ -195,7 +202,7 @@ class EmployeeController extends Controller
 
         // save and exit
         if ($employee->save()) {
-            Flash::success("Changes updated !");
+            Flash::success("Changes Saved !");
         }
 
         // return to the original page

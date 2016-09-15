@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Employee\General;
 
+use App\Http\Controllers\Controller;
 use App\Models\Employee\AdvancePayment;
 use App\Models\Employee\Leave;
 use App\Models\Employee\LeaveTypes;
@@ -12,9 +13,6 @@ use App\User;
 use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Redirect;
 
 class Additional extends Controller
@@ -75,7 +73,7 @@ class Additional extends Controller
             'leavetype_id' => $request->leave_type_lists,
             'user_id' => $user->id,
             'reason' => $request->reason,
-            'time' => Carbon::now()->toTimeString()
+            'time' => Carbon::now()->toDateTimeString()
         ]);
 
         if($user->leaves->count() >= 35) {

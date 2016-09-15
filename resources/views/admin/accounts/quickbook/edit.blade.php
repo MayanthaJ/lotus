@@ -1,10 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.MainLayOutNav')
 
 @section('content')
-    <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-md-3"></div>
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-9">
                 <h3>Edit a QuickBook Record</h3>
                 @include('notifications._message')
                 {!! Form::model($quickbook, ['method' => 'PATCH', 'action' => ['Accounts\QuickBookController@update', $quickbook->id]]) !!}
@@ -13,9 +11,8 @@
             </div>
             <div class="col-xs-12 col-md-3">
                 {!! Form::open(['method' => 'DELETE', 'action' => ['Accounts\QuickBookController@destroy', $quickbook->id]]) !!}
-                    {!! Form::submit('Delete this QuickBook record', ['onclick' => 'confirm("Are you sure to remove this record")']) !!}
+                {!! Form::submit('Delete this QuickBook record', ['onclick' => 'return confirm("Are you sure to remove this record")', 'class' => 'btn btn-danger']) !!}
                 {!! Form::close() !!}
             </div>
         </div>
-    </div>
 @endsection

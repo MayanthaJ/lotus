@@ -64,7 +64,6 @@ Route::get('/system/employee/{employee}/stats/travel', 'Employee\EmployeeControl
 // Nimansa's routes
 Route::resource('system/accounts/', 'Accounts\AccountController');
 Route::resource('/system/accounts/quickbook', 'Accounts\QuickBookController');
-Route::resource('system/accounts/', 'Accounts\AccountController');
 Route::get('system/accounts/stats/{expense}/expense', 'Accounts\AccountController@getMoreExpense');
 Route::get('system/accounts/stats/{income}/income', 'Accounts\AccountController@getMoreIncome');
 Route::get('system/accounts/graphs/', 'Accounts\AccountController@getGraphsView');
@@ -75,6 +74,7 @@ Route::get('system/accounts/graphs/', 'Accounts\AccountController@getGraphsView'
 
 // loans routes
 Route::group(['middleware' => 'adminOrManager'], function () {
+
     Route::get('/system/admin/employee/loan/create', 'Employee\General\Additional@getAddLoan');
     Route::post('/system/admin/employee/loan/create', 'Employee\General\Additional@postAddLoan');
 
@@ -104,7 +104,7 @@ Route::group(['middleware' => 'adminOrManager'], function () {
 });
 
 
-// todo : sorriund them in middleWare of entry operator
+// todo : surround them in middleWare of entry operator
 
 // Achala's routes
 Route::get('/system/customer/{id}/terminate', 'Customer\CustomerController@terminate');
@@ -117,7 +117,6 @@ Route::resource('system/agent','Agent\AgentController');
 //Achala's ajaxs
 Route::get('/api/secured/customer/tours/{package_id}', function ($package_id) {
     return \App\Models\Tour\Tour::where('package_id', $package_id)->get();
-
 });
 
 //Nuwan's Routes

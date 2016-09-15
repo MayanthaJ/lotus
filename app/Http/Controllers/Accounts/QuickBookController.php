@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Accounts;
 
+use App\Http\Controllers\Controller;
 use App\Models\Accounts\QuickBook;
+use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Redirect;
 
 class QuickBookController extends Controller
@@ -17,7 +18,10 @@ class QuickBookController extends Controller
      */
     public function index()
     {
-        $quickbooks = QuickBook::all();
+
+        $today = Carbon::today()->toDateTimeString();
+
+        $quickbooks = QuickBook::whereDate('created_at', '=', $today)->get();
 
         return view('admin.accounts.quickbook.index', compact('quickbooks'));
     }
