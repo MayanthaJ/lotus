@@ -1,7 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.MainLayOutNav')
 
 
 @section('content')
+
+
+    <div class="col-md-9">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 com-md-3">
@@ -31,6 +34,6 @@
             <div class="col-xs-12 com-md-3"></div>
         </div>
     </div>
-
+</div>
 
     @stop
