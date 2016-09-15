@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAgentTable extends Migration
+class CreateCabin extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,9 @@ class CreateAgentTable extends Migration
      */
     public function up()
     {
-        Schema::create('agent',function (Blueprint $table){
+        Schema::Create('cabin',function(Blueprint $table){
             $table->increments('id');
-            $table->string('registered')->unique();
-            $table->string('name');
-            $table->timestamps();
+            $table->string('type');
         });
     }
 
@@ -27,6 +25,6 @@ class CreateAgentTable extends Migration
      */
     public function down()
     {
-        Schema::drop('agent');
+        Schema::drop('cabin');
     }
 }

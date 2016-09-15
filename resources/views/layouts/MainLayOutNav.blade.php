@@ -326,6 +326,9 @@
 </div>
 <!-- End wrapper-->
 
+<!-- modals -->
+@yield('modals')
+
 <!-- Vendor scripts -->
 {!! Html::script('vendor/pacejs/pace.min.js') !!}
 {!! Html::script('vendor/jquery/dist/jquery.min.js') !!}
@@ -336,6 +339,9 @@
 {!! Html::script('vendor/flot/jquery.flot.resize.min.js') !!}
 {!! Html::script('vendor/flot/jquery.flot.spline.js') !!}
 {!! Html::script('/scripts/luna.js') !!}
+
+<!-- js -->
+@yield('js')
 
 <!-- App scripts -->
 

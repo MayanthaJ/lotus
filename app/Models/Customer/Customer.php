@@ -84,5 +84,17 @@ class Customer extends Model
     {
         return $this->hasMany(CustomerPackage::class, 'customer_id', 'id');
     }
+    /**
+     *Customer Number
+     */
+    public function numbers(){
+        return $this->hasMany(CustomerNumber::class,'customer_number','id');
+    }
+    /**
+     *Customer Address
+     */
 
+    public  function address(){
+        return $this->hasMany(CustomerAddress::class,'customer_id','id');
+    }
 }

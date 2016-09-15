@@ -25,6 +25,8 @@
 
     {!! Html::style('css/formValidation.min.css') !!}
 
+    @yield('style')
+
 </head>
 <body>
 
@@ -37,6 +39,8 @@
     <!-- End main content-->
 
 </div>
+
+
 <!-- End wrapper-->
 
 <!-- Vendor scripts -->

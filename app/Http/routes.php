@@ -112,6 +112,7 @@ Route::get('/system/customer/undo/{id}/terminate', 'Customer\CustomerController@
 Route::get('/system/customer/view/', 'Customer\CustomerController@view');
 Route::resource('/system/customer', 'Customer\CustomerController');
 Route::resource('system/ticket', 'Ticket\TicketController');
+Route::resource('system/agent','Agent\AgentController');
 
 //Achala's ajaxs
 Route::get('/api/secured/customer/tours/{package_id}', function ($package_id) {

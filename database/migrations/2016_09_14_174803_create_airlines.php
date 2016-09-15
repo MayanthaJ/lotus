@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTicketTable extends Migration
+class CreateAirlines extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,10 @@ class CreateTicketTable extends Migration
      */
     public function up()
     {
-        Schema::create('ticket',function(Blueprint $table){
-            $table->increments('ticket');
+        Schema::create('airlines',function(Blueprint $table){
+            $table->increments('id');
             $table->string('code');
-            $table->unsignedInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->string('name');
         });
     }
 
@@ -27,6 +26,6 @@ class CreateTicketTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ticket');
+        Schema::drop('airlines');
     }
 }

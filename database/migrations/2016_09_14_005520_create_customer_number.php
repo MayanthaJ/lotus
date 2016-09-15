@@ -15,7 +15,7 @@ class CreateCustomerNumber extends Migration
         Schema::Create('customer_number',function(Blueprint $table){
             $table->unsignedInteger('customer_id');
             $table->string('number');
-
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
         });
     }
 

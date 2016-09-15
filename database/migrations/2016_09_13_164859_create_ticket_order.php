@@ -28,12 +28,12 @@ class CreateTicketOrder extends Migration
             $table->integer('adults');
             $table->integer('children');
             $table->integer('infant');
-            $table->integer('cabin');
-            $table->string('airlines_id');
             $table->string('note');
             $table->integer('qty');
             $table->float('discount');
             $table->float('amount');
+            $table->float('advance');
+            $table->float('remaining_amount');
         });
     }
 

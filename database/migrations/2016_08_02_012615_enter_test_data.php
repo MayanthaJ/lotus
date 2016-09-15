@@ -24,6 +24,12 @@ class EnterTestData extends Migration
                 'lastname' => 'Tissera',
                 'email' => 'employee@test.com',
                 'password' => bcrypt('admin')
+            ],
+            [
+                'name'=>'admin',
+                'lastname'=>'admin last',
+                'email'=>'admin@admin.com',
+                'password'=>bcrypt('admin')
             ]
         ]);
 
@@ -72,7 +78,6 @@ class EnterTestData extends Migration
            ['employee_type_id' => 1, 'user_id' => 1],
            ['employee_type_id' => 1, 'user_id' => 2],
         ]);
-
     }
 
     /**

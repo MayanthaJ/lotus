@@ -21,6 +21,8 @@ class CreateCustomerTable extends Migration
             $table->integer('age');
             $table->date('dob');
             $table->boolean('gender');
+            $table->string('number');
+            $table->string('address');
             $table->string('nic')->unique();
             $table->string('passport')->unique();
             $table->unsignedInteger('loyalty_id')->nullable();

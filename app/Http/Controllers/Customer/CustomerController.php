@@ -3,6 +3,8 @@ namespace App\Http\Controllers\Customer;
 
 use App\Models\Customer\Customer;
 
+use App\Models\Customer\CustomerAddress;
+use App\Models\Customer\CustomerNumber;
 use App\Models\Loyalty\Loyalty;
 use App\Models\Package\Package;
 use App\Models\Tour\Tour;
@@ -74,7 +76,6 @@ class CustomerController extends Controller
             'nic' => 'required|regex:/^[0-9]{9}[vVxX]$/',
             'passport' => 'required',
             'address1' => 'required|min:10|max:255',
-            'address2' => 'required|min:10|max:255',
             'advancePayment'=>'required|numeric|min:10000',
             'loyalty' => 'required'
         ]);
@@ -91,12 +92,20 @@ class CustomerController extends Controller
             'age' => $request->age,
             'dob' => $request->dob,
             'gender' => $request->gender,
-            'number' => $request->number,
             'nic' => $request->nic,
             'passport' => $request->passport,
-            'address1' => $request->address1,
-            'address2' => $request->address2,
             'loyalty_id' => $request->loyalty
+        ]);
+        dd($customer->id,$request->number);
+        CustomerNumber::create(
+            [
+            'customer_id'=> $customer->id,
+            'number' => $request->number
+            ]
+        );
+        CustomerAddress::create([
+            'customer_id'=>$customer->id,
+            'address'=>$request->address1
         ]);
 
         // insert value customer tours
