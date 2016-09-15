@@ -474,16 +474,16 @@
 
 
         // Run toastr notification with Welcome message
-        setTimeout(function () {
-            toastr.options = {
-                "positionClass": "toast-top-right",
-                "closeButton": true,
-                "progressBar": true,
-                "showEasing": "swing",
-                "timeOut": "6000"
-            };
-            toastr.warning('<strong>You entered to LUNA</strong> <br/><small>Premium admin theme with Dark UI style. </small>');
-        }, 1600)
+//        setTimeout(function () {
+//            toastr.options = {
+//                "positionClass": "toast-top-right",
+//                "closeButton": true,
+//                "progressBar": true,
+//                "showEasing": "swing",
+//                "timeOut": "6000"
+//            };
+//            toastr.warning('<strong>You entered to LUNA</strong> <br/><small>Premium admin theme with Dark UI style. </small>');
+//        }, 1600)
 
 
     });

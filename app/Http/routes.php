@@ -68,6 +68,9 @@ Route::get('system/accounts/stats/{expense}/expense', 'Accounts\AccountControlle
 Route::get('system/accounts/stats/{income}/income', 'Accounts\AccountController@getMoreIncome');
 Route::get('system/accounts/graphs/', 'Accounts\AccountController@getGraphsView');
 
+Route::resource('system/accounts/bill', 'Accounts\BillController');
+Route::resource('system/accounts/bill/type', 'Accounts\BillTypeController');
+
 /********************************************
  * Employee additional links (advance, loans)
  *******************************************/

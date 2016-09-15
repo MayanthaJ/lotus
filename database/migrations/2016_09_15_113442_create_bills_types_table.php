@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuickBooksTable extends Migration
+class CreateBillsTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,9 @@ class CreateQuickBooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('quick_books', function (Blueprint $table) {
+        Schema::create('bills_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('amount');
-            $table->boolean('type');
-            $table->text('description');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ class CreateQuickBooksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('quick_books');
+        Schema::drop('bills_types');
     }
 }

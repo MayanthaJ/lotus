@@ -45,11 +45,13 @@ class QuickBookController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'type' => 'required',
             'amount' => 'required',
             'description' => 'required|min:5|max:50'
         ]);
 
         QuickBook::create([
+            'type' => ($request->type == 1) ? 1 : 0,
             'amount' => $request->amount,
             'description' => $request->description
         ]);
@@ -95,6 +97,7 @@ class QuickBookController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
+            'type' => 'required',
             'amount' => 'required',
             'description' => 'required|min:5|max:50'
         ]);
@@ -102,10 +105,11 @@ class QuickBookController extends Controller
 
         $quickbook = QuickBook::findOrFail($id);
 
+        $quickbook->type = ($request->type == 1) ? 1 : 0;
         $quickbook->amount = $request->amount;
         $quickbook->description = $request->description;
 
-        if($quickbook->save()) {
+        if ($quickbook->save()) {
             Flash::success('Updates have been successfully changed');
         } else {
             Flash::error('An Error Occurred while updating !');

@@ -16,6 +16,8 @@ class CreateQuickBookHistoriesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('quickbook_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('id');
+            $table->foreign('quickbook_id')->references('id')->on('quick_books')->onDelete('id');
             $table->string('action');
             $table->dateTime('changed_time');
             $table->timestamps();

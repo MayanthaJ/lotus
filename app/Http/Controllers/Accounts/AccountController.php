@@ -8,6 +8,7 @@ use App\Models\Accounts\Expense\SalaryExpense;
 use App\Models\Accounts\Income;
 use App\Models\Accounts\Income\ReservationIncome;
 use App\Models\Accounts\Income\TourIncome;
+use App\Models\Accounts\QuickBook;
 use App\Models\Employee\SalarySlip;
 use App\Models\Rental\Reservation;
 use Carbon\Carbon;
@@ -139,6 +140,8 @@ class AccountController extends Controller
 
         $employeesPayments = SalarySlip::whereDate('month', '=', $today)->get();
 
+        $quickBookExpenses = QuickBook::whereDate('created_at', '=', $today)->where('type', 0)->get();
+
         foreach ($employeesPayments as $employeesPayment) {
 
             SalaryExpense::create([
@@ -148,7 +151,11 @@ class AccountController extends Controller
                 'day' => $today
             ]);
 
-            $expenseOfDay = $expenseOfDay + $expenseOfDay;
+            $expenseOfDay = $expenseOfDay + $employeesPayment->pay;
+        }
+
+        foreach ($quickBookExpenses as $quickBookExpense) {
+            $expenseOfDay = $expenseOfDay + $quickBookExpense->amount;
         }
 
         $expense->expense = $expenseOfDay;
@@ -156,6 +163,7 @@ class AccountController extends Controller
         $expense->save();
 
     }
+
 
     public function getGraphsView()
     {
@@ -188,6 +196,7 @@ class AccountController extends Controller
 //        ]);
 
         $sendArray = array();
+
         $sendArray2 = array();
 
         for ($i = 0; $i < $expenses->count(); $i++) {
@@ -217,10 +226,10 @@ class AccountController extends Controller
             'income' => 0,
         ]);
 
+        $quickBooks = QuickBook::whereDate('created_at', '=', $today)->where('type', 1)->get();
 
         // go through reservations and get all reservation created at today (from $today variable)
         $reservations = Reservation::whereDate('created_at', '=', $today)->get();
-
 
         // we recieved an collection (means an array of table rows) .. so it is required to loop the
         // go get the values of each one of them ... so we are using a foreach loop
@@ -239,6 +248,11 @@ class AccountController extends Controller
 
             // and we add what ever the income to main income variable
             $inComeOfTheDay = $inComeOfTheDay + $reservation->payment;
+        }
+
+        foreach ($quickBooks as $quickBook)
+        {
+            $inComeOfTheDay = $inComeOfTheDay + $quickBook->amount;
         }
 
         // get All tours
