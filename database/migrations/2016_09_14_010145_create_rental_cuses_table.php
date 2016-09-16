@@ -13,7 +13,7 @@ class CreateRentalCusesTable extends Migration
     public function up()
     {
         Schema::create('rental_cuses', function (Blueprint $table) {
-            $table->unsignedInteger('id');
+            $table->increments('id');
             $table->string('name');
             $table->string('nic');
             $table->string('phone');
