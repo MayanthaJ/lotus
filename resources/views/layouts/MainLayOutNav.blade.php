@@ -344,8 +344,6 @@
 {!! Html::script('vendor/flot/jquery.flot.spline.js') !!}
 {!! Html::script('/scripts/luna.js') !!}
 
-<!-- js -->
-@yield('js')
 
 <!-- App scripts -->
 @yield('js')
