@@ -20,7 +20,7 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $user_type=
+
         
         $users = EmployeeType::with('employees')->where('name', 'driver')->first()->employees;
 
