@@ -24,7 +24,7 @@ class CreateResevationsTable extends Migration
             $table->timestamps();
             $table->foreign('vehicle_id')->references('id')->on('vehicle')->onDelete('cascade');
             $table->foreign('driver_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            
         });
     }
 
