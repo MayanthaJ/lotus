@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\rental;
 
+use App\Models\Employee\EmployeeTravelType;
+use App\Models\Employee\EmployeeType;
 use App\User;
 
 use Flash;
@@ -18,8 +20,9 @@ class DriverController extends Controller
      */
     public function index()
     {
+        $user_type=
         
-        $users = User::all();
+        $users = EmployeeType::with('employees')->where('name', 'driver')->first()->employees;
 
         return view('admin.rental.driver.index', compact('users'));
 
@@ -59,8 +62,8 @@ class DriverController extends Controller
 
         ]);
       
-        // Driver obxject
-        User::create([
+        // Driver object
+        $driver = User::create([
             'name' => $request->name,
             'lastname' => $request->lastname,
             'email' => $request->email,
@@ -73,6 +76,12 @@ class DriverController extends Controller
             
         ]);
 
+        //passing a row to many to many table
+        \DB::table('employee_type_user')->insert(
+            ['employee_type_id'=>5 , 'user_id'=> $driver->id]
+        );
+
+        // \DB::raw("insert into employee_type_user (employee_type_id, user_id) values (5, $driver->id)");
 
         // Sends a success message
         Flash::success("Driver Added Successfully !");
@@ -100,6 +109,7 @@ class DriverController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
         $driver = User::findOrFail($id);

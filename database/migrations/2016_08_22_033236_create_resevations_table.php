@@ -16,14 +16,17 @@ class CreateResevationsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('vehicle_id');
             $table->unsignedInteger('driver_id');
+            $table->unsignedInteger('customer_id');
             $table->string('destination');
             $table->double('payment');
             $table->date('start_date');
             $table->date('end_date'); 
             $table->timestamps();
 
-            $table->foreign('vehicle_id')->references('id')->on('vehicle');
-            $table->foreign('driver_id')->references('id')->on('users');
+
+            $table->foreign('vehicle_id')->references('id')->on('vehicle')->onDelete('cascade');
+            $table->foreign('driver_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id')->on('rental_cuses')->onDelete('cascade');
             
         });
     }

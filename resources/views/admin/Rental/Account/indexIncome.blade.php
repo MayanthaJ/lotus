@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.MainLayOutNav')
 
 @section('content')
     <div class="container">
@@ -21,6 +21,8 @@
                         <th>Amount</th>
                         <th></th>
                     </tr>
+
+                    <!-- $diff = $Reservation->start_date->diffInDays($Reservation->end_date, false); ?>
 
                     <!--variable to collect expenses-->
 

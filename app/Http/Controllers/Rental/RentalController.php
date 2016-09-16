@@ -19,6 +19,7 @@ class RentalController extends Controller
      */
     public function index()
     {
+
         $vehicles = Vehicle::all();
 
         return view('admin.rental.vehicle.index', compact('vehicles'));

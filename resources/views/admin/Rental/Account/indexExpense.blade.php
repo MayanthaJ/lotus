@@ -28,14 +28,14 @@
                     @foreach($SalarySlips as $SalarySlip)
                         <tr>
                             <td>{!! $SalarySlip->id !!}</td>
+                            <td>{!! $SalarySlip->user_id  !!}</td>
                             <td>{!! \Carbon\Carbon::today() !!}</td>
-                            <td>{!! $SalarySlip->user_id !!}</td>
-                            <td> Salary Payment</td>
+                            <td>Salary Payment</td>
                             <td>{!! $SalarySlip->pay*30 !!}</td>
                             <?php $total = $total + (($SalarySlip->pay)*30) ; ?>
                         </tr>
-
                     @endforeach
+
                     <tr style="font-weight: bolder">
                         <td></td>
                         <td></td>

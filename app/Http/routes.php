@@ -105,6 +105,33 @@ Route::group(['middleware' => 'adminOrManager'], function () {
     Route::get('/api/secured/employee/name/{employee}', function ($employee) {
        return \App\User::where('name', 'like', '%'.$employee.'%')->get()->toJson();
     });
+
+
+    //SK 's Search
+
+    Route::get('/api/secured/rental/driver/name/{driver}', function ($driver) {
+        return \App\User::where('name','like','%'.$driver.'%')->get()->toJson();
+    });
+
+    Route::get('/api/secured/rental/vehicle/name/{vehicle}', function ($vehicle) {
+        return \App\Models\Rental\Vehicle::where('vehicle_name','like','%'.$vehicle.'%')->get()->toJson();
+    });
+/*
+    Route::get('/api/secured/rental/reservation/name/{reservation}', function ($reservation) {
+        return \App\Models\Rental\Reservation::where('','like','%'.$reservation.'%')->get()->toJson();
+    });
+
+*/
+
+
+
+
+
+
+
+
+
+
 });
 
 
@@ -139,6 +166,7 @@ Route::get('system/rental/profit', 'Rental\RentalController@getRentalProfit');
 Route::resource('system/rental/vehicle', 'Rental\RentalController');
 Route::resource('system/rental/driver', 'Rental\DriverController');
 Route::resource('system/rental/reservation', 'Rental\ReservationController');
+Route::get('system/rental/', 'HomeController@getRentalDashBoard');
 
 
 // Danajalee's routes
