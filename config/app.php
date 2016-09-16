@@ -150,13 +150,8 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         CodeZero\Flash\FlashServiceProvider::class,
-<<<<<<< Updated upstream
-        //Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
-
-=======
         Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
->>>>>>> Stashed changes
+
 
         /*
          * Application Service Providers...
@@ -214,12 +209,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Flash' => CodeZero\Flash\Facade\Flash::class,
-<<<<<<< Updated upstream
-        //'Lava' => Khill\Lavacharts\Lavacharts::class,
-=======
         'Lava' => Khill\Lavacharts\Lavacharts::class,
-        'PDF' => Barryvdh\DomPDF\Facade::class,
->>>>>>> Stashed changes
 
     ],
 
