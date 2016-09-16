@@ -5,13 +5,13 @@
         <div class="col-lg-12">
             <div class="view-header">
                 <div class="pull-right text-right" style="line-height: 14px">
-                    <small>Lotus Tour Management<br>Agent<br> <span class="c-white">v.1.0</span></small>
+                    <small>Lotus Tour Management<br>Tickets<br> <span class="c-white">v.1.0</span></small>
                 </div>
                 <div class="header-icon">
                     <i class="page-header-icon fa fa-user "></i>
                 </div>
                 <div class="header-title">
-                    <h3 class="m-b-xs">Agent Management System</h3>
+                    <h3 class="m-b-xs">Third Party Ticketing</h3>
                 </div>
             </div>
             <hr>
@@ -23,13 +23,13 @@
             <div class="panel panel-filled  active-border">
                 <div class="panel-body">
                     <h3 class="m-b-none">
-                        Agent
+                        Tickets
                         <span class="slight slight-align ">
                                <br/>
                                <i  class="fa fa-home  text-warning"> </i>
-                                Agent Home
+                                Air Tickets Home
                                <br/>
-                              <a class="btn btn-default" href="/system/agent">Agent</a>
+                              <a class="btn btn-default" href="/system/ticketing/">Agent</a>
                            </span>
                     </h3>
                 </div>
@@ -44,9 +44,9 @@
                         <span class="slight slight-align">
                                 <br/>
                                <i  class="fa fa-home  text-warning"> </i>
-                                Add Agent
+                                Add New Air Ticlets
                                 <br/>
-                             <a  class="btn btn-default" href="/system/agent/create">Add</a>
+                             <a  class="btn btn-default" href="/system/ticketing/create">Add</a>
                            </span>
                     </h3>
                 </div>
@@ -61,31 +61,16 @@
                         <span class="slight slight-align">
                                 <br/>
                                <i  class="fa fa-home  text-warning"> </i>
-                                View All Agent
+                                View All Tickets Orders
                                 <br/>
-                             <a  class="btn btn-default" href="/system/agent/view">View</a>
+                             <a  class="btn btn-default" href="/system/ticketing/view">View</a>
                            </span>
                     </h3>
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-2 col-xs-6">
-            <div class="panel panel-filled">
-                <div class="panel-body">
-                    <h3 class="m-b-none">
-                        Edit
-                        <span class="slight slight-align">
-                                <br/>
-                               <i  class="fa fa-home  text-warning"> </i>
-                                Edit Agent Details
-                                <br/>
-                             <a  class="btn btn-default" href="/system/customer/view">Edit</a>
-                           </span>
-                    </h3>
-                </div>
-            </div>
-        </div>
+
 
         <div class="col-lg-2 col-xs-6">
             <div class="panel panel-filled">
@@ -97,7 +82,7 @@
                                <i  class="fa fa-home  text-warning"> </i>
                                 Quick View Agents List
                                 <br/>
-                              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal1">
+                              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#QuickAgent">
                                 Quick
                             </button>
                            </span>
@@ -114,14 +99,14 @@
 
                 <div class="panel-body">
 
-                    <h3>Agent </h3>
+                    <h3>Ticket Orders </h3>
 
                     <p>
-                        Find or Search all Agents !
+                        Find or Search all Tickets !
                     </p>
 
                     <div id="ajax-search">
-                        {!! Form::text('search', null, ['class' => 'form-control', 'id' => 'search', 'placeholder' => 'Search Employees']) !!}
+                        {!! Form::text('search', null, ['class' => 'form-control', 'id' => 'search', 'placeholder' => 'Search Tickets']) !!}
 
                         <br/>
                         <br/>
@@ -148,18 +133,7 @@
                         </thead>
                         <?php $count=1; ?>
                         <tbody>
-                        @foreach($agent as $agentAll)
-                            <tr>
-                                <td><?php echo $count; $count++ ?></td>
-                                <td>{!! $agentAll->registered !!}</td>
-                                <th>{!! $agentAll->name !!}</th>
-                                <th>{!! $agentAll->number !!}</th>
-                                <th>{!! $agentAll->email !!}</th>
-                                <th> <a href="" type="button" class="btn btn-default">
-                                        View
-                                    </a></th>
-                            </tr>
-                        @endforeach
+
                         </tbody>
                     </table>
 
@@ -171,6 +145,8 @@
     </div>
 
 @endsection
+
+
 @section('styles')
     <style rel="stylesheet">
         .slight-align{
@@ -181,21 +157,51 @@
         }
     </style>
 @endsection
+
 @section('js')
     <script type="text/javascript">
-        var url = '';
+        var url = '/api/secured/agent/name/';
+
         var typingTimer;                //timer identifier
+
         var doneTypingInterval = 250;  //time in ms (5 seconds)
+
         $(document).on('keyup', '#search', function () {
+
+
             clearTimeout(typingTimer);
-            typingTimer = setTimeout(doneTyping, doneTypingInterval);
+
             var value = $('#search').val();
 
             if (value == "" || value == " ") {
                 //refill
-                url="/api/secured/agent/refill";
+                $(".ajax-table tbody tr").remove();
+                $.ajax({
+                    type: "GET",
+                    url:'/api/secured/agent/refill',
+                    dataType: "json",
+                    success: function (data) {
+                        var No=1;
+                        for (i = 0; i < data.length; i++) {
+                            $('.ajax-table')
+                                    .append(
+                                            '<tr>' +
+                                            '<td>'+No+'</td>'+
+                                            '<td>' + data[i].registered + '</td>' +
+                                            '<td>' + data[i].name + '</td>' +
+                                            '<td>'+data[i].number+'</td>'+
+                                            '<td>' +data[i].email+'</td>'+
+                                            '<td>' + '<a href="/system/agent/' + data[i].id + '/view">View</a>' + '</td>' +
+                                            '<tr/>'
+                                    );
+                            No++;
+                        }
+                    }
+                });
+
+
             } else {
-                url='/api/secured/agent/name/'+value;
+                typingTimer = setTimeout(doneTyping, doneTypingInterval);
             }
 
             function doneTyping() {
@@ -203,7 +209,7 @@
 
                 $.ajax({
                     type: "GET",
-                    url: url,
+                    url: url + value,
                     dataType: "json",
                     success: function (data) {
                         var No=1;

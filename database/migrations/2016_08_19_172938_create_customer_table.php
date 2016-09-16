@@ -18,15 +18,16 @@ class CreateCustomerTable extends Migration
             $table->string('sname');
             $table->string('lname');
             $table->string('otherName')->nullable();
-            $table->integer('age');
-            $table->date('dob');
+            $table->integer('age')->nullable();
+            $table->date('dob')->nullable();
             $table->boolean('gender');
             $table->string('number');
             $table->string('address');
             $table->string('nic')->unique();
-            $table->string('passport')->unique();
+            $table->string('passport')->unique()->nullable();
             $table->unsignedInteger('loyalty_id')->nullable();
             $table->boolean('terminated')->default(0);
+            $table->integer('type')->default(0);
             $table->timestamps();
             $table->foreign('loyalty_id')->references('id')->on('loyalty')->onDelete('set null');
 

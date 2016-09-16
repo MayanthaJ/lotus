@@ -116,11 +116,20 @@ Route::get('/system/customer/undo/{id}/terminate', 'Customer\CustomerController@
 Route::get('/system/customer/view/', 'Customer\CustomerController@view');
 Route::resource('/system/customer', 'Customer\CustomerController');
 Route::resource('system/ticket', 'Ticket\TicketController');
+Route::resource('system/ticketing','Ticket\TicketingController');
 Route::resource('system/agent','Agent\AgentController');
 
 //Achala's ajaxs
 Route::get('/api/secured/customer/tours/{package_id}', function ($package_id) {
     return \App\Models\Tour\Tour::where('package_id', $package_id)->get();
+});
+//get agent search
+Route::get('/api/secured/agent/name/{name}',function ($name){
+    return \App\Models\Agent\Agent::where('name', 'like',$name.'%')->get()->toJson();
+});
+//agent Refill
+Route::get('/api/secured/agent/refill',function (){
+    return \App\Models\Agent\Agent::all()->toJson();
 });
 
 //Nuwan's Routes

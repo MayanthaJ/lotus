@@ -34,6 +34,9 @@ class CreateTicketOrder extends Migration
             $table->float('amount');
             $table->float('advance');
             $table->float('remaining_amount');
+            $table->boolean('terminated')->default(0);
+            $table->date('created');
+            $table->timestamps();
         });
     }
 

@@ -16,6 +16,8 @@ class CreateTicketTable extends Migration
             $table->increments('ticket');
             $table->string('code');
             $table->unsignedInteger('customer_id');
+            $table->boolean('terminated')->default(0);
+            $table->date('created');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
         });
     }

@@ -16,6 +16,9 @@ class CreateAgentTable extends Migration
             $table->increments('id');
             $table->string('registered')->unique();
             $table->string('name');
+            $table->string('number');
+            $table->string('email');
+            $table->boolean('terminated')->default(0);
             $table->timestamps();
         });
     }
