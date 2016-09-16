@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Accounts;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Accounts\BillsType;
+use Flash;
+use Illuminate\Http\Request;
+use Redirect;
 
 class BillTypeController extends Controller
 {
@@ -16,7 +17,9 @@ class BillTypeController extends Controller
      */
     public function index()
     {
-        //
+        $billTypes = BillsType::all();
+
+        return view('admin.accounts.bills.billtypes.index', compact('billTypes'));
     }
 
     /**
@@ -26,7 +29,9 @@ class BillTypeController extends Controller
      */
     public function create()
     {
-        //
+        $billTypes = BillsType::all();
+
+        return view('admin.accounts.bills.billtypes.create', compact('billTypes'));
     }
 
     /**
@@ -37,7 +42,18 @@ class BillTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:bills_types,name'
+        ]);
+
+        BillsType::create([
+            'name' => $request->name
+        ]);
+
+        Flash::success('New Bill Type has been added to syetem !');
+
+        return Redirect::to('system/accounts/bill/type');
+
     }
 
     /**
@@ -59,19 +75,36 @@ class BillTypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $billtype = BillsType::findOrFail($id);
+
+        return view('admin.accounts.bills.billtypes.edit', compact('billtype'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:bills_types,name'
+        ]);
+
+        $billtype = BillsType::findOrFail($id);
+
+        $billtype->name = $request->name;
+
+        if ($billtype->save()) {
+            Flash::success('Changes saved !');
+        } else {
+            Flash::error('Could make the changes !');
+        }
+
+        return Redirect::back();
+
     }
 
     /**

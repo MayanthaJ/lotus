@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\SalarySlip wherePay($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\SalarySlip whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\SalarySlip whereUpdatedAt($value)
+ * @property-read \App\User $employee
  */
 class SalarySlip extends Model
 {

@@ -24,6 +24,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Tour\Tour whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Tour\Tour whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property integer $hotel_id
+ * @property integer $guide_id
+ * @property integer $coustomer_count
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Tour\Tour whereHotelId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Tour\Tour whereGuideId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Tour\Tour whereCoustomerCount($value)
  */
 class Tour extends Model
 {

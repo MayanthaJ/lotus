@@ -24,7 +24,9 @@ Route::get('/home', 'HomeController@index');
  */
 Route::get('/test/{test}', 'Employee\CalculateSalary@calculateSalaray');
 Route::get('/test/', function () {
-    (new \App\Http\Controllers\Accounts\AccountController())->testCalcs();
+    $pdf = PDF::loadView('admin.employee.pdf.test');
+    return $pdf->stream('Employee.pdf');
+    //(new \App\Http\Controllers\Accounts\AccountController())->testCalcs();
 });
 
 // Main App Controller
@@ -69,8 +71,18 @@ Route::get('system/accounts/stats/{expense}/expense', 'Accounts\AccountControlle
 Route::get('system/accounts/stats/{income}/income', 'Accounts\AccountController@getMoreIncome');
 Route::get('system/accounts/graphs/', 'Accounts\AccountController@getGraphsView');
 
-Route::resource('system/accounts/bill', 'Accounts\BillController');
 Route::resource('system/accounts/bill/type', 'Accounts\BillTypeController');
+Route::resource('system/accounts/bill', 'Accounts\BillController');
+
+/*
+ * Nimansa's AJAX Routes
+ * */
+Route::get('/api/secured/accounts/bills/type/{id}', function ($id) {
+    return \App\Models\Accounts\BillsType::findOrFail($id)->bills->toJson();
+});
+Route::get('/api/secured/accounts/bills/month/{from}/{to}', function ($from, $to) {
+    return \App\Models\Accounts\Bills::whereBetween('date', [$from, $to])->get();
+});
 
 /********************************************
  * Employee additional links (advance, loans)

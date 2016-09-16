@@ -2,7 +2,6 @@
 
 namespace App\Models\Customer;
 
-use App\Models\Loyalty\Loyalty;
 use App\Models\Package\Package;
 use App\Models\Tour\Tour;
 use Illuminate\Database\Eloquent\Model;
@@ -50,6 +49,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Package\Package[] $packages
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerPackage[] $payments
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereLoyaltyId($value)
+ * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerAddress[] $address
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerNumber[] $numbers
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereAddress($value)
  */
 class Customer extends Model
 {
