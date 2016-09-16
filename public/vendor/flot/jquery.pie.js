@@ -55,7 +55,7 @@
 
  */
 
-(function ($) {
+(function($) {
 
     // Maximum redraw attempts when fitting labels within the plot
 
@@ -82,7 +82,7 @@
 
         // add hook to determine if pie plugin in enabled, and then perform necessary operations
 
-        plot.hooks.processOptions.push(function (plot, options) {
+        plot.hooks.processOptions.push(function(plot, options) {
             if (options.series.pie.show) {
 
                 options.grid.show = false;
@@ -101,7 +101,7 @@
 
                 if (options.series.pie.radius == "auto") {
                     if (options.series.pie.label.show) {
-                        options.series.pie.radius = 3 / 4;
+                        options.series.pie.radius = 3/4;
                     } else {
                         options.series.pie.radius = 1;
                     }
@@ -117,7 +117,7 @@
             }
         });
 
-        plot.hooks.bindEvents.push(function (plot, eventHolder) {
+        plot.hooks.bindEvents.push(function(plot, eventHolder) {
             var options = plot.getOptions();
             if (options.series.pie.show) {
                 if (options.grid.hoverable) {
@@ -129,21 +129,21 @@
             }
         });
 
-        plot.hooks.processDatapoints.push(function (plot, series, data, datapoints) {
+        plot.hooks.processDatapoints.push(function(plot, series, data, datapoints) {
             var options = plot.getOptions();
             if (options.series.pie.show) {
                 processDatapoints(plot, series, data, datapoints);
             }
         });
 
-        plot.hooks.drawOverlay.push(function (plot, octx) {
+        plot.hooks.drawOverlay.push(function(plot, octx) {
             var options = plot.getOptions();
             if (options.series.pie.show) {
                 drawOverlay(plot, octx);
             }
         });
 
-        plot.hooks.draw.push(function (plot, newCtx) {
+        plot.hooks.draw.push(function(plot, newCtx) {
             var options = plot.getOptions();
             if (options.series.pie.show) {
                 draw(plot, newCtx);
@@ -151,7 +151,7 @@
         });
 
         function processDatapoints(plot, series, datapoints) {
-            if (!processed) {
+            if (!processed)	{
                 processed = true;
                 canvas = plot.getCanvas();
                 target = $(canvas).parent();
@@ -225,9 +225,8 @@
                 var value = data[i].data[0][1];
                 if (numCombined < 2 || value / total > options.series.pie.combine.threshold) {
                     newdata.push(
-                        $.extend(data[i], {
-                            /* extend to allow keeping all other original data values
-                             and using them e.g. in labelFormatter. */
+                        $.extend(data[i], {     /* extend to allow keeping all other original data values
+                         and using them e.g. in labelFormatter. */
                             data: [[1, value]],
                             color: data[i].color,
                             label: data[i].label,
@@ -288,7 +287,7 @@
 
             // calculate maximum radius and center point
 
-            maxRadius = Math.min(canvasWidth, canvasHeight / options.series.pie.tilt) / 2;
+            maxRadius =  Math.min(canvasWidth, canvasHeight / options.series.pie.tilt) / 2;
             centerTop = canvasHeight / 2 + options.series.pie.offset.top;
             centerLeft = canvasWidth / 2;
 
@@ -322,7 +321,7 @@
                 if (options.series.pie.tilt <= 0.8) {
                     drawShadow();
                 }
-            } while (!drawPie() && attempts < REDRAW_ATTEMPTS);
+            } while (!drawPie() && attempts < REDRAW_ATTEMPTS)
 
             if (attempts >= REDRAW_ATTEMPTS) {
                 clear();
@@ -354,13 +353,13 @@
                 }
 
                 ctx.save();
-                ctx.translate(shadowLeft, shadowTop);
+                ctx.translate(shadowLeft,shadowTop);
                 ctx.globalAlpha = alpha;
                 ctx.fillStyle = "#000";
 
                 // center and rotate to starting position
 
-                ctx.translate(centerLeft, centerTop);
+                ctx.translate(centerLeft,centerTop);
                 ctx.scale(1, options.series.pie.tilt);
 
                 //radius -= edge;
@@ -383,7 +382,7 @@
                 // center and rotate to starting position
 
                 ctx.save();
-                ctx.translate(centerLeft, centerTop);
+                ctx.translate(centerLeft,centerTop);
                 ctx.scale(1, options.series.pie.tilt);
                 //ctx.rotate(startAngle); // start at top; -- This doesn't work properly in Opera
 
@@ -440,8 +439,8 @@
                     }
 
                     //ctx.arc(0, 0, radius, 0, angle, false); // This doesn't work properly in Opera
-                    ctx.arc(0, 0, radius, currentAngle, currentAngle + angle / 2, false);
-                    ctx.arc(0, 0, radius, currentAngle + angle / 2, currentAngle + angle, false);
+                    ctx.arc(0, 0, radius,currentAngle, currentAngle + angle / 2, false);
+                    ctx.arc(0, 0, radius,currentAngle + angle / 2, currentAngle + angle, false);
                     ctx.closePath();
                     //ctx.rotate(angle); // This doesn't work properly in Opera
                     currentAngle += angle;
@@ -565,8 +564,8 @@
         //-- Additional Interactive related functions --
 
         function isPointInPoly(poly, pt) {
-            for (var c = false, i = -1, l = poly.length, j = l - 1; ++i < l; j = i)
-                ((poly[i][1] <= pt[1] && pt[1] < poly[j][1]) || (poly[j][1] <= pt[1] && pt[1] < poly[i][1]))
+            for(var c = false, i = -1, l = poly.length, j = l - 1; ++i < l; j = i)
+                ((poly[i][1] <= pt[1] && pt[1] < poly[j][1]) || (poly[j][1] <= pt[1] && pt[1]< poly[i][1]))
                 && (pt[0] < (poly[j][0] - poly[i][0]) * (pt[1] - poly[i][1]) / (poly[j][1] - poly[i][1]) + poly[i][0])
                 && (c = !c);
             return c;
@@ -656,7 +655,7 @@
 
             var offset = plot.offset();
             var canvasX = parseInt(e.pageX - offset.left);
-            var canvasY = parseInt(e.pageY - offset.top);
+            var canvasY =  parseInt(e.pageY - offset.top);
             var item = findNearbySlice(canvasX, canvasY);
 
             if (options.grid.autoHighlight) {
@@ -679,7 +678,7 @@
 
             // trigger any hover bind events
 
-            var pos = {pageX: e.pageX, pageY: e.pageY};
+            var pos = { pageX: e.pageX, pageY: e.pageY };
             target.trigger(eventname, [pos, item]);
         }
 
@@ -691,7 +690,7 @@
             var i = indexOfHighlight(s);
 
             if (i == -1) {
-                highlights.push({series: s, auto: auto});
+                highlights.push({ series: s, auto: auto });
                 plot.triggerRedrawOverlay();
             } else if (!auto) {
                 highlights[i].auto = false;
@@ -771,7 +770,7 @@
                 show: false,
                 radius: "auto",	// actual radius of the visible pie (based on full calculated radius if <=1, or hard pixel value)
                 innerRadius: 0, /* for donut */
-                startAngle: 3 / 2,
+                startAngle: 3/2,
                 tilt: 1,
                 shadow: {
                     left: 5,	// shadow left offset
@@ -788,7 +787,7 @@
                 },
                 label: {
                     show: "auto",
-                    formatter: function (label, slice) {
+                    formatter: function(label, slice) {
                         return "<div style='font-size:x-small;text-align:center;padding:2px;color:" + slice.color + ";'>" + label + "<br/>" + Math.round(slice.percent) + "%</div>";
                     },	// formatter function
                     radius: 1,	// radius at which to place the labels (based on full calculated radius if <=1, or hard pixel value)

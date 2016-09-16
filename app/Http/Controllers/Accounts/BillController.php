@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Accounts;
 
-use App\Http\Controllers\Controller;
 use App\Models\Accounts\Bills;
 use App\Models\Accounts\BillsType;
 use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 use Redirect;
 
 class BillController extends Controller
@@ -120,7 +122,7 @@ class BillController extends Controller
         $bill->billtype_id = $request->type;
         $bill->date = $request->date;
 
-        if ($bill->save()) {
+        if($bill->save()) {
             Flash::success('Bill Saved Successfully');
         } else {
             Flash::error('Bill Save Failed :( ');
@@ -140,7 +142,7 @@ class BillController extends Controller
     {
         $bill = Bills::findOrFail($id);
 
-        if ($bill->delete()) {
+        if($bill->delete()) {
             Flash::success('Bill Removed Successfully !');
         } else {
             Flash::error('Bill could not be removed !!!');

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Accounts;
 
-use App\Http\Controllers\Controller;
 use App\Models\Accounts\BillsType;
 use Flash;
 use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 use Redirect;
 
 class BillTypeController extends Controller
@@ -97,7 +99,7 @@ class BillTypeController extends Controller
 
         $billtype->name = $request->name;
 
-        if ($billtype->save()) {
+        if($billtype->save()) {
             Flash::success('Changes saved !');
         } else {
             Flash::error('Could make the changes !');

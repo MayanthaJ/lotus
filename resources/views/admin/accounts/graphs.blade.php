@@ -28,8 +28,7 @@
                         <div class="flot-chart-content" id="flot-bars-chart"></div>
                     </div>
 
-                    <div class="small text-center">All Expenses and Income
-                        for {!! \Carbon\Carbon::now()->format('F Y') !!} </div>
+                    <div class="small text-center">All Expenses and Income for {!! \Carbon\Carbon::now()->format('F Y') !!} </div>
                 </div>
 
 
@@ -94,7 +93,7 @@
             $('#graph').on('change', function (e) {
                 var selectedValue = $(this).val();
 
-                if (selectedValue == 1) {
+                if(selectedValue == 1) {
                     $('#graph_1').removeClass('hidden');
                     $('#graph_2').addClass('hidden');
                 } else {

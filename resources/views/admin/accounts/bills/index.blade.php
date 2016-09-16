@@ -94,7 +94,7 @@
                     }
                 });
 
-            });
+            })
 
             $('#search').on('click', function () {
 
@@ -113,15 +113,16 @@
                     url: url,
                     dataType: 'json',
                     success: function (data) {
-                        for (var i = 0; i < data.length; i++) {
+                        for (var i = 0; i < data.length; i++)
+                        {
                             table.append(
                                     "<tr>" +
-                                    "<td>" + data[i].id + "</td>" +
-                                    "<td>" + data[i].billtype_id + "</td>" +
-                                    "<td>" + data[i].bill_no + "</td>" +
-                                    "<td>" + data[i].date + "</td>" +
-                                    "<td>" + data[i].amount + "</td>" +
-                                    '<td><a href="/system/accounts/bill/' + data[i].id + '/edit">Edit</a></td>' +
+                                    "<td>"+ data[i].id +"</td>" +
+                                    "<td>"+ data[i].billtype_id +"</td>" +
+                                    "<td>"+ data[i].bill_no +"</td>" +
+                                    "<td>"+ data[i].date +"</td>" +
+                                    "<td>"+ data[i].amount +"</td>" +
+                                    '<td><a href="/system/accounts/bill/'+data[i].id+'/edit">Edit</a></td>' +
                                     "</tr>"
                             );
                         }

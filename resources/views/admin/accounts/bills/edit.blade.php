@@ -1,3 +1,4 @@
+
 @extends('layouts.MainLayOutNav')
 
 @section('content')
@@ -39,7 +40,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-3">
             {!! Form::open(['method' => 'DELETE', 'action' => ['Accounts\BillController@destroy', $bill->id]]) !!}
-            {!! Form::submit('Remove this bill', ['class' => 'btn btn-danger', 'onclick' => 'return confirm("Are you sure to remove this bill ?")']) !!}
+                {!! Form::submit('Remove this bill', ['class' => 'btn btn-danger', 'onclick' => 'return confirm("Are you sure to remove this bill ?")']) !!}
             {!! Form::close() !!}
         </div>
     </div>
