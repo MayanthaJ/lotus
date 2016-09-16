@@ -1,6 +1,5 @@
 @extends('layouts.MainLayOutNav')
 @section('content')
-    <div class="container">
         <div class="row">
             <a class="btn btn-default" href="system">Home</a>
             <a class="btn btn-default" href="/system/customer">Customer</a>
@@ -25,7 +24,6 @@
                 </div>
             </div>
         </div>
-    </div>
 @endsection
 
 @section('js')

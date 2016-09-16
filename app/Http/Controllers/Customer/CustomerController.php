@@ -41,7 +41,9 @@ class CustomerController extends Controller
     {
         //get package details
         $packages = Package::where('terminated', 0)->pluck('name', 'id');
+
         $packagesAll= Package::all();
+
         //get loyalty Details
         $loyalty = Loyalty::all()->pluck('type', 'id');
 
@@ -92,21 +94,13 @@ class CustomerController extends Controller
             'age' => $request->age,
             'dob' => $request->dob,
             'gender' => $request->gender,
+            'number' => $request->number,
+            'address'=>$request->address1,
             'nic' => $request->nic,
             'passport' => $request->passport,
             'loyalty_id' => $request->loyalty
         ]);
-        dd($customer->id,$request->number);
-        CustomerNumber::create(
-            [
-            'customer_id'=> $customer->id,
-            'number' => $request->number
-            ]
-        );
-        CustomerAddress::create([
-            'customer_id'=>$customer->id,
-            'address'=>$request->address1
-        ]);
+
 
         // insert value customer tours
 

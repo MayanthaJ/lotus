@@ -1,13 +1,11 @@
 @extends('layouts.MainLayoutOut')
 @section('content')
-    <div class="container">
         <div class="row">
                 <a class="btn btn-default" href="/system">Home</a>
                 <a class="btn btn-default" href="/system/customer">Customer</a>
                 <a class="btn btn-default" href="/system/customer/create">Add Customer</a>
                 <a style="background-color: aliceblue;" class="btn btn-default" href="/system/customer/view">View</a>
         </div>
-    </div>
     <br />
     <table class="table table-responsive">
         <tr>
