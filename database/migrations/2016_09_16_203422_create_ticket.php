@@ -16,18 +16,14 @@ class CreateTicket extends Migration
             $table->increments('id');
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('country_id');
-            $table->unsignedInteger('cabin_id');
-            $table->date('depature_date');
+            $table->date('Requested_date');
             $table->integer('qty');
             $table->string('note')->nullable();
-            $table->date('date');
             $table->boolean('received')->default(0);
             $table->boolean('terminated')->default(0);
-            $table->date('created');
             $table->timestamps();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('country_id')->references('id')->on('country')->onDelete('cascade');
-            $table->foreign('cabin_id')->references('id')->on('cabin')->onDelete('cascade');
         });
     }
 
