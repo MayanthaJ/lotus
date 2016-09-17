@@ -12,8 +12,8 @@
         "codezero/flash": "^1.0",
         "filp/whoops": "^2.1",
         "doctrine/dbal": "^2.5",
-      "laracasts/generators": "^1.1",
-      "khill/lavacharts": "3.0.*",
+        "laracasts/generators": "^1.1",
+        "khill/lavacharts": "3.0.*",
         "barryvdh/laravel-dompdf": "^0.7.0"
     },
     "require-dev": {

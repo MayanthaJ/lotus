@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers\Employee;
 
+use App\Http\Controllers\Controller;
 use App\Models\Employee\EPF;
 use App\Models\Employee\PayeTax;
 use App\Models\Employee\SalarySlip;
 use App\User;
-use Auth;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class CalculateSalary extends Controller
 {
@@ -72,7 +68,7 @@ class CalculateSalary extends Controller
         foreach ($loans as $loan) {
             if ($loan->paytime != 0) {
                 if (($loan->remaining - $loan->decrement) <= 0) {
-                    dd(($loan->remaining - $loan->decrement));
+                    //dd(($loan->remaining - $loan->decrement));
                     $loanDeductions += $loan->decrement + (($loan->decrement * $loan->type->rate) / 100);
                     $loan->remaining = ($loan->decrement - $loan->decrement);
                     $loan->paytime = 0;

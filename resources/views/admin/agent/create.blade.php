@@ -27,7 +27,7 @@
                         <span class="slight slight-align">
                                 <br/>
                                <i  class="fa fa-home  text-warning"> </i>
-                                Add New Customer
+                                Add New Agent
                                 <br/>
                              <a  class="btn btn-default" href="/system/agnet/create">Add</a>
                            </span>
@@ -44,7 +44,7 @@
                         <span class="slight slight-align">
                                 <br/>
                                <i  class="fa fa-home  text-warning"> </i>
-                                View All Customers
+                                View All Agents
                                 <br/>
                              <a  class="btn btn-default" href="/system/agent/view">View</a>
                            </span>
@@ -109,65 +109,19 @@
     </div>
     <br/>
     <div class="row">
+        <div class="col-md-3"></div>
         <div class="col-sm-6 col-md-6">
             <h2>Add Customer</h2>
             @include('notifications._message')
-            {!! Form::open(['action' => 'Customer\CustomerController@store']) !!}
-            @include('admin.customer.partials._formPartial',['btn' => 'Add Customer','advance_payment'=>'1'])
+            {!! Form::open(['action' => 'Agent\AgentController@store','id'=>'agentForm']) !!}
+            @include('admin.agent.partials._formPartial',['btn' => 'Add Agent','advance_payment'=>'1'])
             {!! Form::close() !!}
         </div>
-
+        <div class="col-md-3"></div>
 
     </div>
 @endsection
-@section('modals')
-    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-hidden="true"
-         style="display: none;">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h4 class="modal-title">Package Details</h4>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-bordered table-responsive">
-                        <thead>
-                        <tr>
-                            <th>#No</th>
-                            <th>Code</th>
-                            <th>Package</th>
-                            <th>Country</th>
-                            <th>Days</th>
-                            <th>Amount</th>
-                            <th>Option <span class="fa fa-cog"></span></th>
-                        </tr>
-                        </thead>
-                        <?php $count=1; ?>
-                        <tbody>
-                        @foreach($packagesAll as $package)
-                            <tr>
-                                <td><?php echo $count; $count++ ?></td>
-                                <td>{!! $package->code !!}</td>
-                                <th>{!! $package->name !!}</th>
-                                <th>{!! $package->country !!}</th>
-                                <th>{!! $package->days !!}</th>
-                                <th>{!! $package->price !!}</th>
-                                <th> <a href="" type="button" class="btn btn-default">
-                                        View
-                                    </a></th>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                        Close
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
+
 @section('styles')
     <style rel="stylesheet">
         .slight-align{
@@ -177,4 +131,60 @@
             border:solid 1px white;
         }
     </style>
+@endsection
+@section('js')
+    <script>
+        $('#agentForm').formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                name: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Name should not be empty'
+                        },
+                        regexp: {
+                            regexp: /^[a-z\s]+$/i,
+                            message: 'The name can consist of alphabetical characters and spaces only'
+                        }
+                    }
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Email should be empty'
+                        },
+                        emailAddress: {
+                            message: 'Should be a valid email address'
+                        }
+                    }
+                },
+
+                registeredNo: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Registration Number should be empty '
+                        }
+                    }
+                },
+                number: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Phone Number should not be empty'
+                        },
+                        regexp: {
+                            regexp: /^[0-9\s]+$/i,
+                            message: 'The number can consist of numbers only'
+                        }
+                    }
+                }
+
+
+            }
+        });
+    </script>
 @endsection

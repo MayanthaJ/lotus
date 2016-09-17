@@ -204,7 +204,7 @@ class AccountController extends Controller
             $sendArray2[] = [$i, (int)$income[$i]->income];
         }
 
-        return view('testView', compact('sendArray', 'sendArray2'));
+        return view('admin.accounts.graphs', compact('sendArray', 'sendArray2'));
     }
 
     /**

@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\EmployeeTravel whereDate($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\EmployeeTravel whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Employee\EmployeeTravel whereUpdatedAt($value)
+ * @property-read \App\User $employee
  */
 class EmployeeTravel extends Model
 {

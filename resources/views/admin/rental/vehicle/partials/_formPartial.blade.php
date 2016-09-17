@@ -7,9 +7,6 @@
 {!! Form::label('m_year', 'Manufactured Year :') !!}
 {!! Form::text('m_year', null, ['class' => 'form-control']) !!}
 
-<br />
-{!! Form::label('color', 'Color :') !!}
-{!! Form::text('color', null, ['class' => 'form-control']) !!}
 
 <br />
 <br />
@@ -32,10 +29,13 @@
 
 
 <br />
-
 {!! Form::label('Body Type') !!}
 {!! Form::select('b_type', ['None' => 'None','Saloon' => 'Saloon', 'Hatch-Back' => 'Hatch-Back' ,'Wagon' => 'Wagon'], null, ['class' => 'form-control']) !!}
 
+<br />
+{!! Form::label('Color') !!}
+{!! Form::select('color',['White'=>'White', 'Red'=>'Red', 'Black'=>'Black', 'Blue'=>'Blue', 'Orange'=>'Orange', 'Yellow'=>'Yellow', 'Brown'=>'Brown', 'Purple'=>'Purple', null], ['class' => 'form-control']) !!}
+<br />
 <br />
 {!! Form::submit($btn, ['class' => 'btn btn-default btn-block']) !!}
 

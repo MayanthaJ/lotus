@@ -26,7 +26,7 @@
                 <div class="panel panel-filled">
                     <div class="panel-body">
                         <h3 class="m-b-none">
-                            Customer
+                            Customer</h3>
                             <span class="slight slight-align ">
                                <br/>
                                <i  class="fa fa-home  text-warning"> </i>
@@ -34,7 +34,6 @@
                                <br/>
                               <a class="btn btn-default" href="/system/customer">Customer</a>
                            </span>
-                        </h3>
                     </div>
                 </div>
             </div>
@@ -43,7 +42,7 @@
                 <div class="panel panel-filled">
                     <div class="panel-body">
                         <h3 class="m-b-none">
-                            View
+                            View</h3>
                             <span class="slight slight-align">
                                 <br/>
                                <i  class="fa fa-home  text-warning"> </i>
@@ -51,24 +50,45 @@
                                 <br/>
                              <a  class="btn btn-default" href="/system/customer/view">View</a>
                            </span>
-                        </h3>
+
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-2 col-xs-6">
+            <div class="col-lg-8 col-xs-6">
                 <div class="panel panel-filled">
                     <div class="panel-body">
                         <h3 class="m-b-none">
-                            Edit
-                            <span class="slight slight-align">
+                           New Customer
+                        </h3>
+                        <div class="col-md-4">
+                                <span class="slight slight-align">
                                 <br/>
                                <i  class="fa fa-home  text-warning"> </i>
-                                Edit Customer Details
+                                Add Tour Customer
                                 <br/>
-                             <a  class="btn btn-default" href="/system/customer/view">Edit</a>
+                             <a  class="btn btn-default" href="/system/customer/create">Add</a>
                            </span>
-                        </h3>
+                        </div>
+                        <div class="col-md-4">
+                                <span class="slight slight-align">
+                                <br/>
+                               <i  class="fa fa-home  text-warning"> </i>
+                                Add Ticketing Customer
+                                <br/>
+                             <a  class="btn btn-default" href="/system/customer/ticketing/create">Add</a>
+                           </span>
+                        </div>
+                        <div class="col-md-4">
+                                <span class="slight slight-align">
+                                <br/>
+                               <i  class="fa fa-home  text-warning"> </i>
+                                Add Rental Customer
+                                <br/>
+                             <a  class="btn btn-default" href="/system/customer/view">Add</a>
+                           </span>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -90,10 +110,14 @@
                 <div class="tab-content">
                     <div id="tab-1" class="tab-pane active">
                         <div class="panel-body">
-                            <strong class="c-white">Add Customer to Tour</strong>
+                            <p>Add Customer to Tour</p>
                             <a  class="btn btn-default" href="/system/customer/create">Add</a>
+                            <hr/>
+                            <p>Tour Customer Table</p>
                         </div>
                     </div>
+
+
                     <div id="tab-2" class="tab-pane">
                         <div class="panel-body">
                             <strong class="c-white">Donec quam felis</strong>

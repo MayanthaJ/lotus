@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateResevationsTable extends Migration
 {
@@ -16,15 +16,14 @@ class CreateResevationsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('vehicle_id');
             $table->unsignedInteger('driver_id');
+            $table->unsignedInteger('customer_id');
             $table->string('destination');
             $table->double('payment');
             $table->date('start_date');
             $table->date('end_date'); 
             $table->timestamps();
-
-            $table->foreign('vehicle_id')->references('id')->on('vehicle');
-            $table->foreign('driver_id')->references('id')->on('users');
-            
+            $table->foreign('vehicle_id')->references('id')->on('vehicle')->onDelete('cascade');
+            $table->foreign('driver_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

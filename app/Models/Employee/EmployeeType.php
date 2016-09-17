@@ -29,6 +29,7 @@ class EmployeeType extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+
     public function employees()
     {
         return $this->belongsToMany(User::class, 'employee_type_user', 'employee_type_id', 'user_id');

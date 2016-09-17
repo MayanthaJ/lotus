@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCabin extends Migration
+class CreateCountry extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class CreateCabin extends Migration
      */
     public function up()
     {
-        Schema::Create('cabin',function(Blueprint $table){
+        Schema::Create('country',function(Blueprint $table){
             $table->increments('id');
-            $table->string('type');
+            $table->string('country');
         });
     }
 
@@ -25,6 +25,6 @@ class CreateCabin extends Migration
      */
     public function down()
     {
-        Schema::drop('cabin');
+        Schema::drop('country');
     }
 }

@@ -1,52 +1,68 @@
-@extends('layouts.app')
+@extends('layouts.MainLayOutNav')
 @section('content')
-  <div class="container">
-      <div class="jumbotron">
-          <h1 align="center">Rental System</h1>
+
+    <div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="view-header">
+                <div class="pull-right text-right" style="line-height: 14px">
+                    <small><br><br> <span class="c-white"></span></small>
+                </div>
+                <div class="header-icon">
+                    <i class="pe page-header-icon pe-7s-shield"></i>
+                </div>
+                <div class="header-title">
+                    <h3 class="m-b-xs">Rental System</h3>
+                </div>
+            </div>
+            <hr>
+        </div>
       </div>
 
-      {{--/panel for reservation--}}
-      <div class="panel panel-default">
-
-          <div class="panel-heading">Reservations</div>
+      <div class="row">
+        <br/>
+          {{--/panel for reservation--}}
+          <p class="col-md-12">
+              <p>Reservations</p>
           <div class="panel-body">
               <a class="btn btn-success btn-lg" href="{!! url('system/rental/reservation/create') !!}">Make a Reservation</a>
               <a class="btn btn-danger btn-lg" href="{!! url('system/rental/reservation') !!}">List of Reservations</a>
-              <a class="btn btn-primary btn-lg"  href="{!! url('system/rental/reservation') !!}">More</a>
           </div>
-      </div>
+          </p>
 
-      {{--panel for Vehicle--}}
-      <div class="panel panel-default">
-          <div class="panel-heading">Vehicles</div>
+
+          {{--panel for Vehicle--}}
+          <p class="col-md-12">
+              <p>Vehicles</p>
           <div class="panel-body">
-              <a class="btn btn-success btn-lg" href="{!! url('system/rental/vehicle/create') !!}">Add a Vehicle</a>
+              <a class="btn btn-success btn-lg" href="{!! url('system/rental/vehicle/create') !!}">Add Vehicle</a>
               <a class="btn btn-danger btn-lg" href="{!! url('system/rental/vehicle') !!}">View Vehicle</a>
-              <a class="btn btn-primary btn-lg" href="{!! url('system/rental/vehicle') !!}" >More</a>
           </div>
-      </div>
+
+          </p>
 
 
-      {{--panel for Driver--}}
-      <div class="panel panel-default">
-          <div class="panel-heading">Drivers</div>
-          <div class="panel-body">
-              <a class="btn btn-success btn-lg" href="{!! url('system/rental/driver/create') !!}" >Add a Driver</a>
-              <a class="btn btn-danger btn-lg" href="{!! url('system/rental/driver') !!}">View Driver</a>
-              <a class="btn btn-primary btn-lg">More</a>
-          </div>
-      </div>
+          {{--panel for Driver--}}
+          <p class="col-md-12">
+              <p>Drivers</p>
+              <div class="panel-body">
+                  <a class="btn btn-success btn-lg" href="{!! url('system/rental/driver/create') !!}" >Add a Driver</a>
+                  <a class="btn btn-danger btn-lg" href="{!! url('system/rental/driver') !!}">View Driver</a>
+              </div>
+          </p>
 
-      {{--panel for Accounts--}}
-      <div class="panel panel-default">
-          <div class="panel-heading">Accounts Management</div>
-          <div class="panel-body">
-              <a class="btn btn-success btn-lg" href="{!! url('system/rental/income')!!}">Income</a>
-              <a class="btn btn-danger btn-lg"  href="{!! url('system/rental/expense')!!}">Expenses</a>
-              <a class="btn btn-primary btn-lg"  href="{!! url('system/rental/profit')!!}">Profit</a>
-          </div>
+
+          {{--panel for Accounts--}}
+          <p class="col-md-12">
+              <p>Accounts Management</p>
+              <div class="panel-body">
+                  <a class="btn btn-success btn-lg" href="{!! url('system/rental/income')!!}">Income</a>
+                  <a class="btn btn-danger btn-lg"  href="{!! url('system/rental/expense')!!}">Expenses</a>
+                  <a class="btn btn-primary btn-lg"  href="{!! url('system/rental/profit')!!}">Profit</a>
+              </div>
+          </p>
+
       </div>
   </div>
-  </div>
-
 @endsection

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Agent;
 
+use App\Models\Agent\Agent;
 use Illuminate\Http\Request;
+use Flash;
+use Redirect;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -16,7 +19,8 @@ class AgentController extends Controller
      */
     public function index()
     {
-        return view('admin.agent.index');
+        $agent = Agent::all()->where('terminated', '=', '0');
+        return view('admin.agent.index',compact('agent'));
     }
 
     /**
@@ -26,7 +30,7 @@ class AgentController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.agent.create');
     }
 
     /**
@@ -37,7 +41,22 @@ class AgentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'registeredNo'=>'required|numeric',
+            'name' => 'required|min:3|max:15',
+            'number' => 'required|numeric',
+            'email'=>'required'
+        ]);
+
+        $agent=Agent::create([
+            'registered'=>$request->registeredNo,
+            'name' => $request->name,
+            'number'=>$request->number,
+            'email'=>$request->email
+        ]);
+
+        Flash::success("Succesfully Added !");
+        return \Redirect::to('/system/agent/create');
     }
 
     /**

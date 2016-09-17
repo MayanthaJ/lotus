@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Accounts\QuickBook whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Accounts\QuickBook whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property boolean $type
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Accounts\QuickBook whereType($value)
  */
 class QuickBook extends Model
 {

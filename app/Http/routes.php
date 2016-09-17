@@ -24,7 +24,9 @@ Route::get('/home', 'HomeController@index');
  */
 Route::get('/test/{test}', 'Employee\CalculateSalary@calculateSalaray');
 Route::get('/test/', function () {
-    (new \App\Http\Controllers\Accounts\AccountController())->testCalcs();
+    $pdf = PDF::loadView('admin.employee.pdf.test');
+    return $pdf->stream('Employee.pdf');
+    //(new \App\Http\Controllers\Accounts\AccountController())->testCalcs();
 });
 
 // Main App Controller
@@ -69,8 +71,18 @@ Route::get('system/accounts/stats/{expense}/expense', 'Accounts\AccountControlle
 Route::get('system/accounts/stats/{income}/income', 'Accounts\AccountController@getMoreIncome');
 Route::get('system/accounts/graphs/', 'Accounts\AccountController@getGraphsView');
 
-Route::resource('system/accounts/bill', 'Accounts\BillController');
 Route::resource('system/accounts/bill/type', 'Accounts\BillTypeController');
+Route::resource('system/accounts/bill', 'Accounts\BillController');
+
+/*
+ * Nimansa's AJAX Routes
+ * */
+Route::get('/api/secured/accounts/bills/type/{id}', function ($id) {
+    return \App\Models\Accounts\BillsType::findOrFail($id)->bills->toJson();
+});
+Route::get('/api/secured/accounts/bills/month/{from}/{to}', function ($from, $to) {
+    return \App\Models\Accounts\Bills::whereBetween('date', [$from, $to])->get();
+});
 
 /********************************************
  * Employee additional links (advance, loans)
@@ -105,6 +117,33 @@ Route::group(['middleware' => 'adminOrManager'], function () {
     Route::get('/api/secured/employee/name/{employee}', function ($employee) {
        return \App\User::where('name', 'like', '%'.$employee.'%')->get()->toJson();
     });
+
+
+    //SK 's Search
+
+    Route::get('/api/secured/rental/driver/name/{driver}', function ($driver) {
+        return \App\User::where('name','like','%'.$driver.'%')->get()->toJson();
+    });
+
+    Route::get('/api/secured/rental/vehicle/name/{vehicle}', function ($vehicle) {
+        return \App\Models\Rental\Vehicle::where('vehicle_name','like','%'.$vehicle.'%')->get()->toJson();
+    });
+/*
+    Route::get('/api/secured/rental/reservation/name/{reservation}', function ($reservation) {
+        return \App\Models\Rental\Reservation::where('','like','%'.$reservation.'%')->get()->toJson();
+    });
+
+*/
+
+
+
+
+
+
+
+
+
+
 });
 
 
@@ -116,11 +155,20 @@ Route::get('/system/customer/undo/{id}/terminate', 'Customer\CustomerController@
 Route::get('/system/customer/view/', 'Customer\CustomerController@view');
 Route::resource('/system/customer', 'Customer\CustomerController');
 Route::resource('system/ticket', 'Ticket\TicketController');
+Route::resource('system/ticketing','Ticket\TicketingController');
 Route::resource('system/agent','Agent\AgentController');
 
 //Achala's ajaxs
 Route::get('/api/secured/customer/tours/{package_id}', function ($package_id) {
     return \App\Models\Tour\Tour::where('package_id', $package_id)->get();
+});
+//get agent search
+Route::get('/api/secured/agent/name/{name}',function ($name){
+    return \App\Models\Agent\Agent::where('name', 'like',$name.'%')->get()->toJson();
+});
+//agent Refill
+Route::get('/api/secured/agent/refill',function (){
+    return \App\Models\Agent\Agent::all()->toJson();
 });
 
 //Nuwan's Routes
@@ -130,6 +178,7 @@ Route::get('system/rental/profit', 'Rental\RentalController@getRentalProfit');
 Route::resource('system/rental/vehicle', 'Rental\RentalController');
 Route::resource('system/rental/driver', 'Rental\DriverController');
 Route::resource('system/rental/reservation', 'Rental\ReservationController');
+Route::get('system/rental/', 'HomeController@getRentalDashBoard');
 
 
 // Danajalee's routes
