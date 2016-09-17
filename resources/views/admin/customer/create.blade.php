@@ -93,7 +93,11 @@
         </div>
     <br/>
         <div class="row">
-            <div class="col-sm-6 col-md-6">
+            <div class="col-md-6"></div>
+
+
+
+            <div class="col-md-6">
                 <h2>Add Customer</h2>
                 @include('notifications._message')
                 {!! Form::open(['action' => 'Customer\CustomerController@store']) !!}

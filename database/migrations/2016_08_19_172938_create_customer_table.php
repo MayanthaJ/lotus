@@ -15,12 +15,12 @@ class CreateCustomerTable extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('fname');
-            $table->string('sname');
-            $table->string('lname');
+            $table->string('sname')->nullable();
+            $table->string('lname')->nullable();
             $table->string('otherName')->nullable();
             $table->integer('age')->nullable();
             $table->date('dob')->nullable();
-            $table->boolean('gender');
+            $table->boolean('gender')->nullable();
             $table->string('number');
             $table->string('address');
             $table->string('nic')->unique();
@@ -28,6 +28,9 @@ class CreateCustomerTable extends Migration
             $table->unsignedInteger('loyalty_id')->nullable();
             $table->boolean('terminated')->default(0);
             $table->integer('type')->default(0);
+            $table->boolean('tour')->default(0);
+            $table->boolean('ticketing')->default(0);
+            $table->boolean('rental')->default(0);
             $table->timestamps();
             $table->foreign('loyalty_id')->references('id')->on('loyalty')->onDelete('set null');
 
