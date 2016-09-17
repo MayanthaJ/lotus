@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateTicket extends Migration
 {
@@ -16,7 +16,7 @@ class CreateTicket extends Migration
             $table->increments('id');
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('country_id');
-            $table->date('Requested_date');
+            $table->date('requested_date');
             $table->integer('qty');
             $table->string('note')->nullable();
             $table->boolean('received')->default(0);
