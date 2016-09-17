@@ -27,7 +27,6 @@ class CreateCustomerTable extends Migration
             $table->string('passport')->unique()->nullable();
             $table->unsignedInteger('loyalty_id')->nullable();
             $table->boolean('terminated')->default(0);
-            $table->integer('type')->default(0);
             $table->boolean('tour')->default(0);
             $table->boolean('ticketing')->default(0);
             $table->boolean('rental')->default(0);

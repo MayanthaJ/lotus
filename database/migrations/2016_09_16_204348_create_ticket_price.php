@@ -22,7 +22,6 @@ class CreateTicketPrice extends Migration
             $table->double('profit');
             $table->foreign('ticket_id')->references('id')->on('ticket')->onDelete('cascade');
             $table->foreign('agent_price_id')->references('id')->on('agent_price')->onDelete('cascade');
-
         });
     }
 

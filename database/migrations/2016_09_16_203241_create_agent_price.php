@@ -17,14 +17,13 @@ class CreateAgentPrice extends Migration
             $table->increments('id');
             $table->unsignedInteger('agent_id');
             $table->unsignedInteger('country_id');
-            $table->unsignedInteger('cabin_id');
+            $table->string('type');
             $table->double('price');
             $table->double('totalAmount');
             $table->string('description')->nullable();
             $table->boolean('terminated')->default(0);
             $table->foreign('agent_id')->references('id')->on('agent')->onDelete('cascade');
             $table->foreign('country_id')->references('id')->on('country')->onDelete('cascade');
-            $table->foreign('cabin_id')->references('id')->on('cabin')->onDelete('cascade');
         });
     }
 
