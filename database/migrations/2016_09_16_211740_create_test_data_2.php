@@ -87,6 +87,10 @@ class CreateTestData2 extends Migration
                 'hotel_id' => '1',
                 'guide_id' => '1',
                 'name' => 'test',
+                'code' => '#ffsds',
+                'arrival_time' => '11:11:11',
+                'departure_time' => '11:11:11',
+                'arrival' => '2016-09-04',
                 'departure' => '2016-09-04',
                 'description' => 'Auto Generated tested value'
             ],
@@ -95,6 +99,9 @@ class CreateTestData2 extends Migration
                 'hotel_id' => '1',
                 'guide_id' => '1',
                 'name' => 'test',
+                'code' => '#ffsds',
+                'arrival_time' => '11:11:11',
+                'departure_time' => '11:11:11',
                 'departure' => '2016-01-08',
                 'description' => 'Auto Generated tested value'
             ],
@@ -103,6 +110,9 @@ class CreateTestData2 extends Migration
                 'hotel_id' => '1',
                 'guide_id' => '1',
                 'name' => 'test',
+                'code' => '#ffsds',
+                'arrival_time' => '11:11:11',
+                'departure_time' => '11:11:11',
                 'departure' => '2016-05-08',
                 'description' => 'Auto Generated tested value'
             ],
@@ -111,6 +121,9 @@ class CreateTestData2 extends Migration
                 'hotel_id' => '1',
                 'guide_id' => '1',
                 'name' => 'test',
+                'code' => '#ffsds',
+                'arrival_time' => '11:11:11',
+                'departure_time' => '11:11:11',
                 'departure' => '2016-12-08',
                 'description' => 'Auto Generated tested value'
             ],
@@ -119,6 +132,9 @@ class CreateTestData2 extends Migration
                 'hotel_id' => '1',
                 'guide_id' => '1',
                 'name' => 'test',
+                'code' => '#ffsds',
+                'arrival_time' => '11:11:11',
+                'departure_time' => '11:11:11',
                 'departure' => '2016-11-08',
                 'description' => 'Auto Generated tested value'
             ],
@@ -127,6 +143,9 @@ class CreateTestData2 extends Migration
                 'hotel_id' => '1',
                 'guide_id' => '1',
                 'name' => 'test',
+                'code' => '#ffsds',
+                'arrival_time' => '11:11:11',
+                'departure_time' => '11:11:11',
                 'departure' => '2016-02-08',
                 'time' => '17:00:00',
                 'description' => 'Auto Generated tested value'
