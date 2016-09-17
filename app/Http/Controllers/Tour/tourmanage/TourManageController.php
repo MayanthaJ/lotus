@@ -33,9 +33,10 @@ class TourManageController extends Controller
     public function create()
     {
         $packages = Package::pluck('name', 'id');
-        $hotels = Hotel::pluck('name','id');
-        $guides = EmployeeType::with('employees')->where('name', 'guide')->first()->employees->pluck('name', 'id');
 
+        $hotels = Hotel::pluck('name','id');
+
+        $guides = EmployeeType::with('employees')->where('name', 'guide')->first()->employees->pluck('name', 'id');
 
         return view('admin.tour.tour.create', compact('packages', 'hotels', 'guides'));
     }
