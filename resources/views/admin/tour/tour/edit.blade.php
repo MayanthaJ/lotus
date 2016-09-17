@@ -11,7 +11,7 @@
                          <small>Tour ID: {!! $tour->id!!}</small>
 
                          {!! Form::model($tour, ['method' => 'PATCH', 'action' => ['Tour\tourmanage\TourManageController@update', $tour->id]]) !!}
-                         @include('admin.tour.Tour.partials._formPartial', ['btn' => 'Edit Tour', 'password' => true, 'terminate' => false])
+                @include('admin.tour.tour.partials._formPartial', ['btn' => 'Edit Tour', 'password' => true, 'terminate' => false])
                          {!! Form::close() !!}
 
             </div>

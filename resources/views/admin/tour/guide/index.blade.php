@@ -1,51 +1,42 @@
-@extends('layouts.app')
+@extends('layouts.MainLayOutNav')
 
 @section('content')
-    <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-9">
-                <h3>Guide Page</h3>
                 @include('notifications._message')
+                <h3>All Guides
+                    <br/>
+                    <small><a href="{!! url('/system/tour/guide/create') !!}">Add Guide</a></small>
+                </h3>
 
-                <small><a href="{!! url('/system/tour/guide/create') !!}">Add Guide</a></small>
                 <br />
                 <br />
-                @if($guides->isEmpty())
-                    <p><a href="{!! url('system/tour/guide/create') !!}">Add hotel</a></p>
-                @else
-                    <table class="table table-hover">
+
+                <table class="table table-responsive">
+                    <tr>
+                        <th>Guide ID</th>
+                        <th>Guide Name</th>
+                        <th>Guide LName</th>
+                        <th>Guide NIC</th>
+                        <th>Guide Gender</th>
+                        <th>Edit</th>
+                    </tr>
+
+                    @foreach($guides as $guide)
                         <tr>
-                            <th>Name</th>
-
+                            <td>{!! $guide->id !!}</td>
+                            <td>{!! $guide->name !!}</td>
+                            <td>{!! $guide->lastname !!}</td>
+                            <td>{!! $guide->nic !!}</td>
+                            <td>{!! ($guide->gender) == 1 ? "Male" : "Female"  !!}</td>
+                            <td><a href="{!! url('/system/tour/guide/'.$guide->id.'/edit')  !!}">Edit</a></td>
                         </tr>
-                        @foreach($guides as $guide)
-                            <tr>
-                                <td>
-                                    {!! $guide->name !!}
-                                </td>
+                    @endforeach
 
-                                <td>
-
-
-                                </td>
-
-                                <td>
-                                    <a class="btn btn-default"
-                                       href="{!! url('/system/tour/guide/'.$guide->id.'/edit') !!}">Edit </a>
-                                </td>
-                                <td>
-                                    <a class="btn btn-default"
-                                       href="{!! url('/system/tour/guide/'.$guide->id.'/show') !!}">View </a>
-                                </td>
-
-                            </tr>
-                        @endforeach
-                    </table>
-                @endif
+                </table>
 
             </div>
 
-            <div class="col-sm-12 col-md-3"></div>
         </div>
-    </div>
+
 @stop

@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers\Tour\tourmanage;
 
+use App\Http\Controllers\Controller;
 use App\Models\Employee\EmployeeType;
 use App\Models\Package\Package;
 use App\Models\Tour\Hotel;
 use App\Models\Tour\Tour;
 use Flash;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Redirect;
 
 class TourManageController extends Controller
@@ -25,7 +22,7 @@ class TourManageController extends Controller
     {
 
         $tours = Tour::all();
-        return view('admin.tour.Tour.index', compact('tours'));
+        return view('admin.tour.tour.index', compact('tours'));
     }
 
     /**
@@ -40,7 +37,7 @@ class TourManageController extends Controller
         $guides = EmployeeType::with('employees')->where('name', 'guide')->first()->employees->pluck('name', 'id');
 
 
-        return view('admin.tour.Tour.create', compact('packages','hotels', 'guides'));
+        return view('admin.tour.tour.create', compact('packages', 'hotels', 'guides'));
     }
 
     /**
@@ -89,7 +86,7 @@ class TourManageController extends Controller
     {
         $tour = Tour::find($id);
 
-        return view('admin.tour.Tour.view', compact('tour'));
+        return view('admin.tour.tour.view', compact('tour'));
     }
 
     /**
@@ -108,8 +105,7 @@ class TourManageController extends Controller
 
         $guides = EmployeeType::with('employees')->where('name', 'guide')->first()->employees->pluck('name', 'id');
 
-
-        return view('admin.tour.Tour.edit', compact('tour', 'packages', 'hotels', 'guides'));
+        return view('admin.tour.tour.edit', compact('tour', 'packages', 'hotels', 'guides'));
     }
 
     /**

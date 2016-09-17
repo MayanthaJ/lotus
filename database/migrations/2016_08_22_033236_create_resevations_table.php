@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateResevationsTable extends Migration
 {
@@ -24,7 +24,6 @@ class CreateResevationsTable extends Migration
             $table->timestamps();
             $table->foreign('vehicle_id')->references('id')->on('vehicle')->onDelete('cascade');
             $table->foreign('driver_id')->references('id')->on('users')->onDelete('cascade');
-            
         });
     }
 

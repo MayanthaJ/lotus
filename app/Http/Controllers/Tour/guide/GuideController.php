@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\Tour\guide;
 
-use App\Models\Employee\EmployeeType;
-use App\Models\Tour\Guide;
-use App\User;
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Employee\EmployeeType;
+use App\User;
+use Carbon\Carbon;
 use Flash;
+use Illuminate\Http\Request;
 use Redirect;
 
 class GuideController extends Controller
@@ -22,6 +20,7 @@ class GuideController extends Controller
     public function index()
     {
         $guides = EmployeeType::with('employees')->where('name', 'guide')->first()->employees;
+
         return view('admin.tour.guide.index', compact('guides'));
     }
 
@@ -47,22 +46,30 @@ class GuideController extends Controller
         $this->validate($request, [
             'name' => 'required|min:3|max:50',
             'lastname' => 'required|min:3|max:50',
-            'email' =>'required|min:3|max:50|email',
-            'password' => 'required|min:5',
+            'email' => 'required|min:3|max:50|email',
             'nic' => 'required|regex:/^[0-9]{9}[vVxX]$/',
             'basic' => 'required|numeric',
-            'gender'=> 'required',
+            'gender' => 'required',
         ]);
-        User::create([
+
+        $birthDay = Carbon::parse($request->dob);
+
+        $carbon = new Carbon();
+
+        $age = $carbon->diffInYears($birthDay);
+
+        $guide = User::create([
             'name' => $request->name,
             'lastname' => $request->lastname,
             'email' => $request->email,
-            'phone' => $request->phone,
-            'password' => bcrypt($request->password),
             'nic' => $request->nic,
             'basic' => $request->basic,
-            'gender'=> $request->gender,
+            'gender' => $request->gender,
+            'password' => bcrypt('employee'),
+            'age' => $age
         ]);
+
+        $guide->employee_type()->sync([6]);
 
         Flash::success("Guide added successfully");
 
@@ -77,9 +84,9 @@ class GuideController extends Controller
      */
     public function show($id)
     {
-        $guide =User::find($id);
+        $guide = User::findOrFail($id);
 
-        return view('admin.tour.guide.view',compact('guide'));
+        return view('admin.tour.guide.view', compact('guide'));
     }
 
     /**
@@ -92,7 +99,7 @@ class GuideController extends Controller
     {
         $guide = User::findOrFail($id);
 
-        return view('admin.tour.guide.edit',compact('guide'));
+        return view('admin.tour.guide.edit', compact('guide'));
     }
 
     /**
@@ -106,20 +113,18 @@ class GuideController extends Controller
     {
         $guide = User::findOrFail($id);
 
-        $guide->name = $request->name;
-        $guide->lastname = $request->lastname;
+        //$guide->name = $request->name;
+        //$guide->lastname = $request->lastname;
         $guide->email = $request->email;
-        $guide->password = $request->password;
-        $guide->nic = $request->nic;
+        //$guide->password = $request->password;
+        //$guide->nic = $request->nic;
         $guide->basic = $request->basic;
-        $guide->hired_date = $request->hired_date;
-        $guide->gender=$request->gender;
+        //$guide->hired_date = $request->hired_date;
+        //$guide->gender = $request->gender;
 
         if ($guide->save()) {
             Flash::success("Changes updated !");
-
         }
-
 
         return Redirect::to('/system/tour/guide');
     }
