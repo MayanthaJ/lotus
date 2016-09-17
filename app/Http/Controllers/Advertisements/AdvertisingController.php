@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Redirect;
+use Storage;
 
 
 
@@ -49,6 +50,19 @@ class AdvertisingController extends Controller
     public function store(AdCreateRequest $request)
     {
         Advertisements::create($request->all());
+
+        if($request->hasFile('file')){
+
+            $file = $request->file('file');
+            $fileName = $file->getClientOriginalName();
+            $destinationPath = config('app.fileDestinationPath').'/'.$fileName;
+            $uploaded = Storage::put($destinationPath, file_get_contents($file->getRealPath()));
+
+            if($uploaded){
+
+            }
+
+        }
 
         return Redirect::back();
 
@@ -102,6 +116,19 @@ class AdvertisingController extends Controller
         $ad->expense = $request->expense;
 
         $ad->type_id = $request->type_id;
+
+        if($request->hasFile('file')){
+
+            $file = $request->file('file');
+            $fileName = $file->getClientOriginalName();
+            $destinationPath = config('app.fileDestinationPath').'/'.$fileName;
+            $uploaded = Storage::put($destinationPath, file_get_contents($file->getRealPath()));
+
+            if($uploaded){
+
+            }
+
+        }
 
         $ad->save();
 
