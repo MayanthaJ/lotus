@@ -51,29 +51,35 @@ class TourManageController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|min:3|max:50',
-            'date' => 'required',
-            'time' => 'required',
+            'arrival' => 'required',
+            'departure' => 'required',
+            'arrival_time' => 'required',
+            'departure_time' => 'required',
             'description' => 'required|min:10|max:1000',
             'package' => 'required',
-            'Hotel' =>'required',
+            'hotel' =>'required',
             'guide' => 'required'
 
         ]);
 
 
-        Tour::create([
+        $tour = Tour::create([
             'name' => $request->name,
-            'departure' => $request->date,
-            'time' => $request->time,
+            'arrival' => $request->arrival,
+            'arrival_time' => $request->arrival_time,
+            'departure' => $request->departure,
+            'departure_time' => $request->departure_time,
             'description' => $request->description,
             'package_id' => $request->package,
-            'hotel_id' => $request->Hotel,
-            'guide_id' => $request->guide
         ]);
+
+        $tour->guides()->sync($request->guide);
+
+        $tour->hotels()->sync($request->hotel);
 
         Flash::success("Tour added successfully");
 
-        return Redirect::to('/system/tour/tourmanage');
+        return Redirect::to('/system/tour/tourmanage/');
 
     }
 
@@ -130,9 +136,7 @@ class TourManageController extends Controller
 
         if ($tours->save()) {
             Flash::success("Changes updated !");
-
         }
-
 
         return Redirect::to('/system/tour/tourmanage');
 

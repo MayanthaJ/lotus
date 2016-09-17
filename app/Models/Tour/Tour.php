@@ -2,6 +2,7 @@
 
 namespace App\Models\Tour;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -30,11 +31,41 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Tour\Tour whereHotelId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Tour\Tour whereGuideId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Tour\Tour whereCoustomerCount($value)
+ * @property string $code
+ * @property string $arrival
+ * @property string $departure_time
+ * @property string $arrival_time
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $guides
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tour\Hotel[] $hotels
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Tour\Tour whereCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Tour\Tour whereArrival($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Tour\Tour whereDepartureTime($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Tour\Tour whereArrivalTime($value)
  */
 class Tour extends Model
 {
     public $table = 'tours';
 
     public $guarded = ['id'];
+
+    /**
+     * Get all customers related to a tour
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function guides()
+    {
+        return $this->belongsToMany(User::class, 'tour_guides', 'tour_id', 'guide_id');
+    }
+
+    /**
+     * Get all hotel belongs to a tour
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function hotels()
+    {
+        return $this->belongsToMany(Hotel::class, 'tour_hotels', 'tour_id', 'hotel_id');
+    }
 
 }

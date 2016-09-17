@@ -52,6 +52,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerAddress[] $address
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerNumber[] $numbers
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereAddress($value)
+ * @property boolean $tour
+ * @property boolean $ticketing
+ * @property boolean $rental
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereTour($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereTicketing($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereRental($value)
  */
 class Customer extends Model
 {
