@@ -2646,3 +2646,12 @@ fieldset[disabled] .form-control {
     color: #ffffff !important;
     padding: 6px 12px !important;
 }
+
+
+/*
+achala
+*/
+
+.activer-border{
+    border:solid 1px white;
+}
