@@ -145,16 +145,6 @@ class CreateTestData2 extends Migration
 
         ]);
 
-
-        //insert values into country
-        DB::table('country')->insert([
-            ['country' => 'Sri Lanka'],
-            ['country' => 'India'],
-            ['country' => 'USA'],
-            ['country' => 'UK'],
-            ['country' => 'China'],
-        ]);
-
     }
 
     /**

@@ -15,15 +15,22 @@ class CreateTicket extends Migration
         Schema::create('ticket',function(Blueprint $table){
             $table->increments('id');
             $table->unsignedInteger('customer_id');
-            $table->unsignedInteger('country_id');
-            $table->date('requested_date');
+            $table->unsignedInteger('agent_id');
+            $table->string('from');
+            $table->string('to');
+            $table->date('departure');
+            $table->string('class');
             $table->integer('qty');
             $table->string('note')->nullable();
+            $table->double('amount');
             $table->boolean('received')->default(0);
+            $table->double('payment')->nullable();
+            $table->boolean('payed')->default(0);
             $table->boolean('terminated')->default(0);
+            $table->date('create');
             $table->timestamps();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
-            $table->foreign('country_id')->references('id')->on('country')->onDelete('cascade');
+            $table->foreign('agent_id')->references('id')->on('agent')->onDelete('cascade');
         });
     }
 
