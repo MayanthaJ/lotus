@@ -27,6 +27,7 @@ class AdCreateRequest extends Request
 
             'name' => 'required',
 
+            'expense' => 'required|min:0|integer'
 
             //
         ];

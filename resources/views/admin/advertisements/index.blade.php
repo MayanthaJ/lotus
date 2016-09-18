@@ -16,17 +16,19 @@
                 <ul>
                     @foreach ($advertisements as $ad)
                         <li>
-                            <h3>{!! $ad->name !!}
-                                <br />
+                            <h3>{!! $ad->name !!} </h3>
+                            <h4>
                                 {!! "Ad ID: " !!}
                                 <small> {!! $ad->id !!}</small>
                                 <br />
                                 {!! "Ad Type: " !!}
-                                <small> {!! $ad->type_id !!}</small>
+                                <small> {!! $ad->advertisement->name !!}</small>
                                 <br />
+                            </h4>
+                                <a href="/system/advertisements/{{ $ad->id }}" class="btn btn-xs btn-primary">Show</a>
                                 <a href="/system/advertisements/{{ $ad->id }}/edit" class="btn btn-xs btn-primary">Edit this Ad</a>
-                            </h3>
-                            </h3>
+
+
                         </li>
                     @endforeach
                 </ul>

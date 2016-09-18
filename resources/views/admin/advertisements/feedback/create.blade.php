@@ -11,7 +11,7 @@
 
         <hr/>
         <div class="col-xs-12 com-md-3">
-            @include('admin.advertisements.partials._custNav')
+
         </div>
 
         <div class="col-xs-12 com-md-6">
@@ -56,16 +56,16 @@
 
     </div>
 
-    @if($errors->any())
+    {{--@if($errors->any())--}}
 
-        <ul class="alert alert-danger">
-            @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
+        {{--<ul class="alert alert-danger">--}}
+            {{--@foreach($errors->all() as $error)--}}
+                {{--<li>{{ $error }}</li>--}}
 
-            @endforeach
+            {{--@endforeach--}}
 
-        </ul>
+        {{--</ul>--}}
 
-    @endif
+    {{--@endif--}}
 
 @stop

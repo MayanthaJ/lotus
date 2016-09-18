@@ -9,14 +9,12 @@
         <h1>Feedback</h1>
 
         <hr/>
-
-        <div class="container">
             <div class="row">
-                <div class="col-xs-12 com-md-3">
-                    @include('admin.advertisements.partials._custNav')
-                </div>
-                <div class="col-xs-12 com-md-6">
+                <div class="col-xs-12 com-md-9">
 
+                    @include('notifications._message')
+
+                    {!! Form::open(['method' => 'DELETE', 'action' => ['Advertisements\FeedbackController@destroy', $feedback->id], 'files' => true]) !!}
                     <ul>
 
                             <li>
@@ -31,14 +29,19 @@
                                     {!! "Comment : " !!}
                                     {!! $feedback->comment !!}
                                     <br />
-                                    <a href="/system/advertisements/feedback/" class="btn btn-xs btn-primary">Back</a>
+
+                                {!! Form::submit('Delete',['class' => 'btn btn-primary form-control']) !!}
+                                <br />
+                                <br />
+                                    <a href="/system/advertisements/feedback/" class="btn btn-primary form-control">Back</a>
 
                             </li>
 
                     </ul>
+
+                    {!! Form::close() !!}
                 </div>
-                <div class="col-xs-12 com-md-3"></div>
             </div>
         </div>
-    </div>
+
 @stop

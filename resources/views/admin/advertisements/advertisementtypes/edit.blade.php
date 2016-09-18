@@ -11,7 +11,7 @@
 
     <hr/>
     <div class="col-xs-12 com-md-3">
-        @include('admin.advertisements.partials._custNav')
+
     </div>
 
     <div class="col-xs-12 com-md-6">

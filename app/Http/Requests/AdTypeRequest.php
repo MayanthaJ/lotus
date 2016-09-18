@@ -25,7 +25,7 @@ class AdTypeRequest extends Request
     {
         return [
             //
-            'name' => 'required',
+            'name' => 'required|unique:advertisement_types',
 
             'description' => 'required'
         ];

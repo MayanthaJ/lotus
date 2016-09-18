@@ -32,4 +32,9 @@ class Advertisements extends Model
 
     protected $guarded = ['id'];
 
+    public function advertisement()
+    {
+        return $this->hasOne(AdvertisementType::class, 'id', 'type_id');
+    }
+
 }
