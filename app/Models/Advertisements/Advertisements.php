@@ -37,4 +37,5 @@ class Advertisements extends Model
         return $this->hasOne(AdvertisementType::class, 'id', 'type_id');
     }
 
+
 }

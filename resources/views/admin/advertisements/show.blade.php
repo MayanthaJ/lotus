@@ -20,6 +20,7 @@
                     <li>
                         <h3>{!! "Ad ID :" !!} {!! $advertisement->id !!}</h3>
                         <h4>
+
                         <br />
                         {!! "Name :" !!}
                         {!! $advertisement->name !!}

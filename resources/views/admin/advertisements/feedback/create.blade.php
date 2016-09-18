@@ -43,7 +43,6 @@
                 {!! Form::textarea('comment',null,['class' => 'form-control']) !!}
                 <br><br/>
 
-
                 {!! Form::submit('Submit',['class' => 'btn btn-primary form-control']) !!}
                 <br><br />
                 <a href="/system/advertisements/feedback" class="btn btn-primary form-control">Back</a>

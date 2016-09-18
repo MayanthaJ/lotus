@@ -31,7 +31,6 @@
         {!! Form::textarea('description',null,['class' => 'form-control']) !!}
         <br><br/>
 
-
         {!! Form::submit('Add',['class' => 'btn btn-primary form-control']) !!}
         <br><br />
         <a href="/system/advertisements/types" class="btn btn-primary form-control">Back</a>

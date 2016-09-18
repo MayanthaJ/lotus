@@ -27,7 +27,6 @@
 
 </head>
 <body>
-
 <!-- Wrapper-->
 <div class="wrapper">
 

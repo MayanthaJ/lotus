@@ -22,6 +22,7 @@ class AdvertisementTypesController extends Controller
     {
 
         $types = AdvertisementType::all();
+        
 
         return view('admin.advertisements.advertisementtypes.index', compact('types'));
     }

@@ -100,6 +100,7 @@ class FeedbackController extends Controller
             Flash::success("Deleted!");
         } else {
             Flash::error("Delete cancelled...");
+
         }
 
         return Redirect::to('/system/advertisements/feedback');

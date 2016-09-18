@@ -23,6 +23,7 @@
                             <h3> {!! $feedback->subject !!}
                                 <br />
                                 <small> {!! $feedback->name !!}</small>
+
                                 <a href="/system/advertisements/feedback/{{ $feedback->id }}" class="btn btn-xs btn-primary">View Feedback</a>
                             </h3>
                         </li>

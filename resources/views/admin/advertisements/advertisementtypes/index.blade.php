@@ -26,6 +26,7 @@
                                 <a href="/system/advertisements/types/{{ $type->id }}/edit" class="btn btn-xs btn-primary">Edit this Type</a>
                             </h3>
                         </li>
+
                     @endforeach
                 </ul>
             </div>

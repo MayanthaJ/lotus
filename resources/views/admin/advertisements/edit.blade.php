@@ -20,7 +20,6 @@
     <div>
 
         <br><br />
-
         {!! Form::label('name', 'Advertisement Name : ') !!}
         {!! Form::text('name',null,['class' => 'form-control']) !!}
         <br><br />

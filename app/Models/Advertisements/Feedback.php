@@ -31,4 +31,5 @@ class Feedback extends Model
     //
     public $table = "feedback";
     protected $guarded = ['id'];
+
 }

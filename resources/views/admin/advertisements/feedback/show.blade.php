@@ -26,7 +26,7 @@
                                     {!! "Contact : " !!}
                                     {!! $feedback->contact !!}
                                     <br />
-                                    {!! "Comment : " !!}
+                                    {!! "Comment :  " !!}
                                     {!! $feedback->comment !!}
                                     <br />
 

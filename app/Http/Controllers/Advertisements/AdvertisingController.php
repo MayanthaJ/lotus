@@ -132,6 +132,7 @@ class AdvertisingController extends Controller
 
         $ad->save();
 
+
         return Redirect::back();
 
     }
