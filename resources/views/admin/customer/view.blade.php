@@ -121,7 +121,7 @@
                             </tr>
                             <tr>
                                 <td>Gender</td>
-                                <td><?php if($customers->gender){ echo 'Male';}else{echo 'Femail';} ?></td>
+                                <td>{!! ($customers->gender) ? "Male" : "Female" !!}</td>
                             </tr>
                             <tr>
                                 <td>Number</td>
@@ -141,11 +141,11 @@
                             </tr>
                             <tr>
                                 <td>Loyalty</td>
-                                <td>should get loyalty type </td>
+                                <td>{!! $customers->loyalty->type !!} </td>
                             </tr>
                             <tr>
                                 <td>Customer Type</td>
-                                <td>type should come here</td>
+                                <td>{!! ($customers->tour == 1)? "Tour ," : "" !!} {!! ($customers->ticketing == 1)? "Ticketing ," : "" !!} {!! ($customers->rental == 1)? "Rental ," : "" !!}</td>
                             </tr>
                         </tbody>
                     </table>

@@ -2,6 +2,7 @@
 
 namespace App\Models\Customer;
 
+use App\Models\Loyalty\Loyalty;
 use App\Models\Package\Package;
 use App\Models\Tour\Tour;
 use Illuminate\Database\Eloquent\Model;
@@ -79,6 +80,11 @@ class Customer extends Model
     public function packages()
     {
         return $this->hasManyThrough(Package::class, Tour::class, 'package_id', 'id');
+    }
+
+    public function loyalty()
+    {
+        return $this->hasOne(Loyalty::class, 'id');
     }
 
     /**
