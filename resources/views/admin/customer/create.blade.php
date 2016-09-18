@@ -91,19 +91,16 @@
         </div>
     <br/>
         <div class="row">
-            <div class="col-md-6"></div>
-
-
-
             <div class="col-md-6">
-                <h2>Add Customer</h2>
+                <h3>Add Customer</h3>
                 @include('notifications._message')
                 {!! Form::open(['action' => 'Customer\CustomerController@store']) !!}
                 @include('admin.customer.partials._formPartial',['btn' => 'Add Customer','advance_payment'=>'1'])
                 {!! Form::close() !!}
             </div>
+            <div class="col-md-6">
 
-
+            </div>
         </div>
 @endsection
 @section('modals')
@@ -124,7 +121,6 @@
                             <th>Country</th>
                             <th>Days</th>
                             <th>Amount</th>
-                            <th>Option <span class="fa fa-cog"></span></th>
                         </tr>
                         </thead>
                         <?php $count=1; ?>
@@ -133,13 +129,13 @@
                             <tr>
                                 <td><?php echo $count; $count++ ?></td>
                                 <td>{!! $package->code !!}</td>
-                                <th>{!! $package->name !!}</th>
-                                <th>{!! $package->country !!}</th>
-                                <th>{!! $package->days !!}</th>
-                                <th>{!! $package->price !!}</th>
-                                <th> <a href="" type="button" class="btn btn-default">
+                                <td>{!! $package->name !!}</td>
+                                <td>{!! $package->country !!}</td>
+                                <td>{!! $package->days !!}</td>
+                                <td>{!! $package->price !!}</td>
+                                <td> <a href="/system/package" type="button" class="btn btn-default">
                                         View
-                                    </a></th>
+                                    </a></td>
                             </tr>
                         @endforeach
                         </tbody>
