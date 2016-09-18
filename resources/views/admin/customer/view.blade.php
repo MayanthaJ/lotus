@@ -43,7 +43,7 @@
                         <span class="slight slight-align">
                                 <br/>
                                <i  class="fa fa-home  text-warning"> </i>
-                                Customer Details
+                                Customer  Details
                                 <br/>
                              <a  class="btn btn-default" href="/system/customer/{!! $customers->id !!}/view">View</a>
                            </span>
