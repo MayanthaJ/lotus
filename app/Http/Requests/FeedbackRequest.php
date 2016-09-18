@@ -34,7 +34,7 @@ class FeedbackRequest extends Request
 
             'contact' => 'integer',
 
-            'email' => 'email'
+            'email' => 'email',
         ];
     }
 }
