@@ -44,6 +44,7 @@
 
         {!! Form::submit('Add',['class' => 'btn btn-primary form-control']) !!}
         <br><br />
+
         <a href="/system/advertisements/" class="btn btn-primary form-control">Back</a>
 
     </div>

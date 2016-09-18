@@ -27,7 +27,6 @@
                             </h4>
                                 <a href="/system/advertisements/{{ $ad->id }}" class="btn btn-xs btn-primary">Show</a>
                                 <a href="/system/advertisements/{{ $ad->id }}/edit" class="btn btn-xs btn-primary">Edit this Ad</a>
-
                         </li>
                     @endforeach
                 </ul>

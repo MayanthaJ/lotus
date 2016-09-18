@@ -38,4 +38,5 @@ class Advertisements extends Model
     }
 
 
+
 }

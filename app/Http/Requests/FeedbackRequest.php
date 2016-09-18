@@ -36,6 +36,7 @@ class FeedbackRequest extends Request
 
             'email' => 'email',
 
+
         ];
     }
 }

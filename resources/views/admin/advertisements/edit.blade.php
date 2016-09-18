@@ -18,7 +18,6 @@
     {!! Form::model($ad,['method' => 'PATCH', 'action' => ['Advertisements\AdvertisingController@update', $ad->id], 'files' => true]) !!}
 
     <div>
-
         <br><br />
         {!! Form::label('name', 'Advertisement Name : ') !!}
         {!! Form::text('name',null,['class' => 'form-control']) !!}

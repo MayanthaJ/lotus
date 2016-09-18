@@ -32,4 +32,5 @@ class AdvertisementType extends Model
         return $this->hasMany(Advertisements::class, 'type_id');
     }
 
+
 }

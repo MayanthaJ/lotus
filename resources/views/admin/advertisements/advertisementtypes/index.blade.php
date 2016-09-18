@@ -19,6 +19,7 @@
                 <h1>Ad and Marketing Material Types</h1>
                 <ul>
                     @foreach ($types as $type)
+
                         <li>
                             <h3> {!! $type->name !!}
                                 <br />

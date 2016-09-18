@@ -29,7 +29,6 @@
                                     {!! "Comment :  " !!}
                                     {!! $feedback->comment !!}
                                     <br />
-
                                 {!! Form::submit('Delete',['class' => 'btn btn-primary form-control']) !!}
                                 <br />
                                 <br />

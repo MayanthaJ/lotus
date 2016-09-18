@@ -13,7 +13,6 @@
     <div class="col-xs-12 com-md-3">
 
     </div>
-
     <div class="col-xs-12 com-md-6">
 
     {!! Form::model($type,['method' => 'PATCH', 'action' => ['Advertisements\AdvertisementTypesController@update', $type->id]]) !!}

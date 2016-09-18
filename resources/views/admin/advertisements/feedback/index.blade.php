@@ -20,6 +20,7 @@
                 <ul>
                     @foreach ($feedback as $feedback)
                         <li>
+
                             <h3> {!! $feedback->subject !!}
                                 <br />
                                 <small> {!! $feedback->name !!}</small>

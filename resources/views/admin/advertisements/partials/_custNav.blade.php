@@ -6,5 +6,4 @@
     <a href="{!! url('/system/advertisements/feedback') !!}" class="btn btn-xs btn-primary">Feedback</a>
     <a href="{!! url('/system/advertisements/feedback/create') !!}" class="btn btn-xs btn-primary">Create Feedback</a>
 
-    
 </div>

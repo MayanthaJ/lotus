@@ -29,6 +29,7 @@ class AdTypeRequest extends Request
 
             'description' => 'required',
 
+
         ];
     }
 }

@@ -22,7 +22,6 @@
     <br><br />
 
     <div>
-
         {!! Form::label('name','Type Name : ') !!}
         {!! Form::text('name',null,['class' => 'form-control']) !!}
         <br><br/>
