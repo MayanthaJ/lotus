@@ -1,51 +1,43 @@
 @extends('layouts.MainLayOutNav')
 
 @section('content')
-
     <div class="row">
-        <div class="col-sm-12 col-md-9">
-            <h3>Tour Page</h3>
-            @include('notifications._message')
+        <div class="col-md-9">
+            <h3>All Tours scheduled <br />
+                <small>for month {!! \Carbon\Carbon::now()->format('F Y') !!}</small>
+            </h3>
 
-            <small><a href="{!! url('/system/tour/tourmanage/create') !!}">Add Tour</a></small>
-            <br/>
-            <br/>
-            @if($tours->isEmpty())
-                <p><a href="{!! url('system/tour/tourmanage/create') !!}">Add Tour</a></p>
-            @else
-                <table class="table table-hover">
+            <br>
+
+            <table class="table table-responsive">
+                <tr>
+                    <th>Tour Code</th>
+                    <th>Tour Name</th>
+                    <th>Package Name</th>
+                    <th>Arrival and Departure Dates</th>
+                    <th>Availability Count</th>
+                    <th>Manage Tour</th>
+                </tr>
+
+                @if($tours->isEmpty())
                     <tr>
-                        <th>Name</th>
-
+                        <td colspan="5">Empty Tours</td>
                     </tr>
+                @else
                     @foreach($tours as $tour)
                         <tr>
-                            <td>
-                                {!! $tour->name !!}
-                            </td>
-
-                            <td>
-
-
-                            </td>
-
-                            <td>
-                                <a class="btn btn-default"
-                                   href="{!! url('/system/tour/tourmanage/'.$tour->id.'/edit') !!}">Edit </a>
-                            </td>
-
-                            <td>
-                                <a class="btn btn-default"
-                                   href="{!! url('/system/tour/tourmanage/'.$tour->id.'/') !!}">View</a>
-                            </td>
-
+                            <td>{!! $tour->code !!}</td>
+                            <td>{!! $tour->name !!}</td>
+                            <td>{!! $tour->package->name !!}</td>
+                            <td>{!! $tour->arrival !!} - {!! $tour->departure !!}</td>
+                            <td>{!! $tour->coustomer_count !!}</td>
+                            <td><a class="btn btn-accent" href="{!! url('/system/tour/manage/'.$tour->id.'/edit') !!}">Manage</a></td>
                         </tr>
                     @endforeach
-                </table>
-            @endif
+                @endif
+
+            </table>
 
         </div>
-
     </div>
-
 @stop

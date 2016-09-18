@@ -38,7 +38,7 @@ Route::get('/system/tour/hotels/{id}/show','Tour\hotels\HotelController@show');
 Route::resource('system/tour/hotels', 'Tour\hotels\HotelController'); // <- this already calls the @create method
 Route::resource('system/tour/guide', 'Tour\guide\GuideController'); // <- this already calls the @create method
 Route::get('/system/tour/guide/{id}/show','Tour\guide\GuideController@show');
-Route::resource('system/tour/tourmanage','Tour\tourmanage\TourManageController');
+Route::resource('system/tour/manage','Tour\manage\TourManageController');
 //Route::get('/system/tour/tourmanage/{id}/show','Tour\tourmanage\TourManageController@show');
 
 
@@ -152,7 +152,9 @@ Route::group(['middleware' => 'adminOrManager'], function () {
 // Achala's routes
 Route::get('/system/customer/{id}/terminate', 'Customer\CustomerController@terminate');
 Route::get('/system/customer/undo/{id}/terminate', 'Customer\CustomerController@undoterminate');
-Route::get('/system/customer/view/', 'Customer\CustomerController@view');
+Route::get('/system/customer/{id}/view/', 'Customer\CustomerController@view');
+Route::get('system/customer/new/{id}/tour','Customer\CustomerController@AnotherTour');
+Route::get('/system/customer/new/tour/{id}/create','Customer\CustomerController@AnotherTourCreate');
 Route::resource('/system/customer', 'Customer\CustomerController');
 Route::resource('system/ticket', 'Ticket\TicketController');
 Route::resource('system/ticketing','Ticket\TicketingController');
@@ -170,6 +172,9 @@ Route::get('/api/secured/agent/name/{name}',function ($name){
 Route::get('/api/secured/agent/refill',function (){
     return \App\Models\Agent\Agent::all()->toJson();
 });
+
+
+
 
 //Nuwan's Routes
 Route::get('system/rental/income', 'Rental\RentalController@getRentalIncome');

@@ -46,8 +46,8 @@
 </div>
 
 <div class="form-group">
-{!! Form::label('address1','Address 1 :') !!}
-{!! Form::text('address1', null,['class'=>'form-control']) !!}
+{!! Form::label('address','Address 1 :') !!}
+{!! Form::text('address', null,['class'=>'form-control']) !!}
 </div>
 
 
