@@ -27,6 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Rental\Reservation whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Rental\Reservation whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property integer $customer_id
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Rental\Reservation whereCustomerId($value)
  */
 class Reservation extends Model
 {

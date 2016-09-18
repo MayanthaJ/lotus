@@ -30,7 +30,13 @@ class FeedbackRequest extends Request
 
             'name' => 'required',
 
-            'comment' => 'required'
+            'comment' => 'required',
+
+            'contact' => 'integer',
+
+            'email' => 'email',
+
+
         ];
     }
 }

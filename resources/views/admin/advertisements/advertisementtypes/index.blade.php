@@ -19,6 +19,7 @@
                 <h1>Ad and Marketing Material Types</h1>
                 <ul>
                     @foreach ($types as $type)
+
                         <li>
                             <h3> {!! $type->name !!}
                                 <br />
@@ -26,6 +27,7 @@
                                 <a href="/system/advertisements/types/{{ $type->id }}/edit" class="btn btn-xs btn-primary">Edit this Type</a>
                             </h3>
                         </li>
+
                     @endforeach
                 </ul>
             </div>

@@ -24,6 +24,13 @@ class AdvertisementType extends Model
 {
     //
     public $table = "advertisement_types";
+
     protected $guarded = ['id'];
+
+    public function type()
+    {
+        return $this->hasMany(Advertisements::class, 'type_id');
+    }
+
 
 }

@@ -84,8 +84,6 @@ class CreateTestData2 extends Migration
         DB::table('tours')->insert([
             [
                 'package_id' => 1,
-                'hotel_id' => 1,
-                'guide_id' => 1,
                 'name' => 'Test 1',
                 'code' => '#ewer',
                 'arrival' => '2016-09-04',
@@ -96,8 +94,6 @@ class CreateTestData2 extends Migration
             ],
             [
                 'package_id' => 2,
-                'hotel_id' => 1,
-                'guide_id' => 1,
                 'name' => 'Test 1',
                 'code' => '#ewer',
                 'arrival' => '2016-09-04',
@@ -108,8 +104,6 @@ class CreateTestData2 extends Migration
             ],
             [
                 'package_id' => 3,
-                'hotel_id' => 1,
-                'guide_id' => 1,
                 'name' => 'Test 1',
                 'code' => '#ewer',
                 'arrival' => '2016-09-04',
@@ -120,8 +114,6 @@ class CreateTestData2 extends Migration
             ],
             [
                 'package_id' => 1,
-                'hotel_id' => 1,
-                'guide_id' => 1,
                 'name' => 'Test 1',
                 'code' => '#ewer',
                 'arrival' => '2016-09-04',
@@ -132,8 +124,6 @@ class CreateTestData2 extends Migration
             ],
             [
                 'package_id' => 3,
-                'hotel_id' => 1,
-                'guide_id' => 1,
                 'name' => 'Test 1',
                 'code' => '#ewer',
                 'arrival' => '2016-09-04',
@@ -144,8 +134,6 @@ class CreateTestData2 extends Migration
             ],
             [
                 'package_id' => 3,
-                'hotel_id' => 1,
-                'guide_id' => 1,
                 'name' => 'Test 1',
                 'code' => '#ewer',
                 'arrival' => '2016-09-04',

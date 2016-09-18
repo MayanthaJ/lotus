@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Tour\tourmanage;
+namespace App\Http\Controllers\Tour\manage;
 
 use App\Http\Controllers\Controller;
 use App\Models\Employee\EmployeeType;
@@ -20,8 +20,8 @@ class TourManageController extends Controller
      */
     public function index()
     {
+        $tours = Tour::with('package')->get();
 
-        $tours = Tour::all();
         return view('admin.tour.tour.index', compact('tours'));
     }
 
@@ -33,9 +33,10 @@ class TourManageController extends Controller
     public function create()
     {
         $packages = Package::pluck('name', 'id');
-        $hotels = Hotel::pluck('name','id');
-        $guides = EmployeeType::with('employees')->where('name', 'guide')->first()->employees->pluck('name', 'id');
 
+        $hotels = Hotel::pluck('name','id');
+
+        $guides = EmployeeType::with('employees')->where('name', 'guide')->first()->employees->pluck('name', 'id');
 
         return view('admin.tour.tour.create', compact('packages', 'hotels', 'guides'));
     }
@@ -50,29 +51,35 @@ class TourManageController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|min:3|max:50',
-            'date' => 'required',
-            'time' => 'required',
+            'arrival' => 'required',
+            'departure' => 'required',
+            'arrival_time' => 'required',
+            'departure_time' => 'required',
             'description' => 'required|min:10|max:1000',
             'package' => 'required',
-            'Hotel' =>'required',
+            'hotel' =>'required',
             'guide' => 'required'
 
         ]);
 
 
-        Tour::create([
+        $tour = Tour::create([
             'name' => $request->name,
-            'departure' => $request->date,
-            'time' => $request->time,
+            'arrival' => $request->arrival,
+            'arrival_time' => $request->arrival_time,
+            'departure' => $request->departure,
+            'departure_time' => $request->departure_time,
             'description' => $request->description,
             'package_id' => $request->package,
-            'hotel_id' => $request->Hotel,
-            'guide_id' => $request->guide
         ]);
+
+        $tour->guides()->sync($request->guide);
+
+        $tour->hotels()->sync($request->hotel);
 
         Flash::success("Tour added successfully");
 
-        return Redirect::to('/system/tour/tourmanage');
+        return Redirect::to('/system/tour/tourmanage/');
 
     }
 
@@ -113,27 +120,26 @@ class TourManageController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
         $tours = Tour::findOrFail($id);
 
-        $tours->name = $request->name;
+        $tours->arrival = $request->arrival;
         $tours->departure = $request->departure;
-        $tours->time = $request->time;
-        $tours->description = $request->description;
-        $tours->package_id = $request ->package;
-        
+        $tours->arrival_time = $request->arrival_time;
+        $tours->departure_time = $request->departure_time;
 
+        $tours->guides($request->guide);
+
+        $tours->hotels($request->hotels);
 
         if ($tours->save()) {
             Flash::success("Changes updated !");
-
         }
 
-
-        return Redirect::to('/system/tour/tourmanage');
+        return Redirect::to('/system/tour/manage/'.$tours->id);
 
     }
 

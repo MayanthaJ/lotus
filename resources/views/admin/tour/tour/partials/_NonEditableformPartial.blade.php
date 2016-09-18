@@ -1,11 +1,11 @@
 <div class="form-group">
     {!! Form::label('name', 'Name :') !!}
-    {!! Form::text('name', null, ['class' => 'form-control']) !!}
+    {!! Form::text('name', null, ['class' => 'form-control', 'disabled']) !!}
 </div>
 
 <div class="form-group">
     {!! Form::label('code', 'Code : ') !!}
-    {!! Form::text('code', null, ['class' => 'form-control']) !!}
+    {!! Form::text('code', null, ['class' => 'form-control', 'disabled']) !!}
 </div>
 
 <div class="form-group">
@@ -30,7 +30,7 @@
 
 <div class="form-group">
     {!! Form::label('package', 'Select Package : ') !!}
-    {!! Form::select('package', $packages, null, ['placeholder' => 'Select Package...', 'class'=>'form-control']) !!}
+    {!! Form::select('package', $packages, $tour->selected_package, ['placeholder' => 'Select Package...', 'class'=>'form-control', 'disabled']) !!}
 </div>
 
 <div class="form-group">
@@ -45,7 +45,7 @@
 
 <div class="form-group">
     {!! Form::label('description', 'Description : ') !!}
-    {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('description', null, ['class' => 'form-control', 'disabled']) !!}
 </div>
 
 <div class="form-group">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Advertisements;
 
 use App\Models\Advertisements\Feedback;
 use App\Http\Requests\FeedbackRequest;
+use Flash;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
@@ -77,9 +78,8 @@ class FeedbackController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      */
     public function update(Request $request, $id)
     {
@@ -94,6 +94,17 @@ class FeedbackController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $feedback = Feedback::findOrFail($id);
+
+        if($feedback->delete()) {
+            Flash::success("Deleted!");
+        } else {
+            Flash::error("Delete cancelled...");
+
+        }
+
+        
+
+        return Redirect::to('/system/advertisements/feedback');
     }
 }

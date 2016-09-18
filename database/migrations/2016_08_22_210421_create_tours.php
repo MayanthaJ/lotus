@@ -15,10 +15,6 @@ class CreateTours extends Migration
         Schema::create('tours',function (Blueprint $table){
             $table->increments('id');
             $table->unsignedInteger('package_id');
-            $table->unsignedInteger('hotel_id');
-            $table->unsignedInteger('guide_id');
-            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
-            $table->foreign('guide_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('package_id')->references('id')->on('package')->onDelete('cascade');
             $table->string('name');
             $table->string('code');

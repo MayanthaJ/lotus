@@ -11,7 +11,7 @@
 
     <hr/>
     <div class="col-xs-12 com-md-3">
-        @include('admin.advertisements.partials._custNav')
+
     </div>
 
     <div class="col-xs-12 com-md-6">
@@ -44,9 +44,11 @@
 
         {!! Form::submit('Add',['class' => 'btn btn-primary form-control']) !!}
         <br><br />
+
         <a href="/system/advertisements/" class="btn btn-primary form-control">Back</a>
 
     </div>
+
 
     {!! Form::close()!!}
 

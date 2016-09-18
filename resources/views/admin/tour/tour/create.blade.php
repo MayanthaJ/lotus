@@ -4,7 +4,11 @@
 
         <div class="row">
             <div class="col-sm-12 col-md-9">
-                <h2>Add Tour</h2>
+                <h3>Add a new tour
+                    <br />
+                    <small>for {!! \Carbon\Carbon::now()->format('F Y') !!}</small>
+                </h3>
+                <br />
                 @include('notifications._message')
                 {!! Form::open(['action' => 'Tour\tourmanage\TourManageController@store']) !!}
                 @include('admin.tour.tour.partials._formPartial', ['btn' => 'Add Tour', 'password' => true, 'terminate' => false])
