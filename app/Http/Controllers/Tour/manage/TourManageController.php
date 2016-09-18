@@ -57,8 +57,8 @@ class TourManageController extends Controller
             'departure_time' => 'required',
             'description' => 'required|min:10|max:1000',
             'package' => 'required',
-            'hotel' =>'required',
-            'guide' => 'required'
+            'hotel.*' =>'required',
+            'guide.*' => 'required'
 
         ]);
 
@@ -79,7 +79,7 @@ class TourManageController extends Controller
 
         Flash::success("Tour added successfully");
 
-        return Redirect::to('/system/tour/tourmanage/');
+        return Redirect::to('/system/tour/manage/');
 
     }
 
