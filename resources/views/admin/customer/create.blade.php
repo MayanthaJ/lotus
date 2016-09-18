@@ -1,7 +1,6 @@
 @extends('layouts.MainLayOutNav')
 @section('content')
         <div class="row">
-
             <div class="col-lg-2 col-xs-6">
                 <div class="panel panel-filled">
                     <div class="panel-body">
@@ -24,7 +23,6 @@
                     <div class="panel-body">
                         <h3 class="m-b-none">
                             Add
-
                             <span class="slight slight-align">
                                 <br/>
                                <i  class="fa fa-home  text-warning"> </i>
