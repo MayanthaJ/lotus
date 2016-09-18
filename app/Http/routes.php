@@ -162,7 +162,11 @@ Route::resource('system/agent','Agent\AgentController');
 
 //Achala's ajaxs
 Route::get('/api/secured/customer/tours/{package_id}', function ($package_id) {
-    return \App\Models\Tour\Tour::where('package_id', $package_id)->get();
+
+    $carbon = \Carbon\Carbon::now()->addDays(-2)->toDateString();
+
+    return \App\Models\Tour\Tour::where('package_id', $package_id)->where('departure', '<=', $carbon)->get();
+
 });
 //get agent search
 Route::get('/api/secured/agent/name/{name}',function ($name){
