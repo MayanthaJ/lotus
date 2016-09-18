@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Package\Package whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Package\Package whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tour\Tour[] $tours
  */
 class Package extends Model
 {

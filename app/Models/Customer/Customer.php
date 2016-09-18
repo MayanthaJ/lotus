@@ -49,8 +49,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Package\Package[] $packages
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerPackage[] $payments
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereLoyaltyId($value)
- * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerAddress[] $address
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerNumber[] $numbers
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereAddress($value)
  * @property boolean $tour
  * @property boolean $ticketing
