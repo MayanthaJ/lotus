@@ -22,15 +22,16 @@
 
 
     <div class="row">
+
             <div class="col-lg-2 col-xs-6">
-                <div class="panel panel-filled">
+                <div class="panel panel-filled activer-border">
                     <div class="panel-body">
                         <h3 class="m-b-none">
                             Customer</h3>
                             <span class="slight slight-align ">
                                <br/>
                                <i  class="fa fa-home  text-warning"> </i>
-                                Return Customer Home
+                                Customer Home
                                <br/>
                               <a class="btn btn-default" href="/system/customer">Customer</a>
                            </span>
@@ -55,45 +56,42 @@
                 </div>
             </div>
 
-            <div class="col-lg-8 col-xs-6">
+            <div class="col-lg-2 col-xs-6">
                 <div class="panel panel-filled">
                     <div class="panel-body">
                         <h3 class="m-b-none">
-                           New Customer
-                        </h3>
-                        <div class="col-md-4">
-                                <span class="slight slight-align">
+                            Add</h3>
+                                  <span class="slight slight-align">
                                 <br/>
                                <i  class="fa fa-home  text-warning"> </i>
                                 Add Tour Customer
                                 <br/>
                              <a  class="btn btn-default" href="/system/customer/create">Add</a>
                            </span>
-                        </div>
-                        <div class="col-md-4">
-                                <span class="slight slight-align">
-                                <br/>
-                               <i  class="fa fa-home  text-warning"> </i>
-                                Add Ticketing Customer
-                                <br/>
-                             <a  class="btn btn-default" href="/system/customer/ticketing/create">Add</a>
-                           </span>
-                        </div>
-                        <div class="col-md-4">
-                                <span class="slight slight-align">
-                                <br/>
-                               <i  class="fa fa-home  text-warning"> </i>
-                                Add Rental Customer
-                                <br/>
-                             <a  class="btn btn-default" href="/system/customer/view">Add</a>
-                           </span>
-                        </div>
 
                     </div>
                 </div>
             </div>
 
-        </div>
+            <div class="col-lg-2 col-xs-6">
+                <div class="panel panel-filled">
+                    <div class="panel-body">
+                        <h3 class="m-b-none">
+                            Add</h3>
+                                      <span class="slight slight-align">
+                                    <br/>
+                                   <i  class="fa fa-home  text-warning"> </i>
+                                    Add Rental Customer
+                                    <br/>
+                                 <a  class="btn btn-default" href="/system/rental/reservation/create">Add</a>
+                               </span>
+
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
     <div class="row">
         <div class="col-lg-12">
             <div class="tabs-container">
@@ -110,160 +108,18 @@
                         <div class="panel-body">
                             <p>Add Customer to Tour</p>
                             <a  class="btn btn-default" href="/system/customer/create">Add</a>
-                            <hr/>
-                            <p>Tour Customer Table</p>
-
-
-
-                        <div id="ajax-search">
-                            {!! Form::text('search', null, ['class' => 'form-control', 'id' => 'search', 'placeholder' => 'Search Tour Customer']) !!}
                         </div>
-                        <br/><br/>
-                        <table class="table table-bordered table-responsive ajax-table">
-                            <thead>
-                            <tr>
-                                <th>#No</th>
-                                <th>Name</th>
-                                <th>Contact</th>
-                                <th>NIC</th>
-                                <th>Passport</th>
-                                <th>Address </th>
-                                <th>Loyalty</th>
-                            </tr>
-                            </thead>
-                            <?php $count=1; ?>
-                            @foreach($TourCustomers as $customer)
-                                <tr>
-                                    <td><?php echo $count; $count++ ?></td>
-                                    <td>{!! $customer->fname.' '.$customer->lname  !!}</td>
-                                    <td>{!! $customer->number !!}</td>
-                                    <td>{!! $customer->nic !!}</td>
-                                    <td>{!! $customer->passport !!}</td>
-                                    <td>{!! $customer->address !!}</td>
-                                    <td><?php echo \App\Models\Loyalty\Loyalty::find($customer->loyalty_id)->type ?></td>
-                                    <td>
-                                        <a href="{!! url('/system/customer/'.$customer->id.'/view') !!}" class="btn btn-default">
-                                            View
-                                        </a>
-                                        <a href="{!! url('/system/customer/new/'.$customer->id.'/tour') !!}" class="btn btn-default">
-                                            New
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            <tbody>
-
-                            </tbody>
-                        </table>
-                        </div>
-
                     </div>
-
-
                     <div id="tab-2" class="tab-pane">
-
-
                         <div class="panel-body">
                             <p>Add Customer to Tour</p>
-                            <a  class="btn btn-default" href="system/ticket/create">Add</a>
-                            <hr/>
-                            <p>Third Party Customer Table</p>
-                            <div id="ajax-search">
-                                {!! Form::text('search', null, ['class' => 'form-control', 'id' => 'search', 'placeholder' => 'Search Employees']) !!}
-                            </div>
-                            <br/><br/>
-                            <table class="table table-bordered table-responsive ajax-table">
-                                <thead>
-                                <tr>
-                                    <th>#No</th>
-                                    <th>Name</th>
-                                    <th>Contact</th>
-                                    <th>NIC</th>
-                                    <th>Passport</th>
-                                    <th>Address </th>
-                                    <th>Loyalty</th>
-                                </tr>
-                                </thead>
-                                <?php $count=1; ?>
-                                @foreach($TourCustomers as $customer)
-                                    <tr>
-                                        <td><?php echo $count; $count++ ?></td>
-                                        <td>{!! $customer->fname.' '.$customer->lname  !!}</td>
-                                        <td>{!! $customer->number !!}</td>
-                                        <td>{!! $customer->nic !!}</td>
-                                        <td>{!! $customer->passport !!}</td>
-                                        <td>{!! $customer->address !!}</td>
-                                        <td><?php echo \App\Models\Loyalty\Loyalty::find($customer->loyalty_id)->type ?></td>
-                                        <td>
-                                            <a href="{!! url('/system/customer/'.$customer->id.'/view') !!}" class="btn btn-default">
-                                                View
-                                            </a>
-                                            <a href="{!! url('/system/customer/new/'.$customer->id.'/tour') !!}" class="btn btn-default">
-                                                New
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                <tbody>
-
-                                </tbody>
-                            </table>
+                            <a  class="btn btn-default" href="/system/ticketing">Add</a>
                         </div>
-
                     </div>
-
-
                     <div id="tab-3" class="tab-pane">
-
-
                         <div class="panel-body">
                             <p>Add Customer to Rental</p>
-                            <a  class="btn btn-default" href="/system/customer/create">Add</a>
-                            <hr/>
-                            <p>Rental Customer Table</p>
-
-
-
-                            <div id="ajax-search">
-                                {!! Form::text('search', null, ['class' => 'form-control', 'id' => 'search', 'placeholder' => 'Search Employees']) !!}
-                            </div>
-                            <br/><br/>
-                            <table class="table table-bordered table-responsive ajax-table">
-                                <thead>
-                                <tr>
-                                    <th>#No</th>
-                                    <th>Name</th>
-                                    <th>Contact</th>
-                                    <th>NIC</th>
-                                    <th>Passport</th>
-                                    <th>Address </th>
-                                    <th>Loyalty</th>
-                                </tr>
-                                </thead>
-                                <?php $count=1; ?>
-                                @foreach($TourCustomers as $customer)
-                                    <tr>
-                                        <td><?php echo $count; $count++ ?></td>
-                                        <td>{!! $customer->fname.' '.$customer->lname  !!}</td>
-                                        <td>{!! $customer->number !!}</td>
-                                        <td>{!! $customer->nic !!}</td>
-                                        <td>{!! $customer->passport !!}</td>
-                                        <td>{!! $customer->address !!}</td>
-                                        <td><?php echo \App\Models\Loyalty\Loyalty::find($customer->loyalty_id)->type ?></td>
-                                        <td>
-                                            <a href="{!! url('/system/customer/'.$customer->id.'/view') !!}" class="btn btn-default">
-                                                View
-                                            </a>
-                                            <a href="{!! url('/system/customer/new/'.$customer->id.'/tour') !!}" class="btn btn-default">
-                                                New
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                <tbody>
-
-                                </tbody>
-                            </table>
+                            <a  class="btn btn-default" href="/system/rental/reservation/create">Add</a>
                         </div>
 
                     </div>
@@ -271,12 +127,150 @@
 
 
                 </div>
-
+            <!-- /Search And table end --->
 
             </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Search and Table come here --->
+        <div class="col-md-12 ">
+            <div class="panel panel-filled">
+                <div class="panel-body">
+                    <br/>
+                <div id="ajax-search">
+                    {!! Form::text('search', null, ['class' => 'form-control', 'id' => 'search', 'placeholder' => 'Search Tour Customer']) !!}
+                </div>
+                <br/><br/>
+                <table class="table table-bordered table-responsive ajax-table">
+                    <thead>
+                    <tr>
+                        <th>#No</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>NIC</th>
+                        <th>Tour</th>
+                        <th>Ticketing</th>
+                        <th>Rental</th>
+                    </tr>
+                    </thead>
+                    <?php $count=1; ?>
+                    @foreach($TourCustomers as $customer)
+                        <tr>
+                            <td><?php echo $count; $count++ ?></td>
+                            <td>{!! $customer->fname.' '.$customer->lname  !!}</td>
+                            <td>{!! $customer->number !!}</td>
+                            <td>{!! $customer->nic !!}</td>
+                            <td style="text-align: center">
+                                <?php
+                                    if($customer->tour){
+                                        echo '<i class="fa fa-check" aria-hidden="true"></i>';
+                                    }else{
+                                        echo '<a class="btn btn-default" href="/system/customer/new/'.$customer->id.'/tour">Add</a>';
+                                    }
+                                ?>
+                            </td>
+                            <td style="text-align: center">
+                                <?php
+                                if($customer->ticketing){
+                                    echo '<i class="fa fa-check" aria-hidden="true"></i>';
+                                }else{
+                                    echo '<a class="btn btn-default" href="/system/ticketing/'.$customer->id.'/create">Add</a>';
+                                }
+                                ?>
+                            </td>
+                            <td style="text-align: center">
+                                <?php
+                                if($customer->rental){
+                                    echo '<i class="fa fa-check" aria-hidden="true"></i>';
+                                }else{
+                                    echo '<a class="btn btn-default" href="/system/rental/'.$customer->id.'/create">Add</a>';
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <a href="{!! url('/system/customer/'.$customer->id.'/view') !!}" class="btn btn-default">
+                                    View
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+          </div>
+         </div>
         </div>
 
     </div>
 
     <br/>
+@endsection
+
+@section('js')
+    <script type="text/javascript">
+        var url = '';
+        var typingTimer;                //timer identifier
+        var doneTypingInterval = 250;  //time in ms (5 seconds)
+
+        $(document).on('keyup', '#search', function () {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(doneTyping, doneTypingInterval);
+            var value = $('#search').val();
+
+            if (value == "" || value == " ") {
+                //refill
+                url="/api/secured/customer/refill";
+            } else {
+                url='/api/secured/customer/name/'+value;
+            }
+
+            function doneTyping() {
+                $(".ajax-table tbody tr").remove();
+
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    dataType: "json",
+                    success: function (data) {
+                        var No=1;
+                        for (i = 0; i < data.length; i++) {
+                            //intial values
+                            var tour='<a class="btn btn-default" href="/system/customer/new/'+data[i].id+'/tour">Add</a>';
+                            var ticketing='<a class="btn btn-default" href="/system/ticketing/'+data[i].id+'/create">Add</a>'
+                            var rental='<a class="btn btn-default" href="/system/rental/'+data[i].id+'/create">Add</a>';
+
+                            if(data[i].tour){
+                                tour='<i class="fa fa-check" aria-hidden="true"></i>';
+                            }
+                            if(data[i].ticketing){
+                                ticketing='<i class="fa fa-check" aria-hidden="true"></i>';
+                            }
+                            if(data[i].rental){
+                                rental='<i class="fa fa-check" aria-hidden="true"></i>';
+                            }
+
+                            $('.ajax-table')
+                                    .append(
+                                            '<tr>' +
+                                            '<td>'+No+'</td>'+
+                                            '<td>' + data[i].fname+' '+data[i].sname+' '+data[i].lname+ '</td>' +
+                                            '<td>' + data[i].number + '</td>' +
+                                            '<td>'+data[i].nic+'</td>'+
+                                            '<td>' +tour+'</td>'+
+                                            '<td>' +ticketing+'</td>'+
+                                            '<td>' +rental+'</td>'+
+                                            '<tr/>'
+                                    );
+                            No++;
+                        }
+                    }
+                });
+            }
+
+        });
+    </script>
 @endsection

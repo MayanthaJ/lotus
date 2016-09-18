@@ -172,7 +172,14 @@ Route::get('/api/secured/agent/name/{name}',function ($name){
 Route::get('/api/secured/agent/refill',function (){
     return \App\Models\Agent\Agent::all()->toJson();
 });
-
+//customer search
+Route::get('/api/secured/customer/refill',function(){
+    return App\Models\Customer\Customer::all()->toJson();
+});
+//customer Search
+Route::get('/api/secured/customer/name/{name}',function($name){
+    return App\Models\Customer\Customer::where('fname', 'like',$name.'%')->get()->toJson();
+});
 
 
 
