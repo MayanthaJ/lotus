@@ -10,7 +10,7 @@
                 </h3>
                 <br />
                 @include('notifications._message')
-                {!! Form::open(['action' => 'Tour\tourmanage\TourManageController@store']) !!}
+                {!! Form::open(['action' => 'Tour\manage\TourManageController@store']) !!}
                 @include('admin.tour.tour.partials._formPartial', ['btn' => 'Add Tour', 'password' => true, 'terminate' => false])
                 {!! Form::close() !!}
 

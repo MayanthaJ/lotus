@@ -2,6 +2,7 @@
 
 namespace App\Models\Tour;
 
+use App\Models\Customer\Customer;
 use App\Models\Package\Package;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
@@ -42,6 +43,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Tour\Tour whereArrival($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Tour\Tour whereDepartureTime($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Tour\Tour whereArrivalTime($value)
+ * @property-read \App\Models\Package\Package $package
+ * @property-read mixed $selected_package
  */
 class Tour extends Model
 {
@@ -87,6 +90,11 @@ class Tour extends Model
     public function getSelectedPackageAttribute()
     {
         return $this->package->id;
+    }
+
+    public function customers()
+    {
+        return $this->belongsToMany(Customer::class, 'customer_tour', 'tour_id', 'customer_id');
     }
 
 }

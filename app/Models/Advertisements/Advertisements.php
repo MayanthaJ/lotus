@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Advertisements\Advertisements whereSysUrl($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Advertisements\Advertisements whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Advertisements\Advertisements whereUpdatedAt($value)
+ * @property-read \App\Models\Advertisements\AdvertisementType $advertisement
  */
 class Advertisements extends Model
 {
