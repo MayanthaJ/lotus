@@ -1,28 +1,80 @@
 @extends('layouts.MainLayOutNav')
 @section('content')
-        <div class="row">
-            <a class="btn btn-default" href="system">Home</a>
-            <a class="btn btn-default" href="/system/customer">Customer</a>
-            <a class="btn btn-default" href="/system/customer/create">Add Customer</a>
-            <a class="btn btn-default" href="/system/customer/view">View</a>
-            <a style="background-color: aliceblue;" class="btn btn-default" href="/system/customer/view">Edit</a>
-            <hr />
-            <div class="col-sm-12 col-md-12">
-                @include('notifications._message')
-                <h2>Edit Employee
-                    <br />
-                    <small>Employee ID : {!! $customer->id !!}</small>
-                </h2>
-                <br />
+    <div class="row">
 
-                {!! Form::model($customer, ['method' => 'PATCH', 'action' => ['Customer\CustomerController@update', $customer->id]]) !!}
-                @include('admin.customer.partials._formPartial', ['btn' => 'Update Customer','advance_payment'=>'0'])
-                {!! Form::close() !!}
-
-                <div class="col-sm-12 col-md-3">
-
+        <div class="col-lg-2 col-xs-6">
+            <div class="panel panel-filled">
+                <div class="panel-body">
+                    <h3 class="m-b-none">
+                        Customer
+                        <span class="slight slight-align ">
+                               <br/>
+                               <i  class="fa fa-home  text-warning"> </i>
+                                Return Customer Home
+                               <br/>
+                              <a class="btn btn-default" href="/system/customer">Customer</a>
+                           </span>
+                    </h3>
                 </div>
             </div>
+        </div>
+
+        <div class="col-lg-2 col-xs-6">
+            <div class="panel panel-filled">
+                <div class="panel-body">
+                    <h3 class="m-b-none">
+                        View
+                        <span class="slight slight-align">
+                                <br/>
+                               <i  class="fa fa-home  text-warning"> </i>
+                                Customer Details
+                                <br/>
+                             <a  class="btn btn-default" href="/system/customer/{!! $customer->id !!}/view">View</a>
+                           </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-xs-6">
+            <div class="panel panel-filled activer-border">
+                <div class="panel-body">
+                    <h3 class="m-b-none">
+                        Edit
+                        <span class="slight slight-align">
+                                <br/>
+                               <i  class="fa fa-home  text-warning"> </i>
+                                Edit Customer Details
+                                <br/>
+                             <a  class="btn btn-default" href="/system/customer/{!! $customer->id !!}/edit">Edit</a>
+                           </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="row">
+         <div class="col-md-6"></div>
+
+
+            <div class="col-md-4">
+                @include('notifications._message')
+                <h4>Edit Customer
+                    <br />
+                    <small>Customer ID : {!! $customer->id !!}</small>
+                </h4>
+                <br/>
+
+                {!! Form::model($customer, ['method' => 'PATCH', 'action' => ['Customer\CustomerController@update', $customer->id]]) !!}
+                @include('admin.customer.partials._uneditableFormPartial', ['btn' => 'Update Customer','advance_payment'=>'0'])
+                {!! Form::close() !!}
+
+            </div>
+
         </div>
 @endsection
 
