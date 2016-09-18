@@ -2,6 +2,7 @@
 
 namespace App\Models\Tour;
 
+use App\Models\Package\Package;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -66,6 +67,26 @@ class Tour extends Model
     public function hotels()
     {
         return $this->belongsToMany(Hotel::class, 'tour_hotels', 'tour_id', 'hotel_id');
+    }
+
+    /**
+     * Get Package of the tour
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function package()
+    {
+        return $this->hasOne(Package::class, 'id', 'package_id');
+    }
+
+    /**
+     * Get package id of a tour [ for display in select box (multiple) ]
+     *
+     * @return mixed
+     */
+    public function getSelectedPackageAttribute()
+    {
+        return $this->package->id;
     }
 
 }

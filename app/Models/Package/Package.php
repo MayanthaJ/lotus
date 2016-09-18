@@ -2,6 +2,7 @@
 
 namespace App\Models\Package;
 
+use App\Models\Tour\Tour;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -36,5 +37,10 @@ class Package extends Model
     public $guarded = ['id'];
 
     public $table = 'package';
+
+    public function tours()
+    {
+        return $this->hasMany(Tour::class, 'package_id');
+    }
 
 }
