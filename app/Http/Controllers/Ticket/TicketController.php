@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Ticket;
 
+use App\Models\Agent\Agent;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -26,7 +27,9 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
+        $agents =Agent::where('terminated', 0)->pluck('name', 'id');
+
+        return view('admin.ticket.create',compact('agents'));
     }
 
     /**

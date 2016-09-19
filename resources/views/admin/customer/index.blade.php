@@ -156,7 +156,7 @@
                     </tr>
                     </thead>
                     <?php $count=1; ?>
-                    @foreach($TourCustomers as $customer)
+                    @foreach($Customers as $customer)
                         <tr>
                             <td><?php echo $count; $count++ ?></td>
                             <td>{!! $customer->fname.' '.$customer->lname  !!}</td>
@@ -205,10 +205,9 @@
          </div>
         </div>
 
-    </div>
-
     <br/>
 @endsection
+
 
 @section('js')
     <script type="text/javascript">
@@ -263,6 +262,7 @@
                                             '<td>' +tour+'</td>'+
                                             '<td>' +ticketing+'</td>'+
                                             '<td>' +rental+'</td>'+
+                                            '<td><a href="/system/customer/'+data[i].id+'/view" class="btn btn-default">View</a> </td>'+
                                             '<tr/>'
                                     );
                             No++;
