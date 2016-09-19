@@ -73,6 +73,24 @@
                 </div>
             </div>
 
+        <div class="col-lg-2 col-xs-6">
+            <div class="panel panel-filled">
+                <div class="panel-body">
+                    <h3 class="m-b-none">
+                        Add</h3>
+                    <span class="slight slight-align">
+                                    <br/>
+                                   <i  class="fa fa-home  text-warning"> </i>
+                                    Add Ticket Customer
+                                    <br/>
+                                 <a  class="btn btn-default" href="/system/ticket/create">Add</a>
+                               </span>
+
+                </div>
+            </div>
+        </div>
+
+
             <div class="col-lg-2 col-xs-6">
                 <div class="panel panel-filled">
                     <div class="panel-body">
@@ -112,8 +130,8 @@
                     </div>
                     <div id="tab-2" class="tab-pane">
                         <div class="panel-body">
-                            <p>Add Customer to Tour</p>
-                            <a  class="btn btn-default" href="/system/ticketing">Add</a>
+                            <p>Ticket Order</p>
+                            <a  class="btn btn-default" href="/system/ticket/create">Add</a>
                         </div>
                     </div>
                     <div id="tab-3" class="tab-pane">
@@ -176,7 +194,7 @@
                                 if($customer->ticketing){
                                     echo '<i class="fa fa-check" aria-hidden="true"></i>';
                                 }else{
-                                    echo '<a class="btn btn-default" href="/system/ticketing/'.$customer->id.'/create">Add</a>';
+                                    echo '<a class="btn btn-default" href="/system/ticket/'.$customer->id.'/create">Add</a>';
                                 }
                                 ?>
                             </td>
@@ -239,7 +257,7 @@
                         for (i = 0; i < data.length; i++) {
                             //intial values
                             var tour='<a class="btn btn-default" href="/system/customer/new/'+data[i].id+'/tour">Add</a>';
-                            var ticketing='<a class="btn btn-default" href="/system/ticketing/'+data[i].id+'/create">Add</a>'
+                            var ticketing='<a class="btn btn-default" href="/system/ticket/'+data[i].id+'/create">Add</a>'
                             var rental='<a class="btn btn-default" href="/system/rental/'+data[i].id+'/create">Add</a>';
 
                             if(data[i].tour){

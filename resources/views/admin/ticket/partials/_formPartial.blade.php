@@ -15,8 +15,8 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('number', 'Contact Number :') !!}
-    {!! Form::text('number', null, ['class' => 'form-control','id'=>'nm']) !!}
+    {!! Form::label('contact', 'Contact Number :') !!}
+    {!! Form::text('contact', null, ['class' => 'form-control','id'=>'contact']) !!}
 </div>
 
 <div class="form-group">
@@ -56,7 +56,7 @@
 
 <div class="form-group">
     {!! Form::label('agent','Select Agent') !!}
-    {!! Form::select('agent', $agents, null, ['placeholder' => 'Select Agent...','class'=>'form-control','id'=>'agent']) !!}
+    {!! Form::select('agent', $agents, null, ['class'=>'form-control','id'=>'agent']) !!}
 </div>
 
 <div class="form-group">

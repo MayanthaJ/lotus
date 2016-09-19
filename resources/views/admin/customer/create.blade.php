@@ -94,7 +94,7 @@
             <div class="col-md-6">
                 <h3>Add Customer</h3>
                 @include('notifications._message')
-                {!! Form::open(['action' => 'Customer\CustomerController@store']) !!}
+                {!! Form::open(['action' => 'Customer\CustomerController@store','id'=>'Form']) !!}
                 @include('admin.customer.partials._formPartial',['btn' => 'Add Customer','advance_payment'=>'1'])
                 {!! Form::close() !!}
             </div>
@@ -150,21 +150,12 @@
         </div>
     </div>
 @endsection
-@section('styles')
-    <style rel="stylesheet">
-        .slight-align{
-            text-align: center;
-        }
-        .activer-border{
-            border:solid 1px white;
-        }
-    </style>
-@endsection
 
 
 @section('js')
     <!-- tour load jquery -->
     <script type="text/javascript">
+
         $(document).on('change', '.package_selector', function () {
             var packageID = $(this).find(':selected').val();
             var loopdata = "";
@@ -181,6 +172,159 @@
                     $('#tourDate').html(loopdata);
                 }
             });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $('#Form').formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                fname: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Name should not be empty'
+                        },
+                        regexp: {
+                            regexp: /^[a-z\s]+$/i,
+                            message: 'The  name can consist of alphabetical characters and spaces only'
+                        },
+                        stringLength: {
+                            message: 'Number of characters must between 3 and 20',
+                            min:3,
+                            max:20
+                        }
+                    }
+                },
+                sname: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Name should not be empty'
+                        },
+                        regexp: {
+                            regexp: /^[a-z\s]+$/i,
+                            message: 'The name can consist of alphabetical characters and spaces only'
+                        },
+                        stringLength: {
+                            message: 'Number of characters must between 3 and 20',
+                            min:3,
+                            max:20
+                        }
+                    }
+                },
+                lname: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Name should not be empty'
+                        },
+                        regexp: {
+                            regexp: /^[a-z\s]+$/i,
+                            message: 'The name can consist of alphabetical characters and spaces only'
+                        },
+                        stringLength: {
+                            message: 'Number of characters must between 3 and 20',
+                            min:3,
+                            max:20
+                        }
+                    }
+                },
+                otherName: {
+                    validators: {
+                        regexp: {
+                            regexp: /^[a-z\s]+$/i,
+                            message: 'The name can consist of alphabetical characters and spaces only'
+                        },
+                        stringLength: {
+                            message: 'Number of characters must between 3 and 20',
+                            min:3,
+                            max:20
+                        }
+                    }
+                },
+                otherName: {
+                    validators: {
+                        regexp: {
+                            regexp: /^[a-z\s]+$/i,
+                            message: 'The name can consist of alphabetical characters and spaces only'
+                        },
+                        stringLength: {
+                            message: 'Number of characters must between 3 and 20',
+                            min:3,
+                            max:20
+                        }
+                    }
+                },
+                dob: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Date Of Birth should not be empty'
+                        }
+                    }
+                },
+                number: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Contact should not be empty'
+                        },
+                        numeric:{
+                            message:'Contact Number cannot be Alphabetic'
+                        }
+                        ,
+                        stringLength: {
+                            max:10,
+                            min:10,
+                            message: "Invalid Number"
+                        }
+                    }
+                },
+                nic:{
+                    validators: {
+                        notEmpty: {
+                            message: 'NIC cannot be empty !'
+                        },regexp: {
+                            regexp: /^[0-9]{9}[vVxX]$/,
+                            message: 'NIC is in wrong format'
+                        }
+                    }
+                },
+                passport:{
+                    validators: {
+                        notEmpty: {
+                            message: 'Passport id cannot be empty !'
+                        }
+                    }
+                },
+                address:{
+                    validators: {
+                        notEmpty: {
+                            message: 'Address cannot be empty !'
+                        },
+                        stringLength: {
+                            message: 'Number of characters must between 5 and 100',
+                            min:5,
+                            max:100
+                        }
+                    }
+                },
+                payment:{
+                    validators: {
+                        notEmpty: {
+                            message: 'Payment cannot be empty !'
+                        },
+                        numeric:{
+                            message: 'Payment cannot be Only numeric !'
+                        }
+                    }
+                }
+
+
+
+
+            }
         });
     </script>
 @endsection

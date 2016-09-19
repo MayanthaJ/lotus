@@ -55,13 +55,16 @@
     </div>
 
     <div class="row">
-        <div class="col-md-3"></div>
         <div class="col-sm-6 col-md-6">
-            <h4>Place New Ticket Order</h4>
-            @include('notifications._message')
-            {!! Form::open(['action' => 'Ticket\TicketController@store','id'=>'TicketForm']) !!}
-            @include('admin.ticket.partials._formPartial',['btn' => 'Place Order'])
-            {!! Form::close() !!}
+            <div class="panel panel-filled">
+                <div class="panel-body">
+                    <h4>Place New Ticket Order</h4>
+                    @include('notifications._message')
+                    {!! Form::open(['action' => 'Ticket\TicketController@store','id'=>'TicketForm']) !!}
+                    @include('admin.ticket.partials._formPartial',['btn' => 'Place Order'])
+                    {!! Form::close() !!}
+                </div>
+            </div>
         </div>
         <div class="col-md-3"></div>
 
@@ -71,7 +74,7 @@
 
 @section('js')
     <script>
-        $('#TicketForm').formValidation({
+        $('#TicketForm.test').formValidation({
             framework: 'bootstrap',
             icon: {
                 valid: 'glyphicon glyphicon-ok',
@@ -87,18 +90,28 @@
                         regexp: {
                             regexp: /^[a-z\s]+$/i,
                             message: 'The first name can consist of alphabetical characters and spaces only'
+                        },stringLength:{
+                                min:3,
+                                max:20,
+                                message:'Letter must between 3 and 20'
                         }
                     }
                 },
                 sname: {
                     validators: {
                         notEmpty: {
-                            message: 'Second Name should be empty !'
+                            message: 'Name should be empty !'
                         },
                         regexp: {
                             regexp: /^[a-z\s]+$/i,
-                            message: 'The second name can consist of alphabetical characters and spaces only'
+                            message: 'The  name can consist of alphabetical characters and spaces only'
+                        },
+                        stringLength:{
+                            min:3,
+                            max:20,
+                            message:'Letter must between 3 and 20'
                         }
+
                     }
                 },
                 lname: {
@@ -109,9 +122,34 @@
                         regexp: {
                             regexp: /^[a-z\s]+$/i,
                             message: 'The last name can consist of alphabetical characters and spaces only'
+                        },
+                        stringLength:{
+                            min:3,
+                            max:20,
+                            message:'Letter must between 3 and 20'
                         }
                     }
                 },
+                contact: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Contact should not be empty !'
+                        },
+                        numeric: {
+                            message: 'Contact number Should Numeric '
+                        },
+                        stringLength:{
+                            min:10,
+                            max:10,
+                            message: 'Contact number must 10 digits  '
+                        },
+                        regexp: {
+                            regexp: /^[0-9\s]+$/i,
+                            message: 'Contact number wrong format'
+                        }
+                    }
+                }
+                ,
                 nic: {
                     validators: {
                         notEmpty: {
@@ -145,6 +183,14 @@
                         }
                     }
                 },
+                departure:{
+                    validators: {
+                        notEmpty:{
+                            message:'Departure Date Required'
+                        }
+                    }
+                }
+                ,
                 quantity: {
                     validators: {
                         notEmpty: {

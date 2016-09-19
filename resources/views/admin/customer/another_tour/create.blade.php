@@ -92,15 +92,55 @@
     </div>
     <br/>
 
-    <div class="col-md-6">
+    <div class="row">
+        <hr/>
+        <div class="col-md-6">
+            <div class="panel panel-filled">
+                <div class="panel-body">
+                    <h4>Customer <span class="fa fa-user"></span> </h4>
+                    <table class="table table-bordered table-responsive">
+                        <tbody>
+                            <tr>
+                                <td>Name :</td>
+                                <td>{!! $customersDetails->fname !!} {!! $customersDetails->sname !!} {!! $customersDetails->lname !!}</td>
+                            </tr>
+                            <tr>
+                                <td>NIC :</td>
+                                <td>{!! $customersDetails->nic !!}</td>
+                            </tr>
+                            <tr>
+                                <td>Passport :</td>
+                                <td>{!! $customersDetails->passport !!}</td>
+                            </tr>
+                            <tr>
+                                <td>Tours :</td>
+                                <td>
+                                    <ul>
+                                        @foreach( $customerTours as $tour)
+                                            <li> {!! \App\Models\Tour\Tour::where('id',$tour->tour_id)->pluck('name')[0] !!}</li>
+                                        @endforeach
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-    </div>
-    <div class="col-md-2"></div>
+                </div>
 
-    <div class="col-md-4">
-        {!! Form::model($customersDetails, ['method' => 'PATCH', 'action' => ['Customer\CustomerController@update', $customersDetails->id]]) !!}
-        @include('admin.customer.another_tour.form.another_tour_formPartial', ['btn' => 'Update Customer','advance_payment'=>'0'])
-        {!! Form::close() !!}
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-filled">
+                <div class="panel-body">
+                    {!! Form::model($customersDetails, ['method' => 'PATCH', 'action' => ['Customer\CustomerController@update', $customersDetails->id]]) !!}
+                    @include('admin.customer.another_tour.form.another_tour_formPartial', ['btn' => 'Update Customer','advance_payment'=>'0'])
+                    {!! Form::close() !!}
+                </div>
+            <div>
+        </div>
+
     </div>
 
 

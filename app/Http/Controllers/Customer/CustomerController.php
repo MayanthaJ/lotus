@@ -60,21 +60,19 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         //Functional Validation
-
         $this->validate($request, [
             'tour' => 'required',
             'tourDate' => 'required',
-            'fname' => 'required|min:3|max:15',
-            'sname' => 'required|min:3|max:15',
-            'lname' => 'required|min:3|max:15',
-            'otherName' => 'required|min:3|max:15',
+            'fname' => 'required|min:3|max:20',
+            'sname' => 'required|min:3|max:20',
+            'lname' => 'required|min:3|max:20',
             'dob' => 'required|before:now',
             'gender' => 'required',
             'number' => 'required',
             'nic' => 'required|regex:/^[0-9]{9}[vVxX]$/',
             'passport' => 'required',
             'address' => 'required|min:10|max:255',
-            'advancePayment' => 'required|numeric|min:10000',
+            'payment' => 'required|numeric',
             'loyalty' => 'required'
         ]);
 
@@ -83,6 +81,8 @@ class CustomerController extends Controller
 
         //validate tour count
         if ($customerCount >= 40) {
+            Flash::success("Maximum number of customers already allocated !");
+            return Redirect::back();
             dd('count greater than 40');
         }
 
@@ -122,8 +122,8 @@ class CustomerController extends Controller
             ->insert([
                 'tour_id' => $request->tourDate,
                 'customer_id' => $customer->id,
-                'advance' => $request->advancePayment,
-                'total' => $discountAmount
+                'advance' => $request->payment,
+                'total'=>$discountAmount
             ]);
 
         //update tour table
@@ -297,7 +297,9 @@ class CustomerController extends Controller
 
         $packagesAll = Package::all();
 
-        return view('admin.customer.another_tour.create', compact('packages', 'customersDetails', 'packagesAll'));
+        $customerTours = CustomerTour::where('customer_id', $id)->get();
+
+        return view('admin.customer.another_tour.create', compact('packages','','customersDetails', 'packagesAll','customerTours'));
     }
 
     /**

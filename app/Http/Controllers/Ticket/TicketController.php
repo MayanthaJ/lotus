@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Ticket;
 
 use App\Models\Agent\Agent;
+use App\Models\Customer\Customer;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -40,7 +41,33 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Functional Validation
+        $this->validate($request, [
+            'fname' => 'required|min:3|max:20',
+            'sname' => 'required|min:3|max:20',
+            'lname' => 'required|min:3|max:20',
+            'contact' => 'required',
+            'nic' => 'required|regex:/^[0-9]{9}[vVxX]$/',
+            'from' => 'required',
+            'to' => 'required',
+            'departure' => 'required|after:now',
+            'quantity' => 'required|numeric',
+            'agent'=>'required',
+            'amount'=>'required|numeric'
+        ]);
+
+        $customer=Customer::create(
+            [
+                'fname' => $request->fname,
+                'sname' => $request->sname,
+                'lname' => $request->lname,
+                'otherName' => $request->otherName,
+                'number'=>$request->contact,
+                'nic'=>$request->nic,
+            ]
+            //work to done
+        );
+
     }
 
     /**
