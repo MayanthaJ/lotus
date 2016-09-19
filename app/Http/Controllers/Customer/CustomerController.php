@@ -24,9 +24,10 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $TourCustomers = Customer::all()->where('terminated', '=', '0');
 
-        return view('admin.customer.index', compact('TourCustomers'));
+        $Customers = Customer::all()->where('terminated', '=', '0');
+        return view('admin.customer.index', compact('Customers'));
+
     }
 
     /**
@@ -34,18 +35,15 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //get package details
         $packages = Package::where('terminated', 0)->pluck('name', 'id');
-
         $packagesAll = Package::all();
 
         //get loyalty Details
         $loyalty = Loyalty::all()->pluck('type', 'id');
-
-        //condition use to select upcoming tours
-        //$tours= Tour::where('id','>', 0)->pluck('departure','id');
 
         // return view.blade
         return view('admin.customer.create', compact('packages', 'loyalty', 'packagesAll'));
@@ -58,9 +56,11 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         //Functional Validation
+
         $this->validate($request, [
             'tour' => 'required',
             'tourDate' => 'required',
@@ -80,6 +80,7 @@ class CustomerController extends Controller
 
         //get tour customer allocation
         $customerCount = Tour::where('id', $request->tourDate)->first()->coustomer_count;
+
         //validate tour count
         if ($customerCount >= 40) {
             dd('count greater than 40');
@@ -131,7 +132,7 @@ class CustomerController extends Controller
             ->where('id', $request->tourDate)
             ->update(['coustomer_count' => $customerCount]);
 
-        //return view('admin.customer.report.addCustomerInfo',compact('customer','price','discount','discountAmount'));
+
         return \Redirect::to('/system/customer');
 
     }
@@ -172,6 +173,7 @@ class CustomerController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
 
@@ -187,9 +189,6 @@ class CustomerController extends Controller
         $customer->otherName = $request->otherName;
         $customer->number = $request->number;
         $customer->address = $request->address;
-
-
-        //boolean if need :
 
 
         // save and exit
@@ -208,6 +207,7 @@ class CustomerController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
         //get Customer
@@ -225,12 +225,21 @@ class CustomerController extends Controller
      */
     public function view($id)
     {
+
         //get customer details
         $customers = Customer::findOrFail($id);
         //get customer tours
         $customerTours = CustomerTour::where('customer_id', $id)->get();
         //result compact to view
         return view('admin.customer.view', compact('customers', 'customerTours'));
+
+    }
+
+    public  function viewAll(){
+
+        $Customers = Customer::all()->where('terminated', '=', '0');
+
+        return view('admin.customer.all', compact('Customers'));
     }
 
     /**
@@ -238,6 +247,7 @@ class CustomerController extends Controller
      **/
     public function terminate($id)
     {
+
         $Status = DB::table('customers')->where('id', $id)->update(['terminated' => 1]);
         if ($Status) {
             Flash::success('Customer Deleted');
@@ -253,6 +263,7 @@ class CustomerController extends Controller
      * */
     public function undoterminate($id)
     {
+
         $Status = DB::table('customers')->where('id', $id)->update(['terminated' => 0]);
         if ($Status) {
             Flash::success('Customer Deleted');
