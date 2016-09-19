@@ -154,6 +154,9 @@ return [
         CodeZero\Flash\FlashServiceProvider::class,
         Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Codesleeve\LaravelStapler\Providers\L5ServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -213,6 +216,7 @@ return [
         'Flash' => CodeZero\Flash\Facade\Flash::class,
         'Lava' => Khill\Lavacharts\Lavacharts::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 
