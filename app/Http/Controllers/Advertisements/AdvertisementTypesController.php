@@ -48,7 +48,7 @@ class AdvertisementTypesController extends Controller
 
         AdvertisementType::create($request->all());
 
-        return Redirect::back();
+        return Redirect::to('/system/advertisements/types');
 
 
 

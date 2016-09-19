@@ -103,7 +103,7 @@ class FeedbackController extends Controller
 
         }
 
-        
+
 
         return Redirect::to('/system/advertisements/feedback');
     }

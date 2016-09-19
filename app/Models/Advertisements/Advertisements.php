@@ -4,6 +4,7 @@ namespace App\Models\Advertisements;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 /**
  * App\Models\Advertisements\Advertisements
  *
@@ -29,6 +30,7 @@ use Illuminate\Database\Eloquent\Model;
 class Advertisements extends Model
 {
 
+
     //
 
     protected $guarded = ['id'];
@@ -37,6 +39,7 @@ class Advertisements extends Model
     {
         return $this->hasOne(AdvertisementType::class, 'id', 'type_id');
     }
+
 
 
 
