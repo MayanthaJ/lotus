@@ -14,7 +14,9 @@
         "doctrine/dbal": "^2.5",
         "laracasts/generators": "^1.1",
         "khill/lavacharts": "3.0.*",
-        "barryvdh/laravel-dompdf": "^0.7.0"
+        "barryvdh/laravel-dompdf": "^0.7.0",
+        "codesleeve/laravel-stapler": "1.0.*",
+        "intervention/image": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

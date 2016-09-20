@@ -29,6 +29,7 @@ class AdCreateRequest extends Request
 
             'expense' => 'required|min:0|integer',
 
+            'description' => 'required|between:1,150',
 
 
         ];
