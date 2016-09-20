@@ -25,9 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return \PDF::loadView('admin.employee.pdf.test')->inline();
+        //return \PDF::loadView('admin.employee.pdf.test')->inline();
 
-        //return view('home');
+        return view('home');
     }
 
     public function getDashBoard()

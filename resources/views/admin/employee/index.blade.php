@@ -68,9 +68,17 @@
         </div>
 
         <div class="col-sm-12 col-md-3">
-            <h4>Admin / Manager Options</h4>
-            <ul>
-                <li></li>
+            <h4>Admin / Management Options</h4>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="{!! url('/system/admin/employee/loan/create/') !!}">Allocate a loan</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{!! url('/system/admin/employee/leave/create') !!}">Allocate a leave</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{!! url('/system/admin/employee/advance/create') !!}">Allocate an advance payment</a>
+                </li>
             </ul>
         </div>
 

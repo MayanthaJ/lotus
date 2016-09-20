@@ -123,6 +123,15 @@
                     <li class="list-group-item">
                         <a href="{!! url('/system/admin/employee/advance/create') !!}">Allocate an advance payment</a>
                     </li>
+                    <li class="list-group-item">
+                        <a href="{!! url('/system/extras/leavetype/create') !!}">Allocate LeaveType</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{!! url('/system/extras/holidays/create') !!}">Add Holidays</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{!! url('/system/extras/ottypes/create') !!}">Allocate OT Types</a>
+                    </li>
                 </ul>
             </div>
         </div>

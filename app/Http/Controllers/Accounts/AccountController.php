@@ -125,7 +125,7 @@ class AccountController extends Controller
         $this->calculateExpensePerDay();
     }
 
-    private function calculateExpensePerDay()
+    public function calculateExpensePerDay()
     {
         $carbon = Carbon::now();
 
@@ -210,7 +210,7 @@ class AccountController extends Controller
     /**
      * Calculate the income of the day
      */
-    private function calculateIncomePerDay()
+    public function calculateIncomePerDay()
     {
 
         $carbon = Carbon::now();

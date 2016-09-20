@@ -69,6 +69,9 @@ Route::get('system/accounts/stats/{expense}/expense', 'Accounts\AccountControlle
 Route::get('system/accounts/stats/{income}/income', 'Accounts\AccountController@getMoreIncome');
 Route::get('system/accounts/graphs/', 'Accounts\AccountController@getGraphsView');
 
+Route::get('/system/accounts/calculate/income', 'Accounts\AccountController@calculateIncomePerDay');
+Route::get('/system/accounts/calculate/expense', 'Accounts\AccountController@calculateExpensePerDaya');
+
 Route::resource('system/accounts/bill/type', 'Accounts\BillTypeController');
 Route::resource('system/accounts/bill', 'Accounts\BillController');
 
@@ -89,7 +92,7 @@ Route::get('/api/secured/accounts/bills/month/{from}/{to}', function ($from, $to
 // loans routes
 Route::group(['middleware' => 'adminOrManager'], function () {
 
-    Route::get('/system/admin/employee/loan/create', 'Employee\General\Additional@getAddLoan');
+    Route::get('admin/employee/loan/create', 'Employee\General\Additional@getAddLoan');
     Route::post('/system/admin/employee/loan/create', 'Employee\General\Additional@postAddLoan');
 
 // leaves routes

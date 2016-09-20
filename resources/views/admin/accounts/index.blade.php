@@ -48,6 +48,10 @@
 
             </div>
 
-            <div class="col-xs-12 col-sm-3"></div>
+            <div class="col-xs-12 col-sm-3">
+                <a href="{!! url('/system/accounts/calculate/income') !!}">Demo income</a>
+                <br>
+                <a href="{!! url('/system/accounts/calculate/expense') !!}">Demo expense</a>
+            </div>
         </div>
 @endsection

@@ -25,8 +25,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class=" profil-link">
                     <a href="{!! url('/system/employee/'. Auth::id()) !!}">
-                        <span class="profile-address">{!! Auth::user()->name !!}</span>
-                        <img src="images/profile.jpg" class="img-circle" alt="">
+                        <span class="profile-address" style="margin-top: 10px">{!! strtoupper(Auth::user()->name) !!}</span>
                     </a>
                 </li>
             </ul>
