@@ -9,12 +9,11 @@ use App\Models\Rental\Vehicle;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use flash;
+use Flash;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redirect;
-
+use Redirect;
 class ReservationController extends Controller
 {
     /**
@@ -42,11 +41,11 @@ class ReservationController extends Controller
     public function create()
     {
 
-        $vehicles = Vehicle::pluck('vehicle_name', 'id');
+        $vehicles = Vehicle::where('terminated', 0)->pluck('vehicle_name', 'id')->all();
 
-        $drivers = EmployeeType::where('name', 'driver')->with('employees')->first()->employees->pluck('name', 'id');
+        $drivers = EmployeeType::where('name', 'driver')->with('employees')->first()->employees->where('terminated', 0)->pluck('name', 'id');
 
-       // dd(\DB::getQueryLog());
+        // dd(\DB::getQueryLog());
 
         return view('admin.rental.reservation.create', compact('vehicles', 'drivers'));
     }
@@ -54,11 +53,18 @@ class ReservationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
+
+        $diff = Carbon::parse($request->start_date)->diffInDays(Carbon::parse($request->end_date), false);
+
+        if ($diff <= 0) {
+            return Redirect::back()->withErrors(['message' => 'Fuck']);
+        }
+
 
         // validate the request object
         $this->validate($request, [
@@ -66,6 +72,11 @@ class ReservationController extends Controller
             //'payment' => 'required|min:2|max:10',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
+            'fname' => 'required',
+            'lname' => 'required',
+            'mname' => 'required',
+            'mobile' => 'required|min:10|max:10',
+            'nic' => 'required|min:10|max:10',
 
         ]);
 
@@ -79,22 +90,48 @@ class ReservationController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
 
+            /*
+                       'fname' => $request->fname,
+                        'lname'=>$request->lname,
+                        'mname'=>$request->mname,
+                        'mobile' => $request->mobile,
+                       'nic' => $request->nic,
+
+            */
+
             // 'terminated' => ($request->has('terminated')) ? 1 : 0,
+
         ]);
+
+
+        \DB::table('customers')
+            ->insert(['fname' => $request->fname, 'lname' => $request->lname, 'sname' => $request->mname, 'number' => $request->mobile, 'nic' => $request->nic, 'loyalty_id' => 1, 'rental' => 1]);
+
+
+        \DB::table('users')
+            ->where('id', $request->driver_id)
+            ->update(['terminated' => 1]);
+
+        \DB::table('vehicle')
+            ->where('id', $request->vehicle_id)
+            ->update(['terminated' => 1]);
+
 
         // Sends a success message
         \Flash::success("Reservation Added Successfully !");
 
-        // return to a url
+
+        //return to a url
         return \Redirect::to('/system/rental/reservation');
 
 
     }
 
+
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
 
@@ -106,7 +143,7 @@ class ReservationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -123,10 +160,11 @@ class ReservationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
         // validate the request object
@@ -143,11 +181,11 @@ class ReservationController extends Controller
         $reservation->start_date = $request->start_date;
         $reservation->end_date = $request->end_date;
         $reservation->driver_id = $request->driver_id;
-        $reservation-> vehicle_id= $request-> vehicle_id;
-        $reservation->payment = $request->payment ;
-        $reservation-> destination= $request->destination ;
+        $reservation->vehicle_id = $request->vehicle_id;
+        $reservation->payment = $request->payment;
+        $reservation->destination = $request->destination;
 
-        if($reservation->save()) {
+        if ($reservation->save()) {
             \Flash::success("Reservation Details updated successfully");
 
         } else {
@@ -156,12 +194,12 @@ class ReservationController extends Controller
 
         return \Redirect::to('/system/rental/reservation/');
 
-}
+    }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

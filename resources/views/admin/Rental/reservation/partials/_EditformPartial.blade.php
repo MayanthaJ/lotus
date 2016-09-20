@@ -13,7 +13,7 @@
 <br />
 
 {!! Form::label('Mobile Number', 'Mobile Number  :') !!}
-{!! Form::number('mobile', null, ['class' => 'form-control']) !!}
+{!! Form::text('mobile', null, ['class' => 'form-control']) !!}
 
 <br />
 {!! Form::label('NIC', 'NIC  :') !!}

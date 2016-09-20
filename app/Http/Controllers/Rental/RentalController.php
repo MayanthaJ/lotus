@@ -114,19 +114,19 @@ class RentalController extends Controller
 
         // validate the request object
         $this->validate($request, [
-            'vehicle_name' => 'required|min:3|max:15',
-            'm_year' => 'required|min:4|max:4',
-            'reg_no' => 'required|max:50',
-            'color' => 'required|min:3|max:10',
+           // 'vehicle_name' => 'required|min:3|max:15',
+           // 'm_year' => 'required|min:4|max:4',
+          //  'reg_no' => 'required|max:50',
+            'color' => 'required',
             'type' => 'required',
             'b_type' => 'required',
         ]);
 
         $vehicle = Vehicle::findOrFail($id);
 
-        $vehicle->vehicle_name = $request->vehicle_name;
-        $vehicle->reg_no = $request->reg_no;
-        $vehicle->m_year = $request->m_year;
+       // $vehicle->vehicle_name = $request->vehicle_name;
+      //  $vehicle->reg_no = $request->reg_no;
+       // $vehicle->m_year = $request->m_year;
         $vehicle->color = $request->color;
         $vehicle->type = $request->type;
         $vehicle->b_type = $request->b_type;
@@ -175,5 +175,10 @@ class RentalController extends Controller
     public function getRentalProfit()
     {
         return null;
+    }
+
+    public function getExtsistingCustomerView($id)
+    {
+        return view('', compact('id'));
     }
 }

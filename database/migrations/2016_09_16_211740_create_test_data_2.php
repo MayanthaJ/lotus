@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateTestData2 extends Migration
@@ -144,6 +145,23 @@ class CreateTestData2 extends Migration
             ]
 
         ]);
+
+        //SK
+        //Fill values to critical tables
+        //employee_types
+        DB::table('employee_types')->insert([
+            ['id'=>'5','name'=>'driver']
+
+        ]);
+
+        DB::table('employee_type_user')->insert([
+            ['employee_type_id'=>'5','user_id'=>'1']
+
+        ]);
+
+
+
+
 
     }
 

@@ -10,7 +10,7 @@
         <h2>Update Reservation</h2>
         @include('notifications._message')
         {!! Form::model($reservation, ['method' => 'PATCH', 'action' => ['Rental\ReservationController@update', $reservation->id]]) !!}
-        @include('admin.rental.reservation.partials._formPartial',['btn'=>'Edit Reservation'])
+        @include('admin.rental.reservation.partials._EditformPartial',['btn'=>'Edit Reservation'])
         {!! Form::close() !!}
     </div>
 

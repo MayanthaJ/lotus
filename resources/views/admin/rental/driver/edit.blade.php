@@ -10,7 +10,7 @@
         <h2>Update Driver</h2>
         @include('notifications._message')
         {!! Form::model($driver, ['method' => 'PATCH', 'action' => ['Rental\DriverController@update', $driver->id]]) !!}
-        @include('admin.rental.driver.partials._formPartial',['btn'=>'Edit Driver', 'password' => false])
+        @include('admin.rental.driver.partials._EditformPartial',['btn'=>'Edit Driver', 'password' => false])
         {!! Form::close() !!}
     </div>
 

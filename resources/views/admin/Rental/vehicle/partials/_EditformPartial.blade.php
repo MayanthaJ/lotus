@@ -1,13 +1,13 @@
 <div class="form-group">
 <br />
 {!! Form::label('vehicle_name', 'Vehicle Name :') !!}
-{!! Form::text('vehicle_name', null, ['class' => 'form-control']) !!}
+{!! Form::text('vehicle_name', null, ['class' => 'form-control', 'disabled']) !!}
 </div>
 
 <div class="form-group">
 <br />
 {!! Form::label('m_year', 'Manufactured Year :') !!}
-{!! Form::text('m_year', null, ['class' => 'form-control']) !!}
+{!! Form::text('m_year', null, ['class' => 'form-control', 'disabled']) !!}
 </div>
 
 <div class="form-group">
@@ -21,7 +21,7 @@
 <br />
 <br/>
 {!! Form::label('reg_no', 'Registration No  :') !!}
-{!! Form::text('reg_no', null, ['class' => 'form-control']) !!}
+{!! Form::text('reg_no', null, ['class' => 'form-control', 'disabled']) !!}
     </div>
 
 
