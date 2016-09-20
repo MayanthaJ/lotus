@@ -8,7 +8,7 @@
                 @include('notifications._message')
                 <h2>Overview Income
                     <br/>
-                    <small><a href="{!! url('/system/rental/income') !!}">Add Income</a></small>
+                    <small><a href="{!! url('/system/rental/income') !!}"></a></small>
                 </h2>
                 <br/>
 

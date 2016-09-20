@@ -62,7 +62,7 @@ class ReservationController extends Controller
         $diff = Carbon::parse($request->start_date)->diffInDays(Carbon::parse($request->end_date), false);
 
         if ($diff <= 0) {
-            return Redirect::back()->withErrors(['message' => 'Fuck']);
+            return Redirect::back()->withErrors(['message' => 'Date is Incompatible']);
         }
 
 

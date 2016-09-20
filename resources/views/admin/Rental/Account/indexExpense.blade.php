@@ -9,7 +9,7 @@
                 @include('notifications._message')
                 <h2>Overview Expenditure
                     <br />
-                    <small><a href="{!! url('/system/rental/account') !!}">Add Expense</a></small>
+                    <small><a href="{!! url('/system/rental/account') !!}"></a></small>
                 </h2>
                 <br />
 
