@@ -56,7 +56,7 @@ class DriverController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:3|max:20',
             'nic' => 'required|regex:/^[0-9]{9}[vVxX]$/',
-            'age' => 'required|min:2|max:2',
+            'dob' => 'required|date',
             'address'=>'required|min:5|max:100',
             'basic'=>'required|min:1|max:10',
 
@@ -67,7 +67,7 @@ class DriverController extends Controller
             'name' => $request->name,
             'lastname' => $request->lastname,
             'email' => $request->email,
-            'age' => (int)$request->age,
+            'age' => $request->dob,
             'password' => bcrypt($request->passsword),
             'nic' => $request->nic,
             'basic' => (double)$request->basic,
@@ -130,21 +130,21 @@ class DriverController extends Controller
         // validate the request object
         $this->validate($request, [
 
-            'name' => 'required|min:3|max:15',
+           // 'name' => 'required|min:3|max:15',
             'lastname' => 'required|min:5|max:15',
             'email' => 'required|max:50',
             'basic' => 'required',
             'nic' => 'required|min:10|max:10',
-            'age' => 'required|min:2|max:2',
+          //  'age' => 'required|min:2|max:2',
 
         ]);
 
         $user = User::findOrFail($id);
 
-        $user->name = $request->name;
+       // $user->name = $request->name;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
-        $user->age = $request->age;
+      //  $user->age = $request->age;
         $user->address = $request->address;
         $user->password = $request->password;
         $user->nic = $request->nic;

@@ -10,8 +10,7 @@
         <h2>Update Vehicle</h2>
         @include('notifications._message')
         {!! Form::model($vehicle, ['method' => 'PATCH', 'action' => ['Rental\RentalController@update', $vehicle->id]]) !!}
-        @include('admin.rental.vehicle.partials._formPartial',['btn'=>'Edit Vehicle'])
+        @include('admin.rental.vehicle.partials._EditformPartial',['btn'=>'Edit Vehicle'])
         {!! Form::close() !!}
     </div>
-
 @endsection

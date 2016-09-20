@@ -1,6 +1,6 @@
 <br/>
 {!! Form::label('name', 'First Name :') !!}
-{!! Form::text('name', null, ['class' => 'form-control']) !!}
+{!! Form::text('name', null, ['class' => 'form-control', 'disabled']) !!}
 
 
 <br/>
@@ -20,7 +20,7 @@
 
 <br/>
 {!! Form::label('Date Of Birth', 'Date Of Birth :') !!}
-{!! Form::date('dob', null, ['class' => 'form-control']) !!}
+{!! Form::date('dob', null, ['class' => 'form-control', 'disabled']) !!}
 
 
 <br/>

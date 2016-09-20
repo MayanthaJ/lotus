@@ -24,10 +24,10 @@
                     <table class="ajax-table hidden table table-responsive">
                         <tr>
                             <th>Reservation ID</th>
-                            <th>Date</th>
+                            <th>Start_date</th>
+                            <th>End_date</th>
                             <th>Destination</th>
-                            <th>Customer Name</th>
-                            <th>Mobile</th>
+                            <th>Customer </th>
                             <th></th>
                         </tr>
                     </table>
@@ -51,6 +51,7 @@
                         $x = \App\User::find($reservation->driver_id);
 
                         ?>
+
                         <tr>
                             <td>{!! $reservation->id !!}</td>
                             <td>{!! $reservation->start_date!!}</td>
@@ -77,12 +78,12 @@
     </div>
 @endsection
 
-//js(ajax) for search(author:SK)
+//js(ajax) for search
 
 
 @section('js')
     <script type="text/javascript">
-        var url = '/api/secured/rental/reservation/name/';
+        var url = '/api/secured/rental/reservation/date/';
 
         var typingTimer;                //timer identifier
 
@@ -114,7 +115,10 @@
                                     .append(
                                             '<tr>' +
                                             '<td>' + data[i].id + '</td>' +
-                                            '<td>' + data[i].name + '</td>' +
+                                            '<td>' + data[i].start_date + '</td>' +
+                                            '<td>' + data[i].end_date + '</td>' +
+                                            '<td>' + data[i].destination + '</td>' +
+                                            '<td>' + data[i].customer_id + '</td>' +
                                             '<td>' + '<a href="/system/rental/reservation/' + data[i].id + '/edit">View Reservation</a>' + '</td>' +
                                             '<tr>'
                                     );
