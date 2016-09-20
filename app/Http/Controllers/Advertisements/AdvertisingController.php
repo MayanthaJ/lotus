@@ -9,6 +9,9 @@ use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Redirect;
+use Storage;
+use Image;
+use Imagine\Gd\Imagine;
 
 
 
@@ -48,7 +51,25 @@ class AdvertisingController extends Controller
 //     */
     public function store(AdCreateRequest $request)
     {
+
+
         Advertisements::create($request->all());
+
+        if($request->hasFile('file')){
+
+            $file = $request->file('file');
+            $file->move('uploads', $file->getClientOriginalName());
+            $fileName = $file->getClientOriginalName();
+            $destinationPath = config('app.fileDestinationPath').'/'.$fileName;
+            $uploaded = Storage::put($destinationPath, file_get_contents($file->getRealPath()));
+
+            if($uploaded){
+
+            }
+
+
+
+        }
 
         return Redirect::back();
 
@@ -63,6 +84,7 @@ class AdvertisingController extends Controller
     public function show($id)
     {
         $advertisement = Advertisements::findOrFail($id);
+
 
         return view('admin.advertisements.show', compact('advertisement'));
 
@@ -103,9 +125,31 @@ class AdvertisingController extends Controller
 
         $ad->type_id = $request->type_id;
 
+        if($request->hasFile('file')){
+
+////            $file = $request->file('file');
+//
+//            $fileName = $file->getClientOriginalName();
+//            $destinationPath = config('app.fileDestinationPath').'/'.$fileName;
+//            $file = Input::file('file')->move($destinationPath, $fileName);
+//            $uploaded = Storage::put($destinationPath, file_get_contents($file->getRealPath()));
+//
+//
+//
+//            if($uploaded){
+//
+//            }
+
+
+
+
+
+
+        }
+
         $ad->save();
 
-        return Redirect::back();
+        return Redirect::to('/system/advertisements');
 
     }
 
@@ -120,29 +164,29 @@ class AdvertisingController extends Controller
         //
     }
 
-    public function upload(Request $request){
-        $file = $request->file('file');
-
-        echo 'File Name: '.$file->getClientOriginalName();
-        echo '<br>';
-
-        echo 'File Extension: '.$file->getClientOriginalExtension();
-        echo '<br>';
-
-
-        echo 'File Real Path: '.$file->getRealPath();
-        echo '<br>';
-
-
-        echo 'File Size: '.$file->getSize();
-        echo '<br>';
-
-
-        //  echo 'File Mime Type: '.$file->getMimeType();
-
-        //Move uploaded file
-        $destinationPath = 'uploads';
-        $file->move($destinationPath,$file->getClientOriginalName());
-    }
+//    public function upload(Request $request){
+//        $file = $request->file('file');
+//
+//        echo 'File Name: '.$file->getClientOriginalName();
+//        echo '<br>';
+//
+//        echo 'File Extension: '.$file->getClientOriginalExtension();
+//        echo '<br>';
+//
+//
+//        echo 'File Real Path: '.$file->getRealPath();
+//        echo '<br>';
+//
+//
+//        echo 'File Size: '.$file->getSize();
+//        echo '<br>';
+//
+//
+//        //  echo 'File Mime Type: '.$file->getMimeType();
+//
+//        //Move uploaded file
+//        $destinationPath = 'uploads';
+//        $file->move($destinationPath,$file->getClientOriginalName());
+//    }
 
 }

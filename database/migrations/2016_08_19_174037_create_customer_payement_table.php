@@ -14,6 +14,7 @@ class CreateCustomerPayementTable extends Migration
     {
         Schema::create('customer_payment', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('tour_id');
             $table->unsignedInteger('customer_id');
             $table->double('advance');
             $table->double('total');

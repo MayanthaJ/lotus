@@ -17,6 +17,8 @@ class CreateAdvertisments extends Migration
             $table->text('name');
             $table->unsignedInteger('type_id');
             $table->double('expense');
+            $table->string('description');
+            $table->binary('file');
             $table->string('sys');
             $table->string('sys_url');
             $table->timestamps();

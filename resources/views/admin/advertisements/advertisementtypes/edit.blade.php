@@ -11,9 +11,8 @@
 
     <hr/>
     <div class="col-xs-12 com-md-3">
-        @include('admin.advertisements.partials._custNav')
-    </div>
 
+    </div>
     <div class="col-xs-12 com-md-6">
 
     {!! Form::model($type,['method' => 'PATCH', 'action' => ['Advertisements\AdvertisementTypesController@update', $type->id]]) !!}
@@ -25,7 +24,6 @@
         {!! Form::label('name', 'Type Name : ') !!}
         {!! Form::text('name',null,['class' => 'form-control']) !!}
         <br><br />
-
         {!! Form::label('description','Description : ') !!}
         {!! Form::text('description',null,['class' => 'form-control']) !!}
         <br><br/>

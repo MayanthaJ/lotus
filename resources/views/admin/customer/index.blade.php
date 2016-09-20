@@ -22,15 +22,16 @@
 
 
     <div class="row">
+
             <div class="col-lg-2 col-xs-6">
-                <div class="panel panel-filled">
+                <div class="panel panel-filled activer-border">
                     <div class="panel-body">
                         <h3 class="m-b-none">
                             Customer</h3>
                             <span class="slight slight-align ">
                                <br/>
                                <i  class="fa fa-home  text-warning"> </i>
-                                Return Customer Home
+                                Customer Home
                                <br/>
                               <a class="btn btn-default" href="/system/customer">Customer</a>
                            </span>
@@ -55,45 +56,60 @@
                 </div>
             </div>
 
-            <div class="col-lg-8 col-xs-6">
+            <div class="col-lg-2 col-xs-6">
                 <div class="panel panel-filled">
                     <div class="panel-body">
                         <h3 class="m-b-none">
-                           New Customer
-                        </h3>
-                        <div class="col-md-4">
-                                <span class="slight slight-align">
+                            Add</h3>
+                                  <span class="slight slight-align">
                                 <br/>
                                <i  class="fa fa-home  text-warning"> </i>
                                 Add Tour Customer
                                 <br/>
                              <a  class="btn btn-default" href="/system/customer/create">Add</a>
                            </span>
-                        </div>
-                        <div class="col-md-4">
-                                <span class="slight slight-align">
-                                <br/>
-                               <i  class="fa fa-home  text-warning"> </i>
-                                Add Ticketing Customer
-                                <br/>
-                             <a  class="btn btn-default" href="/system/customer/ticketing/create">Add</a>
-                           </span>
-                        </div>
-                        <div class="col-md-4">
-                                <span class="slight slight-align">
-                                <br/>
-                               <i  class="fa fa-home  text-warning"> </i>
-                                Add Rental Customer
-                                <br/>
-                             <a  class="btn btn-default" href="/system/customer/view">Add</a>
-                           </span>
-                        </div>
 
                     </div>
                 </div>
             </div>
 
+        <div class="col-lg-2 col-xs-6">
+            <div class="panel panel-filled">
+                <div class="panel-body">
+                    <h3 class="m-b-none">
+                        Add</h3>
+                    <span class="slight slight-align">
+                                    <br/>
+                                   <i  class="fa fa-home  text-warning"> </i>
+                                    Add Ticket Customer
+                                    <br/>
+                                 <a  class="btn btn-default" href="/system/ticket/create">Add</a>
+                               </span>
+
+                </div>
+            </div>
         </div>
+
+
+            <div class="col-lg-2 col-xs-6">
+                <div class="panel panel-filled">
+                    <div class="panel-body">
+                        <h3 class="m-b-none">
+                            Add</h3>
+                                      <span class="slight slight-align">
+                                    <br/>
+                                   <i  class="fa fa-home  text-warning"> </i>
+                                    Add Rental Customer
+                                    <br/>
+                                 <a  class="btn btn-default" href="/system/rental/reservation/create">Add</a>
+                               </span>
+
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
     <div class="row">
         <div class="col-lg-12">
             <div class="tabs-container">
@@ -104,85 +120,175 @@
                     </li>
                     <li class=""><a data-toggle="tab" href="#tab-3" aria-expanded="false">Rental</a>
                     </li>
-                    <li class=""><a data-toggle="tab" href="#tab-4" aria-expanded="false">Registered</a>
-                    </li>
                 </ul>
                 <div class="tab-content">
                     <div id="tab-1" class="tab-pane active">
                         <div class="panel-body">
                             <p>Add Customer to Tour</p>
                             <a  class="btn btn-default" href="/system/customer/create">Add</a>
-                            <hr/>
-                            <p>Tour Customer Table</p>
                         </div>
                     </div>
-
-
                     <div id="tab-2" class="tab-pane">
                         <div class="panel-body">
-                            <strong class="c-white">Donec quam felis</strong>
-
-                            <p>Thousand unknown plants are noticed by me: when I hear the buzz of the little
-                                world among the stalks, and grow familiar with the countless indescribable forms
-                                of the insects
-                                and flies, then I feel the presence of the Almighty, who formed us in his own
-                                image, and the breath </p>
-
-                            <p>I am alone, and feel the charm of existence in this spot, which was created for
-                                the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the
-                                exquisite
-                                sense of mere tranquil existence, that I neglect my talents. I should be
-                                incapable of drawing a single stroke at the present moment; and yet.</p>
+                            <p>Ticket Order</p>
+                            <a  class="btn btn-default" href="/system/ticket/create">Add</a>
                         </div>
                     </div>
-                </div>
+                    <div id="tab-3" class="tab-pane">
+                        <div class="panel-body">
+                            <p>Add Customer to Rental</p>
+                            <a  class="btn btn-default" href="/system/rental/reservation/create">Add</a>
+                        </div>
 
+                    </div>
+
+
+
+                </div>
+            <!-- /Search And table end --->
 
             </div>
         </div>
-
     </div>
 
-    <br/>
+    <div class="row">
+        <!-- Search and Table come here --->
+        <div class="col-md-12 ">
+            <div class="panel panel-filled">
+                <div class="panel-body">
+                    <br/>
+                <div id="ajax-search">
+                    {!! Form::text('search', null, ['class' => 'form-control', 'id' => 'search', 'placeholder' => 'Search Tour Customer']) !!}
+                </div>
+                <br/><br/>
+                <table class="table table-bordered table-responsive ajax-table">
+                    <thead>
+                    <tr>
+                        <th>#No</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>NIC</th>
+                        <th>Tour</th>
+                        <th>Ticket</th>
+                        <th>Rental</th>
+                    </tr>
+                    </thead>
+                    <?php $count=1; ?>
+                    @foreach($Customers as $customer)
+                        <tr>
+                            <td><?php echo $count; $count++ ?></td>
+                            <td>{!! $customer->fname.' '.$customer->lname  !!}</td>
+                            <td>{!! $customer->number !!}</td>
+                            <td>{!! $customer->nic !!}</td>
+                            <td style="text-align: center">
+                                <?php
+                                    if($customer->tour){
+                                        echo '<i class="fa fa-check" aria-hidden="true"></i>';
+                                    }else{
+                                        echo '<i class="fa fa-times" aria-hidden="true"></i>';
+                                    }
+                                ?>
+                            </td>
+                            <td style="text-align: center">
+                                <?php
+                                if($customer->ticketing){
+                                    echo '<i class="fa fa-check" aria-hidden="true"></i>';
+                                }else{
+                                    echo '<i class="fa fa-times" aria-hidden="true"></i>';
+                                }
+                                ?>
+                            </td>
+                            <td style="text-align: center">
+                                <?php
+                                    if($customer->rental){
+                                        echo '<i class="fa fa-check" aria-hidden="true"></i>';
+                                    }else{
+                                        echo '<i class="fa fa-times" aria-hidden="true"></i>';
+                                    }
+                                ?>
+                            </td>
+                            <td>
+                                <a href="{!! url('/system/customer/'.$customer->id.'/view') !!}" class="btn btn-default">
+                                    View
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    <tbody>
 
-        <!-- customer table -->
-        <table class="table table-responsive">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Date Of Birth</th>
-                <th>Number</th>
-                <th>NIC</th>
-                <th>Passport</th>
-                <th>Address </th>
-                <th>Loyalty</th>
-                <th> </th>
-            </tr>
-            <?php $count=1; ?>
-            @foreach($customers as $customer)
-                <tr>
-                    <td><?php echo $count; $count++ ?></td>
-                    <td>{!! $customer->fname.' '.$customer->sname.' '.$customer->lname  !!}</td>
-                    <td>{!! $customer->age !!}</td>
-                    <td>{!! $customer->dob !!}</td>
-                    <td>{!! $customer->number !!}</td>
-                    <td>{!! $customer->nic !!}</td>
-                    <td>{!! $customer->passport !!}</td>
-                    <td>{!! $customer->address1 !!}</td>
-                    <td><?php echo \App\Models\Loyalty\Loyalty::find($customer->loyalty_id)->type ?></td>
-                    <td>
-                        <a href="{!! url('/system/customer/'.$customer->id.'/edit') !!}" class="btn btn-default">
-                            edit
-                        </a>
-                        <a href="{!! url('/system/customer/'.$customer->id.'/add_to_another') !!}" class="btn btn-default">
-                            Add to another
-                        </a>
-                        <a href="{!! url('/system/customer/'.$customer->id.'/terminate') !!}" class="btn btn-default">
-                            Delete
-                        </a>
-                    </td>
-                </tr>
-            @endforeach
-        </table>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+         </div>
+        </div>
+
+    <br/>
+@endsection
+
+
+@section('js')
+    <script type="text/javascript">
+        var url = '';
+        var typingTimer;                //timer identifier
+        var doneTypingInterval = 250;  //time in ms (5 seconds)
+
+        $(document).on('keyup', '#search', function () {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(doneTyping, doneTypingInterval);
+            var value = $('#search').val();
+
+            if (value == "" || value == " ") {
+                //refill
+                url="/api/secured/customer/refill";
+            } else {
+                url='/api/secured/customer/name/'+value;
+            }
+
+            function doneTyping() {
+                $(".ajax-table tbody tr").remove();
+
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    dataType: "json",
+                    success: function (data) {
+                        var No=1;
+                        for (i = 0; i < data.length; i++) {
+                            //intial values
+                            var tour='<i class="fa fa-times" aria-hidden="true"></i>';
+                            var ticketing='<i class="fa fa-times" aria-hidden="true"></i>';
+                            var rental='<i class="fa fa-times" aria-hidden="true"></i>';
+
+                            if(data[i].tour){
+                                tour='<i class="fa fa-check" aria-hidden="true"></i>';
+                            }
+                            if(data[i].ticketing){
+                                ticketing='<i class="fa fa-check" aria-hidden="true"></i>';
+                            }
+                            if(data[i].rental){
+                                rental='<i class="fa fa-check" aria-hidden="true"></i>';
+                            }
+
+                            $('.ajax-table')
+                                    .append(
+                                            '<tr>' +
+                                            '<td>'+No+'</td>'+
+                                            '<td>' + data[i].fname+' '+data[i].sname+' '+data[i].lname+ '</td>' +
+                                            '<td>' + data[i].number + '</td>' +
+                                            '<td>'+data[i].nic+'</td>'+
+                                            '<td>' +tour+'</td>'+
+                                            '<td>' +ticketing+'</td>'+
+                                            '<td>' +rental+'</td>'+
+                                            '<td><a href="/system/customer/'+data[i].id+'/view" class="btn btn-default">View</a> </td>'+
+                                            '<tr/>'
+                                    );
+                            No++;
+                        }
+                    }
+                });
+            }
+
+        });
+    </script>
 @endsection

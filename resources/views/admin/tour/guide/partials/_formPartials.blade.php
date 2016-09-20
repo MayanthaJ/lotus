@@ -1,38 +1,44 @@
-{!! Form::label('name', 'Name :') !!}
-{!! Form::text('name', null, ['class' => 'form-control']) !!}
+<div class="form-group">
+    {!! Form::label('name', 'Name :') !!}
+    {!! Form::text('name', null, ['class' => 'form-control']) !!}
+</div>
 
-<br />
+<div class="form-group">
+    {!! Form::label('lastname', 'Lastname : ') !!}
+    {!! Form::text('lastname', null, ['class' => 'form-control']) !!}
+</div>
 
-{!! Form::label('lastname', 'Lastname : ') !!}
-{!! Form::text('lastname', null, ['class' => 'form-control']) !!}
-<br/>
 
-{!! Form::label('emai', 'Email : ') !!}
-{!! Form::text('email', null, ['class' => 'form-control']) !!}
+<div class="form-group">
+    {!! Form::label('email', 'Email : ') !!}
+    {!! Form::text('email', null, ['class' => 'form-control']) !!}
+</div>
 
-<br/>
+<div class="form-group">
+    {!! Form::label('dob', 'Date Of Birth : ') !!}
+    {!! Form::date('dob', null, ['class' => 'form-control']) !!}
+</div>
 
-{!! Form::label('password', 'Password : ') !!}
-{!! Form::password('password', null, ['class' => 'form-control']) !!}
+<div class="form-group">
+    {!! Form::label('nic', 'National Identity Card : ') !!}
+    {!! Form::text('nic', null, ['class' => 'form-control']) !!}
+</div>
 
-<br />
+<div class="form-group">
+    {!! Form::label('basic', 'Basic : ') !!}
+    {!! Form::text('basic', null, ['class' => 'form-control']) !!}
+</div>
 
-{!! Form::label('nic', 'National Identity Card : ') !!}
-{!! Form::text('nic', null, ['class' => 'form-control']) !!}
+<div class="form-group">
+    {!! Form::label('gender','Gender :') !!}
+    {!! Form::select('gender',[1 => 'Male', 0 => 'Female'], null, ['class' => 'form-control']) !!}
+</div>
 
-<br />
+<div class="form-group">
+    {!! Form::label('hired_date', 'Hire Date : ') !!}
+    {!! Form::date('hired_date', \Carbon\Carbon::now()->toDateString(), ['class' => 'form-control']) !!}
+</div>
 
-{!! Form::label('basic', 'Basic : ') !!}
-{!! Form::text('basic', null, ['class' => 'form-control']) !!}
-<br />
-
-{!! Form::label('gender','Gender :') !!}
-{!! Form::Select('gender',['1'=>'Male','0'=>'Female'], null) !!}
-
-<br/>
-
-{!! Form::label('hired_date', 'Hire Date : ') !!}
-{!! Form::date('hired_date', null, ['class' => 'form-control']) !!}
-<br/>
-
-{!! Form::submit($btn, ['class' => 'btn btn-default btn-block']) !!}
+<div class="form-group">
+    {!! Form::submit($btn, ['class' => 'btn btn-default btn-block']) !!}
+</div>

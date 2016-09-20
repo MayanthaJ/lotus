@@ -2,6 +2,8 @@
 
 namespace App\Models\Rental;
 
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -27,6 +29,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Rental\Reservation whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Rental\Reservation whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property integer $customer_id
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Rental\Reservation whereCustomerId($value)
+ * @property-read \App\User $driver
  */
 class Reservation extends Model
 {
@@ -37,7 +42,12 @@ class Reservation extends Model
     public function vehicle()
     {
         return $this->hasOne(Vehicle::class, 'id');
-        
     }
+
+    public function driver()
+    {
+        return $this->hasOne(User::class, 'id', 'driver_id');
+    }
+
 
 }

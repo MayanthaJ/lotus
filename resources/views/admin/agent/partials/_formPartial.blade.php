@@ -3,7 +3,7 @@
 {!! Form::text('registeredNo', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
-{!! Form::label('name', 'Name :') !!}
+{!! Form::label('name', 'Agent Name :') !!}
 {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">

@@ -69,42 +69,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-lg-2 col-xs-6">
-            <div class="panel panel-filled">
-                <div class="panel-body">
-                    <h3 class="m-b-none">
-                        Edit
-                        <span class="slight slight-align">
-                                <br/>
-                               <i  class="fa fa-home  text-warning"> </i>
-                                Edit Agent Details
-                                <br/>
-                             <a  class="btn btn-default" href="/system/customer/view">Edit</a>
-                           </span>
-                    </h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-2 col-xs-6">
-            <div class="panel panel-filled">
-                <div class="panel-body">
-                    <h3 class="m-b-none">
-                        Quick
-                        <span class="slight slight-align">
-                                <br/>
-                               <i  class="fa fa-home  text-warning"> </i>
-                                Quick View Agents List
-                                <br/>
-                              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal1">
-                                Quick
-                            </button>
-                           </span>
-                    </h3>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="row">
@@ -121,7 +85,7 @@
                     </p>
 
                     <div id="ajax-search">
-                        {!! Form::text('search', null, ['class' => 'form-control', 'id' => 'search', 'placeholder' => 'Search Employees']) !!}
+                        {!! Form::text('search', null, ['class' => 'form-control', 'id' => 'search', 'placeholder' => 'Search']) !!}
 
                         <br/>
                         <br/>
@@ -143,21 +107,24 @@
                             <th>Name</th>
                             <th>Contact</th>
                             <th>Email</th>
-                            <th>Option <span class="fa fa-cog"></span></th>
                         </tr>
                         </thead>
-                        <?php $count=1; ?>
                         <tbody>
+                        <?php
+                            $count=1;
+                        ?>
                         @foreach($agent as $agentAll)
                             <tr>
                                 <td><?php echo $count; $count++ ?></td>
                                 <td>{!! $agentAll->registered !!}</td>
-                                <th>{!! $agentAll->name !!}</th>
-                                <th>{!! $agentAll->number !!}</th>
-                                <th>{!! $agentAll->email !!}</th>
-                                <th> <a href="" type="button" class="btn btn-default">
+                                <td>{!! $agentAll->name !!}</td>
+                                <td>{!! $agentAll->number !!}</td>
+                                <td>{!! $agentAll->email !!}</td>
+                                <td>
+                                    <a href="/system/agent/{!! $agentAll->id !!}" type="button" class="btn btn-default">
                                         View
-                                    </a></th>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -170,16 +137,6 @@
         </div>
     </div>
 
-@endsection
-@section('styles')
-    <style rel="stylesheet">
-        .slight-align{
-            text-align: center;
-        }
-        .active-border{
-            border:solid 1px white;
-        }
-    </style>
 @endsection
 @section('js')
     <script type="text/javascript">
@@ -216,7 +173,7 @@
                                             '<td>' + data[i].name + '</td>' +
                                             '<td>'+data[i].number+'</td>'+
                                             '<td>' +data[i].email+'</td>'+
-                                            '<td>' + '<a href="/system/agent/' + data[i].id + '/view">View</a>' + '</td>' +
+                                            '<td>'+'<a class="btn btn-default" href="/system/agent/'+data[i].id+'">View</a>' + '</td>' +
                                             '<tr/>'
                                     );
                             No++;

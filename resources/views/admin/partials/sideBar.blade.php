@@ -7,8 +7,6 @@
     {
         $searchable[] = $role->type;
     }
-
-    print_r($searchable);
 ?>
 
 <aside class="navigation">
@@ -46,10 +44,28 @@
                     Customer Management</span>
                 </a>
                 <ul id="customers" class="nav nav-second collapse">
-                    <li><a href="{!! url('/system/customers/create') !!}">Add Customer</a></li>
-                    <li><a href="{!! url('/system/customers/') !!}">Customer List</a></li>
-                    <li><a href="{!! url('/system/customers/loyalty') !!}">Loyalty Members</a></li>
-                    <li><a href="{!! url('/system/customers/loyalty/create') !!}">Add Loyalties</a></li>
+                    <li><a href="{!! url('/system/customer') !!}">Customer</a></li>
+                    <li><a href="{!! url('/system/customer/create') !!}">Add Customer</a></li>
+                    <li><a href="{!! url('/system/customer/view/') !!}">Customer List</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#ticket" data-toggle="collapse" aria-expanded="false">
+                    Ticket Management</span>
+                </a>
+                <ul id="ticket" class="nav nav-second collapse">
+                    <li><a href="{!! url('/system/ticket') !!}">Ticket</a></li>
+                    <li><a href="{!! url('/system/ticket/create') !!}">Add Ticket</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#agent" data-toggle="collapse" aria-expanded="false">
+                    Agent Management</span>
+                </a>
+                <ul id="agent" class="nav nav-second collapse">
+                    <li><a href="{!! url('/system/agent') !!}">Agent</a></li>
+                    <li><a href="{!! url('/system/agent/create') !!}">Add Agent</a></li>
+                    <li><a href="{!! url('/system/agent/view/') !!}">Agent List</a></li>
                 </ul>
             </li>
             <li>

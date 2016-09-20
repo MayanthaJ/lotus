@@ -40,42 +40,42 @@ class CreateTestData2 extends Migration
         //enter details into Packages
         DB::table('package')->insert([
             [
-                'code'=>'#0001',
-                'name'=>'Dabhadiwa Wandana 8 Days',
-                'country'=>'India',
-                'destination'=>'Delhi',
-                'days'=>'8',
-                'price'=>'85000',
-                'description'=>'testing inputs'
+                'code' => '#0001',
+                'name' => 'Dabhadiwa Wandana 8 Days',
+                'country' => 'India',
+                'destination' => 'Delhi',
+                'days' => '8',
+                'price' => '85000',
+                'description' => 'testing inputs'
             ],
             [
-                'code'=>'#0002',
-                'name'=>'Dabhadiwa Wandana 6 Days',
-                'country'=>'India',
-                'destination'=>'Delhi',
-                'days'=>'6',
-                'price'=>'75000',
-                'description'=>'testing inputs'
+                'code' => '#0002',
+                'name' => 'Dabhadiwa Wandana 6 Days',
+                'country' => 'India',
+                'destination' => 'Delhi',
+                'days' => '6',
+                'price' => '75000',
+                'description' => 'testing inputs'
             ],
             [
-                'code'=>'#0003',
-                'name'=>'Malaysia',
-                'country'=>'malaysia',
-                'destination'=>'Kuala Lumpur',
-                'days'=>'10',
-                'price'=>'100000',
-                'description'=>'testing inputs'
+                'code' => '#0003',
+                'name' => 'Malaysia',
+                'country' => 'malaysia',
+                'destination' => 'Kuala Lumpur',
+                'days' => '10',
+                'price' => '100000',
+                'description' => 'testing inputs'
             ]
         ]);
 
         //enter hotel
         DB::table('hotels')->insert([
             [
-                'name'=>'Hilton',
-                'phone'=>'0777304016',
-                'email'=>'achalakavinda25r@gmail.com',
-                'city'=>'Colombo',
-                'expenses'=>'750000'
+                'name' => 'Hilton',
+                'phone' => '0777304016',
+                'email' => 'achalakavinda25r@gmail.com',
+                'city' => 'Colombo',
+                'expenses' => '750000'
             ]
 
         ]);
@@ -84,77 +84,66 @@ class CreateTestData2 extends Migration
 
         DB::table('tours')->insert([
             [
-                'package_id'=>'1',
-                'hotel_id'=>'1',
-                'guide_id'=>'1',
-                'name'=>'test',
-                'departure'=>'2016-09-04',
-                'time'=>'17:00:00',
-                'description'=>'Auto Generated tested value'
+                'package_id' => 1,
+                'name' => 'Test 1',
+                'code' => '#ewer',
+                'arrival' => '2016-09-04',
+                'departure' => '2016-09-04',
+                'departure_time' => '11:11:11',
+                'arrival_time' => '11:11:11',
+                'description' => 'Auto Generated tested value',
             ],
             [
-                'package_id'=>'2',
-                'hotel_id'=>'1',
-                'guide_id'=>'1',
-                'name'=>'test',
-                'departure'=>'2016-01-08',
-                'time'=>'17:00:00',
-                'description'=>'Auto Generated tested value'
+                'package_id' => 2,
+                'name' => 'Test 1',
+                'code' => '#ewer',
+                'arrival' => '2016-09-04',
+                'departure' => '2016-09-04',
+                'departure_time' => '11:11:11',
+                'arrival_time' => '11:11:11',
+                'description' => 'Auto Generated tested value',
             ],
             [
-                'package_id'=>'3',
-                'hotel_id'=>'1',
-                'guide_id'=>'1',
-                'name'=>'test',
-                'departure'=>'2016-05-08',
-                'time'=>'17:00:00',
-                'description'=>'Auto Generated tested value'
+                'package_id' => 3,
+                'name' => 'Test 1',
+                'code' => '#ewer',
+                'arrival' => '2016-09-04',
+                'departure' => '2016-09-04',
+                'departure_time' => '11:11:11',
+                'arrival_time' => '11:11:11',
+                'description' => 'Auto Generated tested value',
             ],
             [
-                'package_id'=>'1',
-                'hotel_id'=>'1',
-                'guide_id'=>'1',
-                'name'=>'test',
-                'departure'=>'2016-12-08',
-                'time'=>'17:00:00',
-                'description'=>'Auto Generated tested value'
+                'package_id' => 1,
+                'name' => 'Test 1',
+                'code' => '#ewer',
+                'arrival' => '2016-09-04',
+                'departure' => '2016-09-04',
+                'departure_time' => '11:11:11',
+                'arrival_time' => '11:11:11',
+                'description' => 'Auto Generated tested value',
             ],
             [
-                'package_id'=>'2',
-                'hotel_id'=>'1',
-                'guide_id'=>'1',
-                'name'=>'test',
-                'departure'=>'2016-11-08',
-                'time'=>'17:00:00',
-                'description'=>'Auto Generated tested value'
+                'package_id' => 3,
+                'name' => 'Test 1',
+                'code' => '#ewer',
+                'arrival' => '2016-09-04',
+                'departure' => '2016-09-04',
+                'departure_time' => '11:11:11',
+                'arrival_time' => '11:11:11',
+                'description' => 'Auto Generated tested value',
             ],
             [
-                'package_id'=>'3',
-                'hotel_id'=>'1',
-                'guide_id'=>'1',
-                'name'=>'test',
-                'departure'=>'2016-02-08',
-                'time'=>'17:00:00',
-                'description'=>'Auto Generated tested value'
+                'package_id' => 3,
+                'name' => 'Test 1',
+                'code' => '#ewer',
+                'arrival' => '2016-09-04',
+                'departure' => '2016-09-04',
+                'departure_time' => '11:11:11',
+                'arrival_time' => '11:11:11',
+                'description' => 'Auto Generated tested value',
             ]
 
-        ]);
-
-        //insert values into cabin
-        DB::table('cabin')->insert([
-            ['type'=>'First class'],
-            ['type'=>'Business class'],
-            ['type'=>'Economy class'],
-            ['type'=>'Premium Economy']
-        ]);
-
-        //insert values into country
-        DB::table('country')->insert([
-            ['country'=>'Sri Lanka'],
-            ['country'=>'India'],
-            ['country'=>'USA'],
-            ['country'=>'UK'],
-            ['country'=>'China'],
         ]);
 
         //SK

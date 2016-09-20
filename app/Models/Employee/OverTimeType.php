@@ -21,5 +21,5 @@ use Illuminate\Database\Eloquent\Model;
  */
 class OverTimeType extends Model
 {
-    public $fillable = ['id'];
+    public $guarded = ['id'];
 }

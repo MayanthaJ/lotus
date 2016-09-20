@@ -65,9 +65,15 @@
                     </tr>
                 @endforeach
             </table>
-
         </div>
-        <div class="col-sm-12 col-md-3"></div>
+
+        <div class="col-sm-12 col-md-3">
+            <h4>Admin / Manager Options</h4>
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+
     </div>
 @endsection
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Rental;
 
+use App\Models\Customer\Customer;
 use App\Models\Employee\EmployeeType;
 use App\Models\Rental\Reservation;
 use App\Models\Rental\Vehicle;
@@ -39,7 +40,6 @@ class ReservationController extends Controller
 
     public function create()
     {
-        \DB::enableQueryLog();
 
         $vehicles = Vehicle::where('terminated', 0)->pluck('vehicle_name', 'id')->all();
 
@@ -205,5 +205,16 @@ class ReservationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /*
+     *
+     * */
+    public  function reservation($id){
+        $customer = Customer::findOrFail($id);
+        $reservation = Reservation::findOrFail($id);
+        $drivers = EmployeeType::where('name', 'driver')->with('employees')->first()->employees->pluck('name', 'id');
+        $vehicles = Vehicle::pluck('vehicle_name', 'id');
+        return view('admin.Rental.reservation.allocate',compact('customer','drivers','reservation','vehicles'));
     }
 }

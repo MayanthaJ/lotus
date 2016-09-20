@@ -2,6 +2,7 @@
 
 namespace App\Models\Customer;
 
+use App\Models\Loyalty\Loyalty;
 use App\Models\Package\Package;
 use App\Models\Tour\Tour;
 use Illuminate\Database\Eloquent\Model;
@@ -49,9 +50,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Package\Package[] $packages
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerPackage[] $payments
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereLoyaltyId($value)
- * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerAddress[] $address
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\CustomerNumber[] $numbers
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereAddress($value)
+ * @property boolean $tour
+ * @property boolean $ticketing
+ * @property boolean $rental
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereTour($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereTicketing($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereRental($value)
+ * @property string $address
  */
 class Customer extends Model
 {
@@ -77,6 +83,11 @@ class Customer extends Model
         return $this->hasManyThrough(Package::class, Tour::class, 'package_id', 'id');
     }
 
+    public function loyalty()
+    {
+        return $this->hasOne(Loyalty::class, 'id');
+    }
+
     /**
      * Get the payments related to customer
      *
@@ -85,18 +96,5 @@ class Customer extends Model
     public function payments()
     {
         return $this->hasMany(CustomerPackage::class, 'customer_id', 'id');
-    }
-    /**
-     *Customer Number
-     */
-    public function numbers(){
-        return $this->hasMany(CustomerNumber::class,'customer_number','id');
-    }
-    /**
-     *Customer Address
-     */
-
-    public  function address(){
-        return $this->hasMany(CustomerAddress::class,'customer_id','id');
     }
 }

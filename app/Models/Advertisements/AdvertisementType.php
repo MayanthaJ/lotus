@@ -18,12 +18,20 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Advertisements\AdvertisementType whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Advertisements\AdvertisementType whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Advertisements\AdvertisementType whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Advertisements\Advertisements[] $type
  */
 
 class AdvertisementType extends Model
 {
     //
     public $table = "advertisement_types";
+
     protected $guarded = ['id'];
+
+    public function type()
+    {
+        return $this->hasMany(Advertisements::class, 'type_id');
+    }
+
 
 }

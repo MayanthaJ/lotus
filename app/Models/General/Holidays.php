@@ -29,6 +29,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Holidays extends Model
 {
+
+    public $guarded = ['id'];
+
     public function otType()
     {
         return $this->hasOne(OverTimeType::class, 'id');

@@ -11,7 +11,7 @@
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::to('/system/');
 });
 
 // employee login route ( do not remove )
@@ -23,11 +23,8 @@ Route::get('/home', 'HomeController@index');
  * DIRECT TEST PURPOSES
  */
 Route::get('/test/{test}', 'Employee\CalculateSalary@calculateSalaray');
-Route::get('/test/', function () {
-    $pdf = PDF::loadView('admin.employee.pdf.test');
-    return $pdf->stream('Employee.pdf');
-    //(new \App\Http\Controllers\Accounts\AccountController())->testCalcs();
-});
+
+Route::get('/test/', 'HomeController@index');
 
 // Main App Controller
 Route::get('/system', 'HomeController@getDashBoard');
@@ -38,9 +35,8 @@ Route::get('/system/tour/hotels/{id}/show','Tour\hotels\HotelController@show');
 Route::resource('system/tour/hotels', 'Tour\hotels\HotelController'); // <- this already calls the @create method
 Route::resource('system/tour/guide', 'Tour\guide\GuideController'); // <- this already calls the @create method
 Route::get('/system/tour/guide/{id}/show','Tour\guide\GuideController@show');
-Route::resource('system/tour/tourmanage','Tour\tourmanage\TourManageController');
+Route::resource('system/tour/manage','Tour\manage\TourManageController');
 //Route::get('/system/tour/tourmanage/{id}/show','Tour\tourmanage\TourManageController@show');
-
 
 
 // Udana's routes
@@ -121,6 +117,7 @@ Route::group(['middleware' => 'adminOrManager'], function () {
        return \App\User::where('name', 'like', '%'.$employee.'%')->get()->toJson();
     });
 
+
     //SK 's Search
 
     Route::get('/api/secured/rental/driver/name/{driver}', function ($driver) {
@@ -156,26 +153,71 @@ Route::group(['middleware' => 'adminOrManager'], function () {
 // todo : surround them in middleWare of entry operator
 
 // Achala's routes
+//Agent's get routes
+
+Route::get('/system/agent/view','Agent\AgentController@viewAgents');
+Route::get('/system/agent/{id}/terminate','Agent\AgentController@terminate');
+Route::get('/system/agent/{id}/undo','Agent\AgentController@undo');
+
 Route::get('/system/customer/{id}/terminate', 'Customer\CustomerController@terminate');
-Route::get('/system/customer/undo/{id}/terminate', 'Customer\CustomerController@undoterminate');
-Route::get('/system/customer/view/', 'Customer\CustomerController@view');
+Route::get('/system/customer/{id}/view/', 'Customer\CustomerController@view');
+Route::get('/system/customer/view/', 'Customer\CustomerController@viewAll');
+
+Route::get('/system/customer/new/tour/{id}/create','Customer\CustomerController@newTourCreate');
+Route::post('/system/customer/new/tour/{id}/create','Customer\CustomerController@postNewTour');
+
+
 Route::resource('/system/customer', 'Customer\CustomerController');
-Route::resource('system/ticket', 'Ticket\TicketController');
-Route::resource('system/ticketing','Ticket\TicketingController');
-Route::resource('system/agent','Agent\AgentController');
+Route::get('/system/ticket/{id}/create','Ticket\TicketController@allocate');
+Route::get('/system/ticket/view','Ticket\TicketController@all');
+Route::resource('/system/ticket','Ticket\TicketController');
+
+//agent's routes
+Route::resource('/system/agent','Agent\AgentController');
+//for rental registered customer
+Route::get('rental/reservation/{id}/create','Rental\ReservationController@reservation');
+
 
 //Achala's ajaxs
 Route::get('/api/secured/customer/tours/{package_id}', function ($package_id) {
-    return \App\Models\Tour\Tour::where('package_id', $package_id)->get();
+    $carbon = \Carbon\Carbon::now()->addDays(-2)->toDateString();
+    return \App\Models\Tour\Tour::where('package_id', $package_id)->where('departure', '<=', $carbon)->get();
 });
+
+
 //get agent search
 Route::get('/api/secured/agent/name/{name}',function ($name){
-    return \App\Models\Agent\Agent::where('name', 'like',$name.'%')->get()->toJson();
+    return \App\Models\Agent\Agent::where('name', 'like',$name.'%')
+                ->orwhere('name', 'like',$name.'%')->
+                orWhere('registered','like',$name.'%')->get()->toJson();
 });
+
 //agent Refill
 Route::get('/api/secured/agent/refill',function (){
-    return \App\Models\Agent\Agent::all()->toJson();
+    return \App\Models\Agent\Agent::all()->where('terminated',0)->toJson();
 });
+
+//customer search
+Route::get('/api/secured/customer/refill',function(){
+    return App\Models\Customer\Customer::all()->toJson();
+});
+
+//customer Search
+Route::get('/api/secured/customer/name/{name}',function($name){
+    return App\Models\Customer\Customer::where('fname', 'like',$name.'%')
+        ->orWhere('nic', 'like',$name.'%')->
+        orWhere('sname', 'like',$name.'%')->
+        orWhere('lname', 'like',$name.'%')->get()->toJson();
+});
+
+//get package price
+
+Route::get('/api/secured/package/{id}',function($id){
+    return \App\Models\Package\Package::where('id',$id)->first()->price;
+});
+
+
+
 
 //Nuwan's Routes
 Route::get('system/rental/income', 'Rental\RentalController@getRentalIncome');
@@ -190,6 +232,9 @@ Route::get('system/rental/', 'HomeController@getRentalDashBoard');
 
 
 // Danajalee's routes
+Route::get('/system/package/{id}/terminate', 'Package\PackageController@terminate');
+Route::resource('/system/package', 'Package\PackageController');
+Route::resource('/system/package/days/{package}/', 'Package\PackageDayController');
 Route::get('/system/package/{id}/terminate','Package\PackageController@terminate');
 Route::resource('/system/package','Package\PackageController');
 

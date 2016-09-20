@@ -1,7 +1,6 @@
 @extends('layouts.MainLayOutNav')
 @section('content')
         <div class="row">
-
             <div class="col-lg-2 col-xs-6">
                 <div class="panel panel-filled">
                     <div class="panel-body">
@@ -24,7 +23,6 @@
                     <div class="panel-body">
                         <h3 class="m-b-none">
                             Add
-
                             <span class="slight slight-align">
                                 <br/>
                                <i  class="fa fa-home  text-warning"> </i>
@@ -93,19 +91,20 @@
         </div>
     <br/>
         <div class="row">
-            <div class="col-md-6"></div>
-
-
-
-            <div class="col-md-6">
-                <h2>Add Customer</h2>
-                @include('notifications._message')
-                {!! Form::open(['action' => 'Customer\CustomerController@store']) !!}
-                @include('admin.customer.partials._formPartial',['btn' => 'Add Customer','advance_payment'=>'1'])
-                {!! Form::close() !!}
+            <div class="col-md-12">
+               <div class="panel panel-filled">
+                   <div class="panel-body">
+                       <h3>Add Customer</h3>
+                       @include('notifications._message')
+                       {!! Form::open(['action' => 'Customer\CustomerController@store','id'=>'Form']) !!}
+                       @include('admin.customer.partials._formPartial',['btn' => 'Add Customer','advance_payment'=>'1'])
+                       {!! Form::close() !!}
+                   </div>
+               </div>
             </div>
+            <div class="col-md-6">
 
-
+            </div>
         </div>
 @endsection
 @section('modals')
@@ -126,7 +125,6 @@
                             <th>Country</th>
                             <th>Days</th>
                             <th>Amount</th>
-                            <th>Option <span class="fa fa-cog"></span></th>
                         </tr>
                         </thead>
                         <?php $count=1; ?>
@@ -135,13 +133,13 @@
                             <tr>
                                 <td><?php echo $count; $count++ ?></td>
                                 <td>{!! $package->code !!}</td>
-                                <th>{!! $package->name !!}</th>
-                                <th>{!! $package->country !!}</th>
-                                <th>{!! $package->days !!}</th>
-                                <th>{!! $package->price !!}</th>
-                                <th> <a href="" type="button" class="btn btn-default">
+                                <td>{!! $package->name !!}</td>
+                                <td>{!! $package->country !!}</td>
+                                <td>{!! $package->days !!}</td>
+                                <td>{!! $package->price !!}</td>
+                                <td> <a href="/system/package" type="button" class="btn btn-default">
                                         View
-                                    </a></th>
+                                    </a></td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -156,21 +154,12 @@
         </div>
     </div>
 @endsection
-@section('styles')
-    <style rel="stylesheet">
-        .slight-align{
-            text-align: center;
-        }
-        .activer-border{
-            border:solid 1px white;
-        }
-    </style>
-@endsection
 
 
 @section('js')
     <!-- tour load jquery -->
     <script type="text/javascript">
+
         $(document).on('change', '.package_selector', function () {
             var packageID = $(this).find(':selected').val();
             var loopdata = "";
@@ -185,6 +174,193 @@
                         loopdata += '<option value="' + data[i].id + '">' + data[i].departure + '</option>';
                     }
                     $('#tourDate').html(loopdata);
+                }
+            });
+        });
+    </script>
+
+
+
+    <script type="text/javascript">
+        $('#Form').formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                fname: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Name should not be empty'
+                        },
+                        regexp: {
+                            regexp: /^[a-z\s]+$/i,
+                            message: 'The  name can consist of alphabetical characters and spaces only'
+                        },
+                        stringLength: {
+                            message: 'Number of characters must between 3 and 20',
+                            min:3,
+                            max:20
+                        }
+                    }
+                },
+                sname: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Name should not be empty'
+                        },
+                        regexp: {
+                            regexp: /^[a-z\s]+$/i,
+                            message: 'The name can consist of alphabetical characters and spaces only'
+                        },
+                        stringLength: {
+                            message: 'Number of characters must between 3 and 20',
+                            min:3,
+                            max:20
+                        }
+                    }
+                },
+                lname: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Name should not be empty'
+                        },
+                        regexp: {
+                            regexp: /^[a-z\s]+$/i,
+                            message: 'The name can consist of alphabetical characters and spaces only'
+                        },
+                        stringLength: {
+                            message: 'Number of characters must between 3 and 20',
+                            min:3,
+                            max:20
+                        }
+                    }
+                },
+                otherName: {
+                    validators: {
+                        regexp: {
+                            regexp: /^[a-z\s]+$/i,
+                            message: 'The name can consist of alphabetical characters and spaces only'
+                        },
+                        stringLength: {
+                            message: 'Number of characters must between 3 and 20',
+                            min:3,
+                            max:20
+                        }
+                    }
+                },
+                otherName: {
+                    validators: {
+                        regexp: {
+                            regexp: /^[a-z\s]+$/i,
+                            message: 'The name can consist of alphabetical characters and spaces only'
+                        },
+                        stringLength: {
+                            message: 'Number of characters must between 3 and 20',
+                            min:3,
+                            max:20
+                        }
+                    }
+                },
+                dob: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Date Of Birth should not be empty'
+                        }
+                    }
+                },
+                number: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Contact should not be empty'
+                        },
+                        numeric:{
+                            message:'Contact Number cannot be Alphabetic'
+                        }
+                        ,
+                        stringLength: {
+                            max:10,
+                            min:10,
+                            message: "Invalid Number"
+                        }
+                    }
+                },
+                nic:{
+                    validators: {
+                        notEmpty: {
+                            message: 'NIC cannot be empty !'
+                        },regexp: {
+                            regexp: /^[0-9]{9}[vVxX]$/,
+                            message: 'NIC is in wrong format'
+                        }
+                    }
+                },
+                passport:{
+                    validators: {
+                        notEmpty: {
+                            message: 'Passport id cannot be empty !'
+                        }
+                    }
+                },
+                address:{
+                    validators: {
+                        notEmpty: {
+                            message: 'Address cannot be empty !'
+                        },
+                        stringLength: {
+                            message: 'Number of characters must between 5 and 100',
+                            min:5,
+                            max:100
+                        }
+                    }
+                },
+                payment:{
+                    validators: {
+                        notEmpty: {
+                            message: 'Payment cannot be empty !'
+                        },
+                        numeric:{
+                            message: 'Payment cannot be Only numeric !'
+                        }
+                    }
+                }
+
+
+
+
+            }
+        });
+    </script>
+
+    <!-- tour load jquery -->
+    <script type="text/javascript">
+
+        $(document).on('change', '#loyalty', function () {
+            var tourID = $('.package_selector').find(':selected').val();
+            var packageID = $('#tour').find(':selected').val();
+            var url = '/api/secured/package/'+ packageID;
+            $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "json",
+                success: function (data) {
+                    var dicount;
+                    var lType=$('#loyalty').find(':selected').val();
+                    if(lType ==1){
+                        dicount=data-(data*0);
+                    }
+                    if(lType ==2){
+                        dicount=data-(data*(25/100));
+                    }
+                    if(lType ==3){
+                        dicount=data-(data*(15/100));
+                    }
+                    if(lType ==4){
+                        dicount=data-(data*(5/100));
+                    }
+                    $('#payment').val(dicount);
                 }
             });
         });

@@ -10,7 +10,7 @@
 
     <hr/>
     <div class="col-xs-12 com-md-3">
-        @include('admin.advertisements.partials._custNav')
+
     </div>
 
     <div class="col-xs-12 com-md-6">
@@ -18,9 +18,7 @@
     {!! Form::model($ad,['method' => 'PATCH', 'action' => ['Advertisements\AdvertisingController@update', $ad->id], 'files' => true]) !!}
 
     <div>
-
         <br><br />
-
         {!! Form::label('name', 'Advertisement Name : ') !!}
         {!! Form::text('name',null,['class' => 'form-control']) !!}
         <br><br />

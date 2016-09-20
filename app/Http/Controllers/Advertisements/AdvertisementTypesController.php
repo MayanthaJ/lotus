@@ -23,6 +23,7 @@ class AdvertisementTypesController extends Controller
 
         $types = AdvertisementType::all();
 
+
         return view('admin.advertisements.advertisementtypes.index', compact('types'));
     }
 
@@ -47,7 +48,7 @@ class AdvertisementTypesController extends Controller
 
         AdvertisementType::create($request->all());
 
-        return Redirect::back();
+        return Redirect::to('/system/advertisements/types');
 
 
 

@@ -2,6 +2,8 @@
 
 return [
 
+    'fileDestinationPath' => 'uploads',
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -150,8 +152,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         CodeZero\Flash\FlashServiceProvider::class,
-        Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
+        Barryvdh\Snappy\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -209,8 +210,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Flash' => CodeZero\Flash\Facade\Flash::class,
-        'Lava' => Khill\Lavacharts\Lavacharts::class,
-        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
 
     ],
 

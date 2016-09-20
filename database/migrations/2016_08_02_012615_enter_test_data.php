@@ -55,6 +55,8 @@ class EnterTestData extends Migration
             ['name' => 'accounts manager'],
             ['name' => 'manager'],
             ['name' => 'ceo'],
+            ['name' => 'driver'],
+            ['name' => 'guide'],
         ]);
 
         // over time types

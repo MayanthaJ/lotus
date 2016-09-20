@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Tour\hotels;
 
+use App\Http\Controllers\Controller;
 use App\Models\Tour\Hotel;
 use Flash;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Redirect;
 
 class HotelController extends Controller
@@ -21,7 +19,7 @@ class HotelController extends Controller
     {
         $hotels = Hotel::all();
 
-        return view('admin.tour.Hotels.index', compact('hotels'));
+        return view('admin.tour.hotels.index', compact('hotels'));
     }
 
     /**
@@ -31,7 +29,7 @@ class HotelController extends Controller
      */
     public function create()
     {
-        return view('admin.tour.Hotels.create');
+        return view('admin.tour.hotels.create');
 
     }
 
@@ -78,7 +76,7 @@ class HotelController extends Controller
     {
         $hotel = Hotel::find($id);
 
-        return view('admin.tour.Hotels.view',compact('hotel'));
+        return view('admin.tour.hotels.view', compact('hotel'));
     }
 
     /**
@@ -91,7 +89,7 @@ class HotelController extends Controller
     {
         $hotel = Hotel::findOrFail($id);
 
-        return view('admin.tour.Hotels.edit', compact('hotel'));
+        return view('admin.tour.hotels.edit', compact('hotel'));
     }
 
     /**
@@ -105,17 +103,15 @@ class HotelController extends Controller
     {
         $hotel = Hotel::findOrFail($id);
 
-        $hotel->name = $request->name;
+        //$hotel->name = $request->name;
         $hotel->phone= $request->phone;
-        $hotel->email= $request->email;
-        $hotel->city = $request->city;
+        //$hotel->email= $request->email;
+        //$hotel->city = $request->city;
         $hotel->expenses = $request ->expenses;
 
         if ($hotel->save ()) {
             Flash::success("Changes updated !");
-            
         }
-
 
        return Redirect::to('/system/tour/hotels');
 
@@ -131,9 +127,5 @@ class HotelController extends Controller
     {
         //
     }
-    public function terminate($id){
-
-    }
-    
 
 }
