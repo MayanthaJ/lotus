@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Redirect;
 use Storage;
+use Image;
+use Imagine\Gd\Imagine;
 
 
 
@@ -49,11 +51,14 @@ class AdvertisingController extends Controller
 //     */
     public function store(AdCreateRequest $request)
     {
+
+
         Advertisements::create($request->all());
 
         if($request->hasFile('file')){
 
             $file = $request->file('file');
+            $file->move('uploads', $file->getClientOriginalName());
             $fileName = $file->getClientOriginalName();
             $destinationPath = config('app.fileDestinationPath').'/'.$fileName;
             $uploaded = Storage::put($destinationPath, file_get_contents($file->getRealPath()));
@@ -61,6 +66,8 @@ class AdvertisingController extends Controller
             if($uploaded){
 
             }
+
+
 
         }
 
@@ -77,6 +84,7 @@ class AdvertisingController extends Controller
     public function show($id)
     {
         $advertisement = Advertisements::findOrFail($id);
+
 
         return view('admin.advertisements.show', compact('advertisement'));
 
@@ -119,20 +127,29 @@ class AdvertisingController extends Controller
 
         if($request->hasFile('file')){
 
-            $file = $request->file('file');
-            $fileName = $file->getClientOriginalName();
-            $destinationPath = config('app.fileDestinationPath').'/'.$fileName;
-            $uploaded = Storage::put($destinationPath, file_get_contents($file->getRealPath()));
+////            $file = $request->file('file');
+//
+//            $fileName = $file->getClientOriginalName();
+//            $destinationPath = config('app.fileDestinationPath').'/'.$fileName;
+//            $file = Input::file('file')->move($destinationPath, $fileName);
+//            $uploaded = Storage::put($destinationPath, file_get_contents($file->getRealPath()));
+//
+//
+//
+//            if($uploaded){
+//
+//            }
 
-            if($uploaded){
 
-            }
+
+
+
 
         }
 
         $ad->save();
 
-        return Redirect::back();
+        return Redirect::to('/system/advertisements');
 
     }
 

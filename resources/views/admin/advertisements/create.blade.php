@@ -35,6 +35,9 @@
 
         <br><br />
 
+        {!! Form::label('description','Description : ') !!}
+        {!! Form::textarea('description',null,['class' => 'form-control']) !!}
+        <br><br/>
 
         {!! Form::label('file','Upload Ad material here: ') !!}
         {!! Form::file('file') !!}

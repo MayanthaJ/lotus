@@ -57,7 +57,7 @@
 
 <div class="form-group">
 {!! Form::label('Loyalty     :') !!}
-{!! Form::select('loyalty', $loyalty, null, ['class'=>'form-control','id'=>'loyalty']) !!}
+{!! Form::select('loyalty', $loyalty, null, ['class'=>'form-control','id'=>'loyalty','placeholder'=>'Please Select Loyalty type']) !!}
 </div>
 
 {!! Form::submit($btn, ['class' => 'btn btn-default btn-block']) !!}

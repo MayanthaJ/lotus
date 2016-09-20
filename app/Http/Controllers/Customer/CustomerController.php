@@ -7,6 +7,7 @@ use App\Models\Customer\CustomerTour;
 use App\Models\Loyalty\Loyalty;
 use App\Models\Package\Package;
 use App\Models\Tour\Tour;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -21,6 +22,7 @@ class CustomerController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
      */
     public function index()
     {
@@ -69,12 +71,14 @@ class CustomerController extends Controller
             'dob' => 'required|before:now',
             'gender' => 'required',
             'number' => 'required',
-            'nic' => 'required|regex:/^[0-9]{9}[vVxX]$/',
+            'nic' => 'required|regex:/^[0-9]{9}[vVxX]$/|unique:customers,nic',
             'passport' => 'required',
             'address' => 'required|min:10|max:255',
             'payment' => 'required|numeric',
             'loyalty' => 'required'
         ]);
+
+        $dateofBirth = Carbon::parse($request->dob)->diffInYears(Carbon::now(), false);
 
         //get tour customer allocation
         $customerCount = Tour::where('id', $request->tourDate)->first()->coustomer_count;
@@ -99,7 +103,7 @@ class CustomerController extends Controller
             'sname' => $request->sname,
             'lname' => $request->lname,
             'otherName' => $request->otherName,
-            'age' => $request->age,
+            'age' => $dateofBirth,
             'dob' => $request->dob,
             'gender' => $request->gender,
             'number' => $request->number,
@@ -145,7 +149,11 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        $customers = Customer::findOrFail($id);
+        //get customer tours
+        $customerTours = CustomerTour::where('customer_id', $id)->get();
+        //result compact to view
+        return view('admin.customer.view', compact('customers', 'customerTours'));
     }
 
     /**
@@ -283,13 +291,7 @@ class CustomerController extends Controller
         dd($request);
     }
 
-
-    public function AnotherTour($id)
-    {
-        return view('admin.customer.another_tour.index');
-    }
-
-    public function AnotherTourCreate($id)
+    public function newTourCreate($id)
     {
         $customersDetails = Customer::findOrFail($id);
         //get package details
@@ -299,7 +301,59 @@ class CustomerController extends Controller
 
         $customerTours = CustomerTour::where('customer_id', $id)->get();
 
-        return view('admin.customer.another_tour.create', compact('packages','','customersDetails', 'packagesAll','customerTours'));
+        return view('admin.customer.another_tour.create', compact('packages','id','customersDetails', 'packagesAll','customerTours'));
+    }
+
+    public function postNewTour(Request $request, $id)
+    {
+        $this->validate($request, [
+            'tour' => 'required',
+            'tourDate' => 'required',
+            'payment'=>'required|numeric'
+        ]);
+
+        //get package Price
+        $price = Package::where('id', $request->tour)->first()->price;
+        $loyality=Customer::findOrFail($id);
+        //get loyalty discount
+        $discount = Loyalty::where('id', $loyality->loyalty_id)->first()->discount;
+        //generate Discount Amount
+        $discountAmount = $this->discountGenerator($price, $discount);
+
+        //get tour customer allocation
+        $customerCount = Tour::where('id', $request->tourDate)->first()->coustomer_count;
+
+        //validate tour count
+        if ($customerCount >= 40) {
+            Flash::success("Maximum number of customers already allocated !");
+            return Redirect::back();
+            dd('count greater than 40');
+        }
+
+
+        DB::table('customer_tour')
+            ->insert([
+                'customer_id' => $id,
+                'tour_id' => $request->tourDate
+            ]);
+
+        //insert value customer payment
+        DB::table('customer_payment')
+            ->insert([
+                'tour_id' => $request->tourDate,
+                'customer_id' => $id,
+                'advance' => $request->payment,
+                'total'=>$discountAmount
+            ]);
+
+        //update tour table
+        $customerCount = $customerCount + 1;
+        DB::table('tours')
+            ->where('id', $request->tourDate)
+            ->update(['coustomer_count' => $customerCount]);
+
+
+        return \Redirect::to('/system/customer');
     }
 
     /**
@@ -310,6 +364,10 @@ class CustomerController extends Controller
     {
         $x = ($value * $discount) / 100;
         return $value - $x;
+
+    }
+
+    public function NewTourStore(Request $request){
 
     }
 }

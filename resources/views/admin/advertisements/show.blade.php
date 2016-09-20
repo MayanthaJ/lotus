@@ -27,10 +27,18 @@
                         <br />
                         {!! "Type ID : " !!}
                         {!! $advertisement->advertisement->name !!}
-                        <br /> <br />
-                        {!! "File : " !!}
-                        {!! $advertisement->file !!}
                         <br />
+
+                            {!! "Description : " !!}
+                            <small>
+                            {!! $advertisement->description !!}
+                            </small>
+
+                            <br />
+                        {{--{!! "File : " !!}--}}
+                            {{--{{ HTML::image($advertisement->file), '', array('class' => 'file'));}}--}}
+
+                        {{--<br />--}}
                             </h4>
 
                         {!! Form::submit('Delete',['class' => 'btn btn-primary form-control']) !!}

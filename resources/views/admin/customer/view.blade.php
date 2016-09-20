@@ -45,7 +45,7 @@
                                <i class="fa fa-home  text-warning"> </i>
                                 Customer  Details
                                 <br/>
-                             <a class="btn btn-default" href="/system/customer/{!! $customers->id !!}/view">View</a>
+                             <a class="btn btn-default" href="/system/customer/{!! $customers->id !!}">View</a>
                            </span>
                     </h3>
                 </div>
@@ -142,7 +142,7 @@
                         </tr>
                         <tr>
                             <td>Loyalty</td>
-                            <td>{!! $customers->loyalty->type !!} </td>
+                            <td>{!! App\Models\Loyalty\Loyalty::where('id',$customers->loyalty_id)->pluck('type')[0] !!} </td>
                         </tr>
                         <tr>
                             <td>Customer Allocation</td>

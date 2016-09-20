@@ -53,22 +53,7 @@
             </div>
         </div>
 
-        <div class="col-lg-2 col-xs-6">
-            <div class="panel panel-filled">
-                <div class="panel-body">
-                    <h3 class="m-b-none">
-                        View
-                        <span class="slight slight-align">
-                                <br/>
-                               <i  class="fa fa-home  text-warning"> </i>
-                                View All Tickets Orders
-                                <br/>
-                             <a  class="btn btn-default" href="/system/ticket/view">View</a>
-                           </span>
-                    </h3>
-                </div>
-            </div>
-        </div>
+
     </div>
 
 
@@ -82,29 +67,39 @@
                 <div class="panel-body">
 
                     <h3>Ticket Orders </h3>
-
-                    <p>
-                        Find or Search all Tickets !
-                    </p>
-
-                    <div id="ajax-search">
-                        {!! Form::text('search', null, ['class' => 'form-control', 'id' => 'search', 'placeholder' => 'Search Tickets']) !!}
-                    </div>
                     <br/>
                     <table class="table table-bordered table-responsive ajax-table">
                         <thead>
                         <tr>
                             <th>#No</th>
-                            <th>Registered No</th>
-                            <th>Name</th>
-                            <th>Contact</th>
-                            <th>Email</th>
-                            <th>Option <span class="fa fa-cog"></span></th>
+                            <th>Customer</th>
+                            <th>Agent</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Class</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
                         </tr>
                         </thead>
                         <?php $count=1; ?>
                         <tbody>
-
+                            @foreach($tickets as $ticket)
+                                <?php
+                                    $customerName=\App\Models\Customer\Customer::where('id',$ticket->customer_id)->first()->fname;
+                                    $agent=\App\Models\Agent\Agent::where('id',$ticket->agent_id)->first()->name;
+                                ?>
+                                <tr>
+                                    <td>{!! $count !!}</td>
+                                    <td>{!! $customerName !!}</td>
+                                    <td>{!! $agent !!}</td>
+                                    <td>{!! $ticket->from !!}</td>
+                                    <td>{!! $ticket->to !!}</td>
+                                    <td>{!! $ticket->class !!}</td>
+                                    <td>{!! $ticket->qty !!}</td>
+                                    <td>{!! $ticket->amount !!}</td>
+                                </tr>
+                                <?php $count++?>
+                            @endforeach
                         </tbody>
                     </table>
 

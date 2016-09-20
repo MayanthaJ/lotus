@@ -55,7 +55,7 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-6 col-md-6">
+        <div class="col-md-12">
             <div class="panel panel-filled">
                 <div class="panel-body">
                     <h4>Place New Ticket Order</h4>
@@ -74,7 +74,7 @@
 
 @section('js')
     <script>
-        $('#TicketForm.test').formValidation({
+        $('#TicketForm').formValidation({
             framework: 'bootstrap',
             icon: {
                 valid: 'glyphicon glyphicon-ok',

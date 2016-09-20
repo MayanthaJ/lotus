@@ -20,7 +20,7 @@
 
     <div class="row">
         <div class="col-lg-2 col-xs-6">
-            <div class="panel panel-filled  active-border">
+            <div class="panel panel-filled">
                 <div class="panel-body">
                     <h3 class="m-b-none">
                         Agent
@@ -54,7 +54,7 @@
         </div>
 
         <div class="col-lg-2 col-xs-6">
-            <div class="panel panel-filled">
+            <div class="panel panel-filled active-border">
                 <div class="panel-body">
                     <h3 class="m-b-none">
                         View
@@ -69,6 +69,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <div class="row">
@@ -85,7 +86,7 @@
                     </p>
 
                     <div id="ajax-search">
-                        {!! Form::text('search', null, ['class' => 'form-control', 'id' => 'search', 'placeholder' => 'Search']) !!}
+                        {!! Form::text('search', null, ['class' => 'form-control', 'id' => 'search', 'placeholder' => 'Search ']) !!}
 
                         <br/>
                         <br/>
@@ -109,10 +110,8 @@
                             <th>Email</th>
                         </tr>
                         </thead>
+                        <?php $count=1; ?>
                         <tbody>
-                        <?php
-                            $count=1;
-                        ?>
                         @foreach($agent as $agentAll)
                             <tr>
                                 <td><?php echo $count; $count++ ?></td>
@@ -137,6 +136,16 @@
         </div>
     </div>
 
+@endsection
+@section('styles')
+    <style rel="stylesheet">
+        .slight-align{
+            text-align: center;
+        }
+        .active-border{
+            border:solid 1px white;
+        }
+    </style>
 @endsection
 @section('js')
     <script type="text/javascript">
@@ -173,7 +182,7 @@
                                             '<td>' + data[i].name + '</td>' +
                                             '<td>'+data[i].number+'</td>'+
                                             '<td>' +data[i].email+'</td>'+
-                                            '<td>'+'<a class="btn btn-default" href="/system/agent/'+data[i].id+'">View</a>' + '</td>' +
+                                            '<td>' + '<a class="btn btn-default" href="/system/agent/'+ data[i].id+'">View</a>' + '</td>' +
                                             '<tr/>'
                                     );
                             No++;
