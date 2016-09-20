@@ -20,9 +20,9 @@ class PackageController extends Controller
      */
     public function index()
     {
-        $packages = Package::all()->where('terminated','=','0');
+        $packages = Package::all()->where('terminated', '=', '0');
         //Package Home Redirection
-        return view('admin.package.index',compact('packages'));
+        return view('admin.package.index', compact('packages'));
 
     }
 
@@ -39,36 +39,37 @@ class PackageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'code'=>'required|numeric|min:3',
-            'name'=>'required|min:5|max:20',
-            'country'=>'required|max:50',
-            'destination'=>'required|min:3',
-            'days'=>'required|numeric|min:1',
-            'price'=>'required|numeric|min:1'
+            'code' => 'required|numeric|min:3|unique:package,code',
+            'name' => 'required|min:5|max:20',
+            'country' => 'required|max:50',
+            'destination' => 'required|min:3',
+            'days' => 'required|numeric|min:1',
+            'price' => 'required|numeric|min:1'
         ]);
 
-        $package=Package::create([
-            'code'=>$request->code,
-            'name'=>$request->name,
-            'country'=>$request->country,
-            'destination'=>$request->destination,
-            'days'=>$request->days,
-            'price'=>$request->price,
-            'description'=>$request->description
+        $package = Package::create([
+            'code' => $request->code,
+            'name' => $request->name,
+            'country' => $request->country,
+            'destination' => $request->destination,
+            'days' => $request->days,
+            'price' => $request->price,
+            'description' => $request->description
         ]);
-        return \Redirect::to('/system/package');
+
+        return Redirect::to('/system/package/days/'.$package->id.'/create');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -79,13 +80,11 @@ class PackageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-
-
         $package = Package::find($id);
 
         return view('admin.package.edit', compact('package'));
@@ -94,31 +93,31 @@ class PackageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
 
         $this->validate($request, [
-            'code'=>'required|numeric',
-            'name'=>'required|min:1|max:20',
-            'country'=>'required|min:1|max:50',
-            'destination'=>'required|min:5',
-            'days'=>'required|numeric|min:1',
-            'price'=>'required|numeric|min:1'
+            'code' => 'required|numeric',
+            'name' => 'required|min:1|max:20',
+            'country' => 'required|min:1|max:50',
+            'destination' => 'required|min:5',
+            'days' => 'required|numeric|min:1',
+            'price' => 'required|numeric|min:1'
         ]);
 
-        $package = package::findOrFail($id);
+        $package = Package::findOrFail($id);
 
         $package->code = $request->code;
         $package->name = $request->name;
-        $package->country= $request->country;
-        $package->destination=$request->destination;
-        $package->days=$request->days;
-        $package->price=$request->price;
-        $package->description=$request->description;
+        $package->country = $request->country;
+        $package->destination = $request->destination;
+        $package->days = $request->days;
+        $package->price = $request->price;
+        $package->description = $request->description;
 
         // save and exit
         if ($package->save()) {
@@ -132,7 +131,7 @@ class PackageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -142,13 +141,14 @@ class PackageController extends Controller
 
     //termiate package
 
-    public function  terminate($id){
+    public function terminate($id)
+    {
         //delete temporally by set package teminated atribute to true
-        $success= DB::table('package')->where('id', $id)->update(['terminated'=> 1]);
+        $success = DB::table('package')->where('id', $id)->update(['terminated' => 1]);
         //if success return true flash message to redirect page
-        if($success){
+        if ($success) {
             Flash::success('Package Successfully Deleted');
-        }else{
+        } else {
             Flash::error('Error Package deletion');
         }
         return Redirect::back();

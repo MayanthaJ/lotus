@@ -11,7 +11,7 @@
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::to('/system/');
 });
 
 // employee login route ( do not remove )
@@ -23,11 +23,8 @@ Route::get('/home', 'HomeController@index');
  * DIRECT TEST PURPOSES
  */
 Route::get('/test/{test}', 'Employee\CalculateSalary@calculateSalaray');
-Route::get('/test/', function () {
-    $pdf = PDF::loadView('admin.employee.pdf.test');
-    return $pdf->stream('Employee.pdf');
-    //(new \App\Http\Controllers\Accounts\AccountController())->testCalcs();
-});
+
+Route::get('/test/', 'HomeController@index');
 
 // Main App Controller
 Route::get('/system', 'HomeController@getDashBoard');
@@ -42,7 +39,6 @@ Route::resource('system/tour/manage','Tour\manage\TourManageController');
 //Route::get('/system/tour/tourmanage/{id}/show','Tour\tourmanage\TourManageController@show');
 
 
-
 // Udana's routes
 Route::resource('system/advertisements/feedback','Advertisements\FeedbackController');
 Route::resource('system/advertisements/types', 'Advertisements\AdvertisementTypesController');
@@ -50,8 +46,10 @@ Route::resource('system/advertisements', 'Advertisements\AdvertisingController')
 
 
 // Sithira's routes
+Route::resource('system/extras/holidays', 'Employee\HolidayController');
+Route::resource('system/extras/ottypes', 'Employee\OverTimeTypeController');
+Route::resource('system/extras/leavetype', 'Employee\LeaveType');
 Route::get('system/employee/attendance', 'Employee\EmployeeController@getAllAttendance');
-
 Route::resource('system/employee', 'Employee\EmployeeController');
 
 // stats on employee
@@ -203,6 +201,7 @@ Route::get('system/rental/', 'HomeController@getRentalDashBoard');
 // Danajalee's routes
 Route::get('/system/package/{id}/terminate', 'Package\PackageController@terminate');
 Route::resource('/system/package', 'Package\PackageController');
+Route::resource('/system/package/days/{package}/', 'Package\PackageDayController');
 
 // System test routes ( timesheet )
 Route::get('/attendance/{employee}/check-out', 'Employee\TimeSheetController@checkOut');

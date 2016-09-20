@@ -45,6 +45,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Tour\Tour whereArrivalTime($value)
  * @property-read \App\Models\Package\Package $package
  * @property-read mixed $selected_package
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Customer\Customer[] $customers
  */
 class Tour extends Model
 {

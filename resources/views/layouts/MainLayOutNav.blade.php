@@ -1,3 +1,6 @@
+@if(Auth::check() == false)
+      <?php return Redirect::to('/');?>
+@endif
 <!DOCTYPE html>
 <html>
 <head>

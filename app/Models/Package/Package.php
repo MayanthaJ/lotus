@@ -32,6 +32,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Package\Package whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Package\Package whereUpdatedAt($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tour\Tour[] $tours
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Package\PackageDay[] $details
  */
 class Package extends Model
 {
@@ -44,4 +45,8 @@ class Package extends Model
         return $this->hasMany(Tour::class, 'package_id');
     }
 
+    public function details()
+    {
+        return $this->hasMany(PackageDay::class, 'package_id');
+    }
 }

@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\CustomerPackage whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\CustomerPackage whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property integer $tour_id
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\CustomerPackage whereTourId($value)
  */
 class CustomerPackage extends Model
 {

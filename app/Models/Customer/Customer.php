@@ -57,6 +57,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereTour($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereTicketing($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Customer\Customer whereRental($value)
+ * @property string $address
  */
 class Customer extends Model
 {

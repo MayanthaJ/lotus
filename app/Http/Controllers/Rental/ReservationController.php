@@ -6,6 +6,7 @@ use App\Models\Employee\EmployeeType;
 use App\Models\Rental\Reservation;
 use App\Models\Rental\Vehicle;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use flash;
 
@@ -39,7 +40,6 @@ class ReservationController extends Controller
 
     public function create()
     {
-        \DB::enableQueryLog();
 
         $vehicles = Vehicle::pluck('vehicle_name', 'id');
 

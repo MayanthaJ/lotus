@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.MainLayOutNav')
+
 @section('content')
-    <div class="container">
+
         <div class="row">
             <div class="row">
                 <a class="btn btn-default" href="/system">Home</a>
@@ -26,5 +27,5 @@
                 </div>
             </div>
         </div>
-    </div>
+
 @endsection
