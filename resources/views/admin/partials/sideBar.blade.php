@@ -81,6 +81,14 @@
                     <li><a href="{!! url('/system/tours/hotels/create') !!}">Add Hotels</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="#advertisements" data-toggle="collapse" aria-expanded="false">
+                    Advertisements</span>
+                </a>
+                <ul id="advertisements" class="nav nav-second collapse">
+                    <li><a href="{!! url('/system/advertisements') !!}">Advertisements</a></li>
+                </ul>
+            </li>
 
             @if(in_array('Admin', $searchable) || in_array('Management', $searchable))
                 <li>
