@@ -6,10 +6,10 @@
     {!! Form::label('tourDate') !!}
     {!! Form::select('tourDate', [], null, ['placeholder' => 'Select Tour Date...','class'=>'form-control']) !!}
 </div>
-@if($advance_payment)
-    <div class="form-group">
-        {!! Form::label('advance-payemnt','Advance Payment :') !!}
-        {!! Form::text('advancePayment', null,['class'=>'form-control']) !!}
-    </div>
-@endif
+
+<div class="form-group">
+    {!! Form::label('payemnt','Payment :') !!}
+    {!! Form::text('payment', null,['class'=>'form-control']) !!}
+</div>
+
 {!! Form::submit($btn, ['class' => 'btn btn-default btn-block']) !!}

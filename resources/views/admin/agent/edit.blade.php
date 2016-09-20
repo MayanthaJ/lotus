@@ -29,7 +29,7 @@
                                <i  class="fa fa-home  text-warning"> </i>
                                 Add New Agent
                                 <br/>
-                             <a  class="btn btn-default" href="/system/agnet/create">Add</a>
+                             <a  class="btn btn-default" href="/system/agent/create">Add</a>
                            </span>
                     </h3>
                 </div>
@@ -59,15 +59,15 @@
 
     <div class="row">
         <div class="col-md-12">
-           <div class="panel panel-filled">
-               <div class="panel-body">
-                   <h3>Add New agent</h3>
-                   @include('notifications._message')
-                   {!! Form::open(['action' => 'Agent\AgentController@store','id'=>'agentForm']) !!}
-                   @include('admin.agent.partials._formPartial',['btn' => 'Add Agent'])
-                   {!! Form::close() !!}
-               </div>
-           </div>
+            <div class="panel panel-filled">
+                <div class="panel-body">
+                    <h3>Update Agent details </h3>
+                    @include('notifications._message')
+                    {!! Form::model($agent, ['method' => 'PATCH','action' => ['Agent\AgentController@update', $agent->id],'id'=>'agentForm']) !!}
+                    @include('admin.agent.partials.uneditformPartial',['btn' => 'Update Agent'])
+                    {!! Form::close() !!}
+                </div>
+            </div>
         </div>
     </div>
 @endsection
@@ -82,35 +82,13 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                name: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Name should not be empty'
-                        },
-                        regexp: {
-                            regexp: /^[a-z\s]+$/i,
-                            message: 'The name can consist of alphabetical characters and spaces only'
-                        }
-                    }
-                },
                 email: {
                     validators: {
                         notEmpty: {
-                            message: 'Email should be empty'
+                            message: 'Email should cannot be empty'
                         },
                         emailAddress: {
                             message: 'Should be a valid email address'
-                        }
-                    }
-                },
-
-                registeredNo: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Registration Number should be empty '
-                        },
-                        numeric:{
-                            message:'Registartion Number must numeric'
                         }
                     }
                 },

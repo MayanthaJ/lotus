@@ -150,33 +150,55 @@ Route::group(['middleware' => 'adminOrManager'], function () {
 // todo : surround them in middleWare of entry operator
 
 // Achala's routes
+//Agent's get routes
+
+Route::get('/system/agent/view','Agent\AgentController@viewAgents');
+Route::get('/system/agent/{id}/terminate','Agent\AgentController@terminate');
+Route::get('/system/agent/{id}/undo','Agent\AgentController@undo');
+
 Route::get('/system/customer/{id}/terminate', 'Customer\CustomerController@terminate');
-Route::get('/system/customer/undo/{id}/terminate', 'Customer\CustomerController@undoterminate');
 Route::get('/system/customer/{id}/view/', 'Customer\CustomerController@view');
 Route::get('/system/customer/view/', 'Customer\CustomerController@viewAll');
-Route::get('system/customer/new/{id}/tour','Customer\CustomerController@AnotherTour');
-Route::get('/system/customer/new/tour/{id}/create','Customer\CustomerController@AnotherTourCreate');
+
+Route::get('/system/customer/new/tour/{id}/create','Customer\CustomerController@newTourCreate');
+Route::post('/system/customer/new/tour/{id}/create','Customer\CustomerController@postNewTour');
+
+
 Route::resource('/system/customer', 'Customer\CustomerController');
-Route::resource('system/ticket','Ticket\TicketController');
-Route::resource('system/agent','Agent\AgentController');
+Route::get('/system/ticket/{id}/create','Ticket\TicketController@allocate');
+Route::get('/system/ticket/view','Ticket\TicketController@all');
+Route::resource('/system/ticket','Ticket\TicketController');
+
+//agent's routes
+Route::resource('/system/agent','Agent\AgentController');
+//for rental registered customer
+Route::get('rental/reservation/{id}/create','Rental\ReservationController@reservation');
+
 
 //Achala's ajaxs
 Route::get('/api/secured/customer/tours/{package_id}', function ($package_id) {
     $carbon = \Carbon\Carbon::now()->addDays(-2)->toDateString();
     return \App\Models\Tour\Tour::where('package_id', $package_id)->where('departure', '<=', $carbon)->get();
 });
+
+
 //get agent search
 Route::get('/api/secured/agent/name/{name}',function ($name){
-    return \App\Models\Agent\Agent::where('name', 'like',$name.'%')->get()->toJson();
+    return \App\Models\Agent\Agent::where('name', 'like',$name.'%')
+                ->orwhere('name', 'like',$name.'%')->
+                orWhere('registered','like',$name.'%')->get()->toJson();
 });
+
 //agent Refill
 Route::get('/api/secured/agent/refill',function (){
-    return \App\Models\Agent\Agent::all()->toJson();
+    return \App\Models\Agent\Agent::all()->where('terminated',0)->toJson();
 });
+
 //customer search
 Route::get('/api/secured/customer/refill',function(){
     return App\Models\Customer\Customer::all()->toJson();
 });
+
 //customer Search
 Route::get('/api/secured/customer/name/{name}',function($name){
     return App\Models\Customer\Customer::where('fname', 'like',$name.'%')
@@ -185,7 +207,11 @@ Route::get('/api/secured/customer/name/{name}',function($name){
         orWhere('lname', 'like',$name.'%')->get()->toJson();
 });
 
+//get package price
 
+Route::get('/api/secured/package/{id}',function($id){
+    return \App\Models\Package\Package::where('id',$id)->first()->price;
+});
 
 
 

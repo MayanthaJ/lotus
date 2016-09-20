@@ -91,12 +91,16 @@
         </div>
     <br/>
         <div class="row">
-            <div class="col-md-6">
-                <h3>Add Customer</h3>
-                @include('notifications._message')
-                {!! Form::open(['action' => 'Customer\CustomerController@store','id'=>'Form']) !!}
-                @include('admin.customer.partials._formPartial',['btn' => 'Add Customer','advance_payment'=>'1'])
-                {!! Form::close() !!}
+            <div class="col-md-12">
+               <div class="panel panel-filled">
+                   <div class="panel-body">
+                       <h3>Add Customer</h3>
+                       @include('notifications._message')
+                       {!! Form::open(['action' => 'Customer\CustomerController@store','id'=>'Form']) !!}
+                       @include('admin.customer.partials._formPartial',['btn' => 'Add Customer','advance_payment'=>'1'])
+                       {!! Form::close() !!}
+                   </div>
+               </div>
             </div>
             <div class="col-md-6">
 
@@ -174,6 +178,8 @@
             });
         });
     </script>
+
+
 
     <script type="text/javascript">
         $('#Form').formValidation({
@@ -325,6 +331,38 @@
 
 
             }
+        });
+    </script>
+
+    <!-- tour load jquery -->
+    <script type="text/javascript">
+
+        $(document).on('change', '#loyalty', function () {
+            var tourID = $('.package_selector').find(':selected').val();
+            var packageID = $('#tour').find(':selected').val();
+            var url = '/api/secured/package/'+ packageID;
+            $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "json",
+                success: function (data) {
+                    var dicount;
+                    var lType=$('#loyalty').find(':selected').val();
+                    if(lType ==1){
+                        dicount=data-(data*0);
+                    }
+                    if(lType ==2){
+                        dicount=data-(data*(25/100));
+                    }
+                    if(lType ==3){
+                        dicount=data-(data*(15/100));
+                    }
+                    if(lType ==4){
+                        dicount=data-(data*(5/100));
+                    }
+                    $('#payment').val(dicount);
+                }
+            });
         });
     </script>
 @endsection

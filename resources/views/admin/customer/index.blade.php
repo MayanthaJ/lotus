@@ -169,7 +169,7 @@
                         <th>Contact</th>
                         <th>NIC</th>
                         <th>Tour</th>
-                        <th>Ticketing</th>
+                        <th>Ticket</th>
                         <th>Rental</th>
                     </tr>
                     </thead>
@@ -185,7 +185,7 @@
                                     if($customer->tour){
                                         echo '<i class="fa fa-check" aria-hidden="true"></i>';
                                     }else{
-                                        echo '<a class="btn btn-default" href="/system/customer/new/'.$customer->id.'/tour">Add</a>';
+                                        echo '<i class="fa fa-times" aria-hidden="true"></i>';
                                     }
                                 ?>
                             </td>
@@ -194,17 +194,17 @@
                                 if($customer->ticketing){
                                     echo '<i class="fa fa-check" aria-hidden="true"></i>';
                                 }else{
-                                    echo '<a class="btn btn-default" href="/system/ticket/'.$customer->id.'/create">Add</a>';
+                                    echo '<i class="fa fa-times" aria-hidden="true"></i>';
                                 }
                                 ?>
                             </td>
                             <td style="text-align: center">
                                 <?php
-                                if($customer->rental){
-                                    echo '<i class="fa fa-check" aria-hidden="true"></i>';
-                                }else{
-                                    echo '<a class="btn btn-default" href="/system/rental/'.$customer->id.'/create">Add</a>';
-                                }
+                                    if($customer->rental){
+                                        echo '<i class="fa fa-check" aria-hidden="true"></i>';
+                                    }else{
+                                        echo '<i class="fa fa-times" aria-hidden="true"></i>';
+                                    }
                                 ?>
                             </td>
                             <td>
@@ -256,9 +256,9 @@
                         var No=1;
                         for (i = 0; i < data.length; i++) {
                             //intial values
-                            var tour='<a class="btn btn-default" href="/system/customer/new/'+data[i].id+'/tour">Add</a>';
-                            var ticketing='<a class="btn btn-default" href="/system/ticket/'+data[i].id+'/create">Add</a>'
-                            var rental='<a class="btn btn-default" href="/system/rental/'+data[i].id+'/create">Add</a>';
+                            var tour='<i class="fa fa-times" aria-hidden="true"></i>';
+                            var ticketing='<i class="fa fa-times" aria-hidden="true"></i>';
+                            var rental='<i class="fa fa-times" aria-hidden="true"></i>';
 
                             if(data[i].tour){
                                 tour='<i class="fa fa-check" aria-hidden="true"></i>';
