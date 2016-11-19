@@ -1,5 +1,6 @@
 @if (Session::has(config('flash.sessionKey')))
     @foreach (Session::get(config('flash.sessionKey')) as $flash)
+        {!! dd($flash)  !!}
         @if ($flash['overlay'] == true)
             @include('flash::modal', ['modalClass' => $flash['class'], 'title' => $flash['title'], 'body' => $flash['message']])
         @else
